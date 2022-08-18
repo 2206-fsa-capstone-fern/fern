@@ -1,23 +1,122 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import firebaseConfig, { db, auth, accountsRef } from "./firebase";
+import {
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+//changes for every collection change //real time collection data
+onSnapshot(accountsRef, (snapshot) => {
+  let accounts = [];
+  snapshot.docs.forEach((doc) => {
+    accounts.push({ ...doc.data(), id: doc.id });
+  });
+  console.log(accounts);
+});
+
+const signup = (event) => {
+  const signupForm = document.querySelector(".signup");
+  event.preventDefault();
+
+  const email = signupForm.email.value;
+  const password = signupForm.password.value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log("user created:", cred.user);
+      signupForm.reset();
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const addAccount = (event) => {
+  const addAccountForm = document.querySelector(".add");
+  event.preventDefault();
+
+  addDoc(accountsRef, {
+    number: addAccountForm.number.value,
+    firstName: addAccountForm.firstName.value,
+    lastName: addAccountForm.lastName.value,
+    createdAt: serverTimestamp(),
+  }).then(() => {
+    addAccountForm.reset();
+  });
+};
+
+const deleteAccount = (event) => {
+  const deleteAccountForm = document.querySelector(".delete");
+  event.preventDefault();
+
+  const docRef = doc(db, "accounts", deleteAccountForm.id.value);
+
+  deleteDoc(docRef).then(() => {
+    deleteAccountForm.reset();
+  });
+};
+
+const updateAccount = (event) => {
+  const updateForm = document.querySelector(".update");
+  event.preventDefault();
+
+  const docRef = doc(db, "accounts", updateForm.id.value);
+
+  updateDoc(docRef, {
+    number: 1245,
+  }).then(() => {
+    updateForm.reset();
+  });
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Firebase Auth</h2>
+
+      <form className="signup">
+        <label htmlFor="email">email:</label>
+        <input type="email" name="email" required />
+        <label htmlFor="password">password:</label>
+        <input type="password" name="password" required />
+        <button onClick={(event) => signup(event)}>signup</button>
+      </form>
+
+      <h2>Firebase FireStore</h2>
+
+      <form className="add">
+        <label htmlFor="number">number:</label>
+        <input type="number" name="number" required />
+        <label htmlFor="firstName">First Name:</label>
+        <input type="text" name="firstName" required />
+        <label htmlFor="lastName">Last Name:</label>
+        <input type="text" name="lastName" required />
+
+        <button onClick={(event) => addAccount(event)}>add new account</button>
+      </form>
+
+      <form className="delete">
+        <label htmlFor="id">Document id:</label>
+        <input type="text" name="id" required />
+
+        <button onClick={(event) => deleteAccount(event)}>
+          delete account
+        </button>
+      </form>
+
+      <form className="update">
+        <label htmlFor="id">Document id:</label>
+        <input type="text" name="id" required />
+
+        <button onClick={(event) => updateAccount(event)}>
+          update account
+        </button>
+      </form>
     </div>
   );
 }
