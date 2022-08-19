@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
-  collection,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -21,8 +20,6 @@ initializeApp(firebaseConfig);
 
 export const db = getFirestore();
 export const auth = getAuth();
-
-export const accountsRef = collection(db, "accounts");
 
 export default firebaseConfig;
 
