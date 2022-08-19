@@ -59,7 +59,9 @@ function AccountView() {
           <Link to="/update">Update</Link>
         </button>
       </div>
-      <br />
+      <br /><br /><br />
+
+      <button>Delete Account</button>
     </form>
   );
 }
