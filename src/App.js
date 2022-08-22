@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LogIn from "./components/auth/LogIn";
-import SignUp from "./components/auth/SignUp";
-import Navbar from "./components/layout/Navbar";
+import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   render() {

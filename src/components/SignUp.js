@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { auth, db } from "../../config/firebase"
+import { auth, db } from "../config/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from 'firebase/firestore'
 
