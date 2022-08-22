@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { auth, db } from "../config/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from 'firebase/firestore'
-import { Navigate } from "react-router-dom";
+import { gettingUser } from "../store";
+import { connect } from "react-redux";
 
 class SignUp extends Component {
   state = {
@@ -35,16 +36,13 @@ class SignUp extends Component {
     .catch((err) => {
       console.log(err.message);
     });
-    this.setState({
-      toNext: true,
-    })
+    this.props.loadInitialData()
   };
 
   render() {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          {this.state.toNext ? <Navigate to="/" /> : null}
           <h5 className="grey-text text-darken-3">Sign Up</h5>
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
@@ -91,4 +89,10 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapDisptach = (dispatch) => {
+  return {
+    loadInitialData: () => dispatch(gettingUser()),
+  };
+};
+
+export default connect(null, mapDisptach)(SignUp);

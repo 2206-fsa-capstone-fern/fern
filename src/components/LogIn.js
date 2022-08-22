@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { auth } from "../config/firebase"
+import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { gettingUser } from "../store";
 
 class LogIn extends Component {
   state = {
@@ -18,7 +20,7 @@ class LogIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state
+    const { email, password } = this.state;
 
     signInWithEmailAndPassword(auth, email, password)
       .then((cred) => {
@@ -27,16 +29,13 @@ class LogIn extends Component {
       .catch((err) => {
         console.log(err.message);
       });
-    this.setState({
-      toNext: true
-    })
+    this.props.loadInitialData()
   };
 
   render() {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          {this.state.toNext ? <Navigate to="/" /> : null}
           <h5 className="grey-text text-darken-3">Log In</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
@@ -59,10 +58,19 @@ class LogIn extends Component {
           <div className="input-field">
             <button className="btn">Login</button>
           </div>
+          <div>
+            <Link to="/signup">New User? Click here to sign up!</Link>
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default LogIn;
+const mapDisptach = (dispatch) => {
+  return {
+    loadInitialData: () => dispatch(gettingUser()),
+  };
+};
+
+export default connect(null, mapDisptach)(LogIn);
