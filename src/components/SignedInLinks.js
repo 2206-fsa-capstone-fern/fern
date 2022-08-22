@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
+
 const SignedInLinks = () => {
   return (
     <ul className="right">
@@ -10,4 +11,4 @@ const SignedInLinks = () => {
   )
 }
 
-export default SignedInLinks
+export default (SignedInLinks)

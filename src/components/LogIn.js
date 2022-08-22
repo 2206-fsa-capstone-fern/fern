@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { auth } from "../config/firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 class LogIn extends Component {
   state = {
     email: "",
     password: "",
+    toNext: false,
   };
 
   handleChange = (e) => {
@@ -25,12 +27,16 @@ class LogIn extends Component {
       .catch((err) => {
         console.log(err.message);
       });
+    this.setState({
+      toNext: true
+    })
   };
 
   render() {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
+          {this.state.toNext ? <Navigate to="/" /> : null}
           <h5 className="grey-text text-darken-3">Log In</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>

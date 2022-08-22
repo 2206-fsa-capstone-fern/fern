@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { auth, db } from "../config/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from 'firebase/firestore'
+import { Navigate } from "react-router-dom";
 
 class SignUp extends Component {
   state = {
@@ -10,6 +11,7 @@ class SignUp extends Component {
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    toNext: false,
   };
 
   handleChange = (e) => {
@@ -33,12 +35,16 @@ class SignUp extends Component {
     .catch((err) => {
       console.log(err.message);
     });
+    this.setState({
+      toNext: true,
+    })
   };
 
   render() {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
+          {this.state.toNext ? <Navigate to="/" /> : null}
           <h5 className="grey-text text-darken-3">Sign Up</h5>
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
