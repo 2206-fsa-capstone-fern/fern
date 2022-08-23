@@ -10,6 +10,8 @@ const { Configuration, PlaidApi, PlaidEnvironments } = require("plaid");
 const app = express();
 
 app.use(
+  // FOR DEMO PURPOSES ONLY
+  // Use an actual secret key in production
   session({ secret: process.env.SECRET, saveUninitialized: true, resave: true })
 );
 
@@ -33,7 +35,6 @@ const client = new PlaidApi(config);
 
 //Creates a Link token and return it
 app.get("/api/create_link_token", async (req, res, next) => {
-  console.log("it happened");
   const tokenResponse = await client.linkTokenCreate({
     user: { client_user_id: req.sessionID },
     client_name: "Plaid's Tiny Quickstart",
