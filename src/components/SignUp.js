@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { auth, db } from "../config/firebase"
+import { auth, db } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from "firebase/firestore";
 
 class SignUp extends Component {
   state = {
@@ -20,19 +20,19 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, firstName, lastName } = this.state
+    const { email, password, firstName, lastName } = this.state;
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-      console.log("user created:", cred.user);
-      return setDoc(doc(db, "users", cred.user.uid), {
-        firstName: firstName,
-        lastName: lastName,
+      .then((cred) => {
+        console.log("user created:", cred.user);
+        return setDoc(doc(db, "users", cred.user.uid), {
+          firstName: firstName,
+          lastName: lastName,
+        });
       })
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   render() {

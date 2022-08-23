@@ -25,55 +25,33 @@ function Plaid(props) {
   const createLinkToken = React.useCallback(async () => {
     // For OAuth, use previously generated Link token
     if (window.location.href.includes("?oauth_state_id=")) {
-      try {
-        const linkToken = localStorage.getItem('link_token');
-        setToken(linkToken);
-
-      } catch (err) {
-        console.log(err)
-      }
+      const linkToken = localStorage.getItem('link_token');
+      setToken(linkToken);
     } else {
-      try {
-        const response = await fetch("/api/create_link_token", {});
+      const response = await fetch("/api/create_link_token", {});
       const data = await response.json();
       setToken(data.link_token);
       localStorage.setItem("link_token", data.link_token);
-    } catch(err) {
-      console.log(localStorage)
-      console.log(err)
     }
-  }
-
   }, [setToken]);
 
   // Fetch balance data
   const getBalance = React.useCallback(async () => {
     setLoading(true);
-
-    try {
-      const response = await fetch("/api/balance", {});
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-
-    } catch(err) {
-      console.log(err)
-    }
+    const response = await fetch("/api/balance", {});
+    const data = await response.json();
+    setData(data);
+    setLoading(false);
   }, [setData, setLoading]);
 
 
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
-
-    try {
-      const response = await fetch('/api/transactions/get', {})
-      const data = await response.json();
-      setTransactions(data);
-      setLoading(false)
-    } catch (err) {
-      console.log(err)
-    }
-    }, [setTransactions, setLoading])
+    const response = await fetch('/api/transactions/get', {})
+    const data = await response.json();
+    setTransactions(data);
+    setLoading(false)
+  }, [setTransactions, setLoading])
 
   let isOauth = false;
 
