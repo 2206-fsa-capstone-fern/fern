@@ -1,6 +1,5 @@
 import { Component } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -24,17 +23,16 @@ class App extends Component {
                 <Routes></Routes>
               ) : (
                 <Routes>
-                  <Route exact path="/" element={<Dashboard />} />
-                  <Route exact path="/signup" element={<Dashboard />} />
-                  <Route path="/login" element={<Dashboard />} />
+                  <Route exact path="/Dashboard" element={<Dashboard />} />
+                  <Route path="/*" element={<Navigate replace to="/Dashboard" />} />
                 </Routes>
               )}
             </div>
           ) : (
             <Routes>
-              <Route path="/" element={<LogIn />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route path="/*" element={<Navigate replace to="/login" />} />
+              <Route exact path="/login" element={<LogIn />} />
             </Routes>
           )}
         </div>

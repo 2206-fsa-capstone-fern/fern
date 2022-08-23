@@ -11,9 +11,15 @@ const getUser = (user) => ({ type: GET_USER, user });
 //thunk
 export const gettingUser = () => async (dispatch) => {
   const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
+
+  if(!userId) {
+    return dispatch(getUser({}))
+  }
+
   const user = await getDoc(doc(db, "users", userId)).then((doc) => {
     return (doc.data());
   });
+
   return dispatch(getUser(user));
 };
 

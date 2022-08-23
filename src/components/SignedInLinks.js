@@ -4,7 +4,6 @@ import { loggingOut } from "../store";
 
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
-  console.log(user)
   const handleLogout = (e) => {
     e.preventDefault();
 
