@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { auth } from "../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { gettingUser } from "../store";
+import { loggingIn } from "../store";
 
 class LogIn extends Component {
   state = {
@@ -22,14 +20,7 @@ class LogIn extends Component {
     e.preventDefault();
     const { email, password } = this.state;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
-        console.log("user logged in:", cred.user);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-    this.props.loadInitialData()
+    this.props.login(email, password)
   };
 
   render() {
@@ -69,7 +60,7 @@ class LogIn extends Component {
 
 const mapDisptach = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
+    login: (email, password) => dispatch(loggingIn(email, password)),
   };
 };
 

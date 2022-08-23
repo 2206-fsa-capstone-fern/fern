@@ -1,15 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { loggingOut } from "../store";
 
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
+  console.log(user)
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    props.logout()
+  }
   return (
     <ul className="right">
       <li>
         <NavLink to="/">Settings</NavLink>
       </li>
       <li>
-        <NavLink to="/">Log Out</NavLink>
+        <NavLink to="/" onClick={handleLogout}>Log Out</NavLink>
       </li>
       {isLoggedIn ? (
         <li>
@@ -35,4 +42,11 @@ const mapState = (state) => {
     user: state.user
   };
 };
-export default connect(mapState)(SignedInLinks);
+
+const mapDisptach = (dispatch) => {
+  return {
+    logout: () => dispatch(loggingOut()),
+  };
+};
+
+export default connect(mapState, mapDisptach)(SignedInLinks);

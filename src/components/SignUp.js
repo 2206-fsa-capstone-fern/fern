@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { auth, db } from "../config/firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from 'firebase/firestore'
-import { gettingUser } from "../store";
+import { signup } from "../store";
 import { connect } from "react-redux";
 
 class SignUp extends Component {
@@ -25,18 +22,7 @@ class SignUp extends Component {
     e.preventDefault();
     const { email, password, firstName, lastName } = this.state
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-      console.log("user created:", cred.user);
-      return setDoc(doc(db, "users", cred.user.uid), {
-        firstName: firstName,
-        lastName: lastName,
-      })
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-    this.props.loadInitialData()
+    this.props.signUp(email, password, firstName, lastName)
   };
 
   render() {
@@ -91,7 +77,7 @@ class SignUp extends Component {
 
 const mapDisptach = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
+    signUp: (email, password, firstName, lastName) => dispatch(signup(email, password, firstName, lastName)),
   };
 };
 
