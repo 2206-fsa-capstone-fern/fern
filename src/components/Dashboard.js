@@ -1,24 +1,48 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
+import BarChart from './BarChart';
+import LineGraph from './LineGraph';
+import PieChart from './PieChart';
+import { dummyTransactions } from '../DummyData/Transactions';
 
 const Dashboard = () => {
+  const dummyData = dummyTransactions[0].transactions.slice(0, 10);
+  const transactionCategory = dummyData.map(
+    (transaction) => transaction.category[0]
+  );
+  const transactionAmount = dummyData.map((transaction) => transaction.amount);
+  const [chartData, setChartData] = useState({
+    labels: transactionCategory,
+    datasets: [
+      {
+        label: 'Transactions',
+        data: transactionAmount,
+        backgroundColor: [
+          'rgba(75,192,192,1)',
+          '#ecf0f1',
+          '#50AF95',
+          '#f3ba2f',
+          '#2a71d0',
+        ],
+        borderColor: ['rgba(75,192,192,1)'],
+        borderWidth: 5,
+      },
+    ],
+  });
+  console.log(transactionAmount);
+
   return (
-    <div>
+    <div
+      class='chart-container'
+      style={{ position: 'relative', height: '1000px', width: '1000px' }}>
       <div>
-        {/* account summary box */}
-        <p>Total Balance #</p>
-        <p>Checking and Savings #</p>
-        <p>Credit Cards #</p>
+        <BarChart chartData={chartData} />
       </div>
       <div>
-        {/* monthly spending line graph */}
-        <p>Monthly Spending</p>
+        <LineGraph chartData={chartData} />
       </div>
-      <div>{/* monthly spending broken down by category */}</div>
       <div>
-        {/* budget remaining */}
-        <p>Monthly Budget</p>
-        <p></p>
-        <p>$ Remaining</p>
+        <PieChart chartData={chartData} />
       </div>
     </div>
   );
