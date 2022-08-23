@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import Plaid from "./Plaid";
+import DoughnutChart from "./components/DoughnutChart";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
 
             <Route path="/link" element={<Plaid />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/donut" element={<DoughnutChart />} />
           </Routes>
         </div>
       </BrowserRouter>
