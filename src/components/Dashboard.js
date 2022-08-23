@@ -4,6 +4,7 @@ import BarChart from './BarChart';
 import LineGraph from './LineGraph';
 import PieChart from './PieChart';
 import { dummyTransactions } from '../DummyData/Transactions';
+import SideNav from './SideNav/SideNav';
 
 const Dashboard = () => {
   const dummyData = dummyTransactions[0].transactions.slice(0, 10);
@@ -32,18 +33,22 @@ const Dashboard = () => {
   console.log(transactionAmount);
 
   return (
-    <div
-      class='chart-container'
-      style={{ position: 'relative', height: '1000px', width: '1000px' }}>
-      <div>
-        <BarChart chartData={chartData} />
-      </div>
-      <div>
-        <LineGraph chartData={chartData} />
-      </div>
-      <div>
-        <PieChart chartData={chartData} />
-      </div>
+    <div>
+      <SideNav />
+
+      {/* <div
+        class='chart-container'
+        style={{ position: 'relative', height: '1000px', width: '1000px' }}>
+        <div>
+          <BarChart chartData={chartData} />
+        </div>
+        <div>
+          <LineGraph chartData={chartData} />
+        </div>
+        <div>
+          <PieChart chartData={chartData} />
+        </div>
+      </div> */}
     </div>
   );
 };
