@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { auth, db } from "../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { signup } from "../store";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class SignUp extends Component {
   state = {
@@ -10,6 +10,7 @@ class SignUp extends Component {
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    toNext: false,
   };
 
   handleChange = (e) => {
@@ -21,18 +22,7 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, firstName, lastName } = this.state;
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
-        console.log("user created:", cred.user);
-        return setDoc(doc(db, "users", cred.user.uid), {
-          firstName: firstName,
-          lastName: lastName,
-        });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    this.props.signUp(email, password, firstName, lastName)
   };
 
   render() {
@@ -79,10 +69,19 @@ class SignUp extends Component {
           <div className="input-field">
             <button className="btn">SIGN UP</button>
           </div>
+          <div>
+            <Link to="/login">Existing User? Click here to log in!</Link>
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+const mapDisptach = (dispatch) => {
+  return {
+    signUp: (email, password, firstName, lastName) => dispatch(signup(email, password, firstName, lastName)),
+  };
+};
+
+export default connect(null, mapDisptach)(SignUp);
