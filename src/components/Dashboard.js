@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import BarChart from './BarChart';
-import LineGraph from './LineGraph';
-import PieChart from './PieChart';
+// import BarChart from './BarChart';
+// import LineGraph from './LineGraph';
+// import PieChart from './PieChart';
 import { dummyTransactions } from '../DummyData/Transactions';
 import SideNav from './SideNav/SideNav';
 

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { auth } from "../config/firebase"
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { loggingIn } from "../store";
 
 class LogIn extends Component {
   state = {
     email: "",
     password: "",
+    toNext: false,
   };
 
   handleChange = (e) => {
@@ -16,15 +18,9 @@ class LogIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state
+    const { email, password } = this.state;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
-        console.log("user logged in:", cred.user);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    this.props.login(email, password)
   };
 
   render() {
@@ -53,10 +49,19 @@ class LogIn extends Component {
           <div className="input-field">
             <button className="btn">Login</button>
           </div>
+          <div>
+            <Link to="/signup">New User? Click here to sign up!</Link>
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default LogIn;
+const mapDisptach = (dispatch) => {
+  return {
+    login: (email, password) => dispatch(loggingIn(email, password)),
+  };
+};
+
+export default connect(null, mapDisptach)(LogIn);

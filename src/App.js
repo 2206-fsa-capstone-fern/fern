@@ -1,16 +1,29 @@
+//React
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
+
+//Plaid
 import { usePlaidLink } from "react-plaid-link";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./Plaid.scss";
+
+//Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
-import "./Plaid.scss";
 import LinkAccount from "./components/LinkAccount";
-import { connect } from "react-redux";
-import { addingTransactions } from "./store/transactionsReducer";
 
+//Redux
+import { connect } from "react-redux";
+import { gettingUser, addingTransactions } from "./store";
+
+//functional component
 function App(props) {
+  const { isLoggedIn, isAdmin } = props;
+  useEffect(() => {
+    props.loadInitialData();
+  }, [isLoggedIn]);
+  
   console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -103,27 +116,43 @@ function App(props) {
           transactions={props.transactions[0]}
           transactions2={props.transactions[1]}
         />
-        <Routes>
-          <Route exact path="/login" element={<LogIn />} />
-          <Route exact path="/signup" element={<SignUp />} />
-          <Route
-            exact
-            path="/link"
-            element={
-              <LinkAccount
-                open={open}
-                ready={ready}
-                transactions={props.transactions[0]}
-                transactions2={props.transactions[1]}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/dashboard"
-            element={<Dashboard transactions={transactions} />}
-          />
-        </Routes>
+        {isLoggedIn ? (
+          <div>
+            {isAdmin ? (
+              <Routes></Routes>
+            ) : (
+              <Routes>
+                <Route
+                  exact
+                  path="/link"
+                  element={
+                    <LinkAccount
+                      open={open}
+                      ready={ready}
+                      transactions={props.transactions[0]}
+                      transactions2={props.transactions[1]}
+                    />
+                  }
+                />
+                <Route
+                  path="/*"
+                  element={<Navigate replace to="/dashboard" />}
+                />
+                <Route
+                  exact
+                  path="/dashboard"
+                  element={<Dashboard transactions={transactions} />}
+                />
+              </Routes>
+            )}
+          </div>
+        ) : (
+          <Routes>
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route path="/*" element={<Navigate replace to="/login" />} />
+            <Route exact path="/login" element={<LogIn />} />
+          </Routes>
+        )}
       </div>
     </BrowserRouter>
   );
@@ -131,11 +160,16 @@ function App(props) {
 
 const mapState = (state) => {
   return {
+    isLoggedIn: !!state.user.firstName,
+    isAdmin: !!state.user.admin,
+    user: state.user,
     transactions: state.transactions,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
+    loadInitialData: () => dispatch(gettingUser()),
     addTransactions: (transaction) => dispatch(addingTransactions(transaction)),
   };
 };
