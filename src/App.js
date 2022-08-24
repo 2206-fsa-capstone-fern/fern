@@ -12,6 +12,9 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
+import SideNav from "./components/SideNav/SideNav";
+import Trends from "./components/Trends";
+import AllTransactions from "./components/AllTransactions";
 
 //Redux
 import { connect } from "react-redux";
@@ -23,7 +26,7 @@ function App(props) {
   useEffect(() => {
     props.loadInitialData();
   }, [isLoggedIn]);
-  
+
   console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -110,40 +113,57 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar
-          open={open}
-          ready={ready}
-          transactions={props.transactions[0]}
-          transactions2={props.transactions[1]}
-        />
+        <div className="Navbar">
+          <Navbar
+            open={open}
+            ready={ready}
+            transactions={props.transactions[0]}
+            transactions2={props.transactions[1]}
+          />
+        </div>
+
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
               <Routes></Routes>
             ) : (
-              <Routes>
-                <Route
-                  exact
-                  path="/link"
-                  element={
-                    <LinkAccount
-                      open={open}
-                      ready={ready}
-                      transactions={props.transactions[0]}
-                      transactions2={props.transactions[1]}
+              <div>
+                <div className="SideNav">
+                  <SideNav />
+                </div>
+
+                <div className="app-container">
+                  <Routes>
+                    <Route
+                      exact
+                      path="/link"
+                      element={
+                        <LinkAccount
+                          open={open}
+                          ready={ready}
+                          transactions={props.transactions[0]}
+                          transactions2={props.transactions[1]}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route
-                  path="/*"
-                  element={<Navigate replace to="/dashboard" />}
-                />
-                <Route
-                  exact
-                  path="/dashboard"
-                  element={<Dashboard transactions={transactions} />}
-                />
-              </Routes>
+                    <Route
+                      path="/*"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard"
+                      element={<Dashboard transactions={transactions} />}
+                    />
+                    <Route exact path="/trends" element={<Trends />} />
+                    <Route
+                      exact
+                      path="/transactions"
+                      element={<AllTransactions />}
+                    />
+                  </Routes>
+                </div>
+              </div>
             )}
           </div>
         ) : (

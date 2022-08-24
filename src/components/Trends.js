@@ -4,7 +4,7 @@
 import React from "react";
 
 function Trends() {
-  return <div></div>;
+  return <div>trends page</div>;
 }
 
 export default Trends;
