@@ -12,6 +12,13 @@ const SignedInLinks = (props) => {
   return (
     <ul className="right">
       <li>
+      <button onClick={() => props.open()} disabled={!props.ready}>
+          <strong>Link an account</strong>
+          {console.log(props.transactions)}
+          {console.log("second", props.transactions2)}
+        </button>
+      </li>
+      <li>
         <NavLink to="/">Settings</NavLink>
       </li>
       <li>

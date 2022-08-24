@@ -1,19 +1,31 @@
-import { Link } from 'react-router-dom'
-import { connect } from "react-redux"
-import SignedInLinks from './SignedInLinks'
-import SignedOutLinks from './SignedOutLinks'
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import SignedInLinks from "./SignedInLinks";
+import SignedOutLinks from "./SignedOutLinks";
 
 const Navbar = (props) => {
-  const { isLoggedIn } = props
+  const { isLoggedIn, open, ready, transactions, transactions2 } = props;
+  console.log(props);
   return (
     <nav className="nav">
       <div className="container">
-        <Link to='/' className="brand-logo">FERN</Link>
-        { isLoggedIn ? (<SignedInLinks />) : (<SignedOutLinks />) }
+        <Link to="/" className="brand-logo">
+          FERN
+        </Link>
+        {isLoggedIn ? (
+          <SignedInLinks
+            open={open}
+            ready={ready}
+            transactions={transactions}
+            transactions2={transactions2}
+          />
+        ) : (
+          <SignedOutLinks />
+        )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
 const mapState = (state) => {
   return {
@@ -21,4 +33,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState, null)(Navbar)
+export default connect(mapState, null)(Navbar);
