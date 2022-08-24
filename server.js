@@ -59,13 +59,13 @@ app.post("/api/exchange_public_token", async (req, res, next) => {
 });
 
 // Fetches balance data using the Node client library for Plaid
-app.get("/api/balance", async (req, res, next) => {
-  const access_token = req.session.access_token;
-  const balanceResponse = await client.accountsBalanceGet({ access_token });
-  res.json({
-    Balance: balanceResponse.data,
-  });
-});
+// app.get("/api/balance", async (req, res, next) => {
+//   const access_token = req.session.access_token;
+//   const balanceResponse = await client.accountsBalanceGet({ access_token });
+//   res.json({
+//     Balance: balanceResponse.data,
+//   });
+// });
 
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().split("T")[0];
