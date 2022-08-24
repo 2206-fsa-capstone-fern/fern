@@ -8,11 +8,6 @@ const Navbar = (props) => {
       <div className="container">
         <SignedInLinks />
         <SignedOutLinks />
-        <button onClick={() => props.open()} disabled={!props.ready}>
-          <strong>Link an account</strong>
-          {console.log(props.transactions)}
-          {console.log("second", props.transactions2)}
-        </button>
       </div>
     </nav>
   );
