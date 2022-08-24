@@ -1,12 +1,12 @@
 import React from "react";
 
-function LinkAccount({ open, ready }) {
+function LinkAccount(props) {
   return (
-    <div className="accounts">
-      <button onClick={() => open()} disabled={!ready}>
-        <strong>Link an account</strong>
-      </button>
-    </div>
+    <ul className="right">
+      <li>
+        <div></div>
+      </li>
+    </ul>
   );
 }
 
