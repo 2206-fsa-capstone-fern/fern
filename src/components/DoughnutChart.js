@@ -12,11 +12,11 @@ ChartJS.register(Tooltip, Legend, ArcElement);
 
 const DoughnutChart = () => {
   // useState is used to create variables in React
-  const [chart, setChart] = useState({}); // chart is getter that gets whatever data we have in this application, setChart is setter
+  const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
 
   // let base = "http://localhost:3000/"
   let base = "https://sandbox.plaid.com/"
-  let baseURL = `${base}/transactions/get`;
+  let baseURL = `${base}api/transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = "62fd4373e8c0170014239c33";
 
@@ -26,13 +26,15 @@ const DoughnutChart = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "access_token": `${apiKey}`,
           "Access-Control-Allow-Origin": "*",
+          "x-requested-with": `${apiKey}`,
         },
         body: JSON.stringify({
           "client_id": "62fd4373e8c0170014239c33",
           "secret": "49cd4bc5767c65e997992a8c122e3d",
-          "access_token": "access-sandbox-15b1169a-3dac-4d8c-a24c-d71e90b91e07",
+          // "client_id": process.env.PLAID_CLIENT_ID,
+          // "secret": process.env.PLAID_SECRET,
+          "access_token": "access-sandbox-2caee1fa-ddde-4271-99f5-12bb05161137",
           "start_date": "2017-01-01",
           "end_date": "2018-01-01",
           "options": {
@@ -42,6 +44,7 @@ const DoughnutChart = () => {
         })
       })
         .then((response) => {
+          console.log('response: \n', response)
           response.json().then((json) => {
             console.log("json: \n", json);
             setChart(json.data)
