@@ -1,21 +1,16 @@
 // monthly expenses as pie chart
 
 import React, { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
 
 function AllTransactions() {
+  //loading transaction data
   const base = "https://sandbox.plaid.com/";
   const baseURL = `${base}transactions/get`;
   const proxyURL = "https://cors-anywhere.herokuapp.com/";
   const apiKey = process.env.REACT_APP_PLAID_API_Key;
   const currentDate = new Date();
   const formattedCurrDate = currentDate.toISOString().split("T")[0];
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth() + 1;
-
-  const [chart, setChart] = useState([]);
-  const [loading, setLoading] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage, setPostsPerPage] = useState(50);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -31,9 +26,7 @@ function AllTransactions() {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-          start_date: `${currentYear}-${
-            currentMonth < 10 ? `0${currentMonth}` : currentMonth
-          }-01`,
+          start_date: "2010-01-01",
           end_date: formattedCurrDate,
         }),
       })
@@ -51,6 +44,39 @@ function AllTransactions() {
     fetchTransactions();
   }, []);
 
+  //pagination
+  const [chart, setChart] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  //to get the first page of transactions
+  const transactionsPerPage = 30;
+  const lastTransactionIndex = currentPage * transactionsPerPage;
+  const currPageTransactions = chart.slice(
+    lastTransactionIndex,
+    lastTransactionIndex + transactionsPerPage
+  );
+
+  //for pagination
+  let pageNums = Math.ceil(chart.length / transactionsPerPage);
+
+  const changePage = ({ selected }) => setCurrentPage(selected);
+
+  if (loading) {
+    return (
+      <div className="accounts">
+        <table className="year">
+          <thead>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+          </thead>
+          <div>loading...</div>
+        </table>
+      </div>
+    );
+  }
   return (
     <div className="accounts">
       <table className="year">
@@ -60,15 +86,33 @@ function AllTransactions() {
           <th>Category</th>
           <th>Amount</th>
         </thead>
-        {chart.map((account) => (
+        {currPageTransactions.map((account) => (
           <tbody key={account.transaction_id}>
             <td>{account.date}</td>
             <td>{account.name}</td>
             <td>{account.category[0]}</td>
-            <td>${account.amount.toFixed(2)}</td>
+            {account.amount > 0 ? (
+              <div>
+                <td>-${account.amount.toFixed(2)}</td>
+              </div>
+            ) : (
+              <div className="refunds">
+                <td>${`${-account.amount.toFixed(2)}`}</td>
+              </div>
+            )}
           </tbody>
         ))}
       </table>
+      <div className="pagination">
+        <ReactPaginate
+          previousLabel={"<"}
+          nextLabel={">"}
+          pageCount={pageNums}
+          onPageChange={changePage}
+          containerClassName={"paginationBtns"}
+          activeClassName={"paginationActive"}
+        />
+      </div>
     </div>
   );
 }

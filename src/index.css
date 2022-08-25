@@ -16,12 +16,34 @@ code {
   margin-left: 10%;
 }
 
-
-
 .app-container {
   margin-left: 10%;
 }
 
+.paginationBtns {
+  margin-right: 0px;
+
+}
+
+.paginationBtns a {
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  background-color: #f6a192
+}
+
+.paginationActive a {
+  background-color: #f6a192
+}
+
+.refunds {
+  color: #01796f;
+}
 /* 
 @tailwind base;
 @tailwind components;
