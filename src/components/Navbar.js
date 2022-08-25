@@ -5,6 +5,7 @@ import SignedOutLinks from "./SignedOutLinks";
 
 const Navbar = (props) => {
   const { isLoggedIn, open, ready, transactions, transactions2 } = props;
+
   return (
     <nav className="nav">
       <div className="container">

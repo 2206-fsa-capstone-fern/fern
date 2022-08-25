@@ -2,6 +2,7 @@ import { auth, db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged } from "firebase/auth";
 
+
 //action type
 const GET_USER = "GET_USER";
 
@@ -14,18 +15,19 @@ export const gettingUser = () => async (dispatch) => {
   try {
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
     let loggedUser
+    console.log("s")
     if(!userId) {
-      auth.onAuthStateChanged(async (u) => {
-        if(u) {
-          loggedUser = await getDoc(doc(db, "users", u.uid)).then((doc) => {
-            return (doc.data());
-          });
-          console.log('user is logged in')
-          return dispatch(getUser(loggedUser))
-        } else {
-          return dispatch(getUser({}))
-        }
-      })
+        return auth.onAuthStateChanged(async (u) => {
+          if(u) {
+            loggedUser = await getDoc(doc(db, "users", u.uid)).then((doc) => {
+              return (doc.data());
+            });
+            console.log('user is logged in')
+            return dispatch(getUser(loggedUser))
+          } else {
+            return dispatch(getUser({}))
+          }
+        })
     } else {
       const user = await getDoc(doc(db, "users", userId)).then((doc) => {
         return (doc.data());
@@ -38,9 +40,9 @@ export const gettingUser = () => async (dispatch) => {
   }
 };
 
-export const loggingOut = () => async (dispatch) => {
+export const loggingOut = (navigate) => async (dispatch) => {
   await signOut(auth)
-
+  navigate("/")
   return dispatch(getUser({}))
 };
 
