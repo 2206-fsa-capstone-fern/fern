@@ -5,7 +5,7 @@ const Yearly = () => {
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
-  // let apiKey = process.env.apiKey;
+  let apiKey = process.env.apiKey;
 
   const [chart, setChart] = useState([]);
 
