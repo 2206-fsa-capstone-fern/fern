@@ -20,6 +20,90 @@ margin-left: 10%;
   margin-left: 10%;
 }
 
+/* Contact */
+.bakers {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container .card {
+  width: 300px;
+  height: 450px;
+  padding: 60px 30px;
+  margin: 20px;
+  background: #f2f3f7;
+  box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+  -0.5em -0.5em 1em #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+
+.container .card .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .card .content .imgBx {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.container .card .content .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container .card .content .contentBx h4 {
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.container .card .content .sci {
+  text-align: center;
+}
+
+.container .card .content .sci a {
+  transition: color 0.4s;
+}
+
+.contact-desc {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0.5px;
+  padding: 0px;
+}
+
+.contact-header {
+  margin: 2rem;
+  font-size: 40px;
+  text-align: center;
+}
+
 /* 
 @tailwind base;
 @tailwind components;

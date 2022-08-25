@@ -10,7 +10,6 @@ const DoughnutChart = () => {
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
-  let apiKey = "62fd4373e8c0170014239c33";
 
   useEffect(() => {
     const fetchCategories = async () => {
