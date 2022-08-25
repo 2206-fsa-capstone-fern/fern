@@ -20,6 +20,9 @@ import AllTransactions from "./components/AllTransactions";
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions } from "./store";
 
+import DoughnutChart from "./components/DoughnutChart"; // to view chart
+import Yearly from "./components/Yearly";
+
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
@@ -161,6 +164,8 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
+                    <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
+                    <Route exact path="/yearly" element={<Yearly />} />
                   </Routes>
                 </div>
               </div>
@@ -169,6 +174,8 @@ function App(props) {
         ) : (
           <Routes>
             <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
+            <Route exact path="/yearly" element={<Yearly />} />
             <Route path="/*" element={<Navigate replace to="/login" />} />
             <Route exact path="/login" element={<LogIn />} />
           </Routes>
