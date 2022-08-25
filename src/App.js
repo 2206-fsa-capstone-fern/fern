@@ -19,9 +19,11 @@ import { gettingUser, addingTransactions } from "./store";
 
 //functional component
 function App(props) {
-  const { isLoggedIn, isAdmin } = props;
+  let { isLoggedIn, isAdmin } = props;
+
   useEffect(() => {
     props.loadInitialData();
+    
   }, [isLoggedIn]);
   
   const [token, setToken] = useState(null);
