@@ -1,10 +1,10 @@
 //React
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
-import { usePlaidLink } from 'react-plaid-link';
-import './Plaid.scss';
+import { usePlaidLink } from "react-plaid-link";
+import "./Plaid.scss";
 
 //Components
 import LogIn from "./components/LogIn";
@@ -12,17 +12,16 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
-import BudgetApp from './BudgetApp';
+import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 
-
 //Redux
-import { connect } from 'react-redux';
-import { gettingUser, addingTransactions } from './store';
+import { connect } from "react-redux";
+import { gettingUser, addingTransactions } from "./store";
 
 //functional component
 function App(props) {
@@ -31,7 +30,7 @@ function App(props) {
     props.loadInitialData();
   }, [isLoggedIn]);
 
-  console.log('props', props);
+  console.log("props", props);
 
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -40,10 +39,10 @@ function App(props) {
 
   const onSuccess = useCallback(async (publicToken) => {
     setLoading(true);
-    await fetch('/api/exchange_public_token', {
-      method: 'POST',
+    await fetch("/api/exchange_public_token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ public_token: publicToken }),
     });
@@ -54,21 +53,21 @@ function App(props) {
   // Creates a Link token
   const createLinkToken = React.useCallback(async () => {
     // For OAuth, use previously generated Link token
-    if (window.location.href.includes('?oauth_state_id=')) {
-      const linkToken = localStorage.getItem('link_token');
+    if (window.location.href.includes("?oauth_state_id=")) {
+      const linkToken = localStorage.getItem("link_token");
       setToken(linkToken);
     } else {
-      const response = await fetch('/api/create_link_token', {});
+      const response = await fetch("/api/create_link_token", {});
       const data = await response.json();
       setToken(data.link_token);
-      localStorage.setItem('link_token', data.link_token);
+      localStorage.setItem("link_token", data.link_token);
     }
   }, [setToken]);
 
   //Fetch transaction data, which includes accounts and balances data
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
-    const response = await fetch('/api/transactions/get');
+    const response = await fetch("/api/transactions/get");
 
     transactions = await response.json();
     props.addTransactions(transactions);
@@ -84,7 +83,7 @@ function App(props) {
   };
 
   // For OAuth, configure the received redirect URI
-  if (window.location.href.includes('?oauth_state_id=')) {
+  if (window.location.href.includes("?oauth_state_id=")) {
     config.receivedRedirectUri = window.location.href;
     isOauth = true;
   }
@@ -161,23 +160,24 @@ function App(props) {
                         />
                       }
                     />
-                    <Route
+                    {/* <Route
                       path="/*"
                       element={<Navigate replace to="/dashboard" />}
-                    />
+                    /> */}
                     <Route
                       exact
                       path="/dashboard"
                       element={<Dashboard transactions={transactions} />}
                     />
-                    <Route exact path='/budget' element={<BudgetApp />} />
+                    <Route exact path="/budget" element={<BudgetApp />} />
                     <Route exact path="/trends" element={<Trends />} />
                     <Route
                       exact
                       path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
+                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
+                    {/* to view chart */}
                     <Route exact path="/yearly" element={<Yearly />} />
                   </Routes>
                 </div>
