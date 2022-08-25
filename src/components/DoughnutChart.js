@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import axios from "axios";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 const DoughnutChart = () => {
-  // useState is used to create variables in React
-  const [chart, setChart] = useState({}); // chart is getter that gets whatever data we have in this application, setChart is setter
+  const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
 
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
@@ -24,9 +22,9 @@ const DoughnutChart = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          client_id: process.env.PLAID_CLIENT_ID,
-          secret: process.env.PLAID_SECRET,
-          access_token: process.env.PLAID_ACCESS_TOKEN,
+          // client_id: process.env.PLAID_CLIENT_ID,
+          // secret: process.env.PLAID_SECRET,
+          // access_token: process.env.PLAID_ACCESS_TOKEN,
           start_date: "2021-01-01",
           end_date: "2021-12-31",
         }),
@@ -53,16 +51,16 @@ const DoughnutChart = () => {
 
   // if setChart(data.transactions), then chart is an array of objects[{...}, {...}, {...}]
   // goal is to evict and filter out index[0] from each object to get something like ['Food', 'Travel', 'Health', 'Other']
-  const labelArr = () => {
-    let arr = [];
-    for (let i = 0; i < chart.length; i++) {
-      // let ind = chart[i].category[0];
-      // console.log("ind: \n", ind);
-      arr.push(chart[i].category[0]);
-    }
-    return arr.filter((x, index) => arr.indexOf(x) === index);
-  };
-  console.log("categories: \n", labelArr());
+  // const labelArr = () => {
+  //   let arr = [];
+  //   for (let i = 0; i < chart.length; i++) {
+  //     // let ind = chart[i].category[0];
+  //     // console.log("ind: \n", ind);
+  //     arr.push(chart[i].category[0]);
+  //   }
+  //   return arr.filter((x, index) => arr.indexOf(x) === index);
+  // };
+  // console.log("categories: \n", labelArr()); // ['Transfer', 'Travel', 'Payment', 'Food and Drink']
 
   // FILTER AND REDUCE AMOUNTS
   // filter out category[0] then reduce those amounts
@@ -117,102 +115,52 @@ const DoughnutChart = () => {
     }
     return obj;
   };
-  console.log("values() \n", values());
+  console.log("values() \n", values()); // {Transfer: 0, Travel: 0, Payment: 300, Food and Drink: 1268.76}
 
-  // let data = {
-  //   // labels: chart?.coins?.map(x => x.name),
-  //    labels: labelArr(),
-  //   datasets: [
-  //     {
-  //       // label: `${chart?.coins?.length} Coins Available`,
-  //       // data: chart?.coins?.map(x => x.price),
-  //       backgroundColor: [
-  //         "rgba(255, 99, 132, 0.2)",
-  //         "rgba(54, 162, 235, 0.2)",
-  //         "rgba(255, 206, 86, 0.2)",
-  //         "rgba(75, 192, 192, 0.2)",
-  //         "rgba(153, 102, 255, 0.2)",
-  //         "rgba(255, 159, 64, 0.2)",
-  //       ],
-  //       borderColor: [
-  //         "rgba(255, 99, 132, 1)",
-  //         "rgba(54, 162, 235, 1)",
-  //         "rgba(255, 206, 86, 1)",
-  //         "rgba(75, 192, 192, 1)",
-  //         "rgba(153, 102, 255, 1)",
-  //         "rgba(255, 159, 64, 1)",
-  //       ],
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
+  let plans = values();
+  console.log("plans: \n", plans);
 
-  // let options = {
-  //   maintainAspectRatio: false,
-  //   legend: {
-  //     labels: {
-  //       fontSize: 25,
-  //     },
-  //   },
-  // };
+  let data = {
+    // labels: labelArr(),
+    labels: Object.keys(plans),
+    datasets: [
+      {
+        data: Object.values(plans),
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
-  // return (
-  //   <div>
-  //     <Doughnut height={400} data={data} options={options} />
-  //   </div>
-  // );
-  return <h1>Donut</h1>;
+  let options = {
+    maintainAspectRatio: false,
+    legend: {
+      labels: {
+        fontSize: 25,
+      },
+    },
+  };
+
+  return (
+    <div>
+      <Doughnut height={400} data={data} options={options} />
+    </div>
+  );
 };
 
 export default DoughnutChart;
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// for a line graph:
-// import React, { useState, useEffect } from "react";
-// import {
-//   Chart as ChartJS,
-//   ArcElement,
-//   Tooltip,
-//   Legend,
-// } from "chart.js";
-// import { Doughnut } from "react-chartjs-2";
-
-// ChartJS.register(Tooltip, Legend, ArcElement);
-
-// const DoughnutChart = () => {
-// useState is used to create variables in React
-// const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
-
-// const [chartData, setChartData] = useState({
-//   datasets: [],
-// });
-
-// don't really need these two lines
-// const [employeeSalary, setEmployeeSalary] = useState([]);
-// const [employeeAge, setEmployeeAge] = useState([]);
-
-// useEffect(() => {
-// let empSal = [];
-// let empAge = [];
-//     axios
-//       .get('http://localhost:3000/api/transactions/get')
-//       .then(res => {
-//         console.log('res: \n', res)
-//       })
-//       .catch(err => {
-//         console.log('err: \n', err)
-//       // })
-//       // console.log('empSal: \n', empSal, '\n', 'empAge: \n', empAge)
-//       })}, [])
-
-//   return (
-//     <div>
-//       <Doughnut height={400} />
-//     </div>
-//   );
-// };
-
-// export default DoughnutChart;
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------
