@@ -12,7 +12,7 @@ import SignUp from './components/SignUp';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import LinkAccount from './components/LinkAccount';
-import BudgetApp from './components/BudgetComponents/BudgetApp';
+import BudgetApp from './BudgetApp';
 
 //Redux
 import { connect } from 'react-redux';

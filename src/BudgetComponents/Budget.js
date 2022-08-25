@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import ViewBudget from './ViewBudget.js';
+import ViewBudget from './ViewBudget';
 import EditBudget from './EditBudget';
 import { AppContext } from '../context/AppContext';
 
@@ -20,7 +20,7 @@ const Budget = () => {
   };
 
   return (
-    <div class='alert alert-secondary p-3 d-flex align-items-center justify-content-between'>
+    <div className='alert alert-secondary p-3 d-flex align-items-center justify-content-between'>
       {isEditing ? (
         <EditBudget handleSaveClick={handleSaveClick} budget={budget} />
       ) : (

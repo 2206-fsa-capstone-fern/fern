@@ -1,12 +1,13 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './context/AppContext';
-import Budget from './src/components/BudgetComponents/Budget';
-import ExpenseTotal from './src/components/BudgetComponents/ExpenseTotal';
-import ExpenseList from './src/components/BudgetComponents/ExpenseList';
-import AddExpenseForm from './src/components/BudgetComponents/AddExpenseForm';
-import RemainingBudget from './src/components/BudgetComponents/Remaining';
+import Budget from './BudgetComponents/Budget';
+import ExpenseTotal from './BudgetComponents/ExpenseTotal';
+import ExpenseList from './BudgetComponents/ExpenseList';
+import AddExpenseForm from './BudgetComponents/AddExpenseForm';
+import RemainingBudget from './BudgetComponents/Remaining';
 
-const BudgetApp = () => {
+const App = () => {
   return (
     <AppProvider>
       <div className='container'>
@@ -39,4 +40,4 @@ const BudgetApp = () => {
   );
 };
 
-export default BudgetApp;
+export default App;
