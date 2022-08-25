@@ -12,11 +12,15 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
+import SideNav from "./components/SideNav/SideNav";
+import Trends from "./components/Trends";
+import AllTransactions from "./components/AllTransactions";
 
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions } from "./store";
-import DoughnutChart from "./components/DoughnutChart";
+
+import DoughnutChart from "./components/DoughnutChart"; // to view chart
 
 //functional component
 function App(props) {
@@ -24,8 +28,8 @@ function App(props) {
   useEffect(() => {
     props.loadInitialData();
   }, [isLoggedIn]);
-  
-  // console.log("props", props);
+
+  console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -111,41 +115,58 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar
-          open={open}
-          ready={ready}
-          transactions={props.transactions[0]}
-          transactions2={props.transactions[1]}
-        />
+        <div className="Navbar">
+          <Navbar
+            open={open}
+            ready={ready}
+            transactions={props.transactions[0]}
+            transactions2={props.transactions[1]}
+          />
+        </div>
+
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
               <Routes></Routes>
             ) : (
-              <Routes>
-                <Route
-                  exact
-                  path="/link"
-                  element={
-                    <LinkAccount
-                      open={open}
-                      ready={ready}
-                      transactions={props.transactions[0]}
-                      transactions2={props.transactions[1]}
+              <div>
+                <div className="SideNav">
+                  <SideNav />
+                </div>
+
+                <div className="app-container">
+                  <Routes>
+                    <Route
+                      exact
+                      path="/link"
+                      element={
+                        <LinkAccount
+                          open={open}
+                          ready={ready}
+                          transactions={props.transactions[0]}
+                          transactions2={props.transactions[1]}
+                        />
+                      }
                     />
-                  }
-                />
-                <Route
-                  path="/*"
-                  element={<Navigate replace to="/dashboard" />}
-                />
-                <Route
-                  exact
-                  path="/dashboard"
-                  element={<Dashboard transactions={transactions} />}
-                />
-                <Route exact path="/donut" element={<DoughnutChart />} />
-              </Routes>
+                    <Route
+                      path="/*"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard"
+                      element={<Dashboard transactions={transactions} />}
+                    />
+                    <Route exact path="/trends" element={<Trends />} />
+                    <Route
+                      exact
+                      path="/transactions"
+                      element={<AllTransactions />}
+                    />
+                    <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
+                  </Routes>
+                </div>
+              </div>
             )}
           </div>
         ) : (
@@ -153,7 +174,6 @@ function App(props) {
             <Route exact path="/signup" element={<SignUp />} />
             <Route path="/*" element={<Navigate replace to="/login" />} />
             <Route exact path="/login" element={<LogIn />} />
-            <Route exact path="/donut" element={<DoughnutChart />} />
           </Routes>
         )}
       </div>

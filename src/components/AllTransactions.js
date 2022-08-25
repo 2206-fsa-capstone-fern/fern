@@ -11,6 +11,7 @@ function AllTransactions() {
         <div>Category</div>
         <div>Amount</div>
         {/* this view totally depends on how it comes through from the api */}
+        <div></div>
       </div>
     </div>
   );

@@ -1,32 +1,32 @@
-import React from 'react';
-import * as FaIcons from 'react-icons/fa';
+import React from "react";
+import * as FaIcons from "react-icons/fa";
 // import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import * as IoIcons from "react-icons/io";
 
 export const SideNavData = [
   {
-    title: 'Dashboard',
-    path: '/dashboard',
+    title: "Dashboard",
+    path: "/dashboard",
     icon: <IoIcons.IoIosHome />,
   },
   {
-    title: 'Transactions',
-    path: '/transactions',
+    title: "Transactions",
+    path: "/transactions",
     icon: <FaIcons.FaMoneyBill />,
   },
   {
-    title: 'Budget',
-    path: '/budget',
+    title: "Trends",
+    path: "/trends",
     icon: <FaIcons.FaChartLine />,
   },
-  {
-    title: 'Reports',
-    path: '/reports',
-    icon: <FaIcons.FaFileAlt />,
-  },
-  {
-    title: 'Settings',
-    path: '/settings',
-    icon: <FaIcons.FaCog />,
-  },
+  // {
+  //   title: 'Reports',
+  //   path: '/reports',
+  //   icon: <FaIcons.FaFileAlt />,
+  // },
+  // {
+  //   title: 'Settings',
+  //   path: '/settings',
+  //   icon: <FaIcons.FaCog />,
+  // },
 ];
