@@ -22,6 +22,7 @@ import { gettingUser, addingTransactions } from "./store";
 
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
+import Balances from "./components/AccountBalances"; // to view balances
 
 //functional component
 function App(props) {
@@ -30,7 +31,7 @@ function App(props) {
     props.loadInitialData();
   }, [isLoggedIn]);
 
-  console.log("props", props);
+  // console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -149,10 +150,10 @@ function App(props) {
                         />
                       }
                     />
-                    <Route
+                    {/* <Route
                       path="/*"
                       element={<Navigate replace to="/dashboard" />}
-                    />
+                    /> */}
                     <Route
                       exact
                       path="/dashboard"
@@ -164,6 +165,7 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
+                    <Route exact path="/balances" element={<Balances />} /> {/* to view balance info */}
                     <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
                     <Route exact path="/yearly" element={<Yearly />} />
                   </Routes>
@@ -174,9 +176,10 @@ function App(props) {
         ) : (
           <Routes>
             <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/balances" element={<Balances />} /> {/* to view balance info */}
             <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
             <Route exact path="/yearly" element={<Yearly />} />
-            <Route path="/*" element={<Navigate replace to="/login" />} />
+            {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
             <Route exact path="/login" element={<LogIn />} />
           </Routes>
         )}
