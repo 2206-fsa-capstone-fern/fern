@@ -116,21 +116,31 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="Navbar">
-          <Navbar
-            open={open}
-            ready={ready}
-            transactions={props.transactions[0]}
-            transactions2={props.transactions[1]}
-          />
-        </div>
+        <div className="Navbar"></div>
 
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
-              <Routes></Routes>
+              <div>
+                <Navbar
+                  open={open}
+                  ready={ready}
+                  transactions={props.transactions[0]}
+                  transactions2={props.transactions[1]}
+                />
+                <Routes></Routes>
+              </div>
             ) : (
               <div>
+                <div className="navbar-logged-in">
+                  {/* navbar for logged in users */}
+                  <Navbar
+                    open={open}
+                    ready={ready}
+                    transactions={props.transactions[0]}
+                    transactions2={props.transactions[1]}
+                  />
+                </div>
                 <div className="SideNav">
                   <SideNav />
                 </div>
@@ -172,13 +182,15 @@ function App(props) {
             )}
           </div>
         ) : (
-          <Routes>
-            <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
-            <Route exact path="/yearly" element={<Yearly />} />
-            <Route path="/*" element={<Navigate replace to="/login" />} />
-            <Route exact path="/login" element={<LogIn />} />
-          </Routes>
+          <div>
+            {/* for users who aren't logged in */}
+            <Navbar />
+            <Routes>
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route path="/*" element={<Navigate replace to="/login" />} />
+              <Route exact path="/login" element={<LogIn />} />
+            </Routes>
+          </div>
         )}
       </div>
     </BrowserRouter>
