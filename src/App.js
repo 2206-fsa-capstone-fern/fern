@@ -16,6 +16,7 @@ import LinkAccount from "./components/LinkAccount";
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions } from "./store";
+import DoughnutChart from "./components/DoughnutChart";
 
 //functional component
 function App(props) {
@@ -24,7 +25,7 @@ function App(props) {
     props.loadInitialData();
   }, [isLoggedIn]);
   
-  console.log("props", props);
+  // console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -143,6 +144,7 @@ function App(props) {
                   path="/dashboard"
                   element={<Dashboard transactions={transactions} />}
                 />
+                <Route exact path="/donut" element={<DoughnutChart />} />
               </Routes>
             )}
           </div>
@@ -151,6 +153,7 @@ function App(props) {
             <Route exact path="/signup" element={<SignUp />} />
             <Route path="/*" element={<Navigate replace to="/login" />} />
             <Route exact path="/login" element={<LogIn />} />
+            <Route exact path="/donut" element={<DoughnutChart />} />
           </Routes>
         )}
       </div>
