@@ -7,22 +7,24 @@ const SignedInLinks = (props) => {
   const handleLogout = (e) => {
     e.preventDefault();
 
-    props.logout()
-  }
+    props.logout();
+  };
   return (
     <ul className="right">
       <li>
-      <button onClick={() => props.open()} disabled={!props.ready}>
+        <button onClick={() => props.open()} disabled={!props.ready}>
           <strong>Link an account</strong>
-          {console.log(props.transactions)}
-          {console.log("second", props.transactions2)}
+          {/* {console.log(props.transactions)}
+          {console.log("second", props.transactions2)} */}
         </button>
       </li>
       <li>
         <NavLink to="/">Settings</NavLink>
       </li>
       <li>
-        <NavLink to="/" onClick={handleLogout}>Log Out</NavLink>
+        <NavLink to="/" onClick={handleLogout}>
+          Log Out
+        </NavLink>
       </li>
       {isLoggedIn ? (
         <li>
@@ -45,7 +47,7 @@ const SignedInLinks = (props) => {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.firstName,
-    user: state.user
+    user: state.user,
   };
 };
 
