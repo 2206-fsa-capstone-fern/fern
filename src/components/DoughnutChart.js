@@ -118,14 +118,14 @@ const DoughnutChart = () => {
   console.log("values() \n", values()); // {Transfer: 0, Travel: 0, Payment: 300, Food and Drink: 1268.76}
 
   let plans = values();
-  console.log('plans: \n', plans)
+  console.log("plans: \n", plans);
 
   let data = {
     // labels: labelArr(),
     labels: Object.keys(plans),
     datasets: [
       {
-        label: 'Yearly Spending',
+        label: "Yearly Spending",
         data: Object.values(plans),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
