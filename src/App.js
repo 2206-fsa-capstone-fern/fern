@@ -24,7 +24,6 @@ function App(props) {
     props.loadInitialData();
   }, [isLoggedIn]);
   
-  console.log("props", props);
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

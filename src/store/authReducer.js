@@ -30,37 +30,40 @@ export const loggingOut = () => async (dispatch) => {
 };
 
 export const loggingIn = (email, password) => async (dispatch) => {
-  await signInWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    console.log("user logged in:", cred.user);
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-  const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
-  const user = await getDoc(doc(db, "users", userId)).then((doc) => {
-    return (doc.data());
-  });
-  return dispatch(getUser(user));
+  try{
+    await signInWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log("user logged in:", cred.user);
+    })
+    const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
+    const user = await getDoc(doc(db, "users", userId)).then((doc) => {
+      return (doc.data());
+    });
+    return dispatch(getUser(user));
+  } catch (err) {
+    return dispatch(getUser(err))
+  }
 };
 
 export const signup = (email, password, firstName, lastName) => async (dispatch) => {
-  await createUserWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    console.log("user created:", cred.user);
-    return setDoc(doc(db, "users", cred.user.uid), {
-      firstName: firstName,
-      lastName: lastName,
+  try {
+    await createUserWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log("user created:", cred.user);
+      return setDoc(doc(db, "users", cred.user.uid), {
+        firstName: firstName,
+        lastName: lastName,
+      })
     })
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-  const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
-  const user = await getDoc(doc(db, "users", userId)).then((doc) => {
-    return (doc.data());
-  });
-  return dispatch(getUser(user));
+
+    const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
+    const user = await getDoc(doc(db, "users", userId)).then((doc) => {
+      return (doc.data());
+    });
+    return dispatch(getUser(user));
+  } catch (err) {
+    return dispatch(getUser(err))
+  }
 };
 
 //reducer
