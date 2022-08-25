@@ -15,11 +15,11 @@
 .nav-menu {
   background-color: #060b26;
   width: 10%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
 
   transition: 850ms;
@@ -37,6 +37,7 @@
   padding: 8px 0px 8px 16px;
   list-style: none;
   height: 60px;
+  width: 10%;
 }
 
 .nav-text a {
@@ -71,3 +72,4 @@
 span {
   margin-left: 16px;
 }
+

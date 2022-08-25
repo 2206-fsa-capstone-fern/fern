@@ -12,16 +12,16 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
+import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
+import DoughnutChart from "./components/DoughnutChart"; // to view chart
+import Yearly from "./components/Yearly";
 
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions } from "./store";
-
-import DoughnutChart from "./components/DoughnutChart"; // to view chart
-import Yearly from "./components/Yearly";
 
 //functional component
 function App(props) {
@@ -31,6 +31,7 @@ function App(props) {
   }, [isLoggedIn]);
 
   console.log("props", props);
+
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -116,21 +117,31 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="Navbar">
-          <Navbar
-            open={open}
-            ready={ready}
-            transactions={props.transactions[0]}
-            transactions2={props.transactions[1]}
-          />
-        </div>
+        <div className="Navbar"></div>
 
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
-              <Routes></Routes>
+              <div>
+                <Navbar
+                  open={open}
+                  ready={ready}
+                  transactions={props.transactions[0]}
+                  transactions2={props.transactions[1]}
+                />
+                <Routes></Routes>
+              </div>
             ) : (
               <div>
+                <div className="navbar-logged-in">
+                  {/* navbar for logged in users */}
+                  <Navbar
+                    open={open}
+                    ready={ready}
+                    transactions={props.transactions[0]}
+                    transactions2={props.transactions[1]}
+                  />
+                </div>
                 <div className="SideNav">
                   <SideNav />
                 </div>
@@ -158,6 +169,7 @@ function App(props) {
                       path="/dashboard"
                       element={<Dashboard transactions={transactions} />}
                     />
+                    <Route exact path="/budget" element={<BudgetApp />} />
                     <Route exact path="/trends" element={<Trends />} />
                     <Route
                       exact
@@ -173,14 +185,15 @@ function App(props) {
             )}
           </div>
         ) : (
-          <Routes>
-            <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-            {/* to view chart */}
-            <Route exact path="/yearly" element={<Yearly />} />
-            {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
-            <Route exact path="/login" element={<LogIn />} />
-          </Routes>
+          <div>
+            {/* for users who aren't logged in */}
+            <Navbar />
+            <Routes>
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route path="/*" element={<Navigate replace to="/login" />} />
+              <Route exact path="/login" element={<LogIn />} />
+            </Routes>
+          </div>
         )}
       </div>
     </BrowserRouter>
