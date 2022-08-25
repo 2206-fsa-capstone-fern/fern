@@ -10,7 +10,7 @@ const DoughnutChart = () => {
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
-  let apiKey = "62fd4373e8c0170014239c33";
+  let apiKey = process.env.REACT_APP_PLAID_API_KEY;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -22,6 +22,12 @@ const DoughnutChart = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
+          // client_id: "62fd4373e8c0170014239c33",
+          // secret: "49cd4bc5767c65e997992a8c122e3d",
+          // access_token: "access-sandbox-fc4eb4f9-9676-411a-9bcf-fa9a6e2aa6dd",
+          client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
+          secret: process.env.REACT_APP_PLAID_SECRET,
+          access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           // client_id: process.env.PLAID_CLIENT_ID,
           // secret: process.env.PLAID_SECRET,
           // access_token: process.env.PLAID_ACCESS_TOKEN,
@@ -49,27 +55,6 @@ const DoughnutChart = () => {
 
   console.log("chart: \n", chart);
 
-  // if setChart(data.transactions), then chart is an array of objects[{...}, {...}, {...}]
-  // goal is to evict and filter out index[0] from each object to get something like ['Food', 'Travel', 'Health', 'Other']
-  // const labelArr = () => {
-  //   let arr = [];
-  //   for (let i = 0; i < chart.length; i++) {
-  //     // let ind = chart[i].category[0];
-  //     // console.log("ind: \n", ind);
-  //     arr.push(chart[i].category[0]);
-  //   }
-  //   return arr.filter((x, index) => arr.indexOf(x) === index);
-  // };
-  // console.log("categories: \n", labelArr()); // ['Transfer', 'Travel', 'Payment', 'Food and Drink']
-
-  // FILTER AND REDUCE AMOUNTS
-  // filter out category[0] then reduce those amounts
-  // goal
-  // {
-  // Food: 52.3,
-  // Health: 39.20,
-  // Travel: 90.83
-  // }
   const values = () => {
     let obj = {};
     for (let i = 0; i < chart.length; i++) {
@@ -77,37 +62,12 @@ const DoughnutChart = () => {
         obj[chart[i].category[0]] = 0;
       }
 
-      // obj[chart[i].category[0]].toFixed(2)
-      // let chartI = chart[i].amount;
-      // let pf = parseFloat(chartI).toFixed(2)
-      // let pf = parseFloat(chart[i].amount.toFixed(2))
-      // chart[i].amount.toFixed(2)
-      // obj[chart[i].category[0]] += pf // returns full decimal
-
-      // let stringNum = obj[chart[i].category[0]].toFixed(2);
-      // let numNum = Number(stringNum);
-      // let anumNum = Number(numNum)
-      // obj[chart[i].category[0]] = anumNum
-      // console.log("stringNum", stringNum);
-      // obj[chart[i].category[0]] = numNum;
-
-      // obj[chart[i].category[0]] += chart[i].amount
-
       obj[chart[i].category[0]] += chart[i].amount;
-      let numNum = obj[chart[i].category[0]].toFixed(2);
+      let categoryVal = obj[chart[i].category[0]].toFixed(2);
       // console.log('numnum', numNum)
-      let anumNum = Number(numNum);
+      let categoryValNum = Number(categoryVal);
       // console.log('anumnum', anumNum)
-      obj[chart[i].category[0]] = anumNum;
-
-      // console.table('chart[i].amount', chart[i].amount)
-      // console.log('obj[chart[i].category[0]] \n', obj[chart[i].category[0]].toFixed(2))
-
-      // obj[chart[i].category[0]] += Math.round(chart[i].amount)
-      // Math.round(chart[i].category[0])
-      // Math.round(chart[i].amount)
-      // console.log('typeof(obj[chart[i].category[0]]): ', typeof(obj[chart[i].category[0]]))
-      // console.log('typeof(chart[i].amount): ', typeof(chart[i].amount))
+      obj[chart[i].category[0]] = categoryValNum;
 
       if (obj[chart[i].category[0]] < 0) {
         obj[chart[i].category[0]] = 0;
