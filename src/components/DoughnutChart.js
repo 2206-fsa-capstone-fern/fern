@@ -10,6 +10,9 @@ const DoughnutChart = () => {
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
+  let apiKey = "62fd4373e8c0170014239c33";
+  let sekret = "49cd4bc5767c65e997992a8c122e3d";
+  let aToken = "access-sandbox-fc4eb4f9-9676-411a-9bcf-fa9a6e2aa6dd";
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -21,9 +24,15 @@ const DoughnutChart = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          client_id: process.env.PLAID_CLIENT_ID,
-          secret: process.env.PLAID_SECRET,
-          access_token: process.env.PLAID_ACCESS_TOKEN,
+          // client_id: "62fd4373e8c0170014239c33",
+          // secret: "49cd4bc5767c65e997992a8c122e3d",
+          // access_token: "access-sandbox-fc4eb4f9-9676-411a-9bcf-fa9a6e2aa6dd",
+          client_id: apiKey,
+          secret: sekret,
+          access_token: aToken,
+          // client_id: process.env.PLAID_CLIENT_ID,
+          // secret: process.env.PLAID_SECRET,
+          // access_token: process.env.PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
           end_date: "2022-12-31",
         }),
