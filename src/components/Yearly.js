@@ -1,3 +1,5 @@
+// donut chart with categories of things spent on and  table with every single transaction from the year
+
 import DoughnutChart from "./DoughnutChart";
 import React, { useState, useEffect } from "react";
 
@@ -19,12 +21,9 @@ const Yearly = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          client_id: "62fd4373e8c0170014239c33",
-          secret: "49cd4bc5767c65e997992a8c122e3d",
-          access_token: "access-sandbox-fc4eb4f9-9676-411a-9bcf-fa9a6e2aa6dd",
-          // client_id: process.env.PLAID_CLIENT_ID,
-          // secret: process.env.PLAID_SECRET,
-          // access_token: process.env.PLAID_ACCESS_TOKEN,
+          client_id: process.env.PLAID_CLIENT_ID,
+          secret: process.env.PLAID_SECRET,
+          access_token: process.env.PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
           end_date: "2022-12-31",
         }),
