@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.navbar-logged-in {
+  margin-left: 10%;
+}
+
+
+
+.app-container {
+  margin-left: 10%;
+}
+
 /* 
 @tailwind base;
 @tailwind components;
