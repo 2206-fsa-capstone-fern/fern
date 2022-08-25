@@ -21,9 +21,9 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, firstName, lastName } = this.state;
+    const { email, password, firstName, lastName, phoneNumber } = this.state;
     document.getElementById("signup").reset()
-    this.props.signUp(email, password, firstName, lastName)
+    this.props.signUp(email, password, firstName, lastName, phoneNumber)
   };
 
   render() {
@@ -54,6 +54,15 @@ class SignUp extends Component {
             <input
               type="text"
               name="lastName"
+              onChange={this.handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              name="phoneNumber"
               onChange={this.handleChange}
               required
             />
@@ -97,7 +106,7 @@ const mapState = (state) => {
 
 const mapDisptach = (dispatch) => {
   return {
-    signUp: (email, password, firstName, lastName) => dispatch(signup(email, password, firstName, lastName)),
+    signUp: (email, password, firstName, lastName, phoneNumber) => dispatch(signup(email, password, firstName, lastName, phoneNumber)),
   };
 };
 

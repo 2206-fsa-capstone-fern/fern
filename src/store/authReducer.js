@@ -45,7 +45,7 @@ export const loggingIn = (email, password) => async (dispatch) => {
   }
 };
 
-export const signup = (email, password, firstName, lastName) => async (dispatch) => {
+export const signup = (email, password, firstName, lastName, phoneNumber) => async (dispatch) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
@@ -53,6 +53,7 @@ export const signup = (email, password, firstName, lastName) => async (dispatch)
       return setDoc(doc(db, "users", cred.user.uid), {
         firstName: firstName,
         lastName: lastName,
+        phoneNumber: phoneNumber
       })
     })
 
