@@ -18,15 +18,17 @@ import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
+import AccountView from "./components/AccountView";
 
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 
+
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props
-  useEffect(async () => {
+  useEffect(() => {
     props.loadInitialData()
     props.getTransactions()
   }, [isLoggedIn]);
@@ -185,6 +187,7 @@ function App(props) {
                       <Route exact path="/donut" element={<DoughnutChart />} />{" "}
                       {/* to view chart */}
                       <Route exact path="/yearly" element={<Yearly />} />
+                      <Route exact path="/account" element={<AccountView />} />
                     </Routes>
                   </div>
                 </div>

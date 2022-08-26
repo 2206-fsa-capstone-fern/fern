@@ -20,16 +20,13 @@ const SignedInLinks = (props) => {
         </button>
       </li>
       <li>
-        <NavLink to="/">Settings</NavLink>
-      </li>
-      <li>
         <NavLink to="/" onClick={handleLogout}>
           Log Out
         </NavLink>
       </li>
       {isLoggedIn ? (
         <li>
-          <NavLink to="/" className="btn btn-floating">
+          <NavLink to="/account" className="btn btn-floating">
             {user.firstName[0]}
             {user.lastName[0]}
           </NavLink>
