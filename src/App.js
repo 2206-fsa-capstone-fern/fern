@@ -18,9 +18,6 @@ import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
-import Balances from "./components/AccountBalances"; // to view balances
-import Contact from "./components/Contact"
-import Month from "./components/Month";
 
 //Redux
 import { connect } from "react-redux";
@@ -179,11 +176,9 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path="/balances" element={<Balances />} /> {/* to view balance info */}
-                    <Route exact path="/donut" element={<DoughnutChart />} /> {/* to view chart */}
+                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
+                    {/* to view chart */}
                     <Route exact path="/yearly" element={<Yearly />} />
-                    <Route exact path="/month" element={<Month />} />
-                    <Route exact path="/contact" element={<Contact />} />
                   </Routes>
                 </div>
               </div>
