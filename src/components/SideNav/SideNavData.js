@@ -19,11 +19,11 @@ export const SideNavData = [
     path: "/trends",
     icon: <FaIcons.FaChartLine />,
   },
-  // {
-  //   title: 'Reports',
-  //   path: '/reports',
-  //   icon: <FaIcons.FaFileAlt />,
-  // },
+  {
+    title: 'Budget',
+    path: '/budget',
+    icon: <FaIcons.FaFileAlt />,
+  },
   // {
   //   title: 'Settings',
   //   path: '/settings',

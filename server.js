@@ -12,7 +12,11 @@ const app = express();
 app.use(
   // FOR DEMO PURPOSES ONLY
   // Use an actual secret key in production
-  session({ secret: process.env.SECRET, saveUninitialized: true, resave: true })
+  session({
+    secret: process.env.REACT_APP_SECRET,
+    saveUninitialized: true,
+    resave: true,
+  })
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,11 +24,11 @@ app.use(bodyParser.json());
 
 // Configuration for the Plaid client
 const config = new Configuration({
-  basePath: PlaidEnvironments[process.env.PLAID_ENV],
+  basePath: PlaidEnvironments[process.env.REACT_APP_PLAID_ENV],
   baseOptions: {
     headers: {
-      "PLAID-CLIENT-ID": process.env.PLAID_CLIENT_ID,
-      "PLAID-SECRET": process.env.PLAID_SECRET,
+      "PLAID-CLIENT-ID": process.env.REACT_APP_PLAID_CLIENT_ID,
+      "PLAID-SECRET": process.env.REACT_APP_PLAID_SECRET,
       "Plaid-Version": "2020-09-14",
     },
   },

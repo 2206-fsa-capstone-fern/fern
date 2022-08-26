@@ -7,7 +7,7 @@ const Yearly = () => {
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
-  let apiKey = "62fd4373e8c0170014239c33";
+  let apiKey = process.env.REACT_APP_PLAID_API_Key;
 
   const [chart, setChart] = useState([]);
 
@@ -21,9 +21,9 @@ const Yearly = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          client_id: process.env.PLAID_CLIENT_ID,
-          secret: process.env.PLAID_SECRET,
-          access_token: process.env.PLAID_ACCESS_TOKEN,
+          client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
+          secret: process.env.REACT_APP_PLAID_SECRET,
+          access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
           end_date: "2022-12-31",
         }),
@@ -72,7 +72,9 @@ const Yearly = () => {
           <tbody key={account.transaction_id}>
             <td>{account.date}</td>
             <td>{account.name}</td>
-            <td>{account.category[0]} ({account.category[1]})</td>
+            <td>
+              {account.category[0]} ({account.category[1]})
+            </td>
             {/* <td>{account.category[1]}</td> */}
             <td>{account.amount.toFixed(2)}</td>
           </tbody>

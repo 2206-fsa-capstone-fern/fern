@@ -12,9 +12,11 @@ code {
     monospace;
 }
 
-.Navbar {
-margin-left: 10%;
+.navbar-logged-in {
+  margin-left: 10%;
 }
+
+
 
 .app-container {
   margin-left: 10%;
