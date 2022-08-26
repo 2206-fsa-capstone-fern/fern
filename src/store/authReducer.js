@@ -1,6 +1,6 @@
 import { auth, db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged } from "firebase/auth";
+import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 //action type
@@ -15,14 +15,12 @@ export const gettingUser = () => async (dispatch) => {
   try {
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
     let loggedUser
-    console.log("s")
     if(!userId) {
-        return auth.onAuthStateChanged(async (u) => {
+        auth.onAuthStateChanged(async (u) => {
           if(u) {
             loggedUser = await getDoc(doc(db, "users", u.uid)).then((doc) => {
               return (doc.data());
             });
-            console.log('user is logged in')
             return dispatch(getUser(loggedUser))
           } else {
             return dispatch(getUser({}))
@@ -48,16 +46,8 @@ export const loggingOut = (navigate) => async (dispatch) => {
 
 export const loggingIn = (email, password) => async (dispatch) => {
   try{
-    await setPersistence(auth, browserSessionPersistence).then(() => {
-      console.log("set")
-      return signInWithEmailAndPassword(auth, email, password)
-    })
-    // await signInWithEmailAndPassword(auth, email, password)
-    // .then((cred) => {
-    //   console.log("user logged in:", cred.user);
-    // })
+    await signInWithEmailAndPassword(auth, email, password)
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
-    console.log(auth.currentUser)
     const user = await getDoc(doc(db, "users", userId)).then((doc) => {
       return (doc.data());
     });

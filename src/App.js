@@ -23,13 +23,12 @@ import Yearly from "./components/Yearly";
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions } from "./store";
 
-
 //functional component
 function App(props) {
-  let { isLoggedIn, isAdmin, user } = props;
+  const { isLoggedIn, isAdmin} = props
 
-  useEffect(() => {
-   props.loadInitialData();
+  useEffect(async () => {
+    props.loadInitialData()
   }, [isLoggedIn]);
 
 
@@ -170,6 +169,11 @@ function App(props) {
                         exact
                         path="/dashboard"
                         element={<Dashboard transactions={transactions} />}
+                      />
+                      <Route
+                        exact
+                        path="/"
+                        element={<Navigate replace to="/dashboard" />}
                       />
                       <Route exact path="/budget" element={<BudgetApp />} />
                       <Route exact path="/trends" element={<Trends />} />
