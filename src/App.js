@@ -21,14 +21,14 @@ import Yearly from "./components/Yearly";
 
 //Redux
 import { connect } from "react-redux";
-import { gettingUser, addingTransactions } from "./store";
+import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 
 //functional component
 function App(props) {
-  const { isLoggedIn, isAdmin} = props
-
+  const { isLoggedIn, isAdmin } = props
   useEffect(async () => {
     props.loadInitialData()
+    props.getTransactions()
   }, [isLoggedIn]);
 
 
@@ -71,7 +71,7 @@ function App(props) {
     const response = await fetch("/api/transactions/get");
 
     transactions = await response.json();
-    props.addTransactions(transactions);
+    props.addTransactions(props.transactions, transactions);
 
     setLoading(false);
   }, [setTransactions, setLoading]);
@@ -212,14 +212,15 @@ const mapState = (state) => {
     isLoggedIn: !!state.user.firstName,
     isAdmin: !!state.user.admin,
     user: state.user,
-    transactions: state.transactions,
+    transactions: state.transactions
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => dispatch(gettingUser()),
-    addTransactions: (transaction) => dispatch(addingTransactions(transaction)),
+    addTransactions: (transactions, transaction) => dispatch(addingTransactions(transactions, transaction)),
+    getTransactions: () => dispatch(gettingTransactions())
   };
 };
 
