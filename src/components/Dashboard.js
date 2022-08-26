@@ -30,7 +30,6 @@ const Dashboard = () => {
       },
     ],
   });
-  console.log(transactionAmount);
 
   return (
     <div>

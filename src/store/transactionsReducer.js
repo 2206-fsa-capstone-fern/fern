@@ -17,7 +17,7 @@ const getTransaction = (transaction) => ({
 });
 
 // thunk middleware
-export const gettingTransactions = (transaction) => async (dispatch) => {
+export const gettingTransactions = () => async (dispatch) => {
   const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
   try {
     const grabTransactions = await getDoc(
@@ -29,12 +29,6 @@ export const gettingTransactions = (transaction) => async (dispatch) => {
   } catch (err) {
     return dispatch(getTransaction([]))
   }
-  // await setDoc(doc(db, "users", userId, "transactions", userId), {
-  //   transactions: transaction
-  // })
-  // const transactions = await getDoc(doc(db, "users", userId, "transactions", userId)).then((doc) => {
-  //   return (doc.data());
-  // });
 };
 
 export const addingTransactions = (currentTransactions, transaction) => async (dispatch) => {
@@ -46,6 +40,7 @@ export const addingTransactions = (currentTransactions, transaction) => async (d
   const transactions = await getDoc(doc(db, "users", userId, "transactions", userId)).then((doc) => {
     return (doc.data());
   });
+  console.log(transactions)
   return dispatch(addTransaction(transactions));
 };
 
@@ -54,12 +49,13 @@ const initialState = [];
 const transactionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TRANSACTION:
-      // state.push(action.transaction);
-      return action.transaction;
+      return action.transaction.allTransactions;
     case GET_TRANSACTION:
-      // state.push(action.transaction);
-      return action.transaction;
-    default:
+      if(Array.isArray(action.transaction) && !action.transaction.length){
+        return action.transaction
+      }
+      return action.transaction.allTransactions;
+    default: 
       return state;
   }
 };

@@ -64,7 +64,7 @@ function App(props) {
       localStorage.setItem("link_token", data.link_token);
     }
   }, [setToken]);
-
+  
   //Fetch transaction data, which includes accounts and balances data
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
