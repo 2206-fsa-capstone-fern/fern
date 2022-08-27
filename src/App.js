@@ -1,6 +1,6 @@
 //React
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { Switch, useState, useEffect, useCallback } from "react";
 
 //Plaid
 import { usePlaidLink } from "react-plaid-link";
@@ -15,7 +15,7 @@ import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/AllTransactions";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 
