@@ -15,14 +15,18 @@ function AllTransactions() {
   const [loading, setLoading] = useState(false);
 
   //search
-  const [search, setSearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searched, setSearched] = useState([]);
 
   //dropdown
-  const [selectMonth, setSelectMonth] = useState("");
+  // const [selectCategory, setSelectCategory] = useState("");
+  // const [filteredData, setFilteredData] = useState([]);
 
-  const handleMonthChange = (event) => {
-    setSelectMonth(event.target.value);
-  };
+  // const options = [];
+
+  // const handleCategoryChange = (event) => {
+  //   setSelectCategory(event.target.value);
+  // };
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -56,20 +60,40 @@ function AllTransactions() {
     fetchTransactions();
   }, []);
 
+  // useEffect(() => {
+  //   // filteredData = chart.filter(
+  //   //   (chart) => chart.account.category[0] === selectCategory
+  //   // );
+  //   setFilteredData(filteredData);
+  // }, [selectCategory]);
+
   const searchFn = (transactions) => {
     return transactions.filter(
       (account) =>
-        account.date.includes(search) ||
-        account.name.toLowerCase().includes(search.toLowerCase()) ||
-        account.category[0].toLowerCase().includes(search.toLowerCase()) ||
-        account.amount.toFixed(2).includes(search)
+        account.date.includes(searchQuery) ||
+        account.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        account.category[0].toLowerCase().includes(searchQuery.toLowerCase()) ||
+        account.amount.toFixed(2).includes(searchQuery)
     );
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSearched(searchFn(chart));
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  });
 
   if (loading) {
     return (
       <div>
         <input type="text" placeholder="Search" className="search" />
+        {/* <select id="month" onChange={handleCategoryChange}>
+          <option value="select Month">Month</option>
+          <option value="January">January</option>
+          <option value="January"></option>
+        </select> */}
         <table>
           <thead>
             <tr>
@@ -91,9 +115,9 @@ function AllTransactions() {
         type="text"
         className="search"
         placeholder="Search"
-        onChange={(event) => setSearch(event.target.value)}
+        onChange={(event) => setSearchQuery(event.target.value)}
       />
-      <Table transactions={searchFn(chart)} />
+      <Table transactions={searched} />
     </div>
   );
 }
