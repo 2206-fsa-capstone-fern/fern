@@ -18,19 +18,22 @@ import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
+import Month from "./components/Month";
 
 //Redux
 import { connect } from "react-redux";
-import { gettingUser, addingTransactions } from "./store";
+import { gettingUser, addingTransactions, gettingTransactions } from "./store";
+import LastVsCurr from "./components/LastVsCurr";
+import Daily from "./components/Daily";
 
 //functional component
 function App(props) {
-  const { isLoggedIn, isAdmin } = props;
-  useEffect(() => {
-    props.loadInitialData();
+  const { isLoggedIn, isAdmin } = props
+  useEffect(async () => {
+    props.loadInitialData()
+    props.getTransactions()
   }, [isLoggedIn]);
 
-  console.log("props", props);
 
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -39,6 +42,7 @@ function App(props) {
 
   const onSuccess = useCallback(async (publicToken) => {
     setLoading(true);
+    console.log("hello")
     await fetch("/api/exchange_public_token", {
       method: "POST",
       headers: {
@@ -63,14 +67,14 @@ function App(props) {
       localStorage.setItem("link_token", data.link_token);
     }
   }, [setToken]);
-
+  
   //Fetch transaction data, which includes accounts and balances data
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
     const response = await fetch("/api/transactions/get");
 
     transactions = await response.json();
-    props.addTransactions(transactions);
+    props.addTransactions(props.transactions, transactions);
 
     setLoading(false);
   }, [setTransactions, setLoading]);
@@ -114,90 +118,99 @@ function App(props) {
   //   console.log(err);
   // }
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <div className="Navbar"></div>
-
-        {isLoggedIn ? (
-          <div>
-            {isAdmin ? (
-              <div>
-                <Navbar
-                  open={open}
-                  ready={ready}
-                  transactions={props.transactions[0]}
-                  transactions2={props.transactions[1]}
-                />
-                <Routes></Routes>
-              </div>
-            ) : (
-              <div>
-                <div className="navbar-logged-in">
-                  {/* navbar for logged in users */}
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <div className="Navbar"></div>
+  
+          {isLoggedIn ? (
+            <div>
+              {isAdmin ? (
+                <div>
                   <Navbar
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
+                  <Routes></Routes>
                 </div>
-                <div className="SideNav">
-                  <SideNav />
+              ) : (
+                <div>
+                  <div className="navbar-logged-in">
+                    {/* navbar for logged in users */}
+                    <Navbar
+                      open={open}
+                      ready={ready}
+                      transactions={props.transactions[0]}
+                      transactions2={props.transactions[1]}
+                    />
+                  </div>
+                  <div className="SideNav">
+                    <SideNav />
+                  </div>
+  
+                  <div className="app-container">
+                    <Routes>
+                      <Route
+                        exact
+                        path="/link"
+                        element={
+                          <LinkAccount
+                            open={open}
+                            ready={ready}
+                            transactions={props.transactions[0]}
+                            transactions2={props.transactions[1]}
+                          />
+                        }
+                      />
+                      {/* <Route
+                        path="/*"
+                        element={<Navigate replace to="/dashboard" />}
+                      /> */}
+                      <Route
+                        exact
+                        path="/dashboard"
+                        element={<Dashboard transactions={transactions} />}
+                      />
+                      <Route
+                        exact
+                        path="/"
+                        element={<Navigate replace to="/dashboard" />}
+                      />
+                      <Route exact path="/budget" element={<BudgetApp />} />
+                      <Route exact path="/trends" element={<Trends />} />
+                      <Route
+                        exact
+                        path="/transactions"
+                        element={<AllTransactions />}
+                      />
+                      <Route exact path="/yearly" element={<Yearly />} />
+                      <Route exact path="/donut" element={<DoughnutChart />} />{" "}
+                      {/* to view chart */}
+                      <Route exact path="/lvc" element={<LastVsCurr />} />
+                      <Route exact path="/month" element={<Month />} />
+                      <Route exact path="/daily" element={<Daily />} />
+                    </Routes>
+                  </div>
                 </div>
-
-                <div className="app-container">
-                  <Routes>
-                    <Route
-                      exact
-                      path="/link"
-                      element={
-                        <LinkAccount
-                          open={open}
-                          ready={ready}
-                          transactions={props.transactions[0]}
-                          transactions2={props.transactions[1]}
-                        />
-                      }
-                    />
-                    {/* <Route
-                      path="/*"
-                      element={<Navigate replace to="/dashboard" />}
-                    /> */}
-                    <Route
-                      exact
-                      path="/dashboard"
-                      element={<Dashboard transactions={transactions} />}
-                    />
-                    <Route exact path="/budget" element={<BudgetApp />} />
-                    <Route exact path="/trends" element={<Trends />} />
-                    <Route
-                      exact
-                      path="/transactions"
-                      element={<AllTransactions />}
-                    />
-                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-                    {/* to view chart */}
-                    <Route exact path="/yearly" element={<Yearly />} />
-                  </Routes>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            {/* for users who aren't logged in */}
-            <Navbar />
-            <Routes>
-              <Route exact path="/signup" element={<SignUp />} />
-              {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
-              <Route exact path="/login" element={<LogIn />} />
-            </Routes>
-          </div>
-        )}
-      </div>
-    </BrowserRouter>
-  );
+              )}
+            </div>
+          ) : (
+            <div>
+              {/* for users who aren't logged in */}
+              <Navbar />
+              <Routes>
+                <Route exact path="/signup" element={<SignUp />} />
+                {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
+                <Route exact path="/login" element={<LogIn />} />
+                <Route exact path="/" element={<LogIn />} />
+              </Routes>
+            </div>
+          )}
+        </div>
+      </BrowserRouter>
+    );
 }
 
 const mapState = (state) => {
@@ -205,14 +218,15 @@ const mapState = (state) => {
     isLoggedIn: !!state.user.firstName,
     isAdmin: !!state.user.admin,
     user: state.user,
-    transactions: state.transactions,
+    transactions: state.transactions
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => dispatch(gettingUser()),
-    addTransactions: (transaction) => dispatch(addingTransactions(transaction)),
+    addTransactions: (transactions, transaction) => dispatch(addingTransactions(transactions, transaction)),
+    getTransactions: () => dispatch(gettingTransactions())
   };
 };
 

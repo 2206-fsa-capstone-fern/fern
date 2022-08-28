@@ -25,8 +25,8 @@ ChartJS.register(CategoryScale, LinearScale, BarElement);
 // ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-const Month = () => {
-  const [chart, setChart] = useState([]); 
+const Daily = () => {
+  const [chart, setChart] = useState([]);
 
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
@@ -48,13 +48,13 @@ const Month = () => {
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
-          end_date: "2022-12-01",
+          end_date: "2022-01-08",
         }),
       })
         .then((response) => {
           response.json().then((json) => {
             console.log("json: \n", json);
-            setChart(json.transactions)
+            setChart(json.transactions);
           });
         })
         .catch((error) => {
@@ -64,7 +64,7 @@ const Month = () => {
     fetchCoins();
   }, [baseURL, proxyURL, apiKey]);
 
-  console.log('chart: \n', chart)
+  console.log("chart: \n", chart);
 
   const datesAndAmt = () => {
     let obj = {};
@@ -73,25 +73,39 @@ const Month = () => {
       let amounts = chart[i].amount;
 
       const date = new Date(dates);
-      dates = date.toLocaleString('en-US', {
-        month: 'long'
-      })
+      let dayArr = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ];
+    //   console.log('date', date)
+    let dayName = dayArr[date.getDay()]
+    console.log('dayName', dayName)
+
+      //   const date = new Date(dates);
+      //   dates = date.toLocaleString('en-US', {
+      //     weekday: 'long'
+      //   })
 
       if (!obj.hasOwnProperty(dates)) {
-        obj[dates] = amounts;
+        obj[dayName] = amounts;
       }
-      obj[dates] += amounts
+      obj[dayName] += amounts;
     }
-    return obj
-  }
-  console.log('datesAndAmt()', datesAndAmt())
+    return obj;
+  };
+  console.log("datesAndAmt()", datesAndAmt());
   let datesAndAmount = datesAndAmt();
 
   let data = {
     labels: Object.keys(datesAndAmount).reverse(),
     datasets: [
       {
-        label: 'Spending By Month',
+        label: "Spending Through The Week",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -146,4 +160,4 @@ const Month = () => {
   );
 };
 
-export default Month;
+export default Daily;
