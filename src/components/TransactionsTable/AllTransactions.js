@@ -49,7 +49,6 @@ function AllTransactions() {
         .then((response) => {
           response.json().then((data) => {
             setChart(data.transactions);
-            setLoading(false);
           });
         })
 
@@ -80,6 +79,7 @@ function AllTransactions() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSearched(searchFn(chart));
+      setLoading(false);
     }, 500);
 
     return () => clearTimeout(timeout);

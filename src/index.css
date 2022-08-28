@@ -44,6 +44,11 @@ code {
 .refunds {
   color: #01796f;
 }
+.component-container {
+  background-color: white;
+  /* so we don't see through draggable components on the dash */
+  border: solid;
+}
 
 /* 
 @tailwind base;

@@ -192,8 +192,6 @@ function App(props) {
               <Route exact path="/signup" element={<SignUp />} />
               {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
               <Route exact path="/login" element={<LogIn />} />
-              {/* remove this transactions route!
-              <Route exact path="/transactions" element={<AllTransactions />} /> */}
             </Routes>
           </div>
         )}
