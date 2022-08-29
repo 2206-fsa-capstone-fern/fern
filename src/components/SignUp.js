@@ -132,6 +132,15 @@ class SignUp extends Component {
             />
           </div>
           <div className="input-field">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              onChange={this.handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
             <label htmlFor="email">Email</label>
             <input
               type="email"
