@@ -18,7 +18,7 @@ import Trends from "./components/Trends";
 import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
-import AccountView from "./components/AccountView";
+import AccountView from "./AccountComponents/AccountView";
 
 //Redux
 import { connect } from "react-redux";

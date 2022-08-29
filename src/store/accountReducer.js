@@ -13,9 +13,9 @@ export const deletingAccount = (navigate, email, password) => async () => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
+    await deleteUser(auth.currentUser)
     await deleteDoc(doc(db, "users", userId))
     await deleteDoc(doc(db, "users", userId, "transactions", userId))
-    await deleteUser(auth.currentUser)
     navigate("/signup")
   } catch (err) {
     console.log(err)
