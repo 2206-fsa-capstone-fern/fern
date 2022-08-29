@@ -1,6 +1,6 @@
 //React
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import React, { Switch, useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
 import { usePlaidLink } from "react-plaid-link";
@@ -21,16 +21,15 @@ import Yearly from "./components/Yearly";
 
 //Redux
 import { connect } from "react-redux";
-import { gettingUser, addingTransactions } from "./store";
+import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
-  useEffect(() => {
+  useEffect(async () => {
     props.loadInitialData();
+    props.getTransactions();
   }, [isLoggedIn]);
-
-  console.log("props", props);
 
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -70,7 +69,7 @@ function App(props) {
     const response = await fetch("/api/transactions/get");
 
     transactions = await response.json();
-    props.addTransactions(transactions);
+    props.addTransactions(props.transactions, transactions);
 
     setLoading(false);
   }, [setTransactions, setLoading]);
@@ -161,13 +160,18 @@ function App(props) {
                       }
                     />
                     {/* <Route
-                      path="/*"
-                      element={<Navigate replace to="/dashboard" />}
-                    /> */}
+                        path="/*"
+                        element={<Navigate replace to="/dashboard" />}
+                      /> */}
                     <Route
                       exact
                       path="/dashboard"
                       element={<Dashboard transactions={transactions} />}
+                    />
+                    <Route
+                      exact
+                      path="/"
+                      element={<Navigate replace to="/dashboard" />}
                     />
                     <Route exact path="/budget" element={<BudgetApp />} />
                     <Route exact path="/trends" element={<Trends />} />
@@ -192,8 +196,7 @@ function App(props) {
               <Route exact path="/signup" element={<SignUp />} />
               {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
               <Route exact path="/login" element={<LogIn />} />
-              {/* remove this transactions route!
-              <Route exact path="/transactions" element={<AllTransactions />} /> */}
+              <Route exact path="/" element={<LogIn />} />
             </Routes>
           </div>
         )}
@@ -214,7 +217,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => dispatch(gettingUser()),
-    addTransactions: (transaction) => dispatch(addingTransactions(transaction)),
+    addTransactions: (transactions, transaction) =>
+      dispatch(addingTransactions(transactions, transaction)),
+    getTransactions: () => dispatch(gettingTransactions()),
   };
 };
 

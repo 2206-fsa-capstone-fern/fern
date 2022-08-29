@@ -103,7 +103,7 @@ function AllTransactions() {
               <th>Amount</th>
             </tr>
           </thead>
-          <>()</>
+          <></>
         </table>
       </div>
     );
