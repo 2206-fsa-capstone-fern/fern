@@ -21,16 +21,15 @@ import Yearly from './components/Yearly';
 
 //Redux
 import { connect } from 'react-redux';
-import { gettingUser, addingTransactions } from './store';
+import { gettingUser, addingTransactions, gettingTransactions } from './store';
 
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
-  useEffect(() => {
+  useEffect(async () => {
     props.loadInitialData();
+    props.getTransactions();
   }, [isLoggedIn]);
-
-  console.log('props', props);
 
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -70,7 +69,7 @@ function App(props) {
     const response = await fetch('/api/transactions/get');
 
     transactions = await response.json();
-    props.addTransactions(transactions);
+    props.addTransactions(props.transactions, transactions);
 
     setLoading(false);
   }, [setTransactions, setLoading]);
@@ -161,13 +160,18 @@ function App(props) {
                       }
                     />
                     {/* <Route
-                      path="/*"
-                      element={<Navigate replace to="/dashboard" />}
-                    /> */}
+                        path="/*"
+                        element={<Navigate replace to="/dashboard" />}
+                      /> */}
                     <Route
                       exact
                       path='/dashboard'
                       element={<Dashboard transactions={transactions} />}
+                    />
+                    <Route
+                      exact
+                      path='/'
+                      element={<Navigate replace to='/dashboard' />}
                     />
                     <Route exact path='/budget' element={<BudgetApp />} />
                     <Route exact path='/trends' element={<Trends />} />
@@ -190,8 +194,9 @@ function App(props) {
             <Navbar />
             <Routes>
               <Route exact path='/signup' element={<SignUp />} />
-              <Route path='/*' element={<Navigate replace to='/login' />} />
+              {/* <Route path='/*' element={<Navigate replace to='/login' />} /> */}
               <Route exact path='/login' element={<LogIn />} />
+              <Route exact path='/' element={<LogIn />} />
             </Routes>
           </div>
         )}
@@ -212,7 +217,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => dispatch(gettingUser()),
-    addTransactions: (transaction) => dispatch(addingTransactions(transaction)),
+    addTransactions: (transactions, transaction) =>
+      dispatch(addingTransactions(transactions, transaction)),
+    getTransactions: () => dispatch(gettingTransactions()),
   };
 };
 
