@@ -19,6 +19,8 @@ import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 import Month from "./components/Month";
+import BalancesOverview from "./components/AccountBalancesOverview";
+import Balances from "./components/AccountBalances"
 
 //Redux
 import { connect } from "react-redux";
@@ -185,9 +187,10 @@ function App(props) {
                         path="/transactions"
                         element={<AllTransactions />}
                       />
+                      <Route exact path="/balances" element={<Balances />} />
+                      <Route exact path="/balancesoverview" element={<BalancesOverview />} />
                       <Route exact path="/yearly" element={<Yearly />} />
-                      <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-                      {/* to view chart */}
+                      <Route exact path="/donut" element={<DoughnutChart />} />
                       <Route exact path="/lvc" element={<LastVsCurr />} />
                       <Route exact path="/month" element={<Month />} />
                       <Route exact path="/daily" element={<Daily />} />

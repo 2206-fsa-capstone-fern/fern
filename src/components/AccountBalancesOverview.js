@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Balances = () => {
-  const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
+const BalancesOverview = () => {
+  const [chart, setChart] = useState([]);
 
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}accounts/balance/get`;
@@ -27,7 +28,7 @@ const Balances = () => {
           // console.log('chart in .then: \n', chart)
           console.log("response: \n", response);
           response.json().then((data) => {
-            console.log("data: \n", data)
+            console.log("data: \n", data);
             // console.log("data.transactions: \n", data.transactions);
             setChart(data.accounts);
             // setChart(data)
@@ -40,25 +41,43 @@ const Balances = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
-  
   return (
     <div>
+      <Link to="balances">
+        <h5 style={{ textAlign: "center" }} className="">
+          Accounts Overview
+        </h5>
+      </Link>
       <table>
-      <th style={{ textAlign: "center" }} className="">Accounts</th>
-        <tbody>
+        <tr>
           <th>Account Type</th>
           <th>Balance</th>
-        </tbody>
-        {/* {console.log("chart in return: \n", chart)} */}
-        {chart.map((account) => (
-          <tbody key={account.account_id}>
-            <td>{account.name}</td>
-            <td>{!account.balances.available ? account.balances.current.toFixed(2) : account.balances.available.toFixed(2)}</td>
-          </tbody>
-        ))}
+        </tr>
+        <tr>
+          <td>Depository</td>
+          {/* <td>checking, savings, cd, money market</td> */}
+          <td>{`$${Number(chart[0].balances.current) + Number(chart[1].balances.current) + Number(chart[2].balances.current) + Number(chart[4].balances.current)}`}</td>
+        </tr>
+        <tr>
+          <td>Credit</td>
+          {/* <td>credit card</td> */}
+          <td>{`$${chart[3].balances.current.toFixed(2)}`}</td>
+        </tr>
+        <tr>
+          <td>Investments</td>
+          {/* <td>ira, 401k</td> */}
+          <td>{`$${Number(chart[5].balances.current) + Number(chart[6].balances.current)}`}</td>
+          {/* <td>{`$${Number(chart[5].balances.current.toFixed(2)) + Number(chart[6].balances.current.toFixed(2))}`}</td> */}
+        </tr>
+        <tr>
+          <td>Loans</td>
+          {/* <td>student, mortgage</td> */}
+          <td>{`$${Number(chart[7].balances.current) + Number(chart[8].balances.current)}`}</td>
+        </tr>
+        {console.log("chart in return: \n", chart)}
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default Balances
+export default BalancesOverview;
