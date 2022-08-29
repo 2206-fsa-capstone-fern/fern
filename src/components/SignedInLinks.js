@@ -1,13 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingOut } from "../store";
 
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
+  const navigate = useNavigate()
   const handleLogout = (e) => {
     e.preventDefault();
 
-    props.logout();
+    props.logout(navigate);
   };
   return (
     <ul className="right">
@@ -53,7 +54,7 @@ const mapState = (state) => {
 
 const mapDisptach = (dispatch) => {
   return {
-    logout: () => dispatch(loggingOut()),
+    logout: (navigate) => dispatch(loggingOut(navigate)),
   };
 };
 
