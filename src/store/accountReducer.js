@@ -55,7 +55,7 @@ export const updatingPhoneNumber = (email, password, newPhoneNumber) => async (d
     await updateDoc(doc(db, "users", user.uid), {
       phoneNumber: newPhoneNumber
     })
-    return dispatch(getNotice("Email Updated"))
+    return dispatch(getNotice("Phone Number Updated"))
   } catch (err) {
     console.log(err)
   }

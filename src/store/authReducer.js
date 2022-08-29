@@ -59,7 +59,6 @@ export const signup = (email, password, firstName, lastName, phoneNumber) => asy
   try {
     await createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log("user created:", cred.user);
       return setDoc(doc(db, "users", cred.user.uid), {
         firstName: firstName,
         lastName: lastName,
@@ -75,18 +74,6 @@ export const signup = (email, password, firstName, lastName, phoneNumber) => asy
     return dispatch(getUser(user));
   } catch (err) {
     return dispatch(getUser(err))
-  }
-};
-
-export const deletingAccount = (navigate) => async () => {
-  try {
-    const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
-    await deleteDoc(doc(db, "users", userId))
-    await deleteDoc(doc(db, "users", userId, "transactions", userId))
-    await deleteUser(auth.currentUser)
-    navigate("/signup")
-  } catch (err) {
-    console.log(err)
   }
 };
 

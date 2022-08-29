@@ -163,10 +163,6 @@ function App(props) {
                           />
                         }
                       />
-                      {/* <Route
-                        path="/*"
-                        element={<Navigate replace to="/dashboard" />}
-                      /> */}
                       <Route
                         exact
                         path="/dashboard"
@@ -175,6 +171,16 @@ function App(props) {
                       <Route
                         exact
                         path="/"
+                        element={<Navigate replace to="/dashboard" />}
+                      />
+                          <Route
+                        exact
+                        path="/login"
+                        element={<Navigate replace to="/dashboard" />}
+                      />
+                          <Route
+                        exact
+                        path="/signup"
                         element={<Navigate replace to="/dashboard" />}
                       />
                       <Route exact path="/budget" element={<BudgetApp />} />
