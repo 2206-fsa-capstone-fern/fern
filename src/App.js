@@ -117,7 +117,6 @@ function App(props) {
     <BrowserRouter>
       <div className='App'>
         <div className='Navbar'></div>
-
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
@@ -144,7 +143,6 @@ function App(props) {
                 <div className='SideNav'>
                   <SideNav />
                 </div>
-
                 <div className='app-container'>
                   <Routes>
                     <Route
