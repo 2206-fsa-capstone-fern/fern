@@ -9,35 +9,9 @@ import SideNav from "./SideNav/SideNav";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const Dashboard = () => {
-  // const dummyData = dummyTransactions[0].transactions.slice(0, 10);
-  // const transactionCategory = dummyData.map(
-  //   (transaction) => transaction.category[0]
-  // );
-  // const transactionAmount = dummyData.map((transaction) => transaction.amount);
-  // const [chartData, setChartData] = useState({
-  //   labels: transactionCategory,
-  //   datasets: [
-  //     {
-  //       label: "Transactions",
-  //       data: transactionAmount,
-  //       backgroundColor: [
-  //         "rgba(75,192,192,1)",
-  //         "#ecf0f1",
-  //         "#50AF95",
-  //         "#f3ba2f",
-  //         "#2a71d0",
-  //       ],
-  //       borderColor: ["rgba(75,192,192,1)"],
-  //       borderWidth: 5,
-  //     },
-  //   ],
-  // });
-  // console.log(transactionAmount);
-
   //dnd
-
   const [components, setComponents] = useState([
-    { content: <DoughnutChart /> },
+    // { content: <DoughnutChart /> },
     { content: "monthly" },
     { content: "category" },
     { content: "budget" },
@@ -75,11 +49,11 @@ const Dashboard = () => {
                     className="component-container"
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    isDragging={snapshot.isDragging}
-                    //can be tailored to what part of something you want to be used as the drag handler
                   >
-                    {component.content}
+                    <div>
+                      <i class="bi bi-list" {...provided.dragHandleProps}></i>
+                      {component.content}
+                    </div>
                     {provided.placeholder}
                   </div>
                 )}

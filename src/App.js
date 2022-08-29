@@ -192,6 +192,7 @@ function App(props) {
               <Route exact path="/signup" element={<SignUp />} />
               {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
               <Route exact path="/login" element={<LogIn />} />
+              <Route exact path="/dashboard" element={<Dashboard />} />
             </Routes>
           </div>
         )}
