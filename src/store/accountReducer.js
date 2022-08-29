@@ -1,6 +1,6 @@
 import { auth, db } from "../config/firebase";
-import { deleteDoc, doc } from "firebase/firestore";
-import { deleteUser, signInWithEmailAndPassword, updatePassword} from "firebase/auth";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteUser, signInWithEmailAndPassword, updatePassword, updateEmail } from "firebase/auth";
 
 //action type
 const GET_NOTICE = "GET_NOTICE"
@@ -28,6 +28,34 @@ export const updatingPassword = (email, password, newPassword) => async (dispatc
     const user = auth.currentUser
     await updatePassword(user, newPassword)
     return dispatch(getNotice("Password Updated"))
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+export const updatingEmail = (email, password, newEmail) => async (dispatch) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    const user = auth.currentUser
+    console.log(user.uid)
+    await updateEmail(user, newEmail)
+    await updateDoc(doc(db, "users", user.uid), {
+      email: newEmail
+    })
+    return dispatch(getNotice("Email Updated"))
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+export const updatingPhoneNumber = (email, password, newPhoneNumber) => async (dispatch) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    const user = auth.currentUser
+    await updateDoc(doc(db, "users", user.uid), {
+      phoneNumber: newPhoneNumber
+    })
+    return dispatch(getNotice("Email Updated"))
   } catch (err) {
     console.log(err)
   }

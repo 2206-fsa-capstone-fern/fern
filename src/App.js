@@ -29,9 +29,9 @@ import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 function App(props) {
   const { isLoggedIn, isAdmin } = props
   useEffect(() => {
-    props.loadInitialData()
+    props.getUser()
     props.getTransactions()
-  }, [isLoggedIn]);
+  }, [ isLoggedIn ]);
 
 
   const [token, setToken] = useState(null);
@@ -215,13 +215,14 @@ const mapState = (state) => {
     isLoggedIn: !!state.user.firstName,
     isAdmin: !!state.user.admin,
     user: state.user,
-    transactions: state.transactions
+    transactions: state.transactions,
+    notice: state.notice
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
+    getUser: () => dispatch(gettingUser()),
     addTransactions: (transactions, transaction) => dispatch(addingTransactions(transactions, transaction)),
     getTransactions: () => dispatch(gettingTransactions())
   };
