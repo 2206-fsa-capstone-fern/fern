@@ -79,9 +79,9 @@ function AllTransactions() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSearched(searchFn(chart));
+      setLoading(false);
     }, 400);
 
-    setLoading(false);
     return () => clearTimeout(timeout);
   });
 
