@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 //Plaid
 import { usePlaidLink } from 'react-plaid-link';
+import './Plaid.scss';
 import './index.css';
 
 //Components
