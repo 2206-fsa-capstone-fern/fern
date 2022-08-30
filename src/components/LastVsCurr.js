@@ -268,7 +268,7 @@ const LastVsCurr = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-          start_date: "2022-08-01",
+          start_date: "2022-07-31",
           end_date: "2022-08-31",
         }),
       })
@@ -324,19 +324,17 @@ const LastVsCurr = () => {
   // 02: [1.34, 9.30],
   // 03: [0.00, 8.75], }
 
-  // OBJECT.ASSIGN won't work cause goal is to get an array as property
   const datesAndAmt = () => {
     let obj = {};
     for (let i = 1; i < 32; i++) {
-      let key = i.toLocaleString('en-US', {
+      let key = i.toLocaleString("en-US", {
         minimumIntegerDigits: 2,
-      })
-      obj[key] = 0
+      });
+      obj[key] = 0;
     }
 
     for (let i = 0; i < chart.length; i++) {
       let dates = chart[i].date;
-      // let augustDates = new Date(dates).getDate()
       let amounts = chart[i].amount;
 
       const date = new Date(dates);
@@ -356,46 +354,45 @@ const LastVsCurr = () => {
   const datesAndAmt2 = () => {
     let obj2 = {};
     for (let j = 1; j < 32; j++) {
-      let key2 = j.toLocaleString('en-US', {
+      let key2 = j.toLocaleString("en-US", {
         minimumIntegerDigits: 2,
-      })
-      obj2[key2] = 0
+      });
+      obj2[key2] = 0;
     }
     // console.log('obj2 presurgery', obj2)
     for (let j = 0; j < chart2.length; j++) {
       let dates = chart2[j].date;
       let amounts = chart2[j].amount;
       const date = new Date(dates);
-      dates = date.toLocaleDateString('en-US', {
-        day: '2-digit'
-      })
+      dates = date.toLocaleDateString("en-US", {
+        day: "2-digit",
+      });
       // console.log('dates2', dates)
-      obj2[dates] += amounts
+      obj2[dates] += amounts;
     }
     // console.log('obj2', obj2)
-    return obj2
-  }
+    return obj2;
+  };
   // console.log('datesAndAmt2()', datesAndAmt2())
   let datesAndAmount = datesAndAmt();
   let datesAndAmount2 = datesAndAmt2();
-  console.log('datesAndAmount2', datesAndAmount2)
-  let dates2 = Object.keys(datesAndAmount2)
-  let objvals = Object.values(datesAndAmount)
-  let objvals2 = Object.values(datesAndAmount2)
+  console.log("datesAndAmount2", datesAndAmount2);
+  let dates2 = Object.keys(datesAndAmount2);
+  let objvals = Object.values(datesAndAmount);
+  let objvals2 = Object.values(datesAndAmount2);
   // console.log('objvals2', objvals2)
-  
+
   const rotateArr = (originalArr, rotateNum) => {
     let front = originalArr.slice(-rotateNum);
     let end = originalArr.slice(0, -rotateNum);
-    return front.concat(end)
-  }
-  dates2 = rotateArr(dates2, 9)
-  objvals = rotateArr(objvals, 11)
-  objvals2 = rotateArr(objvals2, 9)
-  console.log('objvals', objvals)
-  console.log('objvals2', objvals2) // <-- works right
+    return front.concat(end);
+  };
+  dates2 = rotateArr(dates2, 9);
+  objvals = rotateArr(objvals, 11);
+  objvals2 = rotateArr(objvals2, 9);
+  console.log("objvals", objvals);
+  console.log("objvals2", objvals2); // <-- works right
   // console.log('daets2', dates2)
-
 
   let data = {
     // labels: Object.keys(datesAndAmt2()),
@@ -406,74 +403,83 @@ const LastVsCurr = () => {
         // data: Object.values(datesAndAmt()),
         data: objvals,
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
+          // "rgba(255, 99, 132, 0.2)",
           // "rgba(54, 162, 235, 0.2)",
           // "rgba(255, 206, 86, 0.2)",
           // "rgba(75, 192, 192, 0.2)",
           // "rgba(153, 102, 255, 0.2)",
           // "rgba(255, 159, 64, 0.2)",
+          "rgba(143, 207, 155, 0.7)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
+          // "rgba(255, 99, 132, 1)",
           // "rgba(54, 162, 235, 1)",
           // "rgba(255, 206, 86, 1)",
           // "rgba(75, 192, 192, 1)",
           // "rgba(153, 102, 255, 1)",
           // "rgba(255, 159, 64, 1)",
+          "rgba(143, 207, 155, 1)",
         ],
         borderWidth: 1,
       },
       {
         label: "This Month",
-        // data: Object.values(datesAndAmt2()),
         data: objvals2,
         backgroundColor: [
           // "rgba(255, 99, 132, 0.2)",
           // "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
+          // "rgba(255, 206, 86, 0.2)",
           // "rgba(75, 192, 192, 0.2)",
           // "rgba(153, 102, 255, 0.2)",
           // "rgba(255, 159, 64, 0.2)",
+          "rgba(50, 168, 82, 0.7)",
         ],
         borderColor: [
           // "rgba(255, 99, 132, 1)",
           // "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
+          // "rgba(255, 206, 86, 1)",
           // "rgba(75, 192, 192, 1)",
           // "rgba(153, 102, 255, 1)",
           // "rgba(255, 159, 64, 1)",
+          "rgba(50, 168, 82, 1)",
         ],
-        borderWidth: 1,
+        borderWidth: 2.5,
       },
     ],
   };
 
   let options = {
     maintainAspectRatio: false,
-    // scales: {
-    //   y: [{
-    //     title: {
-    //       display: true,
-    //       text: 'Amount'
-    //     },
-    //     beginAtZero: true,
-    //   }],
-    // },
-    legend: {
-      labels: {
-        fontSize: 25,
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: 'Amount Spent',
+        }
       },
+      x: {
+        title: {
+          display: true,
+          text: 'Date of Month',
+        }
+      }
     },
     plugins: {
-      tooltip: {
-        events: ['mousemove'],
-      },
-      legend: {
-        position: "top",
-      },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        align: 'center',
+        position: 'top',
+        text: "Last Month Spending vs Current Month Spending",
+        font: {
+          size: 30,
+        },
+        padding: {
+          top: 10,
+          bottom: 30,
+        },
+      },
+      tooltip: {
+        events: ["mousemove"],
       },
     },
   };
@@ -484,8 +490,6 @@ const LastVsCurr = () => {
       <Line height={400} data={data} options={options} />
     </div>
   );
-
-  // return <h2>Last vs Curr</h2>;
 };
 
 export default LastVsCurr;

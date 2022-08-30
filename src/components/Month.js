@@ -91,15 +91,15 @@ const Month = () => {
     labels: Object.keys(datesAndAmount).reverse(), // x-axis values HAS to be passed in as an array
     datasets: [
       {
-        label: "Spending By Month",
+        label: "Amount Spent in a Given Month",
         data: Object.values(datesAndAmount).reverse(), // y-axis values HAS to be passed in as an array, can pass in multiple data values
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 99, 132, 0.7)",
+          "rgba(54, 162, 235, 0.7)",
+          "rgba(255, 206, 86, 0.7)",
+          "rgba(75, 192, 192, 0.7)",
+          "rgba(153, 102, 255, 0.7)",
+          "rgba(255, 159, 64, 0.7)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -120,7 +120,17 @@ const Month = () => {
     scales: {
       y: {
         beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Amount Spent',
+        },
       },
+      x: {
+        title: {
+          display: true,
+          text: 'Month',
+        }
+      }
     },
     plugins: {
       tooltip: {
@@ -131,7 +141,7 @@ const Month = () => {
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Spending By Month",
       },
     },
     legend: {

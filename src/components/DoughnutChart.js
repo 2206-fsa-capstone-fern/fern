@@ -90,6 +90,7 @@ const DoughnutChart = () => {
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
           "rgba(255, 159, 64, 0.2)",
+          "rgba(50, 168, 82, 0.2)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -98,6 +99,7 @@ const DoughnutChart = () => {
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
+          "rgba(50, 168, 82, 1)",
         ],
         borderWidth: 1,
       },
@@ -111,6 +113,15 @@ const DoughnutChart = () => {
         fontSize: 25,
       },
     },
+    plugins: {
+      tooltip: {
+        events: ['mousemove'],
+      },
+      title: {
+        display: true,
+        text: "Yearly Overview"
+      },
+    }
   };
 
   return (
