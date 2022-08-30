@@ -51,7 +51,7 @@ export const loggingIn = (email, password) => async (dispatch) => {
     });
     return dispatch(getUser(user));
   } catch (err) {
-    return dispatch(getUser(err.code))
+    return dispatch(getUser(err))
   }
 };
 
