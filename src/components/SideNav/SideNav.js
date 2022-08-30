@@ -1,43 +1,49 @@
-import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-// import * as AiIcons from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import { SideNavData } from './SideNavData';
-import './SideBar.css';
-import { IconContext } from 'react-icons';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { SideNavData } from "./SideNavData";
+import "./SideBar.css";
+import { IconContext } from "react-icons";
+import {
+  CDBSidebar,
+  CDBSidebarHeader,
+  CDBSidebarMenuItem,
+  CDBSidebarContent,
+  CDBSidebarMenu,
+} from "cdbreact";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
-
+  const [collapse, setCollapse] = useState(false);
   return (
-    <>
-      <IconContext.Provider value={{ color: '#fff' }}>
-        <div className='navbar'>
-          <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
+    <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
+      <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
+        <div
+          className="container"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <img
+            src={"./public/pics/fernfi_logo.png"}
+            alt=""
+            style={{ width: "30px" }}
+          />
+          <h6 className="ml-2">FernFi</h6>
         </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showSidebar}>
-            <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'></Link>
-            </li>
-            {SideNavData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </IconContext.Provider>
-    </>
+      </CDBSidebarHeader>
+      <CDBSidebarContent>
+        <CDBSidebarMenu>
+          {SideNavData.map((item, index) => (
+            <CDBSidebarMenuItem key={index}>
+              <Link to={item.path}>
+                <IconContext.Provider value={{ color: "#333" }}>
+                  {item.icon}
+                </IconContext.Provider>
+                <span className="ml-2">{item.title}</span>
+              </Link>
+            </CDBSidebarMenuItem>
+          ))}
+        </CDBSidebarMenu>
+      </CDBSidebarContent>
+    </CDBSidebar>
   );
 }
 

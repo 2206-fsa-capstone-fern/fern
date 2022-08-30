@@ -49,7 +49,6 @@ function AllTransactions() {
         .then((response) => {
           response.json().then((data) => {
             setChart(data.transactions);
-            setLoading(false);
           });
         })
 
@@ -82,6 +81,7 @@ function AllTransactions() {
       setSearched(searchFn(chart));
     }, 400);
 
+    setLoading(false);
     return () => clearTimeout(timeout);
   });
 

@@ -60,26 +60,23 @@ const Yearly = () => {
         Transactions From This Year
       </p>
       <table className="year">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
+        <tbody>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          {/* <th>Type</th> */}
+          <th>Amount</th>
+        </tbody>
         {console.log("chart in return: \n", chart)}
         {chart.map((account) => (
           <tbody key={account.transaction_id}>
-            <tr>
-              <td>{account.date}</td>
-              <td>{account.name}</td>
-              <td>
-                {account.category[0]} ({account.category[1]})
-              </td>
-              {/* <td>{account.category[1]}</td> */}
-              <td>{account.amount.toFixed(2)}</td>
-            </tr>
+            <td>{account.date}</td>
+            <td>{account.name}</td>
+            <td>
+              {account.category[0]} ({account.category[1]})
+            </td>
+            {/* <td>{account.category[1]}</td> */}
+            <td>{account.amount.toFixed(2)}</td>
           </tbody>
         ))}
       </table>
