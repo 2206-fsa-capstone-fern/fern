@@ -80,7 +80,7 @@ function AllTransactions() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSearched(searchFn(chart));
-    }, 500);
+    }, 400);
 
     return () => clearTimeout(timeout);
   });
