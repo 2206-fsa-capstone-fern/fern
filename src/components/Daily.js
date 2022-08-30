@@ -33,6 +33,9 @@ const Daily = () => {
   let apiKey = "62fd4373e8c0170014239c33";
 
   let today = new Date().toISOString().split("T")[0];
+  let todaysDate = new Date();
+  let lastWeek = new Date(new Date().setDate(todaysDate.getDate() - 7));
+  let lastWeeksDate = lastWeek.toISOString().split("T")[0];
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -47,9 +50,8 @@ const Daily = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-          start_date: "2022-01-01",
-        //   end_date: "2022-01-08",
-        end_date: today,
+          start_date: lastWeeksDate,
+          end_date: today,
         }),
       })
         .then((response) => {
@@ -63,9 +65,11 @@ const Daily = () => {
         });
     };
     fetchCoins();
-  }, [baseURL, proxyURL, apiKey]);
+  }, [baseURL, proxyURL, apiKey, today, lastWeeksDate]);
 
   console.log("chart: \n", chart);
+
+  const daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const daysAndAmt = () => {
     let obj = {};
@@ -74,28 +78,12 @@ const Daily = () => {
       let amounts = chart[i].amount;
 
       const date = new Date(dates);
-      let dayArr = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ];
-    //   console.log('date', date)
-    let dayName = dayArr[date.getDay()]
-    console.log('dayName', dayName)
-
-      //   const date = new Date(dates);
-      //   dates = date.toLocaleString('en-US', {
-      //     weekday: 'long'
-      //   })
+      let dayName = daysArr[date.getDay()];
+      console.log("dayName", dayName);
 
       if (!obj.hasOwnProperty(dates)) {
         obj[dayName] = amounts;
       }
-      obj[dayName] += amounts;
     }
     return obj;
   };
@@ -103,19 +91,19 @@ const Daily = () => {
   let datesAndAmount = daysAndAmt();
 
   let data = {
-    // labels: Object.keys(datesAndAmount).reverse(),
-    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    labels: daysArr,
     datasets: [
       {
         label: "Spending Through The Week By Day",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 99, 132, 0.2)", // red/pink
+          "rgba(54, 162, 235, 0.2)", // blue
+          "rgba(255, 206, 86, 0.2)", // yellow
+          "rgba(75, 192, 192, 0.2)", // teal
+          "rgba(153, 102, 255, 0.2)", // purple
+          "rgba(255, 159, 64, 0.2)", // orange
+          "rgba(50, 168, 82, 0.2)", // green
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -124,6 +112,7 @@ const Daily = () => {
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
+          "rgba(50, 168, 82, 1)"
         ],
         borderWidth: 1,
       },
@@ -138,15 +127,15 @@ const Daily = () => {
         beginAtZero: true,
       },
     },
-    // plugins: {
-    //   legend: {
-    //     position: 'top',
-    //   },
-    //   title: {
-    //     display: true,
-    //     text: 'Chart.js Bar Chart',
-    //   },
-    // },
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Daily Spending Throughout Week',
+      },
+    },
     legend: {
       labels: {
         fontSize: 25,
