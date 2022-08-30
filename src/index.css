@@ -20,6 +20,39 @@ code {
   margin-left: 10%;
 }
 
+.paginationBtns {
+  margin-right: 0px;
+
+}
+
+.paginationBtns a {
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  background-color: #f6a192
+}
+
+.paginationActive a {
+  background-color: #f6a192
+}
+
+.refunds {
+  color: #01796f;
+}
+.component-container {
+  background-color: white;
+  /* so we don't see through draggable components on the dash */
+  border: solid;
+}
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+/* bootstrap link for icons */
+
 .App {
   background-color: white;
 }
@@ -130,6 +163,7 @@ input:focus {
   width: 100%;
   height: 100%;
 }
+
 /* LOGIN AND LOGOUT END */
 
 /* NAVBAR */
@@ -160,3 +194,4 @@ input:focus {
   margin-left: 100px;
   margin-right: 100px;
 } */
+
