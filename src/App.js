@@ -5,17 +5,18 @@ import React, { useState, useEffect, useCallback } from "react";
 //Plaid
 import { usePlaidLink } from "react-plaid-link";
 import "./Plaid.scss";
+import "./index.css";
 
 //Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
-import Navbar from "./components/Navbar";
+import NavbarApp from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/TransactionsTable/AllTransactions";
+import AllTransactions from "./components/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 
@@ -122,7 +123,7 @@ function App(props) {
           <div>
             {isAdmin ? (
               <div>
-                <Navbar
+                <NavbarApp
                   open={open}
                   ready={ready}
                   transactions={props.transactions[0]}
@@ -134,7 +135,7 @@ function App(props) {
               <div>
                 <div className="navbar-logged-in">
                   {/* navbar for logged in users */}
-                  <Navbar
+                  <NavbarApp
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
@@ -191,7 +192,7 @@ function App(props) {
         ) : (
           <div>
             {/* for users who aren't logged in */}
-            <Navbar />
+            <NavbarApp />
             <Routes>
               <Route exact path="/signup" element={<SignUp />} />
               {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
