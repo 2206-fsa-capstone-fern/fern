@@ -1,6 +1,6 @@
 import { auth, db } from "../config/firebase";
-import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
-import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, deleteUser } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 
 //action type
@@ -51,7 +51,7 @@ export const loggingIn = (email, password) => async (dispatch) => {
     });
     return dispatch(getUser(user));
   } catch (err) {
-    return dispatch(getUser(err))
+    return dispatch(getUser(err.code))
   }
 };
 

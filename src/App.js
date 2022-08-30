@@ -205,7 +205,6 @@ function App(props) {
               <Navbar />
               <Routes>
                 <Route exact path="/signup" element={<SignUp />} />
-                {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
                 <Route exact path="/login" element={<LogIn />} />
                 <Route exact path="/" element={<LogIn />} />
               </Routes>

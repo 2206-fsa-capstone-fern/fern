@@ -57,7 +57,7 @@ class LogIn extends Component {
           </div>
           <div className="input-field">
             <button className="btn">Login</button>
-            {toNext ? null : <span>{user.code}</span> }
+            {toNext ? null : <span>{user}</span> }
           </div>
           <div>
             <Link to="/signup">New User? Click here to sign up!</Link>

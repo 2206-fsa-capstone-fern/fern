@@ -9,7 +9,7 @@ const GET_NOTICE = "GET_NOTICE"
 const getNotice = (notice) => ({ type: GET_NOTICE, notice})
 
 //thunk
-export const deletingAccount = (navigate, email, password) => async () => {
+export const deletingAccount = (navigate, email, password) => async (dispatch) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
@@ -18,7 +18,7 @@ export const deletingAccount = (navigate, email, password) => async () => {
     await deleteDoc(doc(db, "users", userId, "transactions", userId))
     navigate("/signup")
   } catch (err) {
-    console.log(err)
+    return dispatch(getNotice("Incorrect Email/Password"))
   }
 };
 
@@ -27,9 +27,9 @@ export const updatingPassword = (email, password, newPassword) => async (dispatc
     await signInWithEmailAndPassword(auth, email, password)
     const user = auth.currentUser
     await updatePassword(user, newPassword)
-    return dispatch(getNotice("Password Updated"))
+    return dispatch(getNotice({pass: "Password Updated"}))
   } catch (err) {
-    console.log(err)
+    return dispatch(getNotice({pass: "Incorrect Email/Password"}))
   }
 };
 
@@ -42,9 +42,9 @@ export const updatingEmail = (email, password, newEmail) => async (dispatch) => 
     await updateDoc(doc(db, "users", user.uid), {
       email: newEmail
     })
-    return dispatch(getNotice("Email Updated"))
+    return dispatch(getNotice({email: "Email Updated"}))
   } catch (err) {
-    console.log(err)
+    return dispatch(getNotice({email: "Incorrect Email/Password"}))
   }
 };
 
@@ -55,9 +55,9 @@ export const updatingPhoneNumber = (email, password, newPhoneNumber) => async (d
     await updateDoc(doc(db, "users", user.uid), {
       phoneNumber: newPhoneNumber
     })
-    return dispatch(getNotice("Phone Number Updated"))
+    return dispatch(getNotice({phone: "Phone Number Updated"}))
   } catch (err) {
-    console.log(err)
+    return dispatch(getNotice({phone: "Incorrect Email/Password"}))
   }
 };
 

@@ -77,9 +77,8 @@ function UpdatePhoneNumber(props) {
           {showConfirmNewPhoneNumber ? (
             <span>^^^ Log In Above To Confirm Phone Number Update ^^^</span>
           ) : null}
-          {notice.length ? (
-            <span>Phone Number Updated Successfully</span>
-          ) : null}
+          {notice.phone && notice.phone !== "Incorrect Email/Password" ? <span>Phone Number Updated Successfully</span> : null}
+          {notice.phone === "Incorrect Email/Password" ? <span>{`${notice.phone}`}</span> : null}
         </div>
         <br />
       </form>

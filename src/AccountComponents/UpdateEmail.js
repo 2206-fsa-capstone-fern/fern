@@ -71,7 +71,8 @@ function UpdateEmail(props) {
           {showConfirmNewEmail ? (
             <span>^^^ Log In Above To Confirm Email Update ^^^</span>
           ) : null}
-          {notice.length ? <span>Email Updated Successfully</span> : null}
+          {notice.email && notice.email !== "Incorrect Email/Password" ? <span>Email Updated Successfully</span> : null}
+          {notice.email === "Incorrect Email/Password" ? <span>{`${notice.email}`}</span> : null}
         </div>
         <br />
       </form>

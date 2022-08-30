@@ -71,7 +71,8 @@ function UpdatePassword(props) {
           {showConfirmNewPassword ? (
             <span>^^^ Log In Above To Confirm Password Update ^^^</span>
           ) : null}
-          {notice.length ? <span>Password Updated Successfully</span> : null}
+          {notice.pass && notice.pass !== "Incorrect Email/Password" ? <span>Password Updated Successfully</span> : null}
+          {notice.pass === "Incorrect Email/Password" ? <span>{`${notice.pass}`}</span> : null}
         </div>
         <br />
       </form>
