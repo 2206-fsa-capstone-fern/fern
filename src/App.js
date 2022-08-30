@@ -16,7 +16,7 @@ import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/AllTransactions";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 
