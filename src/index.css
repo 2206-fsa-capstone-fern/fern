@@ -163,4 +163,35 @@ input:focus {
   width: 100%;
   height: 100%;
 }
+
 /* LOGIN AND LOGOUT END */
+
+/* NAVBAR */
+.plaidButton {
+  cursor: pointer;
+  padding-top: 15px;
+  text-align: right;
+  text-decoration: none;
+  width: 100%;
+}
+
+.authLink {
+  text-align: right;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+/* .navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: aliceblue;
+}
+
+.nav-link {
+  margin-left: 100px;
+  margin-right: 100px;
+} */
+
