@@ -1,5 +1,3 @@
-// Spending by month
-
 import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
@@ -34,7 +32,7 @@ const Daily = () => {
   // let proxyURL = "https://api.allorigins.win/raw?url=/"
   let apiKey = "62fd4373e8c0170014239c33";
 
-//   let today = new Date().toISOString().split("T")[0]
+  let today = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -50,8 +48,8 @@ const Daily = () => {
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
-          end_date: "2022-01-08",
-        // end_date: today,
+        //   end_date: "2022-01-08",
+        end_date: today,
         }),
       })
         .then((response) => {
@@ -109,7 +107,7 @@ const Daily = () => {
     labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [
       {
-        label: "Spending Through The Week",
+        label: "Spending Through The Week By Day",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

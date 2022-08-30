@@ -41,10 +41,43 @@ const BalancesOverview = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
+
+  if (!chart[0]) {
+    return (
+      <div>
+      <Link to="balances" style={{ textAlign: "center" }} className="">
+        Accounts Overview
+      </Link>
+      <table>
+        <tr>
+          <th>Account Type</th>
+          <th>Balance</th>
+        </tr>
+        <tr>
+          <td>Depository</td>
+          <td>Loading...</td>
+        </tr>
+        <tr>
+          <td>Credit</td>
+          <td>Loading...</td>
+        </tr>
+        <tr>
+          <td>Investments</td>
+          <td>Loading...</td>
+        </tr>
+        <tr>
+          <td>Loans</td>
+          <td>Loading...</td>
+        </tr>
+        {console.log("chart in return: \n", chart)}
+      </table>
+    </div>
+    )
+  }
   return (
     <div>
       <Link to="balances" style={{ textAlign: "center" }} className="">
-          Accounts Overview
+        Accounts Overview
       </Link>
       <table>
         <tr>
@@ -54,7 +87,7 @@ const BalancesOverview = () => {
         <tr>
           <td>Depository</td>
           {/* <td>checking, savings, cd, money market</td> */}
-          <td>{`$${Number(chart[0].balances.current) + Number(chart[1].balances.current) + Number(chart[2].balances.current) + Number(chart[4].balances.current)}`}</td>
+          <td>{`$${(Number(chart[0].balances.current) + Number(chart[1].balances.current) + Number(chart[2].balances.current) + Number(chart[4].balances.current)).toFixed(2)}`}</td>
         </tr>
         <tr>
           <td>Credit</td>
@@ -64,12 +97,18 @@ const BalancesOverview = () => {
         <tr>
           <td>Investments</td>
           {/* <td>ira, 401k</td> */}
-          <td>{`$${Number(chart[5].balances.current) + Number(chart[6].balances.current)}`}</td>
+          <td>{`$${
+            (Number(chart[5].balances.current) +
+            Number(chart[6].balances.current)).toFixed(2)
+          }`}</td>
         </tr>
         <tr>
           <td>Loans</td>
           {/* <td>student, mortgage</td> */}
-          <td>{`$${Number(chart[7].balances.current) + Number(chart[8].balances.current)}`}</td>
+          <td>{`$${
+            (Number(chart[7].balances.current) +
+            Number(chart[8].balances.current)).toFixed(2)
+          }`}</td>
         </tr>
         {console.log("chart in return: \n", chart)}
       </table>
