@@ -73,7 +73,10 @@ const Navbar = (props) => {
           </CDBNavItem>
         </CDBNavbarNav>
         <CDBContainer>
-          {isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+          {isLoggedIn ? <SignedInLinks open={open}
+             ready={ready}
+             transactions={transactions}
+         transactions2={transactions2}/> : <SignedOutLinks />}
         </CDBContainer>
       </CDBCollapse>
     </CDBNavbar>
