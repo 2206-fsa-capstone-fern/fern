@@ -45,11 +45,11 @@ const Dashboard = () => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    isDragging={snapshot.isDragging}
+                    isdragging={snapshot.isdragging}
                     //can be tailored to what part of something you want to be used as the drag handler
                   >
                     <div>
-                      <i class="bi bi-list" {...provided.dragHandleProps}></i>
+                      <i className="bi bi-list" {...provided.dragHandleProps}></i>
                       {component.content}
                     </div>
                     {provided.placeholder}

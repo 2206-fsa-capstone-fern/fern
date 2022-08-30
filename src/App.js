@@ -19,6 +19,7 @@ import Trends from "./components/Trends";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
+import AccountView from "./AccountComponents/AccountView";
 
 //Redux
 import { connect } from "react-redux";
@@ -27,8 +28,8 @@ import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
-  useEffect(async () => {
-    props.loadInitialData();
+  useEffect(() => {
+    props.getUser();
     props.getTransactions();
   }, [isLoggedIn]);
 
@@ -160,10 +161,6 @@ function App(props) {
                         />
                       }
                     />
-                    {/* <Route
-                        path="/*"
-                        element={<Navigate replace to="/dashboard" />}
-                      /> */}
                     <Route
                       exact
                       path="/dashboard"
@@ -176,6 +173,16 @@ function App(props) {
                       path="/"
                       element={<Navigate replace to="/dashboard" />}
                     />
+                    <Route
+                      exact
+                      path="/login"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/signup"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
                     <Route exact path="/budget" element={<BudgetApp />} />
                     <Route exact path="/trends" element={<Trends />} />
                     <Route
@@ -186,6 +193,7 @@ function App(props) {
                     <Route exact path="/donut" element={<DoughnutChart />} />{" "}
                     {/* to view chart */}
                     <Route exact path="/yearly" element={<Yearly />} />
+                    <Route exact path="/account" element={<AccountView />} />
                   </Routes>
                 </div>
               </div>
@@ -197,7 +205,6 @@ function App(props) {
             <NavbarApp />
             <Routes>
               <Route exact path="/signup" element={<SignUp />} />
-              {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
               <Route exact path="/login" element={<LogIn />} />
               <Route exact path="/" element={<LogIn />} />
             </Routes>
@@ -214,12 +221,13 @@ const mapState = (state) => {
     isAdmin: !!state.user.admin,
     user: state.user,
     transactions: state.transactions,
+    notice: state.notice,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
+    getUser: () => dispatch(gettingUser()),
     addTransactions: (transactions, transaction) =>
       dispatch(addingTransactions(transactions, transaction)),
     getTransactions: () => dispatch(gettingTransactions()),
