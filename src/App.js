@@ -16,7 +16,7 @@ import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/AllTransactions";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
 import AccountView from "./AccountComponents/AccountView";
@@ -143,7 +143,6 @@ function App(props) {
                     transactions2={props.transactions[1]}
                   />
                 </div>
-
                 <div className="SideNav">
                   <SideNav />
                 </div>
@@ -165,7 +164,9 @@ function App(props) {
                     <Route
                       exact
                       path="/dashboard"
-                      element={<Dashboard transactions={transactions} />}
+                      element={
+                        <Dashboard transactions={props.transactions[0]} />
+                      }
                     />
                     <Route
                       exact
