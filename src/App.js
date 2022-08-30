@@ -28,7 +28,7 @@ import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
-  useEffect(async () => {
+  useEffect(() => {
     props.getUser();
     props.getTransactions();
   }, [isLoggedIn]);
