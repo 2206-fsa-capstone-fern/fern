@@ -24,6 +24,11 @@ export const SideNavData = [
     path: '/budget',
     icon: <FaIcons.FaFileAlt />,
   },
+  {
+    title: 'Balances',
+    path: '/balances',
+    icon: <FaIcons.FaMoneyCheckAlt />
+  },
   // {
   //   title: 'Settings',
   //   path: '/settings',

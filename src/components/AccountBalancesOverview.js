@@ -43,10 +43,8 @@ const BalancesOverview = () => {
 
   return (
     <div>
-      <Link to="balances">
-        <h5 style={{ textAlign: "center" }} className="">
+      <Link to="balances" style={{ textAlign: "center" }} className="">
           Accounts Overview
-        </h5>
       </Link>
       <table>
         <tr>
@@ -67,7 +65,6 @@ const BalancesOverview = () => {
           <td>Investments</td>
           {/* <td>ira, 401k</td> */}
           <td>{`$${Number(chart[5].balances.current) + Number(chart[6].balances.current)}`}</td>
-          {/* <td>{`$${Number(chart[5].balances.current.toFixed(2)) + Number(chart[6].balances.current.toFixed(2))}`}</td> */}
         </tr>
         <tr>
           <td>Loans</td>

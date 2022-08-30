@@ -34,6 +34,8 @@ const Daily = () => {
   // let proxyURL = "https://api.allorigins.win/raw?url=/"
   let apiKey = "62fd4373e8c0170014239c33";
 
+//   let today = new Date().toISOString().split("T")[0]
+
   useEffect(() => {
     const fetchCoins = async () => {
       await fetch(`${proxyURL}${baseURL}`, {
@@ -49,6 +51,7 @@ const Daily = () => {
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: "2022-01-01",
           end_date: "2022-01-08",
+        // end_date: today,
         }),
       })
         .then((response) => {
@@ -66,7 +69,7 @@ const Daily = () => {
 
   console.log("chart: \n", chart);
 
-  const datesAndAmt = () => {
+  const daysAndAmt = () => {
     let obj = {};
     for (let i = 0; i < chart.length; i++) {
       let dates = chart[i].date;
@@ -98,11 +101,12 @@ const Daily = () => {
     }
     return obj;
   };
-  console.log("datesAndAmt()", datesAndAmt());
-  let datesAndAmount = datesAndAmt();
+  console.log("daysAndAmt()", daysAndAmt());
+  let datesAndAmount = daysAndAmt();
 
   let data = {
-    labels: Object.keys(datesAndAmount).reverse(),
+    // labels: Object.keys(datesAndAmount).reverse(),
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [
       {
         label: "Spending Through The Week",

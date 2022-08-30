@@ -26,7 +26,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement);
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 const Month = () => {
-  const [chart, setChart] = useState([]); 
+  const [chart, setChart] = useState([]);
 
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
@@ -54,7 +54,7 @@ const Month = () => {
         .then((response) => {
           response.json().then((json) => {
             console.log("json: \n", json);
-            setChart(json.transactions)
+            setChart(json.transactions);
           });
         })
         .catch((error) => {
@@ -64,7 +64,7 @@ const Month = () => {
     fetchCoins();
   }, [baseURL, proxyURL, apiKey]);
 
-  console.log('chart: \n', chart)
+  console.log("chart: \n", chart);
 
   const datesAndAmt = () => {
     let obj = {};
@@ -73,26 +73,26 @@ const Month = () => {
       let amounts = chart[i].amount;
 
       const date = new Date(dates);
-      dates = date.toLocaleString('en-US', {
-        month: 'long'
-      })
+      dates = date.toLocaleString("en-US", {
+        month: "long",
+      });
 
       if (!obj.hasOwnProperty(dates)) {
         obj[dates] = amounts;
       }
-      obj[dates] += amounts
+      obj[dates] += amounts;
     }
-    return obj
-  }
-  console.log('datesAndAmt()', datesAndAmt())
+    return obj;
+  };
+  console.log("datesAndAmt()", datesAndAmt());
   let datesAndAmount = datesAndAmt();
 
   let data = {
-    labels: Object.keys(datesAndAmount).reverse(),
+    labels: Object.keys(datesAndAmount).reverse(), // x-axis values HAS to be passed in as an array
     datasets: [
       {
-        label: 'Spending By Month',
-        data: Object.values(datesAndAmount).reverse(),
+        label: "Spending By Month",
+        data: Object.values(datesAndAmount).reverse(), // y-axis values HAS to be passed in as an array, can pass in multiple data values
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -122,15 +122,18 @@ const Month = () => {
         beginAtZero: true,
       },
     },
-    // plugins: {
-    //   legend: {
-    //     position: 'top',
-    //   },
-    //   title: {
-    //     display: true,
-    //     text: 'Chart.js Bar Chart',
-    //   },
-    // },
+    plugins: {
+      tooltip: {
+        events: ['mousemove'],
+      },
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Chart.js Bar Chart",
+      },
+    },
     legend: {
       labels: {
         fontSize: 25,
