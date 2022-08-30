@@ -1,95 +1,87 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+import { Router } from 'react-router-dom';
+import {
+  CDBNavbar,
+  CDBNavBrand,
+  CDBNavItem,
+  CDBNavToggle,
+  CDBIcon,
+  CDBCollapse,
+  CDBNavbarNav,
+  CDBContainer,
+} from 'cdbreact';
 
 const Navbar = (props) => {
   const { isLoggedIn, open, ready, transactions, transactions2 } = props;
+  const [collapse, setCollapse] = useState(false);
+
+  const bgBlack = { backgroundColor: '#000000', color: '#f4f4f4' };
 
   return (
-    // <div className='navbar-container'>
-    //   <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-    //     <Link to='/' className='navbar-brand'>
-    //       <img src={logo} alt='logo' />
-    //     </Link>
-    //     <button
-    //       className='navbar-toggler'
-    //       type='button'
-    //       data-toggle='collapse'
-    //       data-target='#navbarSupportedContent'
-    //       aria-controls='navbarSupportedContent'
-    //       aria-expanded='false'
-    //       aria-label='Toggle navigation'
-    //       >
-    //       <span className='navbar-toggler-icon'></span>
-    //     </button>
-    //     <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-    //       {isLoggedIn ? (
-    //         <SignedInLinks
-    //         open={open}
-    //         ready={ready}
-    //         transactions={transactions}
-    //         transactions2={transactions2}
-    //         />  : (
-    //           <SignedOutLinks />
-    //         )}
-    //     </div>
-    //   </nav>
-    // </div>
-    //   )}
-
-    <div className='navbar-container'>
-      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-        <Link to='/' className='navbar-brand'>
-          {/* <img src={logo} alt='logo' /> */}
-          FernFi
+    <CDBNavbar
+      className='navbar-dark'
+      expand='md'
+      style={bgBlack}
+      collapseOnSelect={true}>
+      <CDBNavBrand>
+        <Link to='/'>
+          <CDBIcon className='fa fa-home' />
+          <span className='ml-2'>FernFi</span>
         </Link>
-        <button
-          className='navbar-toggler'
-          type='button'
-          data-toggle='collapse'
-          data-target='#navbarSupportedContent'
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'>
-          <span className='navbar-toggler-icon'></span>
-        </button>
-        <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          {isLoggedIn ? (
-            <SignedInLinks
-              open={open}
-              ready={ready}
-              transactions={transactions}
-              transactions2={transactions2}
-            />
-          ) : (
-            <SignedOutLinks />
-          )}
-        </div>
-      </nav>
-    </div>
+      </CDBNavBrand>
+      <CDBNavToggle
+        aria-controls='navbar-nav'
+        aria-expanded={collapse}
+        onClick={() => setCollapse(!collapse)}>
+        <CDBIcon className='fa fa-bars' />
+      </CDBNavToggle>
+      <CDBCollapse isOpen={collapse} navbar>
+        <CDBNavbarNav>
+          <CDBNavItem>
+            <Link to='/'>
+              <CDBIcon className='fa fa-home' />
+              <span className='ml-2'>Home</span>
+            </Link>
+          </CDBNavItem>
+          <CDBNavItem>
+            <Link to='/transactions'>
+              <CDBIcon className='fa fa-money-bill' />
+              <span className='ml-2'>Transactions</span>
+            </Link>
+          </CDBNavItem>
+          <CDBNavItem>
+            <Link to='/trends'>
+              <CDBIcon className='fa fa-chart-line' />
+              <span className='ml-2'>Trends</span>
+            </Link>
+          </CDBNavItem>
+          <CDBNavItem>
+            <Link to='/settings'>
+              <CDBIcon className='fa fa-cog' />
+              <span className='ml-2'>Settings</span>
+            </Link>
+          </CDBNavItem>
+          <CDBNavItem>
+            <Link to='/about'>
+              <CDBIcon className='fa fa-info-circle' />
+              <span className='ml-2'>About</span>
+            </Link>
+          </CDBNavItem>
+        </CDBNavbarNav>
+        <CDBContainer>
+          {isLoggedIn ? <SignedInLinks open={open}
+             ready={ready}
+             transactions={transactions}
+         transactions2={transactions2}/> : <SignedOutLinks />}
+        </CDBContainer>
+      </CDBCollapse>
+    </CDBNavbar>
   );
 };
-//       <div className='container'>
-//         <Link to='/' className='brand-logo'>
-//           FERN
-//         </Link>
-//         {isLoggedIn ? (
-//           <SignedInLinks
-
-//             open={open}
-//             ready={ready}
-//             transactions={transactions}
-//             transactions2={transactions2}
-//           />
-//         ) : (
-//           <SignedOutLinks />
-//         )}
-//       </div>
-//       </nav>
-//     </div>
-//   );
-// };
 
 const mapState = (state) => {
   return {
