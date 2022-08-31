@@ -8,18 +8,19 @@ import './Plaid.scss';
 import './App.css';
 
 //Components
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
-import Navbar from './components/Navbar';
-import Dashboard from './components/Dashboard';
-import LinkAccount from './components/LinkAccount';
-import BudgetApp from './BudgetApp';
-import SideNav from './components/SideNav/SideNav';
-import Trends from './components/Trends';
-import AllTransactions from './components/AllTransactions';
-import DoughnutChart from './components/DoughnutChart'; // to view chart
-import Yearly from './components/Yearly';
+import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
+import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
+import LinkAccount from "./components/LinkAccount";
+import BudgetApp from "./BudgetApp";
+import SideNav from "./components/SideNav/SideNav";
+import Trends from "./components/Trends";
 import AccountView from "./AccountComponents/AccountView";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
+import Balances from "./components/AccountBalances"
+import NotFound from "./components/NotFound";
+
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions, gettingTransactions } from "./store";
@@ -189,10 +190,9 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-                    {/* to view chart */}
-                    <Route exact path="/yearly" element={<Yearly />} />
                     <Route exact path="/account" element={<AccountView />} />
+                    <Route exact path="/balances" element={<Balances />} />
+                    <Route exact path="*" element={<NotFound />} />
                   </Routes>
                 </div>
               </div>

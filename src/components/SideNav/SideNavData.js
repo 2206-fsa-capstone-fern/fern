@@ -25,5 +25,18 @@ export const SideNavData = [
     path: "/budget",
     icon: <CDBIcon icon='piggy-bank' />,
   },
+<<<<<<< HEAD
 
+=======
+  {
+    title: 'Balances',
+    path: '/balances',
+    icon: <FaIcons.FaMoneyCheckAlt />
+  },
+  // {
+  //   title: 'Settings',
+  //   path: '/settings',
+  //   icon: <FaIcons.FaCog />,
+  // },
+>>>>>>> 8fcd141706ab6b52344a88282e5132a478914e67
 ];

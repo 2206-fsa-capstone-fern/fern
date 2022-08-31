@@ -17,6 +17,10 @@ const DoughnutChart = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = process.env.REACT_APP_PLAID_API_KEY;
+  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
+  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0]
+  // console.log('firstDateThisOfYear', firstDateThisOfYear)
+  // console.log('lastDateOfThisYear', lastDateOfThisYear)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,17 +32,16 @@ const DoughnutChart = () => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          // client_id: "62fd4373e8c0170014239c33",
-          // secret: "49cd4bc5767c65e997992a8c122e3d",
-          // access_token: "access-sandbox-fc4eb4f9-9676-411a-9bcf-fa9a6e2aa6dd",
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           // client_id: process.env.PLAID_CLIENT_ID,
           // secret: process.env.PLAID_SECRET,
           // access_token: process.env.PLAID_ACCESS_TOKEN,
-          start_date: "2021-01-01",
-          end_date: "2021-12-31",
+          // start_date: "2022-01-01",
+          // end_date: "2022-12-31",
+          start_date: firstDateThisOfYear,
+          end_date: lastDateOfThisYear,
         }),
       })
         .then((response) => {
@@ -57,7 +60,7 @@ const DoughnutChart = () => {
         });
     };
     fetchCategories();
-  }, [baseURL, proxyURL, apiKey]);
+  }, [baseURL, proxyURL, apiKey, firstDateThisOfYear, lastDateOfThisYear]);
 
   console.log("chart: \n", chart);
 
@@ -69,11 +72,9 @@ const DoughnutChart = () => {
       }
 
       obj[chart[i].category[0]] += chart[i].amount;
-      let categoryVal = obj[chart[i].category[0]].toFixed(2);
-      // console.log('numnum', numNum)
-      let categoryValNum = Number(categoryVal);
-      // console.log('anumnum', anumNum)
-      obj[chart[i].category[0]] = categoryValNum;
+      let categoryVal = Number(obj[chart[i].category[0]].toFixed(2));
+      // console.log('categoryVal', categoryVal)
+      obj[chart[i].category[0]] = categoryVal;
 
       if (obj[chart[i].category[0]] < 0) {
         obj[chart[i].category[0]] = 0;
@@ -99,6 +100,7 @@ const DoughnutChart = () => {
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
           "rgba(255, 159, 64, 0.2)",
+          "rgba(50, 168, 82, 0.2)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -107,6 +109,7 @@ const DoughnutChart = () => {
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
+          "rgba(50, 168, 82, 1)",
         ],
         borderWidth: 1,
       },
@@ -120,6 +123,15 @@ const DoughnutChart = () => {
         fontSize: 25,
       },
     },
+    plugins: {
+      tooltip: {
+        events: ['mousemove'],
+      },
+      title: {
+        display: true,
+        text: "Yearly Overview"
+      },
+    }
   };
 
   return (
