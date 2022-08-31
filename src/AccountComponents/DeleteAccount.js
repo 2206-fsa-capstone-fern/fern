@@ -5,17 +5,15 @@ import { connect } from "react-redux";
 import { deletingAccount } from "../store";
 
 function DeleteAccount(props) {
+  const { notice, user } = props
+  const { email } = user
   const navigate = useNavigate();
-  const [confirmEmail, setEmail] = useState("");
   const [confirmPassword, setPassword] = useState("");
   const [showConfirmDelete, setshowConfirmDelete] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.name === "password") {
       setPassword(e.target.value);
-    }
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
     }
   };
 
@@ -26,17 +24,13 @@ function DeleteAccount(props) {
 
   const confirmSubmitOnDelete = (e) => {
     e.preventDefault();
-    props.deleteAccount(navigate, confirmEmail, confirmPassword);
+    props.deleteAccount(navigate, email, confirmPassword);
   };
 
   return (
     <div>
       {showConfirmDelete ? (
         <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" onChange={handleChange} required />
-          </div>
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input
@@ -48,6 +42,7 @@ function DeleteAccount(props) {
           </div>
           <div className="input-field">
             <button id="confirm-delete">CONFIRM DELETE</button>
+            {notice.delete === "Incorrect Password" ? <span>{`${notice.delete}`}</span> : null}
           </div>
         </form>
       ) : null}
@@ -58,7 +53,7 @@ function DeleteAccount(props) {
             Delete Account
           </button>
           {showConfirmDelete ? (
-            <span>^^^ Log In Above To Confirm Delete Account ^^^</span>
+            <span>^^^ Input Password To Confirm Delete Account ^^^</span>
           ) : null}
         </div>
         <br />
@@ -70,13 +65,14 @@ function DeleteAccount(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
+    user: state.user
   };
 };
 
 const mapDisptach = (dispatch) => {
   return {
-    deleteAccount: (navigate, confirmEmail, confirmPassword) =>
-      dispatch(deletingAccount(navigate, confirmEmail, confirmPassword)),
+    deleteAccount: (navigate, email, confirmPassword) =>
+      dispatch(deletingAccount(navigate, email, confirmPassword)),
   };
 };
 

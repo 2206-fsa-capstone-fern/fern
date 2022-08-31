@@ -18,7 +18,7 @@ export const deletingAccount = (navigate, email, password) => async (dispatch) =
     await deleteDoc(doc(db, "users", userId, "transactions", userId))
     navigate("/signup")
   } catch (err) {
-    return dispatch(getNotice("Incorrect Email/Password"))
+    return dispatch(getNotice({delete: "Incorrect Password"}))
   }
 };
 
@@ -29,7 +29,7 @@ export const updatingPassword = (email, password, newPassword) => async (dispatc
     await updatePassword(user, newPassword)
     return dispatch(getNotice({pass: "Password Updated"}))
   } catch (err) {
-    return dispatch(getNotice({pass: "Incorrect Email/Password"}))
+    return dispatch(getNotice({pass: "Incorrect Password"}))
   }
 };
 
@@ -37,14 +37,13 @@ export const updatingEmail = (email, password, newEmail) => async (dispatch) => 
   try {
     await signInWithEmailAndPassword(auth, email, password)
     const user = auth.currentUser
-    console.log(user.uid)
     await updateEmail(user, newEmail)
     await updateDoc(doc(db, "users", user.uid), {
       email: newEmail
     })
     return dispatch(getNotice({email: "Email Updated"}))
   } catch (err) {
-    return dispatch(getNotice({email: "Incorrect Email/Password"}))
+    return dispatch(getNotice({email: "Incorrect Password"}))
   }
 };
 
@@ -57,8 +56,13 @@ export const updatingPhoneNumber = (email, password, newPhoneNumber) => async (d
     })
     return dispatch(getNotice({phone: "Phone Number Updated"}))
   } catch (err) {
-    return dispatch(getNotice({phone: "Incorrect Email/Password"}))
+    return dispatch(getNotice({phone: "Incorrect Password"}))
   }
+};
+
+export const resetingNotice = () => async (dispatch) => {
+    return dispatch(getNotice({}))
+
 };
 
 //reducer

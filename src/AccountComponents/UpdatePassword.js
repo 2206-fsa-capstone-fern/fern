@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { updatingPassword } from "../store";
+import { resetingNotice, updatingPassword } from "../store";
 
 function UpdatePassword(props) {
-  const { notice } = props;
-  const [confirmEmail, setEmail] = useState("");
+  const { notice, user } = props;
+  const { email } = user
   const [confirmPassword, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
@@ -13,23 +13,24 @@ function UpdatePassword(props) {
     if (e.target.name === "password") {
       setPassword(e.target.value);
     }
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    }
     if (e.target.name === "newPassword") {
       setNewPassword(e.target.value);
     }
   };
 
-  const confirmNewPassword = (e) => {
+  const confirmNewPassword = async (e) => {
     e.preventDefault();
-    props.updatePassword(confirmEmail, confirmPassword, newPassword);
-    document.getElementById("update-password").reset();
-    setShowConfirmNewPassword(false);
+    const newNotice = await props.updatePassword(email, confirmPassword, newPassword);
+    console.log(newNotice)
+    if(newNotice.notice.pass !== "Incorrect Password") {
+      document.getElementById("update-password").reset();
+      setShowConfirmNewPassword(false);
+    }
   };
 
   const handleSubmitOnNewPassword = (e) => {
     e.preventDefault();
+    props.resetNotice()
     setShowConfirmNewPassword(true);
   };
 
@@ -37,10 +38,6 @@ function UpdatePassword(props) {
     <div>
       {showConfirmNewPassword ? (
         <form onSubmit={confirmNewPassword} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" onChange={handleChange} required />
-          </div>
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input
@@ -52,6 +49,7 @@ function UpdatePassword(props) {
           </div>
           <div className="input-field">
             <button id="confirm-delete">Confirm Update Password</button>
+            {notice.pass === "Incorrect Password" ? <span>{`${notice.pass}`}</span> : null}
           </div>
         </form>
       ) : null}
@@ -62,6 +60,7 @@ function UpdatePassword(props) {
           <input
             type="password"
             name="newPassword"
+            minLength={6}
             onChange={handleChange}
             required
           />
@@ -69,10 +68,9 @@ function UpdatePassword(props) {
         <div className="input-field">
           <button id="confirm-update-password">Update Password</button>
           {showConfirmNewPassword ? (
-            <span>^^^ Log In Above To Confirm Password Update ^^^</span>
+            <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
           ) : null}
-          {notice.pass && notice.pass !== "Incorrect Email/Password" ? <span>Password Updated Successfully</span> : null}
-          {notice.pass === "Incorrect Email/Password" ? <span>{`${notice.pass}`}</span> : null}
+          {notice.pass && notice.pass !== "Incorrect Password" ? <span>Password Updated Successfully</span> : null}
         </div>
         <br />
       </form>
@@ -83,13 +81,15 @@ function UpdatePassword(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
+    user: state.user
   };
 };
 
 const mapDisptach = (dispatch) => {
   return {
-    updatePassword: (confirmEmail, confirmPassword, newPassword) =>
-      dispatch(updatingPassword(confirmEmail, confirmPassword, newPassword)),
+    updatePassword: (email, confirmPassword, newPassword) =>
+      dispatch(updatingPassword(email, confirmPassword, newPassword)),
+    resetNotice: () => dispatch(resetingNotice()),
   };
 };
 

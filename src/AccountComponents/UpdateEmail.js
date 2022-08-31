@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { gettingUser, updatingEmail } from "../store";
+import { gettingUser, resetingNotice, updatingEmail } from "../store";
 
 function UpdateEmail(props) {
-  const { notice } = props;
-  const [confirmEmail, setEmail] = useState("");
+  let { notice, user } = props;
+  const { email } = user
   const [confirmPassword, setPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [showConfirmNewEmail, setShowConfirmNewEmail] = useState(false);
@@ -13,9 +13,6 @@ function UpdateEmail(props) {
     if (e.target.name === "password") {
       setPassword(e.target.value);
     }
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    }
     if (e.target.name === "newEmail") {
       setNewEmail(e.target.value);
     }
@@ -23,14 +20,17 @@ function UpdateEmail(props) {
 
   const confirmNewEmail = async (e) => {
     e.preventDefault();
-    await props.updateEmail(confirmEmail, confirmPassword, newEmail);
-    document.getElementById("update-email").reset();
-    await props.getUser();
-    setShowConfirmNewEmail(false);
+    const newNotice = await props.updateEmail(email , confirmPassword, newEmail);
+    if(newNotice.notice.email !== "Incorrect Password") {
+      document.getElementById("update-email").reset();
+      await props.getUser();
+      setShowConfirmNewEmail(false);
+    }
   };
 
   const handleSubmitOnNewEmail = (e) => {
     e.preventDefault();
+    props.resetNotice()
     setShowConfirmNewEmail(true);
   };
 
@@ -38,10 +38,6 @@ function UpdateEmail(props) {
     <div>
       {showConfirmNewEmail ? (
         <form onSubmit={confirmNewEmail} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" onChange={handleChange} required />
-          </div>
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input
@@ -53,6 +49,7 @@ function UpdateEmail(props) {
           </div>
           <div className="input-field">
             <button id="confirm-delete">Confirm Update Email</button>
+            {notice.email === "Incorrect Password" ? <span>{`${notice.email}`}</span> : null}
           </div>
         </form>
       ) : null}
@@ -69,10 +66,9 @@ function UpdateEmail(props) {
         <div className="input-field">
           <button id="confirm-update-email">Update Email</button>
           {showConfirmNewEmail ? (
-            <span>^^^ Log In Above To Confirm Email Update ^^^</span>
+            <span>^^^ Input Password To Confirm Email Update ^^^</span>
           ) : null}
-          {notice.email && notice.email !== "Incorrect Email/Password" ? <span>Email Updated Successfully</span> : null}
-          {notice.email === "Incorrect Email/Password" ? <span>{`${notice.email}`}</span> : null}
+          {notice.email && notice.email !== "Incorrect Password" ? <span>Email Updated Successfully</span> : null}
         </div>
         <br />
       </form>
@@ -83,13 +79,15 @@ function UpdateEmail(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
+    user: state.user
   };
 };
 
 const mapDisptach = (dispatch) => {
   return {
-    updateEmail: (confirmEmail, confirmPassword, newEmail) =>
-      dispatch(updatingEmail(confirmEmail, confirmPassword, newEmail)),
+    updateEmail: (email, confirmPassword, newEmail) =>
+      dispatch(updatingEmail(email, confirmPassword, newEmail)),
+    resetNotice: () => dispatch(resetingNotice()),
     getUser: () => dispatch(gettingUser()),
   };
 };
