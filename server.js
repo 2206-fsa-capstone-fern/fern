@@ -73,13 +73,12 @@ app.post("/api/exchange_public_token", async (req, res, next) => {
 
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().split("T")[0];
-const currentYear = currentDate.getFullYear();
+const fiveYearsAgo = currentDate.getFullYear() - 5;
 const currentMonth = currentDate.getMonth() + 1;
 
 app.get("/api/transactions/get", async (req, res, next) => {
   const access_token = req.session.access_token;
-  //currently only gets current month's transactions
-  const start_date = `${currentYear}-${
+  const start_date = `${fiveYearsAgo}-${
     currentMonth < 10 ? `0${currentMonth}` : currentMonth
   }-01`;
   const end_date = formattedDate;

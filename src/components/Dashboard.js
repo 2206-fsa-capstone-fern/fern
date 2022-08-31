@@ -49,7 +49,10 @@ const Dashboard = () => {
                     //can be tailored to what part of something you want to be used as the drag handler
                   >
                     <div>
-                      <i className="bi bi-list" {...provided.dragHandleProps}></i>
+                      <i
+                        className="bi bi-list"
+                        {...provided.dragHandleProps}
+                      ></i>
                       {component.content}
                     </div>
                     {provided.placeholder}
