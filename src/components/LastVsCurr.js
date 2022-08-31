@@ -254,6 +254,14 @@ const LastVsCurr = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = "62fd4373e8c0170014239c33";
+  let firstDateOfThisMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split("T")[0];
+  let lastDateOfThisMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().split("T")[0];
+  let firstDateOfLastMonth = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1).toISOString().split("T")[0];
+  let lastDateOfLastMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 0).toISOString().split("T")[0];
+  // console.log('firstDayOfThisMonth', firstDayOfThisMonth)
+  // console.log('lastDayOfThisMonth:', lastDayOfThisMonth)
+  // console.log('firstDayOfLastMonth', firstDayOfLastMonth)
+  // console.log('lastDayOfLastMonth:', lastDayOfLastMonth)
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -268,13 +276,13 @@ const LastVsCurr = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-          start_date: "2022-07-31",
-          end_date: "2022-08-31",
+          start_date: firstDateOfThisMonth,
+          end_date: lastDateOfThisMonth,
         }),
       })
         .then((response) => {
           response.json().then((json) => {
-            console.log("json277: \n", json);
+            console.log("json285: \n", json);
             setChart(json.transactions);
           });
         })
@@ -283,7 +291,7 @@ const LastVsCurr = () => {
         });
     };
     fetchCoins();
-  }, [baseURL, proxyURL, apiKey]);
+  }, [baseURL, proxyURL, apiKey, firstDateOfThisMonth, lastDateOfThisMonth]);
 
   useEffect(() => {
     const fetch2 = async () => {
@@ -298,13 +306,13 @@ const LastVsCurr = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-          start_date: "2022-07-01",
-          end_date: "2022-07-31",
+          start_date: firstDateOfLastMonth,
+          end_date: lastDateOfLastMonth,
         }),
       })
         .then((response) => {
           response.json().then((json) => {
-            console.log("json307: \n", json);
+            console.log("json315: \n", json);
             setChart2(json.transactions);
           });
         })
@@ -313,7 +321,7 @@ const LastVsCurr = () => {
         });
     };
     fetch2();
-  }, [baseURL, proxyURL, apiKey]);
+  }, [baseURL, proxyURL, apiKey, firstDateOfLastMonth, lastDateOfLastMonth]);
 
   console.log("chart: \n", chart); // all transactions for August
   console.log("chart2: \n", chart2); // all transactions for July

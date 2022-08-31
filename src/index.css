@@ -106,6 +106,30 @@ code {
   text-align: center;
 }
 
+.cover-container {
+  height: 85vh;
+  background-image: url(https://images.unsplash.com/photo-1576175789566-c808a91c8b51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
+  background-size: cover;
+  background-position: center;
+}
+
+.cover-container p {
+  z-index: 1;
+  font-size: 2.5rem;
+  font-style: normal;
+  color: white;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.home-main {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 /* 
 @tailwind base;
 @tailwind components;

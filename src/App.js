@@ -21,6 +21,7 @@ import Yearly from "./components/Yearly";
 import Month from "./components/Month";
 import BalancesOverview from "./components/AccountBalancesOverview";
 import Balances from "./components/AccountBalances"
+import NotFound from "./components/NotFound"
 
 //Redux
 import { connect } from "react-redux";
@@ -194,6 +195,7 @@ function App(props) {
                       <Route exact path="/lvc" element={<LastVsCurr />} />
                       <Route exact path="/month" element={<Month />} />
                       <Route exact path="/daily" element={<Daily />} />
+                      <Route path="*" element={<NotFound />} status={404} />
                     </Routes>
                   </div>
                 </div>
@@ -208,6 +210,7 @@ function App(props) {
                 {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
                 <Route exact path="/login" element={<LogIn />} />
                 <Route exact path="/" element={<LogIn />} />
+                <Route path="*" element={<NotFound />} status={404} />
               </Routes>
             </div>
           )}

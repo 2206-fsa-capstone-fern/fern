@@ -31,11 +31,10 @@ const Daily = () => {
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   // let proxyURL = "https://api.allorigins.win/raw?url=/"
   let apiKey = "62fd4373e8c0170014239c33";
-
-  let today = new Date().toISOString().split("T")[0];
-  let todaysDate = new Date();
-  let lastWeek = new Date(new Date().setDate(todaysDate.getDate() - 7));
-  let lastWeeksDate = lastWeek.toISOString().split("T")[0];
+  let todaysDate = new Date().toISOString().split("T")[0];
+  let lastWeeksDate = new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().split("T")[0];
+  console.log('todaysDate:', todaysDate)
+  console.log('lastWeeksDate:', lastWeeksDate)
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -51,7 +50,7 @@ const Daily = () => {
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: lastWeeksDate,
-          end_date: today,
+          end_date: todaysDate,
         }),
       })
         .then((response) => {
@@ -65,7 +64,7 @@ const Daily = () => {
         });
     };
     fetchCoins();
-  }, [baseURL, proxyURL, apiKey, today, lastWeeksDate]);
+  }, [baseURL, proxyURL, apiKey, todaysDate, lastWeeksDate]);
 
   console.log("chart: \n", chart);
 
