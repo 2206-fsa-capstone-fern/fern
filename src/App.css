@@ -17,3 +17,11 @@
 .sidebar-content a {
 	text-transform:capitalize;
 }
+
+.sidebar-content a:hover {
+  color:#333;
+}
+
+.SideNav {
+  width: 270px
+}

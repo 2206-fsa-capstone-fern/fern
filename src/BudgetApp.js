@@ -8,6 +8,7 @@ import UncategorizedBudgetCard from './BudgetComponents/UncategorizedBudgetCard'
 import TotalBudgetCard from './BudgetComponents/TotalBudgetCard';
 import { useState } from 'react';
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from './contexts/BudgetsContext';
+import SideNav from './components/SideNav/SideNav';
 
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -23,9 +24,14 @@ function BudgetApp() {
 
   return (
     <>
-      <Container className='my-4'>
+    <SideNav />
+    
+      
+      <Container className='my-4' style={{ alignItems: 'center' }}>
+    
         <Stack direction='horizontal' gap='2' className='mb-4'>
           <h1 className='me-auto'>Budgets</h1>
+          
           <Button variant='primary' onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
@@ -36,7 +42,7 @@ function BudgetApp() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gridTemplateColumns: 'auto auto auto',
             gap: '1rem',
             alignItems: 'flex-start',
           }}>

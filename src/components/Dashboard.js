@@ -13,9 +13,7 @@ import Chart from "chart.js/auto";
 import { Bar, Pie } from "react-chartjs-2";
 
 import Sidebar from "./SideNav/SideNav";
-import Navbar from "./Navbar";
 import "../Dashboard.css";
-import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const data = {
@@ -62,7 +60,6 @@ const Dashboard = () => {
     responsive: true,
     maintainAspectRatio: false,
     legend: { display: false },
-    
   };
 
   return (
@@ -79,11 +76,14 @@ const Dashboard = () => {
           overflowY: "hidden",
         }}
       >
-        <div style={{ height: "100%" }}>
+        <div style={{ height: "100%", background: "#364958" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
               <div className="cards-container">
-                <div className="card-bg w-100 border d-flex flex-column">
+                <div
+                  className="card-bg w-100 border d-flex flex-column"
+                  style={{ background: "#c9e4ca" }}
+                >
                   <div className="p-4 d-flex flex-column h-100">
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="m-0 h5 font-weight-bold text-dark">
@@ -116,7 +116,10 @@ const Dashboard = () => {
                     </p>
                   </div>
                 </div>
-                <div className="card-bg w-200 border d-flex flex-column h-2000">
+                <div
+                  className="card-bg w-200 border d-flex flex-column h-2000"
+                  style={{ background: "#c9e4ca" }}
+                >
                   <div className="p-4 d-flex flex-column h-200">
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="m-0 h5 font-weight-bold text-dark">
@@ -153,13 +156,13 @@ const Dashboard = () => {
                 </div>
                 <div
                   className="card-bg w-100 border d-flex flex-column p-4"
-                  style={{ gridRow: "span 2" }}
+                  style={{ background: "#c9e4ca", gridRow: "span 2" }}
                 ></div>
                 <div
                   className="card-bg w-100 d-flex flex-column border d-flex flex-column"
                   style={{ gridRow: "span 2" }}
                 >
-                  <div className="p-4 d-flex flex-column h-100">
+                  <div className="p-4 d-flex flex-column h-100" >
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="m-0 h5 font-weight-bold text-dark">
                         Bar Chartzzzzzzzz
@@ -211,12 +214,8 @@ const Dashboard = () => {
                     </p>
                   </div>
                 </div>
-                <div className="card-bg w-100 border d-flex flex-column p-4"></div>
-                <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="d-flex flex-column p-0 h-100">
-                    <CDBTable borderless responsive></CDBTable>
-                  </div>
-                </div>
+
+                <CDBTable borderless responsive></CDBTable>
               </div>
             </div>
           </div>

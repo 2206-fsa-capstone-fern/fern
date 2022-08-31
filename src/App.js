@@ -10,7 +10,7 @@ import './App.css';
 //Components
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
-import NavbarApp from './components/Navbar';
+import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import LinkAccount from './components/LinkAccount';
 import BudgetApp from './BudgetApp';
@@ -121,7 +121,7 @@ function App(props) {
           <div>
             {isAdmin ? (
               <div>
-                <NavbarApp
+                <Navbar
                   open={open}
                   ready={ready}
                   transactions={props.transactions[0]}
@@ -132,17 +132,15 @@ function App(props) {
             ) : (
               <div>
                 <div className='navbar-logged-in'>
-                  {/* navbar for logged in users */}
-                  <NavbarApp
+              
+                  <Navbar
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
                 </div>
-                <div className='SideNav'>
-                  {/* <SideNav /> */}
-                </div>
+               
 
                 <div className='app-container'>
                   <Routes>
@@ -158,10 +156,10 @@ function App(props) {
                         />
                       }
                     />
-                    {/* <Route
+                    <Route
                         path="/*"
                         element={<Navigate replace to="/dashboard" />}
-                      /> */}
+                      />
                     <Route
                       exact
                       path='/dashboard'
@@ -190,7 +188,7 @@ function App(props) {
         ) : (
           <div>
             {/* for users who aren't logged in */}
-            <NavbarApp />
+            <Navbar />
             <Routes>
               <Route exact path='/signup' element={<SignUp />} />
               {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}

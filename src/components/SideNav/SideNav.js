@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
+import SignedInLinks from '../SignedInLinks';
+import SignedOutLinks from '../SignedOutLinks';
 import { SideNavData } from "./SideNavData";
 import "./SideBar.css";
 import {
@@ -10,13 +13,13 @@ import {
   CDBSidebarMenu,
 } from "cdbreact";
 
-function Navbar() {
+function SideNav(props) {
   return (
     <div
       className={`app`}
       style={{ display: "flex", height: "100%", overflow: "scroll initial" }}
     >
-      <CDBSidebar textColor="#fff" backgroundColor="#333">
+      <CDBSidebar textColor="#fff" backgroundColor="#55828B">
         <CDBSidebarHeader>
           <a
             href="/"
@@ -39,14 +42,24 @@ function Navbar() {
                     <span style={{ padding:5}}>{item.title}</span>
                   </NavLink>
                 </CDBSidebarMenuItem>
+
               );
             })}
+            <CDBSidebarMenuItem className="sidebar-item">
+              {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+            </CDBSidebarMenuItem>
           </CDBSidebarMenu>
-          <CDBSidebarMenu></CDBSidebarMenu>
+          
         </CDBSidebarContent>
       </CDBSidebar>
     </div>
   );
 }
 
-export default Navbar;
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.firstName,
+  };
+};
+
+export default connect(mapState, null)(SideNav);

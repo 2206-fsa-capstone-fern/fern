@@ -10,8 +10,8 @@ import {
 const Navbar = (props) => {
 
   return (
-    <Header style={{background:"#333", color:"#fff"}}>
-      <CDBNavbar dark expand="md" scrolling className="justify-content-start">
+    <Header style={{background:"#55828B", color:"#55828B"}}>
+      <CDBNavbar height='30px'expand="md" className="justify-content-start">
         {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
           </CDBNavbar>
         </Header>

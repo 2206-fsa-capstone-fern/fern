@@ -1,19 +1,22 @@
 import { NavLink } from 'react-router-dom';
+import { CDBBtn } from 'cdbreact';
 
 const SignedOutLinks = () => {
   return (
-    <ul className='navbar-nav ml-auto'>
-      <li className='nav-item'>
+   <div>
+    
+        <CDBBtn color="primary" className="btn btn-primary" style={{margin:5}}>
         <NavLink to='/login' className='nav-link'>
           Log In
-        </NavLink>
-      </li>
-      <li className='nav-item'>
+          </NavLink>
+      </CDBBtn>
+      <CDBBtn color="primary" className="btn btn-primary" style={{margin:5}}>
         <NavLink to='/signup' className='nav-link'>
           Sign Up
         </NavLink>
-      </li>
-    </ul>
+      </CDBBtn>
+        
+  </div>
   );
 };
 
