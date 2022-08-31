@@ -12,9 +12,9 @@ function AccountView(props) {
 
   return (
     <div>
-      <form className="update-name">
-        <div className="account">
-          <h3>Account</h3>
+      <form className="">
+        <div className="display-1">
+          <h3 className="display-1">Account Information</h3>
         </div>
         <div className="account-name">
           <label htmlFor="account-name">Name</label>
