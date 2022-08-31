@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
-import { usePlaidLink } from "react-plaid-link";
-import "./Plaid.scss";
-import "./index.css";
+import { usePlaidLink } from 'react-plaid-link';
+import './Plaid.scss';
+import './App.css';
 
 //Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
-import NavbarApp from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
@@ -116,36 +116,32 @@ function App(props) {
   // }
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <div className="Navbar"></div>
-
+   
+      <div className='App'>
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
               <div>
-                <NavbarApp
+                {/* <Navbar
                   open={open}
                   ready={ready}
                   transactions={props.transactions[0]}
                   transactions2={props.transactions[1]}
                 />
-                <Routes></Routes>
+                 */}
               </div>
             ) : (
               <div>
-                <div className="navbar-logged-in">
-                  {/* navbar for logged in users */}
-                  <NavbarApp
+                {/* <div className='navbar-logged-in'>
+              
+                  <Navbar
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
-                </div>
-                <div className="SideNav">
-                  <SideNav />
-                </div>
+                </div> */}
+               
 
                 <div className="app-container">
                   <Routes>
@@ -161,6 +157,10 @@ function App(props) {
                         />
                       }
                     />
+                    <Route
+                        path="/*"
+                        element={<Navigate replace to="/dashboard" />}
+                      />
                     <Route
                       exact
                       path="/dashboard"
@@ -201,7 +201,7 @@ function App(props) {
         ) : (
           <div>
             {/* for users who aren't logged in */}
-            <NavbarApp />
+            <Navbar />
             <Routes>
               <Route exact path="/signup" element={<SignUp />} />
               <Route exact path="/login" element={<LogIn />} />
@@ -210,7 +210,7 @@ function App(props) {
           </div>
         )}
       </div>
-    </BrowserRouter>
+  
   );
 }
 
