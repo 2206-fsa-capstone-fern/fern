@@ -18,10 +18,7 @@ import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
 import AccountView from "./AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
-import DoughnutChart from "./components/DoughnutChart"; // to view chart
-import Yearly from "./components/Yearly";
-import Daily from "./components/Daily";
-import LastVsCurr from "./components/LastVsCurr";
+import Balances from "./components/AccountBalances"
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -193,12 +190,8 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-                    {/* to view chart */}
-                    <Route exact path="/yearly" element={<Yearly />} />
                     <Route exact path="/account" element={<AccountView />} />
-                    <Route exact path="/daily" element={<Daily />} />
-                    <Route exact path="/lvc" element={<LastVsCurr />} />
+                    <Route exact path="/balances" element={<Balances />} />
                     <Route exact path="*" element={<NotFound />} />
                   </Routes>
                 </div>
