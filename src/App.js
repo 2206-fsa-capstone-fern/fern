@@ -122,17 +122,17 @@ function App(props) {
           <div>
             {isAdmin ? (
               <div>
-                <Navbar
+                {/* <Navbar
                   open={open}
                   ready={ready}
                   transactions={props.transactions[0]}
                   transactions2={props.transactions[1]}
                 />
-                
+                 */}
               </div>
             ) : (
               <div>
-                <div className='navbar-logged-in'>
+                {/* <div className='navbar-logged-in'>
               
                   <Navbar
                     open={open}
@@ -140,7 +140,7 @@ function App(props) {
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
-                </div>
+                </div> */}
                
 
                 <div className="app-container">

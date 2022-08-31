@@ -1,15 +1,15 @@
-import { Button, Stack } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import AddBudgetModal from './BudgetComponents/AddBudgetModal';
-import AddExpenseModal from './BudgetComponents/AddExpenseModal';
-import ViewExpensesModal from './BudgetComponents/ViewExpensesModal';
-import BudgetCard from './BudgetComponents/BudgetCard';
-import UncategorizedBudgetCard from './BudgetComponents/UncategorizedBudgetCard';
-import TotalBudgetCard from './BudgetComponents/TotalBudgetCard';
-import { useState } from 'react';
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from './contexts/BudgetsContext';
-import SideNav from './components/SideNav/SideNav';
-
+import { Button, Stack } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import AddBudgetModal from "./BudgetComponents/AddBudgetModal";
+import AddExpenseModal from "./BudgetComponents/AddExpenseModal";
+import ViewExpensesModal from "./BudgetComponents/ViewExpensesModal";
+import BudgetCard from "./BudgetComponents/BudgetCard";
+import UncategorizedBudgetCard from "./BudgetComponents/UncategorizedBudgetCard";
+import TotalBudgetCard from "./BudgetComponents/TotalBudgetCard";
+import { useState } from "react";
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
+import SideNav from "./components/SideNav/SideNav";
+import "./Budget.css";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
@@ -24,28 +24,26 @@ function BudgetApp() {
 
   return (
     <>
-    <SideNav />
-    
-      
-      <Container className='my-4' style={{ alignItems: 'center' }}>
-    
-        <Stack direction='horizontal' gap='2' className='mb-4'>
-          <h1 className='me-auto'>Budgets</h1>
-          
-          <Button variant='primary' onClick={() => setShowAddBudgetModal(true)}>
+      <SideNav />
+      <Container className="my-4" style={{ alignItems: "flex-start" }}>
+        <Stack direction="horizontal" gap="2" className="mb-4">
+          <h1 className="me-auto">Budgets</h1>
+
+          <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
-          <Button variant='outline-primary' onClick={openAddExpenseModal}>
+          <Button variant="outline-primary" onClick={openAddExpenseModal}>
             Add Expense
           </Button>
         </Stack>
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'auto auto auto',
-            gap: '1rem',
-            alignItems: 'flex-start',
-          }}>
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: "1rem",
+            alignItems: "flex-start",
+          }}
+        >
           {budgets.map((budget) => {
             const amount = getBudgetExpenses(budget.id).reduce(
               (total, expense) => total + expense.amount,

@@ -12,16 +12,6 @@ code {
     monospace;
 }
 
-<<<<<<< HEAD
-=======
-.navbar-logged-in {
-  margin-left: 10%;
-}
-
-.app-container {
-  margin-left: 10%;
-}
-
 /* Contact */
 .bakers {
   font-size: 30px;
@@ -42,7 +32,7 @@ code {
   align-items: center;
   flex-wrap: wrap;
 }
-
+/* 
 .container .card {
   width: 300px;
   height: 450px;
@@ -91,7 +81,7 @@ code {
 
 .container .card .content .sci a {
   transition: color 0.4s;
-}
+} */
 
 .contact-desc {
   text-align: center;
@@ -160,10 +150,7 @@ code {
   color: #01796f;
 }
 
->>>>>>> 14af5907753eb24fe4f1cee1b635f91fdaa9a049
-.App {
-  background-color: white;
-}
+
 /* LOGIN AND LOGOUT START */
 .Auth-form-container {
   display: flex;
