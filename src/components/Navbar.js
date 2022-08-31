@@ -1,30 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import SignedInLinks from "./SignedInLinks";
-import SignedOutLinks from "./SignedOutLinks";
-import { Router } from "react-router-dom";
-import { CDBContainer } from "cdbreact";
+import React  from 'react';
+import { Header } from "./Navbar.style";
+import { connect } from 'react-redux';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
+import {
+  CDBNavbar,
+} from 'cdbreact';
 
 const Navbar = (props) => {
-  const { isLoggedIn, open, ready, transactions, transactions2 } = props;
-  const [collapse, setCollapse] = useState(false);
-
-  const bgBlack = { backgroundColor: "#000000", color: "#f4f4f4" };
 
   return (
-    <CDBContainer>
-      {isLoggedIn ? (
-        <SignedInLinks
-          open={open}
-          ready={ready}
-          transactions={transactions}
-          transactions2={transactions2}
-        />
-      ) : (
-        <SignedOutLinks />
-      )}
-    </CDBContainer>
+    <Header style={{background:"#55828B", color:"#55828B"}}>
+      <CDBNavbar height='30px'expand="md" className="justify-content-start">
+        {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+          </CDBNavbar>
+        </Header>
   );
 };
 

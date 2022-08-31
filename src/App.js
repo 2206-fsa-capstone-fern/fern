@@ -3,23 +3,23 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
-import { usePlaidLink } from "react-plaid-link";
-import "./Plaid.scss";
-import "./index.css";
+import { usePlaidLink } from 'react-plaid-link';
+import './Plaid.scss';
+import './App.css';
 
 //Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
-import NavbarApp from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/TransactionsTable/AllTransactions";
-import DoughnutChart from "./components/DoughnutChart"; // to view chart
-import Yearly from "./components/Yearly";
 import AccountView from "./AccountComponents/AccountView";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
+import Balances from "./components/AccountBalances"
+import NotFound from "./components/NotFound";
 
 //Redux
 import { connect } from "react-redux";
@@ -116,36 +116,32 @@ function App(props) {
   // }
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <div className="Navbar"></div>
-
+   
+      <div className='App'>
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
               <div>
-                <NavbarApp
+                {/* <Navbar
                   open={open}
                   ready={ready}
                   transactions={props.transactions[0]}
                   transactions2={props.transactions[1]}
                 />
-                <Routes></Routes>
+                 */}
               </div>
             ) : (
               <div>
-                <div className="navbar-logged-in">
-                  {/* navbar for logged in users */}
-                  <NavbarApp
+                {/* <div className='navbar-logged-in'>
+              
+                  <Navbar
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
-                </div>
-                <div className="SideNav">
-                  <SideNav />
-                </div>
+                </div> */}
+               
 
                 <div className="app-container">
                   <Routes>
@@ -161,6 +157,10 @@ function App(props) {
                         />
                       }
                     />
+                    <Route
+                        path="/*"
+                        element={<Navigate replace to="/dashboard" />}
+                      />
                     <Route
                       exact
                       path="/dashboard"
@@ -190,10 +190,9 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
-                    {/* to view chart */}
-                    <Route exact path="/yearly" element={<Yearly />} />
                     <Route exact path="/account" element={<AccountView />} />
+                    <Route exact path="/balances" element={<Balances />} />
+                    <Route exact path="*" element={<NotFound />} />
                   </Routes>
                 </div>
               </div>
@@ -202,7 +201,7 @@ function App(props) {
         ) : (
           <div>
             {/* for users who aren't logged in */}
-            <NavbarApp />
+            <Navbar />
             <Routes>
               <Route exact path="/signup" element={<SignUp />} />
               <Route exact path="/login" element={<LogIn />} />
@@ -211,7 +210,7 @@ function App(props) {
           </div>
         )}
       </div>
-    </BrowserRouter>
+  
   );
 }
 

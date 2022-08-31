@@ -1,4 +1,5 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap"
+import SideNav from "../components/SideNav/SideNav"
 import { currencyFormatter } from "../utils"
 
 export default function BudgetCard({
@@ -18,7 +19,9 @@ export default function BudgetCard({
   }
 
   return (
-    <Card className={classNames.join(" ")}>
+    <div>
+      
+      <Card className={classNames.join(" ")}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{name}</div>
@@ -33,20 +36,20 @@ export default function BudgetCard({
         </Card.Title>
         {max && (
           <ProgressBar
-            className="rounded-pill"
-            variant={getProgressBarVariant(amount, max)}
-            min={0}
+          className="rounded-pill"
+          variant={getProgressBarVariant(amount, max)}
+          min={0}
             max={max}
             now={amount}
-          />
-        )}
+            />
+            )}
         {!hideButtons && (
           <Stack direction="horizontal" gap="2" className="mt-4">
             <Button
               variant="outline-primary"
               className="ms-auto"
               onClick={onAddExpenseClick}
-            >
+              >
               Add Expense
             </Button>
             <Button onClick={onViewExpensesClick} variant="outline-secondary">
@@ -56,6 +59,7 @@ export default function BudgetCard({
         )}
       </Card.Body>
     </Card>
+</div>
   )
 }
 

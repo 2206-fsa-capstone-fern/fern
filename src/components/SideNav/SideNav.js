@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { connect } from 'react-redux';
+import { NavLink } from "react-router-dom";
+import SignedInLinks from '../SignedInLinks';
+import SignedOutLinks from '../SignedOutLinks';
 import { SideNavData } from "./SideNavData";
 import "./SideBar.css";
-import { IconContext } from "react-icons";
 import {
   CDBSidebar,
   CDBSidebarHeader,
@@ -11,40 +13,53 @@ import {
   CDBSidebarMenu,
 } from "cdbreact";
 
-function Navbar() {
-  const [sidebar, setSidebar] = useState(false);
-  const [collapse, setCollapse] = useState(false);
+function SideNav(props) {
   return (
-    <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
-      <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
-        <div
-          className="container"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <img
-            src={"./public/pics/fernfi_logo.png"}
-            alt=""
-            style={{ width: "30px" }}
-          />
-          <h6 className="ml-2">FernFi</h6>
-        </div>
-      </CDBSidebarHeader>
-      <CDBSidebarContent>
-        <CDBSidebarMenu>
-          {SideNavData.map((item, index) => (
-            <CDBSidebarMenuItem key={index}>
-              <Link to={item.path}>
-                <IconContext.Provider value={{ color: "#333" }}>
-                  {item.icon}
-                </IconContext.Provider>
-                <span className="ml-2">{item.title}</span>
-              </Link>
+    <div
+      className={`app`}
+      style={{ display: "flex", height: "100%", overflow: "scroll initial" }}
+    >
+      <CDBSidebar textColor="#fff" backgroundColor="#55828B">
+        <CDBSidebarHeader>
+          <a
+            href="/"
+            className="text-decoration-none"
+            style={{ color: "lightgreen", fontSize: 36 }}
+          >
+            FernFi
+          </a>
+        </CDBSidebarHeader>
+
+        <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            {SideNavData.map((item, index) => {
+              return (
+                <CDBSidebarMenuItem key={index} className={item.cName}>
+                  <NavLink to={item.path}>
+                    <svg width='20' height='20'>
+                    {item.icon}
+                    </svg>
+                    <span style={{ padding:5}}>{item.title}</span>
+                  </NavLink>
+                </CDBSidebarMenuItem>
+
+              );
+            })}
+            <CDBSidebarMenuItem className="sidebar-item">
+              {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
             </CDBSidebarMenuItem>
-          ))}
-        </CDBSidebarMenu>
-      </CDBSidebarContent>
-    </CDBSidebar>
+          </CDBSidebarMenu>
+          
+        </CDBSidebarContent>
+      </CDBSidebar>
+    </div>
   );
 }
 
-export default Navbar;
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.firstName,
+  };
+};
+
+export default connect(mapState, null)(SideNav);

@@ -12,13 +12,118 @@ code {
     monospace;
 }
 
-.navbar-logged-in {
-  margin-left: 10%;
+/* Contact */
+.bakers {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 0px;
 }
 
-.app-container {
-  margin-left: 10%;
+.members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* 
+.container .card {
+  width: 300px;
+  height: 450px;
+  padding: 60px 30px;
+  margin: 20px;
+  background: #f2f3f7;
+  box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+  -0.5em -0.5em 1em #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+
+.container .card .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .card .content .imgBx {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.container .card .content .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container .card .content .contentBx h4 {
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.container .card .content .sci {
+  text-align: center;
+}
+
+.container .card .content .sci a {
+  transition: color 0.4s;
+} */
+
+.contact-desc {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0.5px;
+  padding: 0px;
+}
+
+.contact-header {
+  margin: 2rem;
+  font-size: 40px;
+  text-align: center;
+}
+
+.cover-container {
+  height: 85vh;
+  background-image: url(https://images.unsplash.com/photo-1576175789566-c808a91c8b51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
+  background-size: cover;
+  background-position: center;
+}
+
+.cover-container p {
+  z-index: 1;
+  font-size: 2.5rem;
+  font-style: normal;
+  color: white;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.home-main {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
 .paginationBtns {
   margin-right: 0px;
@@ -45,9 +150,7 @@ code {
   color: #01796f;
 }
 
-.App {
-  background-color: white;
-}
+
 /* LOGIN AND LOGOUT START */
 .Auth-form-container {
   display: flex;

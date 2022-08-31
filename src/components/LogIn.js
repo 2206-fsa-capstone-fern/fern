@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { loggingIn } from "../store";
+import React, { Component } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loggingIn } from '../store';
+import Navbar from './Navbar';
 
 class LogIn extends Component {
   state = {
@@ -33,12 +34,12 @@ class LogIn extends Component {
     }
 
     return (
-      <div className="Auth-form-container">
-        <form onSubmit={this.handleSubmit} id="login" className="Auth-form">
-          {toNext ? <Navigate to="/login" /> : null}
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
-            <div className="form-group mt-3">
+      <div className='Auth-form-container'>
+        <form onSubmit={this.handleSubmit} id='login' className='Auth-form'>
+          {toNext ? <Navigate to='/login' /> : null}
+          <div className='Auth-form-content'>
+            <h3 className='Auth-form-title'>Log In</h3>
+            <div className='form-group mt-3'>
               <label>Email address</label>
               <input
                 type="email"
