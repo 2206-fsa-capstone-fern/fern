@@ -1,47 +1,39 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { loggingOut } from "../store";
+import { NavLink, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loggingOut } from '../store';
 
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = (e) => {
     e.preventDefault();
 
     props.logout(navigate);
   };
   return (
-    <ul className="right">
-      <li>
+    <div className='navbar-container'>
+      <div className='plaidButton'>
         <button onClick={() => props.open()} disabled={!props.ready}>
           <strong>Link an account</strong>
           {/* {console.log(props.transactions)}
           {console.log("second", props.transactions2)} */}
         </button>
-      </li>
-      <li>
-        <NavLink to="/">Settings</NavLink>
-      </li>
-      <li>
-        <NavLink to="/" onClick={handleLogout}>
-          Log Out
-        </NavLink>
-      </li>
+      </div>
+      <NavLink to='/' onClick={handleLogout} className='authLink'>
+        Log Out
+      </NavLink>
+
       {isLoggedIn ? (
-        <li>
-          <NavLink to="/" className="btn btn-floating">
-            {user.firstName[0]}
-            {user.lastName[0]}
-          </NavLink>
-        </li>
+        <NavLink to='/account' className='authLink'>
+          {user.firstName[0]}
+          {user.lastName[0]}
+        </NavLink>
       ) : (
-        <li>
-          <NavLink to="/" className="btn btn-floating">
-            UR
-          </NavLink>
-        </li>
+        <NavLink to='/' className='authLink'>
+          UR
+        </NavLink>
       )}
-    </ul>
+    </div>
   );
 };
 

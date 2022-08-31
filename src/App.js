@@ -5,38 +5,36 @@ import React, { useState, useEffect, useCallback } from "react";
 //Plaid
 import { usePlaidLink } from "react-plaid-link";
 import "./Plaid.scss";
+import "./index.css";
 
 //Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
-import Navbar from "./components/Navbar";
+import NavbarApp from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
 import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AllTransactions from "./components/AllTransactions";
+import AccountView from "./AccountComponents/AccountView";
+import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import DoughnutChart from "./components/DoughnutChart"; // to view chart
 import Yearly from "./components/Yearly";
-import Month from "./components/Month";
-import BalancesOverview from "./components/AccountBalancesOverview";
-import Balances from "./components/AccountBalances"
-import NotFound from "./components/NotFound"
+import Daily from "./components/Daily";
+import LastVsCurr from "./components/LastVsCurr";
+import NotFound from "./components/NotFound";
 
 //Redux
 import { connect } from "react-redux";
 import { gettingUser, addingTransactions, gettingTransactions } from "./store";
-import LastVsCurr from "./components/LastVsCurr";
-import Daily from "./components/Daily";
 
 //functional component
 function App(props) {
-  const { isLoggedIn, isAdmin } = props
-  useEffect(async () => {
-    props.loadInitialData()
-    props.getTransactions()
+  const { isLoggedIn, isAdmin } = props;
+  useEffect(() => {
+    props.getUser();
+    props.getTransactions();
   }, [isLoggedIn]);
-
 
   const [token, setToken] = useState(null);
   // const [data, setData] = useState(null);
@@ -45,7 +43,6 @@ function App(props) {
 
   const onSuccess = useCallback(async (publicToken) => {
     setLoading(true);
-    console.log("hello")
     await fetch("/api/exchange_public_token", {
       method: "POST",
       headers: {
@@ -70,7 +67,7 @@ function App(props) {
       localStorage.setItem("link_token", data.link_token);
     }
   }, [setToken]);
-  
+
   //Fetch transaction data, which includes accounts and balances data
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
@@ -121,102 +118,107 @@ function App(props) {
   //   console.log(err);
   // }
 
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <div className="Navbar"></div>
-  
-          {isLoggedIn ? (
-            <div>
-              {isAdmin ? (
-                <div>
-                  <Navbar
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <div className="Navbar"></div>
+
+        {isLoggedIn ? (
+          <div>
+            {isAdmin ? (
+              <div>
+                <NavbarApp
+                  open={open}
+                  ready={ready}
+                  transactions={props.transactions[0]}
+                  transactions2={props.transactions[1]}
+                />
+                <Routes></Routes>
+              </div>
+            ) : (
+              <div>
+                <div className="navbar-logged-in">
+                  {/* navbar for logged in users */}
+                  <NavbarApp
                     open={open}
                     ready={ready}
                     transactions={props.transactions[0]}
                     transactions2={props.transactions[1]}
                   />
-                  <Routes></Routes>
                 </div>
-              ) : (
-                <div>
-                  <div className="navbar-logged-in">
-                    {/* navbar for logged in users */}
-                    <Navbar
-                      open={open}
-                      ready={ready}
-                      transactions={props.transactions[0]}
-                      transactions2={props.transactions[1]}
+                <div className="SideNav">
+                  <SideNav />
+                </div>
+
+                <div className="app-container">
+                  <Routes>
+                    <Route
+                      exact
+                      path="/link"
+                      element={
+                        <LinkAccount
+                          open={open}
+                          ready={ready}
+                          transactions={props.transactions[0]}
+                          transactions2={props.transactions[1]}
+                        />
+                      }
                     />
-                  </div>
-                  <div className="SideNav">
-                    <SideNav />
-                  </div>
-  
-                  <div className="app-container">
-                    <Routes>
-                      <Route
-                        exact
-                        path="/link"
-                        element={
-                          <LinkAccount
-                            open={open}
-                            ready={ready}
-                            transactions={props.transactions[0]}
-                            transactions2={props.transactions[1]}
-                          />
-                        }
-                      />
-                      {/* <Route
-                        path="/*"
-                        element={<Navigate replace to="/dashboard" />}
-                      /> */}
-                      <Route
-                        exact
-                        path="/dashboard"
-                        element={<Dashboard transactions={transactions} />}
-                      />
-                      <Route
-                        exact
-                        path="/"
-                        element={<Navigate replace to="/dashboard" />}
-                      />
-                      <Route exact path="/budget" element={<BudgetApp />} />
-                      <Route exact path="/trends" element={<Trends />} />
-                      <Route
-                        exact
-                        path="/transactions"
-                        element={<AllTransactions />}
-                      />
-                      <Route exact path="/balances" element={<Balances />} />
-                      <Route exact path="/balancesoverview" element={<BalancesOverview />} />
-                      <Route exact path="/yearly" element={<Yearly />} />
-                      <Route exact path="/donut" element={<DoughnutChart />} />
-                      <Route exact path="/lvc" element={<LastVsCurr />} />
-                      <Route exact path="/month" element={<Month />} />
-                      <Route exact path="/daily" element={<Daily />} />
-                      <Route path="*" element={<NotFound />} status={404} />
-                    </Routes>
-                  </div>
+                    <Route
+                      exact
+                      path="/dashboard"
+                      element={
+                        <Dashboard transactions={props.transactions[0]} />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/login"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/signup"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route exact path="/budget" element={<BudgetApp />} />
+                    <Route exact path="/trends" element={<Trends />} />
+                    <Route
+                      exact
+                      path="/transactions"
+                      element={<AllTransactions />}
+                    />
+                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
+                    {/* to view chart */}
+                    <Route exact path="/yearly" element={<Yearly />} />
+                    <Route exact path="/account" element={<AccountView />} />
+                    <Route exact path="/daily" element={<Daily />} />
+                    <Route exact path="/lvc" element={<LastVsCurr />} />
+                    <Route exact path="*" element={<NotFound />} />
+                  </Routes>
                 </div>
-              )}
-            </div>
-          ) : (
-            <div>
-              {/* for users who aren't logged in */}
-              <Navbar />
-              <Routes>
-                <Route exact path="/signup" element={<SignUp />} />
-                {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
-                <Route exact path="/login" element={<LogIn />} />
-                <Route exact path="/" element={<LogIn />} />
-                <Route path="*" element={<NotFound />} status={404} />
-              </Routes>
-            </div>
-          )}
-        </div>
-      </BrowserRouter>
-    );
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>
+            {/* for users who aren't logged in */}
+            <NavbarApp />
+            <Routes>
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route exact path="/login" element={<LogIn />} />
+              <Route exact path="/" element={<LogIn />} />
+            </Routes>
+          </div>
+        )}
+      </div>
+    </BrowserRouter>
+  );
 }
 
 const mapState = (state) => {
@@ -224,15 +226,17 @@ const mapState = (state) => {
     isLoggedIn: !!state.user.firstName,
     isAdmin: !!state.user.admin,
     user: state.user,
-    transactions: state.transactions
+    transactions: state.transactions,
+    notice: state.notice,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
-    addTransactions: (transactions, transaction) => dispatch(addingTransactions(transactions, transaction)),
-    getTransactions: () => dispatch(gettingTransactions())
+    getUser: () => dispatch(gettingUser()),
+    addTransactions: (transactions, transaction) =>
+      dispatch(addingTransactions(transactions, transaction)),
+    getTransactions: () => dispatch(gettingTransactions()),
   };
 };
 

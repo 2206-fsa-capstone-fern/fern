@@ -20,8 +20,8 @@ export const SideNavData = [
     icon: <FaIcons.FaChartLine />,
   },
   {
-    title: 'Budget',
-    path: '/budget',
+    title: "Budget",
+    path: "/budget",
     icon: <FaIcons.FaFileAlt />,
   },
   {

@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  registerables,
+} from "chart.js";
+import "chartjs-adapter-moment"; // or another adapter to avoid moment
 import { Doughnut } from "react-chartjs-2";
-
-ChartJS.register(Tooltip, Legend, ArcElement);
+ChartJS.register(...registerables, Tooltip, Legend, ArcElement);
 
 const DoughnutChart = () => {
   const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
