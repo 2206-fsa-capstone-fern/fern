@@ -57,7 +57,6 @@ function AllTransactions() {
         });
     };
     fetchTransactions();
-    setLoading(false);
   }, []);
 
   // useEffect(() => {
@@ -81,7 +80,7 @@ function AllTransactions() {
     const timeout = setTimeout(() => {
       setSearched(searchFn(chart));
     }, 400);
-
+    setLoading(false);
     return () => clearTimeout(timeout);
   });
 
