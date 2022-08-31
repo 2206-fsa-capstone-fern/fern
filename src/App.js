@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 //Plaid
 import { usePlaidLink } from 'react-plaid-link';
 import './Plaid.scss';
-import './index.css';
+import './App.css';
 
 //Components
 import LogIn from './components/LogIn';
@@ -115,10 +115,8 @@ function App(props) {
   // }
 
   return (
-    <BrowserRouter>
+   
       <div className='App'>
-        <div className='Navbar'></div>
-
         {isLoggedIn ? (
           <div>
             {isAdmin ? (
@@ -129,7 +127,7 @@ function App(props) {
                   transactions={props.transactions[0]}
                   transactions2={props.transactions[1]}
                 />
-                <Routes></Routes>
+                
               </div>
             ) : (
               <div>
@@ -143,7 +141,7 @@ function App(props) {
                   />
                 </div>
                 <div className='SideNav'>
-                  <SideNav />
+                  {/* <SideNav /> */}
                 </div>
 
                 <div className='app-container'>
@@ -202,7 +200,7 @@ function App(props) {
           </div>
         )}
       </div>
-    </BrowserRouter>
+  
   );
 }
 
