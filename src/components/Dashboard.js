@@ -12,7 +12,7 @@ import {
 import Chart from "chart.js/auto";
 import { Bar, Pie } from "react-chartjs-2";
 
-import Sidebar from "./SideNav/SideNav";
+import SideNav from "./SideNav/SideNav";
 import "../Dashboard.css";
 import { Link } from "react-router-dom";
 
@@ -66,7 +66,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard d-flex">
       <div>
-        <Sidebar />
+        <SideNav />
       </div>
       <div
         style={{
@@ -161,7 +161,7 @@ const Dashboard = () => {
                 ></div>
                 <div
                   className="card-bg w-100 d-flex flex-column border d-flex flex-column"
-                  style={{ gridRow: "span 2" }}
+                  style={{ gridRow: "span 2",  background: "#c9e4ca" }}
                 >
                   <div className="p-4 d-flex flex-column h-100" >
                     <div className="d-flex align-items-center justify-content-between">
