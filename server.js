@@ -1,6 +1,4 @@
-/*
-server.js – Configures the Plaid client and uses Express to defines routes that call Plaid endpoints in the Sandbox environment.Utilizes the official Plaid node.js client library to make calls to the Plaid API.
-*/
+// Configures the Plaid client and uses Express to defines routes that call Plaid endpoints in the Sandbox environment.
 
 require("dotenv").config();
 const express = require("express");
@@ -10,8 +8,6 @@ const { Configuration, PlaidApi, PlaidEnvironments } = require("plaid");
 const app = express();
 
 app.use(
-  // FOR DEMO PURPOSES ONLY
-  // Use an actual secret key in production
   session({
     secret: process.env.REACT_APP_SECRET,
     saveUninitialized: true,
@@ -61,15 +57,6 @@ app.post("/api/exchange_public_token", async (req, res, next) => {
   req.session.access_token = exchangeResponse.data.access_token;
   res.json(true);
 });
-
-// Fetches balance data using the Node client library for Plaid
-// app.get("/api/balance", async (req, res, next) => {
-//   const access_token = req.session.access_token;
-//   const balanceResponse = await client.accountsBalanceGet({ access_token });
-//   res.json({
-//     Balance: balanceResponse.data,
-//   });
-// });
 
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().split("T")[0];
