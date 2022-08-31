@@ -24,7 +24,7 @@ const SignedInLinks = (props) => {
       </NavLink>
 
       {isLoggedIn ? (
-        <NavLink to='/' className='authLink'>
+        <NavLink to='/account' className='authLink'>
           {user.firstName[0]}
           {user.lastName[0]}
         </NavLink>

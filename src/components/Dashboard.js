@@ -14,6 +14,7 @@ import { Bar, Pie } from "react-chartjs-2";
 
 import Sidebar from "./SideNav/SideNav";
 import "../Dashboard.css";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const data = {

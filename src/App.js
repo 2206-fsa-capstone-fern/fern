@@ -1,6 +1,6 @@
 //React
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
 import { usePlaidLink } from 'react-plaid-link';
@@ -19,16 +19,16 @@ import Trends from './components/Trends';
 import AllTransactions from './components/AllTransactions';
 import DoughnutChart from './components/DoughnutChart'; // to view chart
 import Yearly from './components/Yearly';
-
+import AccountView from "./AccountComponents/AccountView";
 //Redux
-import { connect } from 'react-redux';
-import { gettingUser, addingTransactions, gettingTransactions } from './store';
+import { connect } from "react-redux";
+import { gettingUser, addingTransactions, gettingTransactions } from "./store";
 
 //functional component
 function App(props) {
   const { isLoggedIn, isAdmin } = props;
-  useEffect(async () => {
-    props.loadInitialData();
+  useEffect(() => {
+    props.getUser();
     props.getTransactions();
   }, [isLoggedIn]);
 
@@ -39,10 +39,10 @@ function App(props) {
 
   const onSuccess = useCallback(async (publicToken) => {
     setLoading(true);
-    await fetch('/api/exchange_public_token', {
-      method: 'POST',
+    await fetch("/api/exchange_public_token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ public_token: publicToken }),
     });
@@ -53,21 +53,21 @@ function App(props) {
   // Creates a Link token
   const createLinkToken = React.useCallback(async () => {
     // For OAuth, use previously generated Link token
-    if (window.location.href.includes('?oauth_state_id=')) {
-      const linkToken = localStorage.getItem('link_token');
+    if (window.location.href.includes("?oauth_state_id=")) {
+      const linkToken = localStorage.getItem("link_token");
       setToken(linkToken);
     } else {
-      const response = await fetch('/api/create_link_token', {});
+      const response = await fetch("/api/create_link_token", {});
       const data = await response.json();
       setToken(data.link_token);
-      localStorage.setItem('link_token', data.link_token);
+      localStorage.setItem("link_token", data.link_token);
     }
   }, [setToken]);
 
   //Fetch transaction data, which includes accounts and balances data
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
-    const response = await fetch('/api/transactions/get');
+    const response = await fetch("/api/transactions/get");
 
     transactions = await response.json();
     props.addTransactions(props.transactions, transactions);
@@ -83,7 +83,7 @@ function App(props) {
   };
 
   // For OAuth, configure the received redirect URI
-  if (window.location.href.includes('?oauth_state_id=')) {
+  if (window.location.href.includes("?oauth_state_id=")) {
     config.receivedRedirectUri = window.location.href;
     isOauth = true;
   }
@@ -142,11 +142,11 @@ function App(props) {
                 </div>
                
 
-                <div className='app-container'>
+                <div className="app-container">
                   <Routes>
                     <Route
                       exact
-                      path='/link'
+                      path="/link"
                       element={
                         <LinkAccount
                           open={open}
@@ -162,24 +162,37 @@ function App(props) {
                       />
                     <Route
                       exact
-                      path='/dashboard'
-                      element={<Dashboard transactions={transactions} />}
+                      path="/dashboard"
+                      element={
+                        <Dashboard transactions={props.transactions[0]} />
+                      }
                     />
                     <Route
                       exact
-                      path='/'
-                      element={<Navigate replace to='/dashboard' />}
+                      path="/"
+                      element={<Navigate replace to="/dashboard" />}
                     />
-                    <Route exact path='/budget' element={<BudgetApp />} />
-                    <Route exact path='/trends' element={<Trends />} />
                     <Route
                       exact
-                      path='/transactions'
+                      path="/login"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route
+                      exact
+                      path="/signup"
+                      element={<Navigate replace to="/dashboard" />}
+                    />
+                    <Route exact path="/budget" element={<BudgetApp />} />
+                    <Route exact path="/trends" element={<Trends />} />
+                    <Route
+                      exact
+                      path="/transactions"
                       element={<AllTransactions />}
                     />
-                    <Route exact path='/donut' element={<DoughnutChart />} />{' '}
+                    <Route exact path="/donut" element={<DoughnutChart />} />{" "}
                     {/* to view chart */}
-                    <Route exact path='/yearly' element={<Yearly />} />
+                    <Route exact path="/yearly" element={<Yearly />} />
+                    <Route exact path="/account" element={<AccountView />} />
                   </Routes>
                 </div>
               </div>
@@ -190,10 +203,9 @@ function App(props) {
             {/* for users who aren't logged in */}
             <Navbar />
             <Routes>
-              <Route exact path='/signup' element={<SignUp />} />
-              {/* <Route path="/*" element={<Navigate replace to="/login" />} /> */}
-              <Route exact path='/login' element={<LogIn />} />
-              <Route exact path='/' element={<LogIn />} />
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route exact path="/login" element={<LogIn />} />
+              <Route exact path="/" element={<LogIn />} />
             </Routes>
           </div>
         )}
@@ -208,12 +220,13 @@ const mapState = (state) => {
     isAdmin: !!state.user.admin,
     user: state.user,
     transactions: state.transactions,
+    notice: state.notice,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(gettingUser()),
+    getUser: () => dispatch(gettingUser()),
     addTransactions: (transactions, transaction) =>
       dispatch(addingTransactions(transactions, transaction)),
     getTransactions: () => dispatch(gettingTransactions()),

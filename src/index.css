@@ -12,6 +12,42 @@ code {
     monospace;
 }
 
+<<<<<<< HEAD
+=======
+.navbar-logged-in {
+  margin-left: 10%;
+}
+
+.app-container {
+  margin-left: 10%;
+}
+
+.paginationBtns {
+  margin-right: 0px;
+
+}
+
+.paginationBtns a {
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  background-color: #f6a192
+}
+
+.paginationActive a {
+  background-color: #f6a192
+}
+
+.refunds {
+  color: #01796f;
+}
+
+>>>>>>> 14af5907753eb24fe4f1cee1b635f91fdaa9a049
 .App {
   background-color: white;
 }
@@ -23,6 +59,9 @@ code {
   width: 100vw;
   height: 100vh;
 }
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+/* bootstrap link for icons */
 
 .Auth-form {
   width: 420px;
@@ -123,6 +162,7 @@ input:focus {
   height: 100%;
 }
 /* LOGIN AND LOGOUT END */
+
 
 /* NAVBAR */
 .plaidButton {

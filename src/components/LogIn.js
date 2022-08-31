@@ -6,8 +6,8 @@ import Navbar from './Navbar';
 
 class LogIn extends Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     toNext: false,
   };
 
@@ -20,14 +20,14 @@ class LogIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    document.getElementById('login').reset();
+    document.getElementById("login").reset();
     this.props.login(email, password);
   };
 
   render() {
     const { user } = this.props;
     const { toNext } = this.state;
-    if (typeof user === 'object' && user.length) {
+    if (typeof user === "object" && user.length) {
       this.setState({
         toNext: true,
       });
@@ -42,30 +42,30 @@ class LogIn extends Component {
             <div className='form-group mt-3'>
               <label>Email address</label>
               <input
-                type='email'
-                className='form-control mt-1'
-                name='email'
-                placeholder='Enter email'
+                type="email"
+                className="form-control mt-1"
+                name="email"
+                placeholder="Enter email"
                 onChange={this.handleChange}
               />
             </div>
-            <div className='form-group mt-3'>
+            <div className="form-group mt-3">
               <label>Password</label>
               <input
-                type='password'
-                className='form-control mt-1'
-                name='password'
-                placeholder='Enter password'
+                type="password"
+                className="form-control mt-1"
+                name="password"
+                placeholder="Enter password"
                 onChange={this.handleChange}
               />
             </div>
-            <div className='d-grid gap-2 mt-3'>
-              <button type='submit' className='btn btn-primary'>
+            <div className="d-grid gap-2 mt-3">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </div>
-            <p className='forgot-password text-right mt-2'>
-              Forgot <a href='#'>password?</a>
+            <p className="forgot-password text-right mt-2">
+              Forgot <a href="#">password?</a>
             </p>
           </div>
         </form>

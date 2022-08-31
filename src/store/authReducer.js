@@ -1,6 +1,6 @@
 import { auth, db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 
 //action type
@@ -9,14 +9,13 @@ const GET_USER = "GET_USER";
 //action creator
 const getUser = (user) => ({ type: GET_USER, user });
 
-
 //thunk
 export const gettingUser = () => async (dispatch) => {
   try {
     const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
     let loggedUser
     if(!userId) {
-        auth.onAuthStateChanged(async (u) => {
+        onAuthStateChanged(auth, async (u) => {
           if(u) {
             loggedUser = await getDoc(doc(db, "users", u.uid)).then((doc) => {
               return (doc.data());
@@ -38,10 +37,9 @@ export const gettingUser = () => async (dispatch) => {
   }
 };
 
-export const loggingOut = (navigate) => async (dispatch) => {
+export const loggingOut = (navigate) => async () => {
   await signOut(auth)
   navigate("/")
-  return dispatch(getUser({}))
 };
 
 export const loggingIn = (email, password) => async (dispatch) => {
@@ -61,11 +59,11 @@ export const signup = (email, password, firstName, lastName, phoneNumber) => asy
   try {
     await createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log("user created:", cred.user);
       return setDoc(doc(db, "users", cred.user.uid), {
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber
+        email: email,
+        phoneNumber: phoneNumber,
       })
     })
 
