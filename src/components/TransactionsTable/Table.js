@@ -21,20 +21,20 @@ function Table({ transactions }) {
       <table>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th style={{color: "white" }}>Date</th>
+            <th style={{color: "white" }}>Description</th>
+            <th style={{color: "white" }}>Category</th>
+            <th style={{color: "white" }}>Amount</th>
           </tr>
         </thead>
         {currPageTransactions.map((account) => (
           <tbody key={account.transaction_id}>
             <tr>
-              <td>{account.date}</td>
-              <td>{account.name}</td>
-              <td>{account.category[0]}</td>
+              <td style={{color: "white" }}>{account.date}</td>
+              <td style={{color: "white" }}>{account.name}</td>
+              <td style={{color: "white" }}>{account.category[0]}</td>
               {account.amount > 0 ? (
-                <td>-${account.amount.toFixed(2)}</td>
+                <td style={{color: "white" }}>-${account.amount.toFixed(2)}</td>
               ) : (
                 <td className="refunds">${`${-account.amount.toFixed(2)}`}</td>
               )}

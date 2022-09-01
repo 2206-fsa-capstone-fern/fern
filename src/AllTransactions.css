@@ -1,3 +1,34 @@
+input.search {
+  margin-top: 10rem;
+}
+
 .pagination {
-  font-size: 50rem;
+  color: white;
+}
+
+.paginationBtns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBtns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  color: lime;
+  background-color: yellow;
+}
+
+.paginationActive a {
+  color: lime;
+  background-color: yellow;
 }

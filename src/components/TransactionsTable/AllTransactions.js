@@ -117,6 +117,11 @@ function AllTransactions() {
                     <th>Amount</th>
                   </tr>
                 </thead>
+                <tbody>
+                  <tr>
+                    <th>Loading...</th>
+                  </tr>
+                </tbody>
                 <></>
               </table>
             </div>
@@ -141,7 +146,7 @@ function AllTransactions() {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <div>
+          <div className="all-transactions">
             <input
               type="text"
               className="search"

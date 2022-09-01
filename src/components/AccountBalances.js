@@ -59,22 +59,15 @@ const Balances = () => {
           <div style={{ height: "100%", background: "#364958" }}>
             <div>
               <CDBContainer>
-                <CDBTable responsive striped>
-                  <CDBTableHeader style={{ textAlign: "center" }}>
-                    <div>
-                    <tr>
-                      <th style={{ textAlign: "center" }}>Accounts</th>
-                    </tr>
-                    </div>
-                  </CDBTableHeader>
+                <CDBTable responsive hover borderless>
                   <CDBTableHeader>
                     <tr>
-                      <th>Account Type</th>
-                      <th>Balances</th>
+                      <th className="ab-header">Account Type</th>
+                      <th className="ab-header">Balances</th>
                     </tr>
                   </CDBTableHeader>
                   <CDBTableBody>
-                    <td>Loading...</td>
+                    <tr className="ab-acc-amount">Loading...</tr>
                   </CDBTableBody>
                 </CDBTable>
               </CDBContainer>
@@ -101,23 +94,18 @@ const Balances = () => {
         <div style={{ height: "100%", background: "#364958" }}>
           <div>
             <CDBContainer>
-              <CDBTable responsive striped>
-                <CDBTableHeader style={{ textAlign: "center" }}>
-                  <tr>
-                    <th>Accounts</th>
-                  </tr>
-                </CDBTableHeader>
+              <CDBTable responsive hover borderless>
                 <CDBTableHeader>
                   <tr>
-                    <th>Account Type</th>
-                    <th>Balances</th>
+                    <th className="ab-header">Account Type</th>
+                    <th className="ab-header">Balances</th>
                   </tr>
                 </CDBTableHeader>
                 <CDBTableBody>
                   {chart.map((account) => (
                     <tr key={account.account_id}>
-                      <td className="ab-acc-name">{account.name}</td>
-                      <td className="ab-acc-amount">
+                      <td className="ab-acc-name" style={{ textAlign: "center", color: "white" }}>{account.name}</td>
+                      <td className="ab-acc-amount" style={{ textAlign: "center", color: "white" }}>
                         {!account.balances.available
                           ? account.balances.current.toFixed(2)
                           : account.balances.available.toFixed(2)}

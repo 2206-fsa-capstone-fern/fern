@@ -1,15 +1,21 @@
-/* .ab-header {
-  font-size: 50rem;
-  color: purple;
-} */
-
-/* ab-header2 {} */
-ab-acc-name {
-  font-size: 50rem;
-  color: purple;
+.ab-header {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
 }
 
-ab-acc-amount {
-  font-size: 50rem;
-  color: purple;
+.ab-acc-name {
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.ab-acc-amount {
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.sc-fnykZs.table.table-hover {
+  margin-top: 8rem;
 }
