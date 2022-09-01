@@ -12,7 +12,7 @@ import {
 import Chart from "chart.js/auto";
 import { Bar, Pie } from "react-chartjs-2";
 
-import Sidebar from "./SideNav/SideNav";
+import SideNav from "./SideNav/SideNav";
 import "../Dashboard.css";
 import { Link } from "react-router-dom";
 
@@ -66,7 +66,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard d-flex">
       <div>
-        <Sidebar />
+        <SideNav />
       </div>
       <div
         style={{

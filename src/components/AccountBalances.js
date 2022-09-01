@@ -3,8 +3,7 @@ import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from "cdbreact";
 import SideNav from "./SideNav/SideNav";
 
 const Balances = () => {
-  const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
-
+  const [chart, setChart] = useState([]);
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}accounts/balance/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
@@ -42,32 +41,43 @@ const Balances = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
-  // if (!account.balances) {
-  //   return (
-  //     <CDBContainer>
-  //       <CDBTable hover>
-  //         <CDBTableHeader style={{ textAlign: "center" }}>
-  //           <tr>
-  //             <th>Accounts</th>
-  //           </tr>
-  //         </CDBTableHeader>
-  //         <CDBTableHeader>
-  //           <tr>
-  //             <th>Account Type</th>
-  //             <th>Balances</th>
-  //           </tr>
-  //         </CDBTableHeader>
-  //         <CDBTableBody>
-  //           {chart.map((account) => (
-  //             <td>Loading...
-  //             </td>
-  //             </tr>
-  //           ))}
-  //         </CDBTableBody>
-  //       </CDBTable>
-  //     </CDBContainer>
-  //   );
-  // }
+  if (!chart.balances) {
+    return (
+      <div className="acc-balances">
+        <div>
+        <SideNav />
+        </div>
+        <div
+        style={{
+          flex: "1 1 auto",
+          display: "flex",
+          flexFlow: "column",
+          height: "100vh",
+          overflowY: "hidden",
+        }}
+      >
+        <CDBContainer>
+          <CDBTable responsive striped>
+            <CDBTableHeader style={{ textAlign: "center" }}>
+              <tr>
+                <th style={{ textAlign: "center" }}>Accounts</th>
+              </tr>
+            </CDBTableHeader>
+            <CDBTableHeader>
+              <tr>
+                <th>Account Type</th>
+                <th>Balances</th>
+              </tr>
+            </CDBTableHeader>
+            <CDBTableBody>
+              <td>Loading...</td>
+            </CDBTableBody>
+          </CDBTable>
+        </CDBContainer>
+      </div>
+      </div>
+    );
+  }
   return (
     <div>
       <SideNav />

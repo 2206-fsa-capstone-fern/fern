@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
+import SideNav from "../SideNav/SideNav";
 
 function AllTransactions() {
   //loading transaction data
@@ -86,37 +87,66 @@ function AllTransactions() {
 
   if (loading) {
     return (
-      <div>
-        <input type="text" placeholder="Search" className="search" />
-        {/* <select id="month" onChange={handleCategoryChange}>
+      <div className="all-transactions">
+        <div>
+          <SideNav />
+        </div>
+        <div
+          style={{
+            flex: "1 1 auto",
+            display: "flex",
+            flexFlow: "column",
+            height: "100vh",
+            overflowY: "hidden",
+          }}
+        >
+          <div style={{ height: "100%", background: "#364958" }}>
+
+          <input type="text" placeholder="Search" className="search" />
+          {/* <select id="month" onChange={handleCategoryChange}>
           <option value="select Month">Month</option>
           <option value="January">January</option>
           <option value="January"></option>
         </select> */}
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <></>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <></>
+          </table>
+        </div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="transactions-page">
-      <input
-        type="text"
-        className="search"
-        placeholder="Search"
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
-      <Table transactions={searched} />
+      <div>
+        <SideNav />
+      </div>
+      <div
+        style={{
+          flex: "1 1 auto",
+          display: "flex",
+          flexFlow: "column",
+          height: "100vh",
+          overflowY: "hidden",
+        }}
+      >
+        <input
+          type="text"
+          className="search"
+          placeholder="Search"
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
+        <Table transactions={searched} />
+      </div>
     </div>
   );
 }
