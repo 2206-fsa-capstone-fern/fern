@@ -158,10 +158,6 @@ function App(props) {
                       }
                     />
                     <Route
-                        path="/*"
-                        element={<Navigate replace to="/dashboard" />}
-                      />
-                    <Route
                       exact
                       path="/dashboard"
                       element={
