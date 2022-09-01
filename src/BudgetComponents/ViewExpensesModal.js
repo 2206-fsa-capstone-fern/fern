@@ -1,7 +1,7 @@
-import { Modal, Button, Stack } from "react-bootstrap"
+import { Modal, Stack } from "react-bootstrap"
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetsContext"
 import { currencyFormatter } from "../utils"
-
+import { MDBBtn } from "mdb-react-ui-kit"
 export default function ViewExpensesModal({ budgetId, handleClose }) {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
     useBudgets()
@@ -19,15 +19,15 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
           <Stack direction="horizontal" gap="2">
             <div>Expenses - {budget?.name}</div>
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
-              <Button
+              <MDBBtn
                 onClick={() => {
                   deleteBudget(budget)
                   handleClose()
                 }}
-                variant="outline-danger"
+                color='outline-danger'
               >
                 Delete
-              </Button>
+              </MDBBtn>
             )}
           </Stack>
         </Modal.Title>
@@ -40,13 +40,13 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
               <div className="fs-5">
                 {currencyFormatter.format(expense.amount)}
               </div>
-              <Button
+              <MDBBtn
                 onClick={() => deleteExpense(expense)}
                 size="sm"
-                variant="outline-danger"
+                color="outline-danger"
               >
                 &times;
-              </Button>
+              </MDBBtn>
             </Stack>
           ))}
         </Stack>

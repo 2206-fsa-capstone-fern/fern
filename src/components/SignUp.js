@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { signup } from '../store';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { CDBBtn } from 'cdbreact';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 class SignUp extends Component {
   state = {
@@ -40,9 +42,9 @@ class SignUp extends Component {
         <form onSubmit={this.handleSubmit} id='signup' className='Auth-form'>
           {toNext ? <Navigate to='/signup' /> : null}
           <div className='Auth-form-content'>
-            <h3 className='Auth-form-title'>Sign Up</h3>
+            <h3 className='Auth-form-title' style={{ color: "#c9e4ca" }}>Sign Up</h3>
             <div className='form-group mt-3'>
-              <label>Email address</label>
+              <label style={{ color: "#c9e4ca" }}>Email address</label>
               <input
                 type='email'
                 className='form-control mt-1'
@@ -52,7 +54,7 @@ class SignUp extends Component {
               />
             </div>
             <div className='form-group mt-3'>
-              <label>Password</label>
+              <label style={{ color: "#c9e4ca" }}>Password</label>
               <input
                 type='password'
                 className='form-control mt-1'
@@ -63,7 +65,7 @@ class SignUp extends Component {
               />
             </div>
             <div className='form-group mt-3'>
-              <label>First Name</label>
+              <label style={{ color: "#c9e4ca" }}>First Name</label>
               <input
                 type='text'
                 className='form-control mt-1'
@@ -73,7 +75,7 @@ class SignUp extends Component {
               />
             </div>
             <div className='form-group mt-3'>
-              <label>Last Name</label>
+              <label style={{ color: "#c9e4ca" }}>Last Name</label>
               <input
                 type='text'
                 className='form-control mt-1'
@@ -83,7 +85,7 @@ class SignUp extends Component {
               />
             </div>
             <div className='form-group mt-3'>
-              <label>Phone Number (123-456-7890)</label>
+              <label style={{ color: "#c9e4ca" }}>Phone Number (ex. 123-456-7890)</label>
               <input
                 type='tel'
                 className='form-control mt-1'
@@ -93,9 +95,9 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button type='submit' className='btn btn-primary mt-3'>
+            <MDBBtn type='submit' color='success'>
               Submit
-            </button>
+            </MDBBtn>
           </div>
         </form>
       </div>

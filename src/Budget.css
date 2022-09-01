@@ -9,3 +9,5 @@
     background-color: black;
 }
 
+div.card-body {
+   color: "#01a314" !important; }
