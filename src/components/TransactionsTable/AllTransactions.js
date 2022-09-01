@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
+import Balances from "../AccountBalances";
 
 function AllTransactions() {
   //loading transaction data
@@ -110,6 +111,8 @@ function AllTransactions() {
 
   return (
     <div className="transactions-page">
+      <Balances />
+      <br />
       <input
         type="text"
         className="search"

@@ -13,22 +13,22 @@ export const SideNavData = [
   {
     title: "Transactions",
     path: "/transactions",
-    icon: <CDBIcon icon='money-check-alt' />,
+    icon: <CDBIcon icon="money-check-alt" />,
   },
   {
     title: "Trends",
     path: "/trends",
-    icon: <CDBIcon icon='chart-line' />,
+    icon: <CDBIcon icon="chart-line" />,
   },
   {
     title: "Budget",
     path: "/budget",
-    icon: <CDBIcon icon='piggy-bank' />,
+    icon: <CDBIcon icon="piggy-bank" />,
   },
   {
-    title: 'Balances',
-    path: '/balances',
-    icon: <FaIcons.FaMoneyCheckAlt />
+    title: "Balances",
+    path: "/balances",
+    icon: <FaIcons.FaMoneyCheckAlt />,
   },
   // {
   //   title: 'Settings',

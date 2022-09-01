@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import SignedInLinks from '../SignedInLinks';
-import SignedOutLinks from '../SignedOutLinks';
+import SignedInLinks from "../SignedInLinks";
+import SignedOutLinks from "../SignedOutLinks";
 import { SideNavData } from "./SideNavData";
 import "./SideBar.css";
 import {
@@ -36,20 +36,22 @@ function SideNav(props) {
               return (
                 <CDBSidebarMenuItem key={index} className={item.cName}>
                   <NavLink to={item.path}>
-                    <svg width='20' height='20'>
-                    {item.icon}
+                    <svg width="20" height="20">
+                      {item.icon}
                     </svg>
-                    <span style={{ padding:5}}>{item.title}</span>
+                    <span style={{ padding: 5 }}>{item.title}</span>
                   </NavLink>
                 </CDBSidebarMenuItem>
-
               );
             })}
             <CDBSidebarMenuItem className="sidebar-item">
-              {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+              {props.isLoggedIn ? (
+                <SignedInLinks open={props.open} ready={props.ready} />
+              ) : (
+                <SignedOutLinks />
+              )}
             </CDBSidebarMenuItem>
           </CDBSidebarMenu>
-          
         </CDBSidebarContent>
       </CDBSidebar>
     </div>
