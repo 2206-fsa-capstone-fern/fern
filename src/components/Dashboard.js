@@ -161,7 +161,7 @@ const Dashboard = () => {
                 ></div>
                 <div
                   className="card-bg w-100 d-flex flex-column border d-flex flex-column"
-                  style={{ gridRow: "span 2" }}
+                  style={{ gridRow: "span 2",  background: "#c9e4ca" }}
                 >
                   <div className="p-4 d-flex flex-column h-100" >
                     <div className="d-flex align-items-center justify-content-between">

@@ -58,6 +58,7 @@ class SignUp extends Component {
                 className='form-control mt-1'
                 name='password'
                 placeholder='Enter password'
+                minLength={6}
                 onChange={this.handleChange}
               />
             </div>
@@ -82,12 +83,13 @@ class SignUp extends Component {
               />
             </div>
             <div className='form-group mt-3'>
-              <label>Phone Number</label>
+              <label>Phone Number (123-456-7890)</label>
               <input
-                type='text'
+                type='tel'
                 className='form-control mt-1'
                 name='phoneNumber'
                 placeholder='Enter phone number'
+                pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                 onChange={this.handleChange}
               />
             </div>

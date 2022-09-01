@@ -8,13 +8,13 @@ import UpdatePhoneNumber from "./UpdatePhoneNumber";
 
 function AccountView(props) {
   const { user } = props;
-  const { firstName, lastName } = user;
+  const { firstName, lastName, phoneNumber, email } = user;
 
   return (
     <div>
-      <form className="update-name">
-        <div className="account">
-          <h3>Account</h3>
+      <form className="">
+        <div className="display-1">
+          <h3 className="display-1">Account Information</h3>
         </div>
         <div className="account-name">
           <label htmlFor="account-name">Name</label>
@@ -22,7 +22,15 @@ function AccountView(props) {
         </div>
         <br />
       </form>
+      <div className="account-phoneNumber">
+          <label htmlFor="account-phoneNumber">Phone Number</label>
+          <input type="text" value={phoneNumber} disabled />
+        </div>
       <UpdatePhoneNumber />
+      <div className="account-email">
+          <label htmlFor="account-email">Email</label>
+          <input type="text" value={email} disabled />
+        </div>
       <UpdateEmail />
       <UpdatePassword />
       <DeleteAccount />
