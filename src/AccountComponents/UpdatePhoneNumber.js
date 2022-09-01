@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { gettingUser, resetingNotice, updatingPhoneNumber } from "../store";
-
+import {MDBBtn} from 'mdb-react-ui-kit'
 function UpdatePhoneNumber(props) {
   const { notice, user } = props;
   const { email } = user
@@ -53,7 +53,7 @@ function UpdatePhoneNumber(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">Confirm Update Phone Number</button>
+            <MDBBtn color='success' id="confirm-delete">Confirm Update Phone Number</MDBBtn>
             {notice.phone === "Incorrect Password" ? <span>{`${notice.phone}`}</span> : null}
           </div>
         </form>
@@ -71,7 +71,7 @@ function UpdatePhoneNumber(props) {
           />
         </div>
         <div className="input-field">
-          <button id="confirm-update-phoneNumber">Update Phone Number</button>
+          <MDBBtn color='success' id="confirm-update-phoneNumber">Update Phone Number</MDBBtn>
           {showConfirmNewPhoneNumber ? (
             <span>^^^ Input Password Above To Confirm Phone Number Update ^^^</span>
           ) : null}

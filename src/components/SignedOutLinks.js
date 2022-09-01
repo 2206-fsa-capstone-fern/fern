@@ -1,20 +1,20 @@
 import { NavLink } from 'react-router-dom';
-import { CDBBtn } from 'cdbreact';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 const SignedOutLinks = () => {
   return (
    <div>
     
-        <CDBBtn color="primary" className="btn btn-primary" style={{margin:5}}>
+        <MDBBtn color="success" style={{margin:5}}>
         <NavLink to='/login' className='nav-link'>
           Log In
           </NavLink>
-      </CDBBtn>
-      <CDBBtn color="primary" className="btn btn-primary" style={{margin:5}}>
+      </MDBBtn>
+      <MDBBtn color="success" className="btn btn-primary" style={{margin:5}}>
         <NavLink to='/signup' className='nav-link'>
           Sign Up
         </NavLink>
-      </CDBBtn>
+      </MDBBtn>
         
   </div>
   );
