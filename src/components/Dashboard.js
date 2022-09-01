@@ -61,51 +61,42 @@ const Dashboard = ({ open, ready }) => {
         <div style={{ height: "100%", background: "#364958" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
-              <div className="cards-container">
-                <div
-                  className="card-bg w-200 border d-flex flex-column h-2000"
-                  style={{ background: "#c9e4ca" }}
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable
+                  droppableId="order"
+                  direction="vertical"
+                  type="column"
                 >
-                  <div className="p-4 d-flex flex-column h-200">
-                    <div className="d-flex align-items-center justify-content-between">
-                      <h4 className="m-0 h5 font-weight-bold text-dark">
-                        Traffic by Source
-                      </h4>
-                      <div className="px-2 py-1 bg-grey rounded-circle"></div>
-                    </div>
-                    <div className="mt-3 d-flex justify-content-between">
-                      <CDBContainer
-                        style={{
-                          width: "250px",
-                          height: "300px",
-                          margin: "400 -400rem 400 -400rem",
-                        }}
-                        className="p-0"
-                      >
-                        <DragDropContext onDragEnd={onDragEnd}>
-                          <Droppable
-                            droppableId="order"
-                            direction="vertical"
-                            type="column"
-                          >
-                            {(provided) => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                              >
-                                {components.map((component, index) => (
-                                  <Draggable
-                                    draggableId={`draggable-${index}`}
-                                    key={`draggable-${index}`}
-                                    index={index}
-                                  >
-                                    {(provided, snapshot) => (
-                                      <div
-                                        className="component-container"
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        isdragging={snapshot.isdragging}
+                  {(provided) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                      {components.map((component, index) => (
+                        <Draggable
+                          draggableId={`draggable-${index}`}
+                          key={`draggable-${index}`}
+                          index={index}
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              className="component-container"
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              isdragging={snapshot.isdragging}
+                            >
+                              <div className="cards-container">
+                                <div
+                                  className="card-bg w-200 border d-flex flex-column h-2000"
+                                  style={{ background: "#c9e4ca" }}
+                                >
+                                  <div className="p-4 d-flex flex-column h-200">
+                                    <div className="mt-3 d-flex justify-content-between">
+                                      <CDBContainer
+                                        style={{
+                                          width: "450px",
+                                          height: "400px",
+                                          margin: "400 -400rem 400 -400rem",
+                                        }}
+                                        className="p-0"
                                       >
                                         <div>
                                           <i
@@ -114,24 +105,24 @@ const Dashboard = ({ open, ready }) => {
                                           ></i>
                                           {component.content}
                                         </div>
-                                        {provided.placeholder}
-                                      </div>
-                                    )}
-                                  </Draggable>
-                                ))}
+                                      </CDBContainer>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                            )}
-                          </Droppable>
-                        </DragDropContext>
-                      </CDBContainer>
+                              {provided.placeholder}
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
                     </div>
-                  </div>
-                </div>
-                <CDBTable borderless responsive></CDBTable>
-              </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           </div>
         </div>
+        <CDBTable borderless responsive></CDBTable>
       </div>
     </div>
   );
