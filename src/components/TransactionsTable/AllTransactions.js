@@ -87,7 +87,7 @@ function AllTransactions() {
 
   if (loading) {
     return (
-      <div className="all-transactions">
+      <div className="budget d-flex">
         <div>
           <SideNav />
         </div>
@@ -101,32 +101,33 @@ function AllTransactions() {
           }}
         >
           <div style={{ height: "100%", background: "#364958" }}>
-
-          <input type="text" placeholder="Search" className="search" />
-          {/* <select id="month" onChange={handleCategoryChange}>
+            <input type="text" placeholder="Search" className="search" />
+            {/* <select id="month" onChange={handleCategoryChange}>
           <option value="select Month">Month</option>
           <option value="January">January</option>
           <option value="January"></option>
         </select> */}
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <></>
-          </table>
-        </div>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <></>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="transactions-page">
+    <div className="budget d-flex">
       <div>
         <SideNav />
       </div>
@@ -139,13 +140,17 @@ function AllTransactions() {
           overflowY: "hidden",
         }}
       >
-        <input
-          type="text"
-          className="search"
-          placeholder="Search"
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-        <Table transactions={searched} />
+        <div style={{ height: "100%", background: "#364958" }}>
+          <div>
+            <input
+              type="text"
+              className="search"
+              placeholder="Search"
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
+            <Table transactions={searched} />
+          </div>
+        </div>
       </div>
     </div>
   );

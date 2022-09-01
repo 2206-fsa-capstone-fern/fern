@@ -41,13 +41,55 @@ const Balances = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
-  if (!chart.balances) {
+  if (!chart) {
     return (
-      <div className="acc-balances">
+      <div className="budget d-flex">
         <div>
-        <SideNav />
+          <SideNav />
         </div>
         <div
+          style={{
+            flex: "1 1 auto",
+            display: "flex",
+            flexFlow: "column",
+            height: "100vh",
+            overflowY: "hidden",
+          }}
+        >
+          <div style={{ height: "100%", background: "#364958" }}>
+            <div>
+              <CDBContainer>
+                <CDBTable responsive striped>
+                  <CDBTableHeader style={{ textAlign: "center" }}>
+                    <div>
+                    <tr>
+                      <th style={{ textAlign: "center" }}>Accounts</th>
+                    </tr>
+                    </div>
+                  </CDBTableHeader>
+                  <CDBTableHeader>
+                    <tr>
+                      <th>Account Type</th>
+                      <th>Balances</th>
+                    </tr>
+                  </CDBTableHeader>
+                  <CDBTableBody>
+                    <td>Loading...</td>
+                  </CDBTableBody>
+                </CDBTable>
+              </CDBContainer>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="budget d-flex">
+      <div>
+        <SideNav />
+      </div>
+      <div
         style={{
           flex: "1 1 auto",
           display: "flex",
@@ -56,58 +98,38 @@ const Balances = () => {
           overflowY: "hidden",
         }}
       >
-        <CDBContainer>
-          <CDBTable responsive striped>
-            <CDBTableHeader style={{ textAlign: "center" }}>
-              <tr>
-                <th style={{ textAlign: "center" }}>Accounts</th>
-              </tr>
-            </CDBTableHeader>
-            <CDBTableHeader>
-              <tr>
-                <th>Account Type</th>
-                <th>Balances</th>
-              </tr>
-            </CDBTableHeader>
-            <CDBTableBody>
-              <td>Loading...</td>
-            </CDBTableBody>
-          </CDBTable>
-        </CDBContainer>
+        <div style={{ height: "100%", background: "#364958" }}>
+          <div>
+            <CDBContainer>
+              <CDBTable responsive striped>
+                <CDBTableHeader style={{ textAlign: "center" }}>
+                  <tr>
+                    <th>Accounts</th>
+                  </tr>
+                </CDBTableHeader>
+                <CDBTableHeader>
+                  <tr>
+                    <th>Account Type</th>
+                    <th>Balances</th>
+                  </tr>
+                </CDBTableHeader>
+                <CDBTableBody>
+                  {chart.map((account) => (
+                    <tr key={account.account_id}>
+                      <td className="ab-acc-name">{account.name}</td>
+                      <td className="ab-acc-amount">
+                        {!account.balances.available
+                          ? account.balances.current.toFixed(2)
+                          : account.balances.available.toFixed(2)}
+                      </td>
+                    </tr>
+                  ))}
+                </CDBTableBody>
+              </CDBTable>
+            </CDBContainer>
+          </div>
+        </div>
       </div>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <SideNav />
-      <CDBContainer>
-        <CDBTable responsive striped>
-          <CDBTableHeader style={{ textAlign: "center" }}>
-            <tr>
-              <th>Accounts</th>
-            </tr>
-          </CDBTableHeader>
-          <CDBTableHeader>
-            <tr>
-              <th>Account Type</th>
-              <th>Balances</th>
-            </tr>
-          </CDBTableHeader>
-          <CDBTableBody>
-            {chart.map((account) => (
-              <tr key={account.account_id}>
-                <td className="ab-acc-name">{account.name}</td>
-                <td className="ab-acc-amount">
-                  {!account.balances.available
-                    ? account.balances.current.toFixed(2)
-                    : account.balances.available.toFixed(2)}
-                </td>
-              </tr>
-            ))}
-          </CDBTableBody>
-        </CDBTable>
-      </CDBContainer>
     </div>
   );
 };
