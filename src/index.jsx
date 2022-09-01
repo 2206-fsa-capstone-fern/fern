@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { BudgetsProvider } from './contexts/BudgetsContext';
 import { BrowserRouter } from 'react-router-dom';
+import AccountBalances from "./components/AccountBalances";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

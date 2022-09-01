@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from "cdbreact";
+import SideNav from "./SideNav/SideNav";
 
 const Balances = () => {
   const [chart, setChart] = useState([]); // chart is getter that gets whatever data we have in this application, setChart is setter
@@ -41,34 +42,63 @@ const Balances = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
+  // if (!account.balances) {
+  //   return (
+  //     <CDBContainer>
+  //       <CDBTable hover>
+  //         <CDBTableHeader style={{ textAlign: "center" }}>
+  //           <tr>
+  //             <th>Accounts</th>
+  //           </tr>
+  //         </CDBTableHeader>
+  //         <CDBTableHeader>
+  //           <tr>
+  //             <th>Account Type</th>
+  //             <th>Balances</th>
+  //           </tr>
+  //         </CDBTableHeader>
+  //         <CDBTableBody>
+  //           {chart.map((account) => (
+  //             <td>Loading...
+  //             </td>
+  //             </tr>
+  //           ))}
+  //         </CDBTableBody>
+  //       </CDBTable>
+  //     </CDBContainer>
+  //   );
+  // }
   return (
-    <CDBContainer>
-      <CDBTable striped>
-        <CDBTableHeader style={{ textAlign: "center" }}>
-          <tr>
-            <th>Accounts</th>
-          </tr>
-        </CDBTableHeader>
-        <CDBTableHeader>
-          <tr>
-            <th>Account Type</th>
-            <th>Balances</th>
-          </tr>
-        </CDBTableHeader>
-        <CDBTableBody>
-          {chart.map((account) => (
-            <tr key={account.account_id}>
-              <td className="ab-acc-name">{account.name}</td>
-              <td className="ab-acc-amount">
-                {!account.balances.available
-                  ? account.balances.current.toFixed(2)
-                  : account.balances.available.toFixed(2)}
-              </td>
+    <div>
+      <SideNav />
+      <CDBContainer>
+        <CDBTable responsive striped>
+          <CDBTableHeader style={{ textAlign: "center" }}>
+            <tr>
+              <th>Accounts</th>
             </tr>
-          ))}
-        </CDBTableBody>
-      </CDBTable>
-    </CDBContainer>
+          </CDBTableHeader>
+          <CDBTableHeader>
+            <tr>
+              <th>Account Type</th>
+              <th>Balances</th>
+            </tr>
+          </CDBTableHeader>
+          <CDBTableBody>
+            {chart.map((account) => (
+              <tr key={account.account_id}>
+                <td className="ab-acc-name">{account.name}</td>
+                <td className="ab-acc-amount">
+                  {!account.balances.available
+                    ? account.balances.current.toFixed(2)
+                    : account.balances.available.toFixed(2)}
+                </td>
+              </tr>
+            ))}
+          </CDBTableBody>
+        </CDBTable>
+      </CDBContainer>
+    </div>
   );
 };
 
