@@ -1,5 +1,31 @@
+.transaction-table {
+  margin-right: 0%;
+  margin-left: 10rem;
+}
+
+.sc-fnykZs.table.table-borderless.table-hover {
+  margin-top: 0rem;
+}
+
+.transaction-header {
+  color: white;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+/* style={{ color: "white" }}  */
+
+td.transaction-row-data {
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+
 input.search {
-  margin-top: 10rem;
+  margin-top: 5rem;
+  margin-left: 25px;
+  width: 750px;
 }
 
 .pagination {
@@ -12,6 +38,11 @@ input.search {
   list-style: none;
   display: flex;
   justify-content: center;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 1rem;
+  margin-left: 50%;
+  margin-right: 50%;
 }
 
 .paginationBtns a {
@@ -24,11 +55,9 @@ input.search {
 }
 
 .paginationBtns a:hover {
-  color: lime;
-  background-color: yellow;
+  background-color: lightseagreen;
 }
 
 .paginationActive a {
-  color: lime;
-  background-color: yellow;
+  background-color: lightseagreen;
 }

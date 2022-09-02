@@ -25,8 +25,6 @@ const App = () => {
       >
         <div style={{ height: "100%", background: "#364958" }}>
           <div className="quiz-app">
-            {/* <h5>Put Your Financial Literacy To The Test</h5> */}
-            {/* <h5>Quiz App</h5> */}
             <QuizContext.Provider
               value={{ gameState, setGameState, score, setScore }}
             >

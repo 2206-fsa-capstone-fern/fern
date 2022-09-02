@@ -24,16 +24,16 @@ const Quiz = () => {
     <div className="quiz">
       <h2 className="quiz-question">{Questions[currQuestion].prompt}</h2>
       <div className="quiz-options">
-        <button onClick={() => setOptionChosen("A")}>{Questions[currQuestion].optionA}</button>
-        <button onClick={() => setOptionChosen("B")}>{Questions[currQuestion].optionB}</button>
-        <button onClick={() => setOptionChosen("C")}>{Questions[currQuestion].optionC}</button>
-        <button onClick={() => setOptionChosen("D")}>{Questions[currQuestion].optionD}</button>
+        <button onClick={() => setOptionChosen("A")} className="quiz">{Questions[currQuestion].optionA}</button>
+        <button onClick={() => setOptionChosen("B")} className="quiz">{Questions[currQuestion].optionB}</button>
+        <button onClick={() => setOptionChosen("C")} className="quiz">{Questions[currQuestion].optionC}</button>
+        <button onClick={() => setOptionChosen("D")} className="quiz">{Questions[currQuestion].optionD}</button>
         <br /><br />
       </div>
       {currQuestion == Questions.length - 1 ? (
-        <button onClick={finishQuiz}>Finish Quiz</button>
+        <button onClick={finishQuiz} className="next-button">Finish Quiz</button>
       ) : (
-        <button onClick={nextQuestion}>Next Question</button>
+        <button onClick={nextQuestion} className="next-button">Next Question</button>
       )}
     </div>
   );

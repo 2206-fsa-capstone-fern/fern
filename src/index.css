@@ -132,7 +132,7 @@ code {
 @tailwind components;
 @tailwind utilities; */
 
-.paginationBtns {
+/* .paginationBtns {
   margin-right: 0px;
 
 }
@@ -151,7 +151,7 @@ code {
 
 .paginationActive a {
   background-color: #f6a192
-}
+} */
 
 .refunds {
   color: #01796f;

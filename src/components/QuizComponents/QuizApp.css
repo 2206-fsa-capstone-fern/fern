@@ -22,18 +22,26 @@
   align-items: center;
 }
 
-.main-menu-quiz button, .quiz button, .endScreen button {
+.main-menu-quiz button, .quiz button, .next-button button, .endScreen button {
   width: 550px;
   height: 80px;
   margin: 10px;
   border: none;
   border-radius: 5px;
   font-size: 18px;
+  background-color: lightseagreen;
   cursor: pointer;
 }
 
-/* .main-menu-quiz button, .quiz button, .endScreen button hover {} */
-/* onClick */
+.main-menu-quiz button:hover, .quiz button:hover, .next-button button:hover, .endScreen button:hover {
+  background-color: white;
+  color: lightseagreen;
+}
+
+.main-menu-quiz button:focus, .quiz button:focus, .endScreen button:focus {
+  background-color: #29C979;
+  color: white;
+}
 
 .main-menu-quiz, .quiz, .endScreen {
   color: white;
