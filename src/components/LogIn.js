@@ -1,8 +1,31 @@
-import React, { Component } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { loggingIn } from '../store';
-import Navbar from './Navbar';
+import React, { Component } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { loggingIn } from "../store";
+import Navbar from "./Navbar";
+import {
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBIcon,
+  MDBBreadcrumb,
+  MDBBreadcrumbItem,
+  MDBIframe,
+  MDBView,
+  MDBCarousel,
+  MDBCarouselCaption,
+  MDBCarouselControl,
+  MDBCarouselInner,
+  MDBCarouselItem,
+  MDBCardImage,
+} from "mdb-react-ui-kit";
 
 class LogIn extends Component {
   state = {
@@ -34,42 +57,45 @@ class LogIn extends Component {
     }
 
     return (
-      <div className='Auth-form-container'>
-        <form onSubmit={this.handleSubmit} id='login' className='Auth-form'>
-          {toNext ? <Navigate to='/login' /> : null}
-          <div className='Auth-form-content'>
-            <h3 className='Auth-form-title'>Log In</h3>
-            <div className='form-group mt-3'>
-              <label>Email address</label>
-              <input
-                type="email"
-                className="form-control mt-1"
-                name="email"
-                placeholder="Enter email"
-                onChange={this.handleChange}
-              />
+     
+        <div className="Auth-form-container">
+
+          <form onSubmit={this.handleSubmit} id="login" className="Auth-form">
+            {toNext ? <Navigate to="/login" /> : null}
+            <div className="Auth-form-content">
+            <h3 className="Auth-form-title" style={{ color: "#c9e4ca" }}>Log In</h3>
+              <div className="form-group mt-3">
+                <label style={{ color: "#c9e4ca" }}>Email address</label>
+                <input
+                  type="email"
+                  className="form-control mt-1"
+                  name="email"
+                  placeholder="Enter email"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group mt-3">
+                <label style={{ color: "#c9e4ca" }}>Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-1"
+                  name="password"
+                  placeholder="Enter password"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="d-grid gap-2 mt-3">
+                <MDBBtn type="submit" color="success">
+                  Submit
+                </MDBBtn>
+              </div>
+              <p className="forgot-password text-right mt-2" style={{ color: "#c9e4ca" }}>
+                Forgot <a href="#" style={{ color: "#01a314" }}>password?</a>
+              </p>
             </div>
-            <div className="form-group mt-3">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control mt-1"
-                name="password"
-                placeholder="Enter password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-            <p className="forgot-password text-right mt-2">
-              Forgot <a href="#">password?</a>
-            </p>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+
     );
   }
 }

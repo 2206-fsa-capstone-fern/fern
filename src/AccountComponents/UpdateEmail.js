@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { gettingUser, resetingNotice, updatingEmail } from "../store";
-
+import {MDBBtn} from 'mdb-react-ui-kit';
 function UpdateEmail(props) {
   let { notice, user } = props;
   const { email } = user
@@ -48,7 +48,7 @@ function UpdateEmail(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">Confirm Update Email</button>
+            <MDBBtn color='success' id="confirm-delete">Confirm Update Email</MDBBtn>
             {notice.email === "Incorrect Password" ? <span>{`${notice.email}`}</span> : null}
           </div>
         </form>
@@ -64,7 +64,7 @@ function UpdateEmail(props) {
           />
         </div>
         <div className="input-field">
-          <button id="confirm-update-email">Update Email</button>
+          <MDBBtn color='success' id="confirm-update-email">Update Email</MDBBtn>
           {showConfirmNewEmail ? (
             <span>^^^ Input Password To Confirm Email Update ^^^</span>
           ) : null}
