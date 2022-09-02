@@ -6,33 +6,33 @@ import { CDBIcon } from "cdbreact";
 
 export const SideNavData = [
   {
-    title: "Dashboard",
+    title: "  Dashboard",
     path: "/dashboard",
     icon: <CDBIcon icon="tachometer-alt" />,
   },
   {
-    title: "Transactions",
+    title: "  Transactions",
     path: "/transactions",
     icon: <CDBIcon icon='money-check-alt' />,
   },
   {
-    title: "Trends",
+    title: "  Trends",
     path: "/trends",
     icon: <CDBIcon icon='chart-line' />,
   },
   {
-    title: "Budget",
+    title: "  Budget",
     path: "/budget",
     icon: <CDBIcon icon='piggy-bank' />,
   },
   {
-    title: 'Balances',
+    title: '  Balances',
     path: '/balances',
-    icon: <FaIcons.FaMoneyCheckAlt />
+    icon: <CDBIcon icon='coins' />
   },
-  // {
-  //   title: 'Settings',
-  //   path: '/settings',
-  //   icon: <FaIcons.FaCog />,
-  // },
+  {
+    title: '  Quiz',
+    path: '/quiz',
+    icon: <CDBIcon icon='edit' />,
+  },
 ];
