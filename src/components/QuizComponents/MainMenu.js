@@ -6,7 +6,7 @@ const MainMenu = () => {
   const { gameState, setGameState } = useContext(QuizContext);
   return (
     <div className="main-menu-quiz">
-      <h5>Put Your Financial Literacy To The Test</h5>
+      <h3>Put Your Financial Literacy To The Test</h3>
       <button
         onClick={() => {
           setGameState("quiz");

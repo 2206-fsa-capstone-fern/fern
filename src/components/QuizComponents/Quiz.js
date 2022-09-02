@@ -22,7 +22,7 @@ const Quiz = () => {
 
   return (
     <div className="quiz">
-      <h1>{Questions[currQuestion].prompt}</h1>
+      <h2 className="quiz-question">{Questions[currQuestion].prompt}</h2>
       <div className="quiz-options">
         <button onClick={() => setOptionChosen("A")}>{Questions[currQuestion].optionA}</button>
         <button onClick={() => setOptionChosen("B")}>{Questions[currQuestion].optionB}</button>

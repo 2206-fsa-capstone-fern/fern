@@ -69,7 +69,7 @@ export const Questions = [
     prompt: "Which of the following is not true about account numbers?",
     optionA: "Each bank account has a unique account number",
     optionB: "The account number can't be found at the bottom of a check",
-    optionC: "The second range of numbers in the series of numbers at the bottom of a check that tells the bank cashing the check which account to pull the money from",
+    optionC: "The second set of numbers at the bottom of a check that tells the bank cashing the check which account to pull the money from",
     optionD: "The account number and routing number are the same",
     answer: "D",
   },
