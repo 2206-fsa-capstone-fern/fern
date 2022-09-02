@@ -28,11 +28,11 @@ export const SideNavData = [
   {
     title: '  Balances',
     path: '/balances',
-    icon: <FaIcons.FaMoneyCheckAlt />
+    icon: <CDBIcon icon='coins' />
   },
-  // {
-  //   title: 'Settings',
-  //   path: '/settings',
-  //   icon: <FaIcons.FaCog />,
-  // },
+  {
+    title: '  Quiz',
+    path: '/quiz',
+    icon: <CDBIcon icon='edit' />,
+  },
 ];

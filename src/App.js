@@ -18,7 +18,8 @@ import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
 import AccountView from "./AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
-import Balances from "./components/AccountBalances"
+import Balances from "./components/AccountBalances";
+import QuizApp from "./components/QuizComponents/QuizApp";
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -188,6 +189,7 @@ function App(props) {
                     />
                     <Route exact path="/account" element={<AccountView />} />
                     <Route exact path="/balances" element={<Balances />} />
+                    <Route exact path="/quiz" element={<QuizApp />} />
                     <Route exact path="*" element={<NotFound />} />
                   </Routes>
                 </div>

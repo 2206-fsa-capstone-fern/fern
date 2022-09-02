@@ -1,0 +1,39 @@
+.quiz-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-menu-quiz, .quiz, .endScreen {
+  width: 500px;
+  height: 500px;
+  border-radius: 100px;
+  background-color: lightseagreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-menu-quiz button, .quiz button, .endScreen button {
+  width: 300px;
+  height: 50px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main-menu-quiz, .quiz, .endScreen {
+  color: white;
+}
+
+.quiz-options {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
