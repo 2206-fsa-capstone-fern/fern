@@ -1,5 +1,21 @@
 export const Questions = [
   {
+    prompt: "What is financial literacy?",
+    optionA: "The ability to read finance articles",
+    optionB: "The ability to use knowledge and skills to make effective and informed money management decisions",
+    optionC: "The ability to write good finance articles",
+    optionD: "The ability to have a good budget",
+    answer: "B",
+  },
+  {
+    prompt: "Which of the following type of account is a deposit at a bank or savings and loan that pays interest, but cannot be withdrawn in check writing?",
+    optionA: "Savings Account",
+    optionB: "Checkings Account",
+    optionC: "Burner Account",
+    optionD: "Retirement Account",
+    answer: "A",
+  },
+  {
     prompt:
       "Which federal loan type is not based on need and students are responsible for paying the interest on this loan while they are enrolled in college?",
     optionA: "Federal Unsubsidized Student Loan",
@@ -168,5 +184,26 @@ export const Questions = [
     optionC: "A loan to pay off credit card bills",
     optionD: "A loan to purchase a home or other real estate",
     answer: "D"
-  }
+  },
+  {
+    prompt: "Which of the following terms best describes interest which is calculated not only on the initial principal but also the accumulated interest of prior periods",
+    optionA: "Monthly Interest",
+    optionB: "Annual Interest",
+    optionC: "Compound Interest",
+    optionD: "Simple Interest",
+    answer: "C",
+  },
+  {
+    prompt: "Which of the following best describes an open-ended fund operated by an investment company which raises money from shareholders and invests in group assets, in accordance with a stated set of objectives?",
+    optionA: "Mutual Fund",
+    optionB: "Mortgage",
+    optionC: "Stock",
+    optionD: "Bond",
+    answer: "A",
+  },
 ];
+
+// Sources:
+// https://quizlet.com/516960337/financial-literacy-quiz-questions-flash-cards/
+// https://quizlet.com/76279408/financial-literacy-flash-cards/
+// https://quizlet.com/62515839/everfi-flash-cards/
