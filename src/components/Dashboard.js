@@ -14,6 +14,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import SideNav from "./SideNav/SideNav";
 import BalancesOverview from "./AccountBalancesOverview";
 import LastVsCurr from "./LastVsCurr";
+import TotalBudgetCard from "../BudgetComponents/TotalBudgetCard";
 
 //needs imported budget component for progress bar
 import Yearly from "./Yearly";
@@ -22,14 +23,20 @@ import "../Dashboard.css";
 
 const Dashboard = ({ open, ready }) => {
   const [components, setComponents] = useState([
-    { content: <BalancesOverview /> },
-    { content: <LastVsCurr /> },
-    // progress bar
-    { content: <Yearly /> },
-    // { content: <Daily /> },
+    { id: "component-1", content: <BalancesOverview /> },
+    { id: "component-2", content: <LastVsCurr /> },
+    { id: "component-3", content: <Yearly /> },
+    { id: "component-4", content: <TotalBudgetCard /> },
+  ]);
+  const [columns, setColumns] = useState([
+    {
+      name: "col-1",
+      content: components,
+    },
+    { name: "col-2", content: [] },
   ]);
 
-  const onDragEnd = (result) => {
+  const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) {
       return;
     }
@@ -38,10 +45,14 @@ const Dashboard = ({ open, ready }) => {
       return;
     }
 
-    const allComponents = [...components];
-    const [reorderedComponents] = allComponents.splice(result.source.index, 1);
-    allComponents.splice(result.destination.index, 0, reorderedComponents);
-    setComponents(allComponents);
+    const col = columns[result.source.droppableId];
+    const componentsCopy = [...col.content];
+    const [reorderedComponents] = componentsCopy.splice(result.source.index, 1);
+    componentsCopy.splice(result.destination.index, 0, reorderedComponents);
+    setColumns({
+      ...columns,
+      [result.source.droppableId]: { ...col, content: componentsCopy },
+    });
   };
 
   return (
@@ -59,70 +70,81 @@ const Dashboard = ({ open, ready }) => {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
-            <div className="d-flex card-section">
-              <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable
-                  droppableId="order"
-                  direction="vertical"
-                  type="column"
-                >
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                      {components.map((component, index) => (
-                        <Draggable
-                          draggableId={`draggable-${index}`}
-                          key={`draggable-${index}`}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <div
-                              className="component-container"
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              isdragging={snapshot.isdragging}
-                            >
-                              <div className="cards-container">
+          <div
+            style={{
+              height: "calc(100% - 64px)",
+              overflowY: "scroll",
+            }}
+          >
+            <div className="card-section">
+              <DragDropContext
+                onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+              >
+                {Object.entries(columns).map(([id, column]) => (
+                  <Droppable
+                    droppableId={id}
+                    // direction="vertical"
+                    // type="column"
+                  >
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        style={{
+                          background: snapshot.isDraggingOver
+                            ? "lightblue"
+                            : "lightgrey",
+                        }}
+                      >
+                        {column.content.map((component, index) => (
+                          <Draggable
+                            draggableId={component.id}
+                            key={component.id}
+                            index={index}
+                          >
+                            {(provided, snapshot) => (
+                              <div
+                                className="d-flex cards-container"
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                              >
                                 <div
-                                  className="card-bg w-200 border d-flex flex-column h-2000"
-                                  style={{ background: "#c9e4ca" }}
+                                  className="card-bg w-200 border d-flex h-2000"
+                                  style={{
+                                    background: snapshot.isDragging
+                                      ? "#263B4A"
+                                      : "#c9e4ca",
+                                  }}
                                 >
-                                  <div className="p-4 d-flex flex-column h-200">
-                                    <div className="mt-3 d-flex justify-content-between">
-                                      <CDBContainer
-                                        style={{
-                                          width: "450px",
-                                          height: "400px",
-                                          margin: "400 -400rem 400 -400rem",
-                                        }}
-                                        className="p-0"
-                                      >
-                                        <div>
-                                          <i
-                                            className="bi bi-list"
-                                            {...provided.dragHandleProps}
-                                          ></i>
-                                          {component.content}
-                                        </div>
-                                      </CDBContainer>
-                                    </div>
-                                  </div>
+                                  <i
+                                    className="bi bi-list"
+                                    {...provided.dragHandleProps}
+                                  />
+                                  <CDBContainer
+                                    style={{
+                                      width: "400px",
+                                      height: "400px",
+                                      margin: "400 -400rem 400 -400rem",
+                                    }}
+                                    className="p-0"
+                                  >
+                                    <div>{component.content}</div>
+                                  </CDBContainer>
                                 </div>
+                                {provided.placeholder}
                               </div>
-                              {provided.placeholder}
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                    </div>
-                  )}
-                </Droppable>
+                            )}
+                          </Draggable>
+                        ))}
+                      </div>
+                    )}
+                  </Droppable>
+                ))}
               </DragDropContext>
             </div>
           </div>
         </div>
-        <CDBTable borderless responsive></CDBTable>
+        <CDBTable borderless responsive />
       </div>
     </div>
   );

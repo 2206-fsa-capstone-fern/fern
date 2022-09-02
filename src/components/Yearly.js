@@ -17,8 +17,12 @@ const DoughnutChart = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = process.env.REACT_APP_PLAID_API_KEY;
-  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
-  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0]
+  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1)
+    .toISOString()
+    .split("T")[0];
+  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31)
+    .toISOString()
+    .split("T")[0];
   // console.log('firstDateThisOfYear', firstDateThisOfYear)
   // console.log('lastDateOfThisYear', lastDateOfThisYear)
 
@@ -61,8 +65,6 @@ const DoughnutChart = () => {
     };
     fetchCategories();
   }, [baseURL, proxyURL, apiKey, firstDateThisOfYear, lastDateOfThisYear]);
-
-  console.log("chart: \n", chart);
 
   const values = () => {
     let obj = {};
@@ -125,13 +127,13 @@ const DoughnutChart = () => {
     },
     plugins: {
       tooltip: {
-        events: ['mousemove'],
+        events: ["mousemove"],
       },
       title: {
         display: true,
-        text: "Yearly Overview"
+        text: "Yearly Overview",
       },
-    }
+    },
   };
 
   return (
