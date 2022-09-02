@@ -36,11 +36,14 @@
 
 .dashboard .card-section {
 	padding:0 1.5rem;
-	box-sizing: border-box;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	
 }
+
+/* .dashboard .column {
+	width: 50%
+} */
 /* 
 .dashboard .footer-link {
 	display:flex;
