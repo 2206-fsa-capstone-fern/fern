@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="quiz-app">
       {/* <h5>Put Your Financial Literacy To The Test</h5> */}
-      <h5>Quiz App</h5>
+      {/* <h5>Quiz App</h5> */}
       <QuizContext.Provider value={{ gameState, setGameState, score, setScore }}>
         {gameState === "menu" && <MainMenu />}
         {gameState === "quiz" && <Quiz />}
