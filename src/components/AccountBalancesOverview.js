@@ -1,5 +1,5 @@
+import { MDBContainer } from "mdbreact";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const BalancesOverview = () => {
   const [chart, setChart] = useState([]);
@@ -25,13 +25,8 @@ const BalancesOverview = () => {
         }),
       })
         .then((response) => {
-          // console.log('chart in .then: \n', chart)
-          console.log("response: \n", response);
           response.json().then((data) => {
-            console.log("data: \n", data);
-            // console.log("data.transactions: \n", data.transactions);
             setChart(data.accounts);
-            // setChart(data)
           });
         })
         .catch((error) => {
@@ -44,14 +39,14 @@ const BalancesOverview = () => {
   if (!chart[0]) {
     return (
       <div>
-        {/* <Link to="balances" style={{ textAlign: "center" }} className=""> */}
-        Accounts Overview
-        {/* </Link> */}
-        <table>
-          <tr>
-            <th>Account Type</th>
-            <th>Balance</th>
-          </tr>
+        Accounts
+        <table class="table">
+          <thead style={{ background: "green" }}>
+            <tr>
+              <th>Account Type</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
           <tr>
             <td>Depository</td>
             <td>Loading...</td>
@@ -68,16 +63,13 @@ const BalancesOverview = () => {
             <td>Loans</td>
             <td>Loading...</td>
           </tr>
-          {console.log("chart in return: \n", chart)}
         </table>
       </div>
     );
   }
   return (
-    <div>
-      {/* <Link to="balances" style={{ textAlign: "center" }} className=""> */}
-      Accounts Overview
-      {/* </Link> */}
+    <div style={{ display: "flex" }}>
+      Accounts
       <table>
         <tr>
           <th>Account Type</th>
@@ -85,7 +77,6 @@ const BalancesOverview = () => {
         </tr>
         <tr>
           <td>Depository</td>
-          {/* <td>checking, savings, cd, money market</td> */}
           <td>{`$${(
             Number(chart[0].balances.current) +
             Number(chart[1].balances.current) +
@@ -95,12 +86,10 @@ const BalancesOverview = () => {
         </tr>
         <tr>
           <td>Credit</td>
-          {/* <td>credit card</td> */}
           <td>{`$${chart[3].balances.current.toFixed(2)}`}</td>
         </tr>
         <tr>
           <td>Investments</td>
-          {/* <td>ira, 401k</td> */}
           <td>{`$${(
             Number(chart[5].balances.current) +
             Number(chart[6].balances.current)
@@ -108,13 +97,11 @@ const BalancesOverview = () => {
         </tr>
         <tr>
           <td>Loans</td>
-          {/* <td>student, mortgage</td> */}
           <td>{`$${(
             Number(chart[7].balances.current) +
             Number(chart[8].balances.current)
           ).toFixed(2)}`}</td>
         </tr>
-        {console.log("chart in return: \n", chart)}
       </table>
     </div>
   );

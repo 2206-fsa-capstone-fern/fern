@@ -96,7 +96,7 @@ const Dashboard = ({ open, ready }) => {
                   flex={true}
                   wrap={true}
                   direction="row"
-                  style={{ maxWidth: "900px" }}
+                  style={{ maxWidth: "1100px" }}
                 >
                   <SortableContext
                     items={components}
@@ -109,10 +109,13 @@ const Dashboard = ({ open, ready }) => {
                       {activeId ? (
                         <div
                           style={{
-                            width: "400px",
-                            height: "400px",
-                            backgroundColor: "red",
-                            //hover color
+                            //hover card style
+                            width: "500px",
+                            height: "450px",
+                            backgroundColor: "#c9e4ca",
+                            opacity: "0.5",
+                            border: "1px solid #c9e4ca",
+                            borderRadius: "7px",
                           }}
                         ></div>
                       ) : null}

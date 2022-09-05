@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import store from './store';
 import { Provider } from 'react-redux';
+import "mdbreact/dist/css/mdb.css";
 import App from './App';
 import { BudgetsProvider } from './contexts/BudgetsContext';
 import { BrowserRouter } from 'react-router-dom';

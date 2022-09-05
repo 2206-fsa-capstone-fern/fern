@@ -1,5 +1,3 @@
-// Spending by month
-
 import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
@@ -11,27 +9,12 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
-// import React, { useState, useEffect } from "react";
-// import {
-//   Chart as ChartJS,
-//   LineElement,
-//   PointElement,
-//   CategoryScale,
-//   LinearScale,
-// } from "chart.js";
-// import { Line } from "react-chartjs-2";
-
-// ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
-
 const Month = () => {
   const [chart, setChart] = useState([]);
 
   let base = "https://sandbox.plaid.com/";
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
-  // let proxyURL = "https://api.allorigins.win/raw?url=/"
   let apiKey = "62fd4373e8c0170014239c33";
 
   useEffect(() => {
@@ -88,11 +71,11 @@ const Month = () => {
   let datesAndAmount = datesAndAmt();
 
   let data = {
-    labels: Object.keys(datesAndAmount).reverse(), // x-axis values HAS to be passed in as an array
+    labels: Object.keys(datesAndAmount).reverse(), // x-axis values HAVE to be passed in as an array
     datasets: [
       {
         label: "Amount Spent in a Given Month",
-        data: Object.values(datesAndAmount).reverse(), // y-axis values HAS to be passed in as an array, can pass in multiple data values
+        data: Object.values(datesAndAmount).reverse(), // y-axis values HAVE to be passed in as an array, can pass in multiple data values
         backgroundColor: [
           "rgba(255, 99, 132, 0.7)",
           "rgba(54, 162, 235, 0.7)",
@@ -122,26 +105,26 @@ const Month = () => {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Amount Spent',
+          text: "Amount Spent",
         },
       },
       x: {
         title: {
           display: true,
-          text: 'Month',
-        }
-      }
+          text: "Month",
+        },
+      },
     },
     plugins: {
       tooltip: {
-        events: ['mousemove'],
+        events: ["mousemove"],
       },
       legend: {
         position: "top",
       },
       title: {
         display: true,
-        text: "Spending By Month",
+        text: "Monthly Spending",
       },
     },
     legend: {
@@ -154,7 +137,6 @@ const Month = () => {
   return (
     <div>
       <Bar height={400} data={data} options={options} />
-      {/* <Line height={400} data={data} options={options} /> */}
     </div>
   );
 };

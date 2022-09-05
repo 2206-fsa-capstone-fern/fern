@@ -19,16 +19,6 @@ function AllTransactions() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searched, setSearched] = useState([]);
 
-  //dropdown
-  // const [selectCategory, setSelectCategory] = useState("");
-  // const [filteredData, setFilteredData] = useState([]);
-
-  // const options = [];
-
-  // const handleCategoryChange = (event) => {
-  //   setSelectCategory(event.target.value);
-  // };
-
   useEffect(() => {
     const fetchTransactions = async () => {
       setLoading(true);
@@ -60,13 +50,6 @@ function AllTransactions() {
     fetchTransactions();
   }, []);
 
-  // useEffect(() => {
-  //   // filteredData = chart.filter(
-  //   //   (chart) => chart.account.category[0] === selectCategory
-  //   // );
-  //   setFilteredData(filteredData);
-  // }, [selectCategory]);
-
   const searchFn = (transactions) => {
     return transactions.filter(
       (account) =>
@@ -89,11 +72,6 @@ function AllTransactions() {
     return (
       <div>
         <input type="text" placeholder="Search" className="search" />
-        {/* <select id="month" onChange={handleCategoryChange}>
-          <option value="select Month">Month</option>
-          <option value="January">January</option>
-          <option value="January"></option>
-        </select> */}
         <table>
           <thead>
             <tr>
@@ -111,8 +89,6 @@ function AllTransactions() {
 
   return (
     <div className="transactions-page">
-      <Balances />
-      <br />
       <input
         type="text"
         className="search"
