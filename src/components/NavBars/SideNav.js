@@ -25,7 +25,7 @@ function SideNav(props) {
             className="text-decoration-none"
             style={{ color: "lightgreen", fontSize: 36 }}
           >
-            FernFi
+            Fern
           </a>
         </CDBSidebarHeader>
 

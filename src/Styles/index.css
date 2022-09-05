@@ -293,8 +293,9 @@ input:focus {
   width: 100%;
   padding: 10px;
   padding-bottom: 20px;
+  margin-left: 1000px;
 }
-/* .navbar-container {
+.navbar-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -303,13 +304,18 @@ input:focus {
 }
 
 .nav-link {
-  margin-left: 100px;
-  margin-right: 100px;
-} */
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+} 
+
 
 button.ripple.ripple-surface.btn.btn-success {
   margin-right: 5px;
   margin-top: 20px;
+ 
+  align-items: flex-end;
+
 }
 
 .modal-body {

@@ -9,21 +9,20 @@ const Navbar = (props) => {
   return (
     <div>
       <MDBNavbar style={{ background: "#c9e4ca" }}>
+        <h3
+          style={{
+            textAlign: "center",
+            paddingRight: "10px",
+            paddingLeft: "15px",
+          }}
+        >
+          Fern
+        </h3>
         <Header>
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="navbar">
-                  <h3
-                    style={{
-                      textAlign: "center",
-                      paddingRight: "50px",
-                      paddingLeft: "15px",
-                    }}
-                  >
-                    FernFi
-                  </h3>
-
                   <div className="navbar__links">
                     {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
                   </div>
