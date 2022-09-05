@@ -20,6 +20,8 @@ import AccountView from "./AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/AccountBalances";
 import QuizApp from "./components/QuizComponents/QuizApp";
+import Month from "./components/Month"
+import Daily from "./components/Daily"
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -187,6 +189,8 @@ function App(props) {
                       path="/transactions"
                       element={<AllTransactions />}
                     />
+                    <Route exact path="/month" element={<Month />} />
+                    <Route exact path="/daily" element={<Daily />} />
                     <Route exact path="/account" element={<AccountView />} />
                     <Route exact path="/balances" element={<Balances />} />
                     <Route exact path="/quiz" element={<QuizApp />} />

@@ -1,0 +1,14 @@
+div.daily-bar-graph {
+  background-color: #c9e4ca;
+  width: 400px;
+  border-radius:5px;
+  height: 400px;
+  justify-self: center;
+}
+
+
+.monthly-bar-graph {
+  background-color: #c9e4ca;
+  width: 400px;
+  border-radius:5px;
+} 

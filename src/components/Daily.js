@@ -9,20 +9,6 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
-// import React, { useState, useEffect } from "react";
-// import {
-//   Chart as ChartJS,
-//   LineElement,
-//   PointElement,
-//   CategoryScale,
-//   LinearScale,
-// } from "chart.js";
-// import { Line } from "react-chartjs-2";
-
-// ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
-
 const Daily = () => {
   const [chart, setChart] = useState([]);
 
@@ -96,22 +82,28 @@ const Daily = () => {
         label: "Spending Through The Week By Day",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)", // red/pink
-          "rgba(54, 162, 235, 0.2)", // blue
-          "rgba(255, 206, 86, 0.2)", // yellow
-          "rgba(75, 192, 192, 0.2)", // teal
-          "rgba(153, 102, 255, 0.2)", // purple
-          "rgba(255, 159, 64, 0.2)", // orange
-          "rgba(50, 168, 82, 0.2)", // green
+          "rgba(190, 222, 170, 1)",
+          "rgba(176, 215, 152, 1)",
+          "rgba(162, 208, 133, 1)",
+          "rgba(148, 201, 115, 1)",
+          "rgba(134, 194, 97, 1)",
+          "rgba(120, 187, 78, 1)",
+          "rgba(107, 173, 67, 1)",
+          "rgba(96, 155, 60, 1)",
+          "rgba(84, 136, 53, 1)",
+          "rgba(73, 118, 46, 1)"
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(50, 168, 82, 1)"
+          "rgba(190, 222, 170, 1)",
+          "rgba(176, 215, 152, 1)",
+          "rgba(162, 208, 133, 1)",
+          "rgba(148, 201, 115, 1)",
+          "rgba(134, 194, 97, 1)",
+          "rgba(120, 187, 78, 1)",
+          "rgba(107, 173, 67, 1)",
+          "rgba(96, 155, 60, 1)",
+          "rgba(84, 136, 53, 1)",
+          "rgba(73, 118, 46, 1)"
         ],
         borderWidth: 1,
       },
@@ -119,8 +111,10 @@ const Daily = () => {
   };
 
   let options = {
+    // maintainAspectRatio: true,
     maintainAspectRatio: false,
     responsive: true,
+    // responsive: false,
     scales: {
       y: {
         beginAtZero: true,
@@ -132,7 +126,7 @@ const Daily = () => {
       },
       title: {
         display: true,
-        text: 'Daily Spending Throughout Week',
+        text: 'Daily Spending',
       },
     },
     legend: {
@@ -143,10 +137,9 @@ const Daily = () => {
   };
 
   return (
-    <div>
+    <>
       <Bar height={400} data={data} options={options} />
-      {/* <Line height={400} data={data} options={options} /> */}
-    </div>
+    </>
   );
 };
 

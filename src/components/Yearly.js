@@ -8,7 +8,7 @@ const Yearly = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = process.env.REACT_APP_PLAID_API_Key;
-  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
+  let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
   let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0]
   // console.log('firstDateThisOfYear', firstDateThisOfYear)
   // console.log('lastDateOfThisYear', lastDateOfThisYear)
@@ -30,7 +30,7 @@ const Yearly = () => {
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           // start_date: "2022-01-01",
           // end_date: "2022-12-31",
-          start_date: firstDateThisOfYear,
+          start_date: firstDateOfThisYear,
           end_date: lastDateOfThisYear,
         }),
       })
