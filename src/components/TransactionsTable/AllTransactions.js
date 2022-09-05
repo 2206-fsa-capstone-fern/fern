@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
-import SideNav from "../SideNav/SideNav";
+import SideNav from "../NavBars/SideNav";
+import { MDBInput } from "mdb-react-ui-kit";
 
 function AllTransactions() {
   //loading transaction data
@@ -18,16 +19,6 @@ function AllTransactions() {
   //search
   const [searchQuery, setSearchQuery] = useState("");
   const [searched, setSearched] = useState([]);
-
-  //dropdown
-  // const [selectCategory, setSelectCategory] = useState("");
-  // const [filteredData, setFilteredData] = useState([]);
-
-  // const options = [];
-
-  // const handleCategoryChange = (event) => {
-  //   setSelectCategory(event.target.value);
-  // };
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -53,19 +44,10 @@ function AllTransactions() {
           });
         })
 
-        .catch((error) => {
-          console.log("ERROR: \n", error);
-        });
+        .catch((error) => {});
     };
     fetchTransactions();
   }, []);
-
-  // useEffect(() => {
-  //   // filteredData = chart.filter(
-  //   //   (chart) => chart.account.category[0] === selectCategory
-  //   // );
-  //   setFilteredData(filteredData);
-  // }, [selectCategory]);
 
   const searchFn = (transactions) => {
     return transactions.filter(
@@ -97,34 +79,27 @@ function AllTransactions() {
             display: "flex",
             flexFlow: "column",
             height: "100vh",
-            overflowY: "hidden",
           }}
         >
-          <div style={{ height: "100%", background: "#364958" }}>
-            <input type="text" placeholder="Search" className="search" />
-            {/* <select id="month" onChange={handleCategoryChange}>
-          <option value="select Month">Month</option>
-          <option value="January">January</option>
-          <option value="January"></option>
-        </select> */}
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Loading...</th>
-                  </tr>
-                </tbody>
-                <></>
-              </table>
-            </div>
+          <MDBInput type="text" placeholder="Search" className="search" />
+
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Loading...</th>
+                </tr>
+              </tbody>
+              <></>
+            </table>
           </div>
         </div>
       </div>
@@ -146,13 +121,15 @@ function AllTransactions() {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <div className="all-transactions">
-            <input
-              type="text"
-              className="search"
-              placeholder="Search"
-              onChange={(event) => setSearchQuery(event.target.value)}
-            />
+          <MDBInput
+            style={{ width: "40.9%", marginLeft: "26.5%", marginTop: "2%" }}
+            type="text"
+            placeholder="Search"
+            className="search"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <div>
             <Table transactions={searched} />
           </div>
         </div>
