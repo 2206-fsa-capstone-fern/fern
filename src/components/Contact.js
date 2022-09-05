@@ -6,9 +6,7 @@ export class Contact extends React.Component {
     return (
       <div>
         <section className="contact-header">Contact</section>
-        <p className="contact-desc">
-          in case we want to put soemthing here
-        </p>
+        <p className="contact-desc">in case we want to put soemthing here</p>
         <br />
 
         <p className="bakers">The Investors</p>
@@ -17,7 +15,10 @@ export class Contact extends React.Component {
             <div className="card">
               <div className="content">
                 <div className="imgBx">
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""/>
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""
+                  />
                 </div>
                 <div className="contentBx">
                   <h4>Alex Wong</h4>
@@ -45,7 +46,10 @@ export class Contact extends React.Component {
             <div className="card">
               <div className="content">
                 <div className="imgBx">
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""/>
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""
+                  />
                 </div>
                 <div className="contentBx">
                   <h4>Amy Wong</h4>
@@ -73,7 +77,10 @@ export class Contact extends React.Component {
             <div className="card">
               <div className="content">
                 <div className="imgBx">
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""
+                  />
                 </div>
                 <div className="contentBx">
                   <h4>Savoy Rath</h4>
@@ -101,7 +108,10 @@ export class Contact extends React.Component {
             <div className="card">
               <div className="content">
                 <div className="imgBx">
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""
+                  />
                 </div>
                 <div className="contentBx">
                   <h4>Victor Lopez</h4>

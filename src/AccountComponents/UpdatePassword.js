@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { resetingNotice, updatingPassword } from "../store";
-import {MDBBtn} from 'mdb-react-ui-kit';
+import { MDBBtn } from "mdb-react-ui-kit";
 function UpdatePassword(props) {
   const { notice, user } = props;
   const { email } = user;
@@ -25,7 +25,6 @@ function UpdatePassword(props) {
       confirmPassword,
       newPassword
     );
-    console.log(newNotice);
     if (newNotice.notice.pass !== "Incorrect Password") {
       document.getElementById("update-password").reset();
       setShowConfirmNewPassword(false);
@@ -43,7 +42,9 @@ function UpdatePassword(props) {
       {showConfirmNewPassword ? (
         <form onSubmit={confirmNewPassword} id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -64,7 +65,9 @@ function UpdatePassword(props) {
 
       <form id="update-password" onSubmit={handleSubmitOnNewPassword}>
         <div className="input-field">
-          <label htmlFor="password">Update Password</label>
+          <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+            Update Password
+          </label>
           <input
             type="password"
             name="newPassword"
@@ -78,10 +81,14 @@ function UpdatePassword(props) {
             Update Password
           </MDBBtn>
           {showConfirmNewPassword ? (
-            <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
+            <span style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Password Update
+            </span>
           ) : null}
           {notice.pass && notice.pass !== "Incorrect Password" ? (
-            <span>Password Updated Successfully</span>
+            <span style={{ color: "#c9e4ca" }}>
+              Password Updated Successfully
+            </span>
           ) : null}
         </div>
         <br />

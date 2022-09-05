@@ -1,4 +1,4 @@
-import { Button, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddBudgetModal from "./BudgetComponents/AddBudgetModal";
 import AddExpenseModal from "./BudgetComponents/AddExpenseModal";
@@ -8,8 +8,8 @@ import UncategorizedBudgetCard from "./BudgetComponents/UncategorizedBudgetCard"
 import TotalBudgetCard from "./BudgetComponents/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
-import SideNav from "./components/SideNav/SideNav";
-import "./Budget.css";
+import SideNav from "./components/NavBars/SideNav";
+import "./Styles/Budget.css";
 import { MDBBtn } from "mdb-react-ui-kit";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -39,14 +39,18 @@ function BudgetApp() {
       >
         <div style={{ height: "100%", background: "#364958" }}>
           <Container className="my-4" style={{ alignItems: "center" }}>
-            <Stack direction="horizontal"  className="mb-4" style={{paddingRight: '5%', marginLeft: '5%',marginTop: '5%'}}>
+            <Stack
+              direction="horizontal"
+              className="mb-4"
+              style={{ paddingRight: "5%", marginLeft: "5%", marginTop: "5%" }}
+            >
               <MDBBtn
-                color='success'
+                color="success"
                 onClick={() => setShowAddBudgetModal(true)}
               >
                 Add Budget
               </MDBBtn>
-              <MDBBtn color='success' onClick={openAddExpenseModal}>
+              <MDBBtn color="success" onClick={openAddExpenseModal}>
                 Add Expense
               </MDBBtn>
             </Stack>
@@ -67,7 +71,7 @@ function BudgetApp() {
                   0
                 );
                 return (
-                  <BudgetCard 
+                  <BudgetCard
                     key={budget.id}
                     name={budget.name}
                     amount={amount}

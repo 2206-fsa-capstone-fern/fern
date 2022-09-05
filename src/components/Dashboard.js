@@ -1,20 +1,10 @@
 import React from "react";
-import {
-  CDBBtn,
-  CDBProgress,
-  CDBTable,
-  CDBTableHeader,
-  CDBTableBody,
-  CDBContainer,
-  CDBLink,
-} from "cdbreact";
+import { MDBProgress, MDBTable, MDBContainer } from "mdb-react-ui-kit";
 
-import Chart from "chart.js/auto";
 import { Bar, Pie } from "react-chartjs-2";
 
-import SideNav from "./SideNav/SideNav";
-import "../Dashboard.css";
-import { Link } from "react-router-dom";
+import SideNav from "./NavBars/SideNav";
+import "../Styles/Dashboard.css";
 
 const Dashboard = () => {
   const data = {
@@ -97,11 +87,11 @@ const Dashboard = () => {
                     <h4 className="my-4 text-right text-dark h2 font-weight-bold">
                       Tens of Thousands of Dollars
                     </h4>
-                    <CDBProgress
+                    <MDBProgress
                       value={65}
                       height={8}
                       colors="primary"
-                    ></CDBProgress>
+                    ></MDBProgress>
                     <p className="mt-2 text-success small">
                       <i className="fas fa-angle-up p-0"></i> 420%
                       <span
@@ -131,7 +121,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="mt-3 d-flex justify-content-between">
-                      <CDBContainer
+                      <MDBContainer
                         style={{
                           width: "250px",
                           height: "300px",
@@ -147,7 +137,7 @@ const Dashboard = () => {
                             { legend: { display: false } })
                           }
                         />
-                      </CDBContainer>
+                      </MDBContainer>
                     </div>
                     <p className="c-p text-dark mb-0 font-weight-bold text-right mt-auto">
                       More Details
@@ -161,9 +151,9 @@ const Dashboard = () => {
                 ></div>
                 <div
                   className="card-bg w-100 d-flex flex-column border d-flex flex-column"
-                  style={{ gridRow: "span 2",  background: "#c9e4ca" }}
+                  style={{ gridRow: "span 2", background: "#c9e4ca" }}
                 >
-                  <div className="p-4 d-flex flex-column h-100" >
+                  <div className="p-4 d-flex flex-column h-100">
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="m-0 h5 font-weight-bold text-dark">
                         Bar Chartzzzzzzzz
@@ -216,7 +206,7 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <CDBTable borderless responsive></CDBTable>
+                <MDBTable borderless responsive></MDBTable>
               </div>
             </div>
           </div>
