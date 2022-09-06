@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Chart as ChartJS,
+  // Chart as ChartJS,
   ArcElement,
   Tooltip,
   Legend,
@@ -8,6 +8,7 @@ import {
 } from "chart.js";
 import "chartjs-adapter-moment";
 import { Doughnut } from "react-chartjs-2";
+import {Chart as ChartJS} from "chart.js/auto";
 ChartJS.register(...registerables, Tooltip, Legend, ArcElement);
 
 const DoughnutChart = () => {
