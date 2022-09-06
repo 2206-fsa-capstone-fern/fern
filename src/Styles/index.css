@@ -281,26 +281,26 @@ input:focus {
 /* NAVBAR */
 .plaidButton {
   cursor: pointer;
-  padding-top: 50px;
-  text-align: right;
-  text-decoration: none;
-  width: 100%;
+  /* padding-top: 50px; */
+  /* text-align: right; */
+  /* text-decoration: none; */
+  /* width: 100%; */
 }
 
 .authLink {
-  text-align: right;
-  text-decoration: none;
-  width: 100%;
-  padding: 10px;
-  padding-bottom: 20px;
-  margin-left: 1000px;
+  /* text-align: right; */
+  /* text-decoration: none; */
+  /* width: 100%; */
+  /* padding: 10px; */
+  /* padding-bottom: 20px; */
+  /* margin-left: 1000px; */
 }
 .navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  background-color: aliceblue;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* width: 100vw; */
+  background-color: 55828B;
 }
 
 .nav-link {
@@ -311,10 +311,10 @@ input:focus {
 
 
 button.ripple.ripple-surface.btn.btn-success {
-  margin-right: 5px;
-  margin-top: 20px;
+  /* margin-right: 5px; */
+  /* margin-top: 20px; */
  
-  align-items: flex-end;
+  /* align-items: flex-end; */
 
 }
 
