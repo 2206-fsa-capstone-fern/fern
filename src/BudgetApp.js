@@ -1,4 +1,4 @@
-import { Button, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddBudgetModal from "./components/BudgetComponents/AddBudgetModal";
 import AddExpenseModal from "./components/BudgetComponents/AddExpenseModal";
@@ -9,7 +9,8 @@ import TotalBudgetCard from "./components/BudgetComponents/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
 import SideNav from "./components/NavBars/SideNav";
-import "./Budget.css";
+import "./Styles/Budget.css";
+import { MDBBtn } from "mdb-react-ui-kit";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
@@ -41,17 +42,17 @@ function BudgetApp() {
             <Stack
               direction="horizontal"
               className="mb-4"
-              style={{ paddingLeft: "7%", marginTop: "10%" }}
+              style={{ paddingRight: "5%", marginLeft: "5%", marginTop: "5%" }}
             >
-              <Button
-                variant="primary"
+              <MDBBtn
+                color="success"
                 onClick={() => setShowAddBudgetModal(true)}
               >
                 Add Budget
-              </Button>
-              <Button variant="primary" onClick={openAddExpenseModal}>
+              </MDBBtn>
+              <MDBBtn color="success" onClick={openAddExpenseModal}>
                 Add Expense
-              </Button>
+              </MDBBtn>
             </Stack>
 
             <div

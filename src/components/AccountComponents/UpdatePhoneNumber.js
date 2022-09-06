@@ -41,6 +41,37 @@ function UpdatePhoneNumber(props) {
 
   return (
     <div>
+      <form id="update-phoneNumber" onSubmit={handleSubmitOnNewPhoneNumber}>
+        <div style={{ color: "#c9e4ca" }} className="input-field">
+          <label htmlFor="phoneNumber" style={{ color: "#c9e4ca" }}>
+            Update Phone Number (123-456-7890)
+          </label>
+          <input
+            type="tel"
+            name="newPhoneNumber"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <MDBBtn color="success" id="confirm-update-phoneNumber">
+            Update Phone Number
+          </MDBBtn>
+          {showConfirmNewPhoneNumber ? (
+            <div style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Update
+            </div>
+          ) : null}
+          {notice.phone && notice.phone !== "Incorrect Password" ? (
+            <div style={{ color: "#c9e4ca" }}>
+              Phone Number Updated Successfully
+            </div>
+          ) : null}
+        </div>
+        <br />
+      </form>
+
       {showConfirmNewPhoneNumber ? (
         <form onSubmit={confirmNewPhoneNumber} id="signup" className="white">
           <div className="input-field">
@@ -60,45 +91,14 @@ function UpdatePhoneNumber(props) {
               id="confirm-delete"
               style={{ color: "#c9e4ca" }}
             >
-              Confirm Update Phone Number
+              Confirm Update
             </MDBBtn>
             {notice.phone === "Incorrect Password" ? (
-              <span>{`${notice.phone}`}</span>
+              <div style={{ color: "#c9e4ca" }}>{`${notice.phone}`}</div>
             ) : null}
           </div>
         </form>
       ) : null}
-
-      <form id="update-phoneNumber" onSubmit={handleSubmitOnNewPhoneNumber}>
-        <div className="input-field">
-          <label htmlFor="phoneNumber" style={{ color: "#c9e4ca" }}>
-            Update Phone Number
-          </label>
-          <input
-            type="tel"
-            name="newPhoneNumber"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input-field">
-          <MDBBtn color="success" id="confirm-update-phoneNumber">
-            Update Phone Number
-          </MDBBtn>
-          {showConfirmNewPhoneNumber ? (
-            <span style={{ color: "#c9e4ca" }}>
-              Input Password To Confirm Phone Number Update
-            </span>
-          ) : null}
-          {notice.phone && notice.phone !== "Incorrect Password" ? (
-            <span style={{ color: "#c9e4ca" }}>
-              Phone Number Updated Successfully
-            </span>
-          ) : null}
-        </div>
-        <br />
-      </form>
     </div>
   );
 }

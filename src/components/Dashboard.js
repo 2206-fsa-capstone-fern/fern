@@ -22,12 +22,13 @@ import { MDBContainer } from "mdbreact";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import SideNav from "./NavBars/SideNav";
-import BalancesOverview from "./AccountBalancesOverview";
+import BalancesOverview from "./Balances/AccountBalancesOverview";
 import LastVsCurr from "./Charts/LastVsCurr";
 import TotalBudgetCard from "./BudgetComponents/TotalBudgetCard";
 import Yearly from "./Charts/Yearly";
 
-import "../Dashboard.css";
+import "../Styles/Dashboard.css";
+import { Link } from "react-router-dom";
 
 const Dashboard = ({ open, ready }) => {
   const [activeId, setActiveId] = useState(null);

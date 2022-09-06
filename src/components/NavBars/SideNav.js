@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import SignedInLinks from "../SignedInLinks";
 import SignedOutLinks from "../SignedOutLinks";
+
 import { SideNavData } from "./SideNavData";
 import {
   CDBSidebar,

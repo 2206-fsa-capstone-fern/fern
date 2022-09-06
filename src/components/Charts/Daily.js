@@ -40,13 +40,10 @@ const Daily = () => {
       })
         .then((response) => {
           response.json().then((json) => {
-            console.log("json: \n", json);
             setChart(json.transactions);
           });
         })
-        .catch((error) => {
-          console.log("error: \n", error);
-        });
+        .catch((error) => {});
     };
     fetchCoins();
   }, [baseURL, proxyURL, apiKey, todaysDate, lastWeeksDate]);

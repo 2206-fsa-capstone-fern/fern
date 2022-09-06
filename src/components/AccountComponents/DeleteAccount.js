@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { deletingAccount } from "../../store";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 function DeleteAccount(props) {
   const { notice, user } = props;
@@ -29,10 +30,29 @@ function DeleteAccount(props) {
 
   return (
     <div>
+      <form className="delete-form">
+        <div>
+          <MDBBtn
+            color="success"
+            id="delete-account"
+            onClick={handleSubmitOnDelete}
+          >
+            Delete Account
+          </MDBBtn>
+          {showConfirmDelete ? (
+            <div style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Delete Account
+            </div>
+          ) : null}
+        </div>
+        <br />
+      </form>
       {showConfirmDelete ? (
         <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -41,25 +61,15 @@ function DeleteAccount(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">CONFIRM DELETE</button>
+            <MDBBtn color="success" id="confirm-delete">
+              Confirm Delete
+            </MDBBtn>
             {notice.delete === "Incorrect Password" ? (
-              <span>{`${notice.delete}`}</span>
+              <div style={{ color: "#c9e4ca" }}>{`${notice.delete}`}</div>
             ) : null}
           </div>
         </form>
       ) : null}
-
-      <form className="delete-form">
-        <div>
-          <button id="delete-account" onClick={handleSubmitOnDelete}>
-            Delete Account
-          </button>
-          {showConfirmDelete ? (
-            <span>^^^ Input Password To Confirm Delete Account ^^^</span>
-          ) : null}
-        </div>
-        <br />
-      </form>
     </div>
   );
 }
