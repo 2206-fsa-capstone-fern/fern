@@ -30,28 +30,6 @@ function DeleteAccount(props) {
 
   return (
     <div>
-      {showConfirmDelete ? (
-        <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="input-field">
-            <MDBBtn color="success" id="confirm-delete">
-              CONFIRM DELETE
-            </MDBBtn>
-            {notice.delete === "Incorrect Password" ? (
-              <span>{`${notice.delete}`}</span>
-            ) : null}
-          </div>
-        </form>
-      ) : null}
-
       <form className="delete-form">
         <div>
           <MDBBtn
@@ -62,11 +40,32 @@ function DeleteAccount(props) {
             Delete Account
           </MDBBtn>
           {showConfirmDelete ? (
-            <span>^^^ Input Password To Confirm Delete Account ^^^</span>
+            <div style={{ color: "#c9e4ca" }}>Input Password To Confirm Delete Account</div>
           ) : null}
         </div>
         <br />
       </form>
+      {showConfirmDelete ? (
+        <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
+          <div className="input-field">
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <MDBBtn color="success" id="confirm-delete">
+              Confirm Delete
+            </MDBBtn>
+            {notice.delete === "Incorrect Password" ? (
+              <div style={{ color: "#c9e4ca" }}>{`${notice.delete}`}</div>
+            ) : null}
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 }

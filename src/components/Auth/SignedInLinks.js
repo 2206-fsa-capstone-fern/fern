@@ -32,8 +32,8 @@ const SignedInLinks = (props) => {
       {isLoggedIn ? (
         <MDBBtn color="success">
           <NavLink to="/account" className="authLink">
-            {user.firstName[0]}
-            {user.lastName[0]}
+            {user.firstName[0].toUpperCase()}
+            {user.lastName[0].toUpperCase()}
           </NavLink>
         </MDBBtn>
       ) : (
