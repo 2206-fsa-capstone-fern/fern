@@ -1,24 +1,24 @@
 //React
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
 import { usePlaidLink } from "react-plaid-link";
-import "./Plaid.scss";
-import "./App.css";
+import "./Styles/Plaid.scss";
+import "./Styles/App.css";
 
 //Components
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBars/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
-import SideNav from "./components/SideNav/SideNav";
 import Trends from "./components/Trends";
-import AccountView from "./AccountComponents/AccountView";
+import AccountView from "./components/AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/AccountBalances";
+import QuizApp from "./components/Quiz/QuizApp";
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -100,47 +100,14 @@ function App(props) {
     }
   }, [token, isOauth, ready, open]);
 
-  // <div>
-  //   <button onClick={() => open()
-  //     } disabled={!ready}>
-  //     <strong>Link account</strong>
-  //   </button>
-
-  // try {
-  //   if (!loading && transactions !== null) {
-  //     const dataObj = transactions.Transactions;
-  //     transactions = dataObj.transactions;
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   return (
     <div className="App">
       {isLoggedIn ? (
         <div>
           {isAdmin ? (
-            <div>
-              {/* <Navbar
-                  open={open}
-                  ready={ready}
-                  transactions={props.transactions[0]}
-                  transactions2={props.transactions[1]}
-                />
-                 */}
-            </div>
+            <div></div>
           ) : (
             <div>
-              {/* <div className='navbar-logged-in'>
-              
-                  <Navbar
-                    open={open}
-                    ready={ready}
-                    transactions={props.transactions[0]}
-                    transactions2={props.transactions[1]}
-                  />
-                </div> */}
-
               <div className="app-container">
                 <Routes>
                   <Route
@@ -150,26 +117,15 @@ function App(props) {
                       <LinkAccount
                         open={open}
                         ready={ready}
-                        // transactions={props.transactions[0]}
-                        // transactions2={props.transactions[1]}
+                        transactions={props.transactions[0]}
+                        transactions2={props.transactions[1]}
                       />
                     }
-                  />
-                  <Route
-                    path="/*"
-                    element={<Navigate replace to="/dashboard" />}
                   />
                   <Route
                     exact
                     path="/dashboard"
-                    element={
-                      <Dashboard
-                        open={open}
-                        ready={ready}
-                        // transactions={props.transactions[0]}
-                        // transactions2={props.transactions[1]}
-                      />
-                    }
+                    element={<Dashboard transactions={props.transactions[0]} />}
                   />
                   <Route
                     exact
@@ -195,6 +151,7 @@ function App(props) {
                   />
                   <Route exact path="/account" element={<AccountView />} />
                   <Route exact path="/balances" element={<Balances />} />
+                  <Route exact path="/quiz" element={<QuizApp />} />
                   <Route exact path="*" element={<NotFound />} />
                 </Routes>
               </div>

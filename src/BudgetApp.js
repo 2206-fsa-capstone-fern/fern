@@ -1,14 +1,14 @@
 import { Button, Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import AddBudgetModal from "./BudgetComponents/AddBudgetModal";
-import AddExpenseModal from "./BudgetComponents/AddExpenseModal";
-import ViewExpensesModal from "./BudgetComponents/ViewExpensesModal";
-import BudgetCard from "./BudgetComponents/BudgetCard";
-import UncategorizedBudgetCard from "./BudgetComponents/UncategorizedBudgetCard";
-import TotalBudgetCard from "./BudgetComponents/TotalBudgetCard";
+import AddBudgetModal from "./components/BudgetComponents/AddBudgetModal";
+import AddExpenseModal from "./components/BudgetComponents/AddExpenseModal";
+import ViewExpensesModal from "./components/BudgetComponents/ViewExpensesModal";
+import BudgetCard from "./components/BudgetComponents/BudgetCard";
+import UncategorizedBudgetCard from "./components/BudgetComponents/UncategorizedBudgetCard";
+import TotalBudgetCard from "./components/BudgetComponents/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
-import SideNav from "./components/SideNav/SideNav";
+import SideNav from "./components/NavBars/SideNav";
 import "./Budget.css";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -38,7 +38,11 @@ function BudgetApp() {
       >
         <div style={{ height: "100%", background: "#364958" }}>
           <Container className="my-4" style={{ alignItems: "center" }}>
-            <Stack direction="horizontal"  className="mb-4" style={{paddingLeft: '7%', marginTop: '10%'}}>
+            <Stack
+              direction="horizontal"
+              className="mb-4"
+              style={{ paddingLeft: "7%", marginTop: "10%" }}
+            >
               <Button
                 variant="primary"
                 onClick={() => setShowAddBudgetModal(true)}

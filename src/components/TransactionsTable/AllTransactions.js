@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
-import Balances from "../AccountBalances";
+import SideNav from "../NavBars/SideNav";
+import { MDBInput } from "mdb-react-ui-kit";
 
 function AllTransactions() {
   //loading transaction data
@@ -43,9 +44,7 @@ function AllTransactions() {
           });
         })
 
-        .catch((error) => {
-          console.log("ERROR: \n", error);
-        });
+        .catch((error) => {});
     };
     fetchTransactions();
   }, []);
@@ -70,32 +69,71 @@ function AllTransactions() {
 
   if (loading) {
     return (
-      <div>
-        <input type="text" placeholder="Search" className="search" />
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <></>
-        </table>
+      <div className="budget d-flex">
+        <div>
+          <SideNav />
+        </div>
+        <div
+          style={{
+            flex: "1 1 auto",
+            display: "flex",
+            flexFlow: "column",
+            height: "100vh",
+          }}
+        >
+          <MDBInput type="text" placeholder="Search" className="search" />
+
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Loading...</th>
+                </tr>
+              </tbody>
+              <></>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="transactions-page">
-      <input
-        type="text"
-        className="search"
-        placeholder="Search"
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
-      <Table transactions={searched} />
+    <div className="budget d-flex">
+      <div>
+        <SideNav />
+      </div>
+      <div
+        style={{
+          flex: "1 1 auto",
+          display: "flex",
+          flexFlow: "column",
+          height: "100vh",
+          overflowY: "hidden",
+        }}
+      >
+        <div style={{ height: "100%", background: "#364958" }}>
+          <MDBInput
+            style={{ width: "40.9%", marginLeft: "26.5%", marginTop: "2%" }}
+            type="text"
+            placeholder="Search"
+            className="search"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <div>
+            <Table transactions={searched} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Box } from "grommet";
 import {
   DndContext,
   closestCenter,
@@ -22,11 +21,11 @@ import SortableItem from "./DashboardItems";
 import { MDBContainer } from "mdbreact";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import SideNav from "./SideNav/SideNav";
+import SideNav from "./NavBars/SideNav";
 import BalancesOverview from "./AccountBalancesOverview";
-import LastVsCurr from "./LastVsCurr";
-import TotalBudgetCard from "../BudgetComponents/TotalBudgetCard";
-import Yearly from "./Yearly";
+import LastVsCurr from "./Charts/LastVsCurr";
+import TotalBudgetCard from "./BudgetComponents/TotalBudgetCard";
+import Yearly from "./Charts/Yearly";
 
 import "../Dashboard.css";
 

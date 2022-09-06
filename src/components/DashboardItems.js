@@ -2,7 +2,6 @@ import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { MDBContainer } from "mdbreact";
 import { CSS } from "@dnd-kit/utilities";
-import { Box } from "grommet";
 
 const SortableItem = (props) => {
   const {
