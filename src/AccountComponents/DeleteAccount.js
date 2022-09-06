@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { deletingAccount } from "../store";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 function DeleteAccount(props) {
-  const { notice, user } = props
-  const { email } = user
+  const { notice, user } = props;
+  const { email } = user;
   const navigate = useNavigate();
   const [confirmPassword, setPassword] = useState("");
   const [showConfirmDelete, setshowConfirmDelete] = useState(false);
@@ -41,17 +42,25 @@ function DeleteAccount(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">CONFIRM DELETE</button>
-            {notice.delete === "Incorrect Password" ? <span>{`${notice.delete}`}</span> : null}
+            <MDBBtn color="success" id="confirm-delete">
+              CONFIRM DELETE
+            </MDBBtn>
+            {notice.delete === "Incorrect Password" ? (
+              <span>{`${notice.delete}`}</span>
+            ) : null}
           </div>
         </form>
       ) : null}
 
       <form className="delete-form">
         <div>
-          <button id="delete-account" onClick={handleSubmitOnDelete}>
+          <MDBBtn
+            color="success"
+            id="delete-account"
+            onClick={handleSubmitOnDelete}
+          >
             Delete Account
-          </button>
+          </MDBBtn>
           {showConfirmDelete ? (
             <span>^^^ Input Password To Confirm Delete Account ^^^</span>
           ) : null}
@@ -65,7 +74,7 @@ function DeleteAccount(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
-    user: state.user
+    user: state.user,
   };
 };
 

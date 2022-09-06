@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { gettingUser, resetingNotice, updatingEmail } from "../store";
-
+import { MDBBtn } from "mdb-react-ui-kit";
 function UpdateEmail(props) {
   let { notice, user } = props;
-  const { email } = user
+  const { email } = user;
   const [confirmPassword, setPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [showConfirmNewEmail, setShowConfirmNewEmail] = useState(false);
@@ -20,8 +20,8 @@ function UpdateEmail(props) {
 
   const confirmNewEmail = async (e) => {
     e.preventDefault();
-    const newNotice = await props.updateEmail(email , confirmPassword, newEmail);
-    if(newNotice.notice.email !== "Incorrect Password") {
+    const newNotice = await props.updateEmail(email, confirmPassword, newEmail);
+    if (newNotice.notice.email !== "Incorrect Password") {
       document.getElementById("update-email").reset();
       await props.getUser();
       setShowConfirmNewEmail(false);
@@ -30,7 +30,7 @@ function UpdateEmail(props) {
 
   const handleSubmitOnNewEmail = (e) => {
     e.preventDefault();
-    props.resetNotice()
+    props.resetNotice();
     setShowConfirmNewEmail(true);
   };
 
@@ -39,7 +39,9 @@ function UpdateEmail(props) {
       {showConfirmNewEmail ? (
         <form onSubmit={confirmNewEmail} id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -48,14 +50,20 @@ function UpdateEmail(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">Confirm Update Email</button>
-            {notice.email === "Incorrect Password" ? <span>{`${notice.email}`}</span> : null}
+            <MDBBtn color="success" id="confirm-delete">
+              Confirm Update Email
+            </MDBBtn>
+            {notice.email === "Incorrect Password" ? (
+              <span>{`${notice.email}`}</span>
+            ) : null}
           </div>
         </form>
       ) : null}
       <form id="update-email" onSubmit={handleSubmitOnNewEmail}>
         <div className="input-field">
-          <label htmlFor="email">Update Email</label>
+          <label htmlFor="email" style={{ color: "#c9e4ca" }}>
+            Update Email
+          </label>
           <input
             type="email"
             name="newEmail"
@@ -64,11 +72,15 @@ function UpdateEmail(props) {
           />
         </div>
         <div className="input-field">
-          <button id="confirm-update-email">Update Email</button>
+          <MDBBtn color="success" id="confirm-update-email">
+            Update Email
+          </MDBBtn>
           {showConfirmNewEmail ? (
-            <span>^^^ Input Password To Confirm Email Update ^^^</span>
+            <span style={{ color: "#c9e4ca" }}>Please confirm password.</span>
           ) : null}
-          {notice.email && notice.email !== "Incorrect Password" ? <span>Email Updated Successfully</span> : null}
+          {notice.email && notice.email !== "Incorrect Password" ? (
+            <span style={{ color: "#c9e4ca" }}>Email Updated Successfully</span>
+          ) : null}
         </div>
         <br />
       </form>
@@ -79,7 +91,7 @@ function UpdateEmail(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
-    user: state.user
+    user: state.user,
   };
 };
 

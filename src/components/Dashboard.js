@@ -17,18 +17,19 @@ import {
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
 
+import { MDBTable } from "mdbreact";
+
 import SortableItem from "./DashboardItems";
 
 import { MDBContainer } from "mdbreact";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import SideNav from "./SideNav/SideNav";
-import BalancesOverview from "./AccountBalancesOverview";
-import LastVsCurr from "./LastVsCurr";
+import SideNav from "./NavBars/SideNav";
+import BalancesOverview from "./Balances/AccountBalancesOverview";
+import LastVsCurr from "./Charts/LastVsCurr";
 import TotalBudgetCard from "../BudgetComponents/TotalBudgetCard";
-import Yearly from "./Yearly";
+import Yearly from "./Charts/Yearly";
 
-import "../Dashboard.css";
+import "../Styles/Dashboard.css";
 
 const Dashboard = ({ open, ready }) => {
   const [activeId, setActiveId] = useState(null);
@@ -124,7 +125,7 @@ const Dashboard = ({ open, ready }) => {
                   </SortableContext>
                 </MDBContainer>
               </DndContext>
-              <div></div>
+              <MDBTable borderless responsive></MDBTable>
             </div>
           </div>
         </div>

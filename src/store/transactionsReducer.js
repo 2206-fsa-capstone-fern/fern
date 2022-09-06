@@ -1,4 +1,4 @@
-import { auth, db } from "../config/firebase";
+import { auth, db } from "../fireBaseConfig/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 //action type
@@ -27,22 +27,24 @@ export const gettingTransactions = () => async (dispatch) => {
     });
     return dispatch(getTransaction(grabTransactions));
   } catch (err) {
-    return dispatch(getTransaction([]))
+    return dispatch(getTransaction([]));
   }
 };
 
-export const addingTransactions = (currentTransactions, transaction) => async (dispatch) => {
-  const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
-  currentTransactions.push(transaction)
-  await setDoc(doc(db, "users", userId, "transactions", userId), {
-    allTransactions: currentTransactions
-  })
-  const transactions = await getDoc(doc(db, "users", userId, "transactions", userId)).then((doc) => {
-    return (doc.data());
-  });
-  console.log(transactions)
-  return dispatch(addTransaction(transactions));
-};
+export const addingTransactions =
+  (currentTransactions, transaction) => async (dispatch) => {
+    const userId = auth.currentUser !== null ? auth.currentUser.uid : null;
+    currentTransactions.push(transaction);
+    await setDoc(doc(db, "users", userId, "transactions", userId), {
+      allTransactions: currentTransactions,
+    });
+    const transactions = await getDoc(
+      doc(db, "users", userId, "transactions", userId)
+    ).then((doc) => {
+      return doc.data();
+    });
+    return dispatch(addTransaction(transactions));
+  };
 
 const initialState = [];
 
@@ -51,11 +53,11 @@ const transactionsReducer = (state = initialState, action) => {
     case ADD_TRANSACTION:
       return action.transaction.allTransactions;
     case GET_TRANSACTION:
-      if(Array.isArray(action.transaction) && !action.transaction.length){
-        return action.transaction
+      if (Array.isArray(action.transaction) && !action.transaction.length) {
+        return action.transaction;
       }
       return action.transaction.allTransactions;
-    default: 
+    default:
       return state;
   }
 };

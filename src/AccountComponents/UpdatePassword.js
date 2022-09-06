@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { resetingNotice, updatingPassword } from "../store";
-
+import { MDBBtn } from "mdb-react-ui-kit";
 function UpdatePassword(props) {
   const { notice, user } = props;
-  const { email } = user
+  const { email } = user;
   const [confirmPassword, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
@@ -20,9 +20,12 @@ function UpdatePassword(props) {
 
   const confirmNewPassword = async (e) => {
     e.preventDefault();
-    const newNotice = await props.updatePassword(email, confirmPassword, newPassword);
-    console.log(newNotice)
-    if(newNotice.notice.pass !== "Incorrect Password") {
+    const newNotice = await props.updatePassword(
+      email,
+      confirmPassword,
+      newPassword
+    );
+    if (newNotice.notice.pass !== "Incorrect Password") {
       document.getElementById("update-password").reset();
       setShowConfirmNewPassword(false);
     }
@@ -30,7 +33,7 @@ function UpdatePassword(props) {
 
   const handleSubmitOnNewPassword = (e) => {
     e.preventDefault();
-    props.resetNotice()
+    props.resetNotice();
     setShowConfirmNewPassword(true);
   };
 
@@ -39,7 +42,9 @@ function UpdatePassword(props) {
       {showConfirmNewPassword ? (
         <form onSubmit={confirmNewPassword} id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -48,15 +53,21 @@ function UpdatePassword(props) {
             />
           </div>
           <div className="input-field">
-            <button id="confirm-delete">Confirm Update Password</button>
-            {notice.pass === "Incorrect Password" ? <span>{`${notice.pass}`}</span> : null}
+            <MDBBtn color="success" id="confirm-delete">
+              Confirm Update Password
+            </MDBBtn>
+            {notice.pass === "Incorrect Password" ? (
+              <span>{`${notice.pass}`}</span>
+            ) : null}
           </div>
         </form>
       ) : null}
 
       <form id="update-password" onSubmit={handleSubmitOnNewPassword}>
         <div className="input-field">
-          <label htmlFor="password">Update Password</label>
+          <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+            Update Password
+          </label>
           <input
             type="password"
             name="newPassword"
@@ -66,11 +77,19 @@ function UpdatePassword(props) {
           />
         </div>
         <div className="input-field">
-          <button id="confirm-update-password">Update Password</button>
+          <MDBBtn color="success" id="confirm-update-password">
+            Update Password
+          </MDBBtn>
           {showConfirmNewPassword ? (
-            <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
+            <span style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Password Update
+            </span>
           ) : null}
-          {notice.pass && notice.pass !== "Incorrect Password" ? <span>Password Updated Successfully</span> : null}
+          {notice.pass && notice.pass !== "Incorrect Password" ? (
+            <span style={{ color: "#c9e4ca" }}>
+              Password Updated Successfully
+            </span>
+          ) : null}
         </div>
         <br />
       </form>
@@ -81,7 +100,7 @@ function UpdatePassword(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
-    user: state.user
+    user: state.user,
   };
 };
 
