@@ -137,7 +137,6 @@ const LastVsCurr = () => {
     }
     return obj;
   };
-  console.log("datesAndAmt()", datesAndAmt());
 
   const datesAndAmt2 = () => {
     let obj2 = {};
@@ -155,16 +154,13 @@ const LastVsCurr = () => {
       dates = date.toLocaleDateString("en-US", {
         day: "2-digit",
       });
-      // console.log('dates2', dates)
       obj2[dates] += amounts;
     }
-    // console.log('obj2', obj2)
     return obj2;
   };
 
   let datesAndAmount = datesAndAmt();
   let datesAndAmount2 = datesAndAmt2();
-  console.log("datesAndAmount2", datesAndAmount2);
   let dates2 = Object.keys(datesAndAmount2);
   let objvals = Object.values(datesAndAmount);
   let objvals2 = Object.values(datesAndAmount2);
@@ -177,8 +173,6 @@ const LastVsCurr = () => {
   dates2 = rotateArr(dates2, 9);
   objvals = rotateArr(objvals, 11);
   objvals2 = rotateArr(objvals2, 9);
-  console.log("objvals", objvals);
-  console.log("objvals2", objvals2);
 
   let data = {
     labels: dates2,
@@ -186,21 +180,22 @@ const LastVsCurr = () => {
       {
         label: "Current Month",
         data: objvals2,
-        backgroundColor: ["rgba(50, 168, 82, 0.7)"],
-        borderColor: ["rgba(50, 168, 82, 1)"],
+        backgroundColor: ["rgba(50, 168, 82, 0.8)"],
+        borderColor: ["rgba(50, 168, 82, 0.8)"],
         borderWidth: 2.5,
       },
       {
         label: "Previous Month",
         data: objvals,
-        backgroundColor: ["rgba(143, 207, 155, 0.7)"],
-        borderColor: ["rgba(143, 207, 155, 1)"],
+        backgroundColor: ["rgba(143, 207, 155, 0.8)"],
+        borderColor: ["rgba(143, 207, 155, 0.8)"],
         borderWidth: 1,
       },
     ],
   };
 
   let options = {
+    responsive: true,
     maintainAspectRatio: false,
     scales: {
       y: {

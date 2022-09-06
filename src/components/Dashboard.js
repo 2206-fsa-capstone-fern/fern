@@ -35,8 +35,8 @@ const Dashboard = ({ open, ready }) => {
   const [components, setComponents] = useState([
     <BalancesOverview />,
     <LastVsCurr />,
-    <TotalBudgetCard />,
     <Yearly />,
+    <TotalBudgetCard />,
   ]);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -96,6 +96,7 @@ const Dashboard = ({ open, ready }) => {
                   flex={true}
                   wrap={true}
                   direction="row"
+                  alignItems="center"
                   style={{ maxWidth: "1100px" }}
                 >
                   <SortableContext

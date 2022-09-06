@@ -80,22 +80,22 @@ const DoughnutChart = () => {
       {
         data: Object.values(plans),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(50, 168, 82, 0.2)",
+          "rgba(98, 12, 204, 0.8)",
+          "rgba(12, 38, 204, 0.8)",
+          "rgba(12, 111, 204, 0.8)",
+          "rgba(9, 200, 204, 0.8)",
+          "rgba(12, 204, 143, 0.8)",
+          "rgba(114, 204, 12, 0.8)",
+          "rgba(204, 204, 12, 0.8)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(50, 168, 82, 1)",
+          "rgba(98, 12, 204, 1)",
+          "rgba(12, 38, 204, 1)",
+          "rgba(12, 111, 204, 1)",
+          "rgba(12, 191, 204, 1)",
+          "rgba(12, 204, 143, 1)",
+          "rgba(114, 204, 12, 1)",
+          "rgba(204, 204, 12, 1)",
         ],
         borderWidth: 1,
       },
@@ -103,7 +103,8 @@ const DoughnutChart = () => {
   };
 
   let options = {
-    maintainAspectRatio: true,
+    responsive: true,
+    maintainAspectRatio: false,
     legend: {
       labels: {
         fontSize: 20,

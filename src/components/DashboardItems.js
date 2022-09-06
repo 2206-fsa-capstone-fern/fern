@@ -12,13 +12,15 @@ const SortableItem = (props) => {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: props.value });
+  } = useSortable({ id: props.id });
   //can we change this?
 
   const style = {
     //non-hovering card style
     transform: CSS.Transform.toString(transform),
     transition,
+    display: "flex",
+    alignItems: "center",
     width: "500px",
     height: "450px",
     backgroundColor: "#c9e4ca",
@@ -34,10 +36,10 @@ const SortableItem = (props) => {
       <div
         style={{
           minWidth: "500px",
-          minHeight: "500px",
+          minHeight: "450px",
           border: "1px",
           borderColor: "none",
-          padding: "8px",
+          padding: "10px",
         }}
       >
         <i
@@ -45,14 +47,11 @@ const SortableItem = (props) => {
           {...listeners}
           {...attributes}
           style={{
-            background: "green",
-            color: "white",
-            border: "1px solid green",
-            borderRadius: "5px",
-            padding: "3px 3px",
+            color: "#666",
+            fontSize: "1rem",
           }}
         ></i>
-        {props.value}
+        <div>{props.value}</div>
         {console.log("props", props)}
       </div>
     </div>
