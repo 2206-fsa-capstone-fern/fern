@@ -1,21 +1,29 @@
-.ab-header {
-  font-size: 1.5rem;
-  color: white;
-  text-align: center;
-}
-
-.ab-acc-name {
-  font-size: 1rem;
-  text-align: center;
-  color: white;
-}
-
-.ab-acc-amount {
-  font-size: 1rem;
-  text-align: center;
-  color: white;
-}
-
-.sc-fnykZs.table.table-hover {
+.table.table-success {
   margin-top: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  width: 750px;
+  background-color: rgb(201, 228, 202);
+  /* border: 1px solid #364958; */
+  border-collapse: collapse;
+}
+
+.ab-header {
+  text-align: center;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+.ab-acc-amount, .ab-acc-name {
+  text-align: center;
+  font-size: 15px;
+  border: 100px;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ab-rows:hover {
+  background-color: rgb(150,203,152);
 }

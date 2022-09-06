@@ -1,0 +1,21 @@
+.trends-graphs {
+  display: grid;
+  grid-template-columns: 1;
+  grid-row-gap: 50px;
+}
+
+.daily-bar-graph {
+  background-color: #c9e4ca;
+  width: 650px;
+  border-radius:5px;
+  /* height: 400px; */
+  margin-top: 50px;
+  justify-self: center;
+}
+
+.monthly-bar-graph {
+  background-color: #c9e4ca;
+  width: 650px;
+  border-radius:5px;
+  justify-self: center;
+} 

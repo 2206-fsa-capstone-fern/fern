@@ -1,5 +1,3 @@
-// donut chart with categories of things spent on and  table with every single transaction from the year
-
 import DoughnutChart from "./DoughnutChart";
 import React, { useState, useEffect } from "react";
 
@@ -8,12 +6,9 @@ const Yearly = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = process.env.REACT_APP_PLAID_API_Key;
-  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1)
-    .toISOString()
-    .split("T")[0];
-  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31)
-    .toISOString()
-    .split("T")[0];
+
+  let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
+  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0];
 
   const [chart, setChart] = useState([]);
 
@@ -30,8 +25,7 @@ const Yearly = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-
-          start_date: firstDateThisOfYear,
+          start_date: firstDateOfThisYear,
           end_date: lastDateOfThisYear,
         }),
       })
@@ -40,11 +34,12 @@ const Yearly = () => {
             setChart(data.transactions);
           });
         })
-
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error);
+        });
     };
     fetchTransactions();
-  }, [baseURL, proxyURL, apiKey, firstDateThisOfYear, lastDateOfThisYear]);
+  }, [baseURL, proxyURL, apiKey, firstDateOfThisYear, lastDateOfThisYear]);
 
   return (
     <div>
@@ -62,7 +57,6 @@ const Yearly = () => {
           <th>Date</th>
           <th>Description</th>
           <th>Category</th>
-          {/* <th>Type</th> */}
           <th>Amount</th>
         </tbody>
         {chart.map((account) => (
@@ -70,7 +64,7 @@ const Yearly = () => {
             <td>{account.date}</td>
             <td>{account.name}</td>
             <td>
-              {account.category[0]} ({account.category[1]})
+              {account.category[0]}
             </td>
 
             <td>{account.amount.toFixed(2)}</td>

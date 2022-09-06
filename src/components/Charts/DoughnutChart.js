@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  // Chart as ChartJS,
+  Chart as ChartJS,
   ArcElement,
   Tooltip,
   Legend,
@@ -8,7 +8,6 @@ import {
 } from "chart.js";
 import "chartjs-adapter-moment";
 import { Doughnut } from "react-chartjs-2";
-import {Chart as ChartJS} from "chart.js/auto";
 ChartJS.register(...registerables, Tooltip, Legend, ArcElement);
 
 const DoughnutChart = () => {
@@ -17,12 +16,8 @@ const DoughnutChart = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   let apiKey = process.env.REACT_APP_PLAID_API_KEY;
-  let firstDateThisOfYear = new Date(new Date().getFullYear(), 0, 1)
-    .toISOString()
-    .split("T")[0];
-  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31)
-    .toISOString()
-    .split("T")[0];
+  let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
+  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0];
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -37,8 +32,7 @@ const DoughnutChart = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
-
-          start_date: firstDateThisOfYear,
+          start_date: firstDateOfThisYear,
           end_date: lastDateOfThisYear,
         }),
       })
@@ -48,10 +42,12 @@ const DoughnutChart = () => {
           });
         })
 
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error);
+        });
     };
     fetchCategories();
-  }, [baseURL, proxyURL, apiKey, firstDateThisOfYear, lastDateOfThisYear]);
+  }, [baseURL, proxyURL, apiKey, firstDateOfThisYear, lastDateOfThisYear]);
 
   const values = () => {
     let obj = {};
