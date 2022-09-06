@@ -57,9 +57,8 @@ class LogIn extends Component {
     }
 
     return (
-      <div>
       <div className="Auth-form-container">
-          <img src="intro.png" alt="intro" className="text-blur-out" />
+        {/* <img src="intro.png" alt="intro" className="text-blur-out" /> */}
         <form onSubmit={this.handleSubmit} id="login" className="Auth-form">
           {toNext ? <Navigate to="/login" /> : null}
           <div className="Auth-form-content">
@@ -102,7 +101,6 @@ class LogIn extends Component {
             </p>
           </div>
         </form>
-      </div>
       </div>
     );
   }

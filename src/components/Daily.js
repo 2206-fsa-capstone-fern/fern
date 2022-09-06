@@ -64,7 +64,7 @@ const Daily = () => {
 
       const date = new Date(dates);
       let dayName = daysArr[date.getDay()];
-      console.log("dayName", dayName);
+      // console.log("dayName", dayName);
 
       if (!obj.hasOwnProperty(dates)) {
         obj[dayName] = amounts;
@@ -74,6 +74,8 @@ const Daily = () => {
   };
   console.log("daysAndAmt()", daysAndAmt());
   let datesAndAmount = daysAndAmt();
+  console.log('Object.keys(datesAndAmount).reverse()', Object.keys(datesAndAmount).reverse())
+  console.log('Object.values(datesAndAmount).reverse()', Object.values(datesAndAmount).reverse())
 
   let data = {
     labels: daysArr,
@@ -82,7 +84,6 @@ const Daily = () => {
         label: "Spending Through The Week By Day",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
-          "rgba(190, 222, 170, 1)",
           "rgba(176, 215, 152, 1)",
           "rgba(162, 208, 133, 1)",
           "rgba(148, 201, 115, 1)",
@@ -90,11 +91,13 @@ const Daily = () => {
           "rgba(120, 187, 78, 1)",
           "rgba(107, 173, 67, 1)",
           "rgba(96, 155, 60, 1)",
-          "rgba(84, 136, 53, 1)",
-          "rgba(73, 118, 46, 1)"
+          "rgba(85,137, 53, 1)",
+          "rgba(73, 118, 46, 1)",
+          "rgba(62, 100, 39, 1)",
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderColor: [
-          "rgba(190, 222, 170, 1)",
           "rgba(176, 215, 152, 1)",
           "rgba(162, 208, 133, 1)",
           "rgba(148, 201, 115, 1)",
@@ -102,8 +105,11 @@ const Daily = () => {
           "rgba(120, 187, 78, 1)",
           "rgba(107, 173, 67, 1)",
           "rgba(96, 155, 60, 1)",
-          "rgba(84, 136, 53, 1)",
-          "rgba(73, 118, 46, 1)"
+          "rgba(85,137, 53, 1)",
+          "rgba(73, 118, 46, 1)",
+          "rgba(62, 100, 39, 1)",
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderWidth: 1,
       },
@@ -111,27 +117,50 @@ const Daily = () => {
   };
 
   let options = {
-    // maintainAspectRatio: true,
     maintainAspectRatio: false,
     responsive: true,
-    // responsive: false,
+    layout: {
+      padding: 20,
+    },
     scales: {
       y: {
-        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Amount Spent',
+          font: {
+            size: 16,
+          }
+        },
+        min: 0, // makes it so that negative amounts/refunds aren't included
       },
+      x: {
+        title: {
+          display: true,
+          text: 'Day',
+          font: {
+            size: 16,
+          }
+        },
+      }
     },
     plugins: {
+      tooltip: {
+        events: ['mousemove'],
+      },
       legend: {
         position: 'top',
+        labels: {
+          font: {
+            size: 14
+          }
+        }
       },
       title: {
         display: true,
         text: 'Daily Spending',
-      },
-    },
-    legend: {
-      labels: {
-        fontSize: 25,
+        font: {
+          size: 18,
+        }
       },
     },
   };

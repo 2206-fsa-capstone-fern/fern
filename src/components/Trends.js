@@ -19,17 +19,18 @@ function Trends() {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <div className="trends-graphs">
-            <div
-              // className="card-bg w-200 border d-flex flex-column h-2000"
-              className="daily-bar-graph"
-            >
-              <Daily className="dailybargraph" />
+          <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
+            <div className="trends-graphs">
+              <div
+                className="daily-bar-graph"
+              >
+                <Daily className="dailybargraph" />
+              </div>
+              <div className="monthly-bar-graph">
+                <Month />
+              </div>
+            </div>
           </div>
-          <div className="monthly-bar-graph">
-            <Month />
-          </div>
-        </div>
         </div>
       </div>
     </div>

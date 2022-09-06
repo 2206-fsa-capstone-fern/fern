@@ -30,7 +30,7 @@ const Month = () => {
   let baseURL = `${base}transactions/get`;
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   // let proxyURL = "https://api.allorigins.win/raw?url=/"
-  let apiKey = "62fd4373e8c0170014239c33";
+  let apiKey = process.env.REACT_APP_PLAID_CLIENT_ID;
   let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
   let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0];
 
@@ -49,6 +49,9 @@ const Month = () => {
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
           start_date: firstDateOfThisYear,
           end_date: lastDateOfThisYear,
+          options: {
+            count: 500
+          }
         }),
       })
         .then((response) => {
@@ -62,7 +65,7 @@ const Month = () => {
         });
     };
     fetchCoins();
-  }, [baseURL, proxyURL, apiKey]);
+  }, [baseURL, proxyURL, apiKey, firstDateOfThisYear, lastDateOfThisYear]);
 
   console.log("chart: \n", chart);
 
@@ -94,7 +97,6 @@ const Month = () => {
         label: "Amount Spent in a Given Month",
         data: Object.values(datesAndAmount).reverse(), // y-axis values HAS to be passed in as an array, can pass in multiple data values
         backgroundColor: [
-          "rgba(190, 222, 170, 1)",
           "rgba(176, 215, 152, 1)",
           "rgba(162, 208, 133, 1)",
           "rgba(148, 201, 115, 1)",
@@ -105,10 +107,10 @@ const Month = () => {
           "rgba(85,137, 53, 1)",
           "rgba(73, 118, 46, 1)",
           "rgba(62, 100, 39, 1)",
-          "rgba(50, 81, 32, 1)"
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderColor: [
-          "rgba(190, 222, 170, 1)",
           "rgba(176, 215, 152, 1)",
           "rgba(162, 208, 133, 1)",
           "rgba(148, 201, 115, 1)",
@@ -119,7 +121,8 @@ const Month = () => {
           "rgba(85,137, 53, 1)",
           "rgba(73, 118, 46, 1)",
           "rgba(62, 100, 39, 1)",
-          "rgba(50, 81, 32, 1)"
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderWidth: 1,
       },
@@ -129,19 +132,29 @@ const Month = () => {
   let options = {
     maintainAspectRatio: false,
     responsive: true,
+    layout: {
+      padding: 20,
+    },
     scales: {
       y: {
-        beginAtZero: true,
         title: {
           display: true,
           text: 'Amount Spent',
+          font: {
+            size: 16,
+          }
         },
+        min: 0,
       },
       x: {
         title: {
           display: true,
           text: 'Month',
-        }
+          font: {
+            size: 16,
+          },
+        },
+        min: 'January',
       }
     },
     plugins: {
@@ -150,15 +163,18 @@ const Month = () => {
       },
       legend: {
         position: "top",
+        labels: {
+          font: {
+            size: 14,
+          }
+        }
       },
       title: {
         display: true,
         text: "Spending By Month",
-      },
-    },
-    legend: {
-      labels: {
-        fontSize: 25,
+        font: {
+          size: 18,
+        }
       },
     },
   };
