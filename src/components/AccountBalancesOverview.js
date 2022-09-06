@@ -111,7 +111,7 @@ const BalancesOverview = () => {
       </div>
       <div
         className="card"
-        style={{ width: "26rem", height: "17.7rem", margin: "0px 30px" }}
+        style={{ width: "26rem", height: "17.64rem", margin: "0px 30px" }}
       >
         <table
           className="table"
