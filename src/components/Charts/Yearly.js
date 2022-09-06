@@ -46,7 +46,6 @@ const DoughnutChart = () => {
             setChart(data.transactions);
           });
         })
-
         .catch((error) => {
           console.log("ERROR: \n", error);
         });

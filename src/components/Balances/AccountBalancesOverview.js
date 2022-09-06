@@ -28,7 +28,9 @@ const BalancesOverview = () => {
             setChart(data.accounts);
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error)
+        });
     };
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);

@@ -43,7 +43,9 @@ const Daily = () => {
             setChart(json.transactions);
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error)
+        });
     };
     fetchCoins();
   }, [baseURL, proxyURL, apiKey, todaysDate, lastWeeksDate]);
@@ -74,6 +76,8 @@ const Daily = () => {
     return obj;
   };
   let datesAndAmount = daysAndAmt();
+  console.log('Object.keys(datesAndAmount).reverse()', Object.keys(datesAndAmount).reverse())
+  console.log('Object.values(datesAndAmount).reverse()', Object.values(datesAndAmount).reverse())
 
   let data = {
     labels: daysArr,
@@ -82,22 +86,32 @@ const Daily = () => {
         label: "Spending Through The Week By Day",
         data: Object.values(datesAndAmount).reverse(),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)", // red/pink
-          "rgba(54, 162, 235, 0.2)", // blue
-          "rgba(255, 206, 86, 0.2)", // yellow
-          "rgba(75, 192, 192, 0.2)", // teal
-          "rgba(153, 102, 255, 0.2)", // purple
-          "rgba(255, 159, 64, 0.2)", // orange
-          "rgba(50, 168, 82, 0.2)", // green
+          "rgba(176, 215, 152, 1)",
+          "rgba(162, 208, 133, 1)",
+          "rgba(148, 201, 115, 1)",
+          "rgba(134, 194, 97, 1)",
+          "rgba(120, 187, 78, 1)",
+          "rgba(107, 173, 67, 1)",
+          "rgba(96, 155, 60, 1)",
+          "rgba(85,137, 53, 1)",
+          "rgba(73, 118, 46, 1)",
+          "rgba(62, 100, 39, 1)",
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(50, 168, 82, 1)",
+          "rgba(176, 215, 152, 1)",
+          "rgba(162, 208, 133, 1)",
+          "rgba(148, 201, 115, 1)",
+          "rgba(134, 194, 97, 1)",
+          "rgba(120, 187, 78, 1)",
+          "rgba(107, 173, 67, 1)",
+          "rgba(96, 155, 60, 1)",
+          "rgba(85,137, 53, 1)",
+          "rgba(73, 118, 46, 1)",
+          "rgba(62, 100, 39, 1)",
+          "rgba(50, 81, 32, 1)",
+          "rgba(39, 63, 25, 1)"
         ],
         borderWidth: 1,
       },
@@ -107,31 +121,57 @@ const Daily = () => {
   let options = {
     maintainAspectRatio: false,
     responsive: true,
+    layout: {
+      padding: 20,
+    },
     scales: {
       y: {
-        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Amount Spent',
+          font: {
+            size: 16,
+          }
+        },
+        min: 0, // makes it so that negative amounts/refunds aren't included
       },
+      x: {
+        title: {
+          display: true,
+          text: 'Day',
+          font: {
+            size: 16,
+          }
+        },
+      }
     },
     plugins: {
+      tooltip: {
+        events: ['mousemove'],
+      },
       legend: {
-        position: "top",
+        position: 'top',
+        labels: {
+          font: {
+            size: 14
+          }
+        }
       },
       title: {
         display: true,
-        text: "Daily Spending Throughout Week",
-      },
-    },
-    legend: {
-      labels: {
-        fontSize: 25,
+        text: 'Daily Spending',
+        font: {
+          size: 18,
+        },
+        position: "top",
       },
     },
   };
 
   return (
-    <div>
+    <>
       <Bar height={400} data={data} options={options} />
-    </div>
+    </>
   );
 };
 

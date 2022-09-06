@@ -61,7 +61,7 @@ class LogIn extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="d-grid mt-3">
+            <div className="d-grid gap-2 mt-3">
               <MDBBtn type="submit" color="success">
                 Submit
               </MDBBtn>

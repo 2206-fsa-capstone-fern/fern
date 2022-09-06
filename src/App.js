@@ -17,8 +17,9 @@ import BudgetApp from "./BudgetApp";
 import Trends from "./components/Trends";
 import AccountView from "./components/AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
-import Balances from "./components/AccountBalances";
-import QuizApp from "./components/Quiz/QuizApp";
+import Balances from "./components/Balances/AccountBalances";
+import QuizApp from "./QuizComponents/QuizApp";
+
 import NotFound from "./components/NotFound";
 
 //Redux
