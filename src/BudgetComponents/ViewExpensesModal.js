@@ -1,16 +1,19 @@
-import { Modal, Stack } from "react-bootstrap"
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetsContext"
-import { currencyFormatter } from "../utils"
-import { MDBBtn } from "mdb-react-ui-kit"
+import { Modal, Stack } from "react-bootstrap";
+import {
+  UNCATEGORIZED_BUDGET_ID,
+  useBudgets,
+} from "../contexts/BudgetsContext";
+import { currencyFormatter } from "../utils";
+import { MDBBtn } from "mdb-react-ui-kit";
 export default function ViewExpensesModal({ budgetId, handleClose }) {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
-    useBudgets()
+    useBudgets();
 
-  const expenses = getBudgetExpenses(budgetId)
+  const expenses = getBudgetExpenses(budgetId);
   const budget =
     UNCATEGORIZED_BUDGET_ID === budgetId
       ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID }
-      : budgets.find(b => b.id === budgetId)
+      : budgets.find((b) => b.id === budgetId);
 
   return (
     <Modal show={budgetId != null} onHide={handleClose}>
@@ -21,10 +24,10 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
               <MDBBtn
                 onClick={() => {
-                  deleteBudget(budget)
-                  handleClose()
+                  deleteBudget(budget);
+                  handleClose();
                 }}
-                color='outline-danger'
+                color="outline-danger"
               >
                 Delete
               </MDBBtn>
@@ -34,7 +37,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
       </Modal.Header>
       <Modal.Body>
         <Stack direction="vertical" gap="3">
-          {expenses.map(expense => (
+          {expenses.map((expense) => (
             <Stack direction="horizontal" gap="2" key={expense.id}>
               <div className="me-auto fs-4">{expense.description}</div>
               <div className="fs-5">
@@ -52,5 +55,5 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
         </Stack>
       </Modal.Body>
     </Modal>
-  )
+  );
 }

@@ -1,19 +1,5 @@
-// import React from "react";
-
-// function LinkAccount(props) {
-//   return (
-//     <ul className="right">
-//       <li>
-//         <div></div>
-//       </li>
-//     </ul>
-//   );
-// }
-
-// export default LinkAccount;
-
 import React from "react";
-import SideNav from "./SideNav/SideNav";
+import SideNav from "./NavBars/SideNav";
 
 function LinkAccount(props) {
   return (

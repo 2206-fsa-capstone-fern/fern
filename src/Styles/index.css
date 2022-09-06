@@ -1,0 +1,368 @@
+@import './AllTransactions.css';
+@import './AccountBalances.css';
+@import './Trends.css';
+@import './LinkAccount.css';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.landing{
+  background-image: 'public\img\fern-landing.jpg';
+}
+
+/* Contact */
+.bakers {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* 
+.container .card {
+  width: 300px;
+  height: 450px;
+  padding: 60px 30px;
+  margin: 20px;
+  background: #f2f3f7;
+  box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+  -0.5em -0.5em 1em #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+
+.container .card .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .card .content .imgBx {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.container .card .content .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container .card .content .contentBx h4 {
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.container .card .content .sci {
+  text-align: center;
+}
+
+.container .card .content .sci a {
+  transition: color 0.4s;
+} */
+
+.contact-desc {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0.5px;
+  padding: 0px;
+}
+
+.contact-header {
+  margin: 2rem;
+  font-size: 40px;
+  text-align: center;
+}
+
+.cover-container {
+  height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1576175789566-c808a91c8b51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
+  background-size: cover;
+  background-position: center;
+}
+
+.cover-container p {
+  z-index: 1;
+  font-size: 2.5rem;
+  font-style: normal;
+  color: white;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.home-main {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* .paginationBtns {
+  margin-right: 0px;
+
+}
+
+.paginationBtns a {
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  background-color: #f6a192
+}
+
+.paginationActive a {
+  background-color: #f6a192
+} */
+
+.refunds {
+  color: #01796f;
+}
+
+
+/* LOGIN AND LOGOUT START */
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./fern-landing.jpg');
+}
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+
+#login.Auth-form {
+  background-color: #364958;
+}
+
+#signup.Auth-form {
+  background-color: #364958;
+}
+
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+  z-index: 1;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid rgb(204, 204, 204);
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+
+input:focus {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.Auth-form-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid rgb(204, 204, 204);
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.Auth-form-button:hover {
+  background-color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:focus {
+  background-color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:active {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:disabled {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:disabled:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:disabled:focus {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button:disabled:active {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.Auth-form-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+/* LOGIN AND LOGOUT END */
+
+
+/* NAVBAR */
+.plaidButton {
+  cursor: pointer;
+  /* padding-top: 50px; */
+  text-align: right;
+  text-decoration: none;
+  width: 100%;
+}
+
+.authLink {
+  text-align: right;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 20px;
+  margin-left: 1000px;
+}
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: aliceblue;
+}
+
+.nav-link {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+} 
+
+
+button.ripple.ripple-surface.btn.btn-success {
+  margin-right: 5px;
+  margin-top: 20px;
+ 
+  align-items: flex-end;
+
+}
+
+.modal-body {
+  background-color: #364958;
+}
+
+.modal-header {
+  background-color: #c9e4ca;
+}
+
+.modal {
+  margin-top: 12%;
+  margin-left: 7%;
+}
+div.card-body {
+  background-color: #364958 ; 
+}
+
+/* .intro-pic-div { */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* z-index: 1; */
+/* } */
+
+.text-blur-out {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  /* background-size: 100% 100%; */
+  /* background-repeat: no-repeat; */
+	animation: text-blur-out 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@keyframes text-blur-out {
+  0% {
+    filter: blur(0.01);
+  }
+  100% {
+    filter: blur(12px) opacity(0%);
+  }
+}
+
+li.list-group-item {
+  background-color:  #c9e4ca;
+}

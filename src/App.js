@@ -1,27 +1,24 @@
 //React
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
-import { usePlaidLink } from 'react-plaid-link';
-import './Plaid.scss';
-import './App.css';
+import { usePlaidLink } from "react-plaid-link";
+import "./Styles/Plaid.scss";
+import "./Styles/App.css";
 
 //Components
-import LogIn from "./components/LogIn";
-import SignUp from "./components/SignUp";
-import Navbar from "./components/Navbar";
+import LogIn from "./components/Auth/LogIn";
+import SignUp from "./components/Auth/SignUp";
+import Navbar from "./components/NavBars/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
-import SideNav from "./components/SideNav/SideNav";
-import Trends from "./components/Trends";
+import Trends from "./components/Charts/Trends";
 import AccountView from "./AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
-import Balances from "./components/AccountBalances";
-import QuizApp from "./components/QuizComponents/QuizApp";
-import Month from "./components/Month"
-import Daily from "./components/Daily"
+import Balances from "./components/Balances/AccountBalances";
+import QuizApp from "./QuizComponents/QuizApp";
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -103,116 +100,76 @@ function App(props) {
     }
   }, [token, isOauth, ready, open]);
 
-  // <div>
-  //   <button onClick={() => open()
-  //     } disabled={!ready}>
-  //     <strong>Link account</strong>
-  //   </button>
-
-  // try {
-  //   if (!loading && transactions !== null) {
-  //     const dataObj = transactions.Transactions;
-  //     transactions = dataObj.transactions;
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   return (
-   
-      <div className='App'>
-        {isLoggedIn ? (
-          <div>
-            {isAdmin ? (
-              <div>
-                {/* <Navbar
-                  open={open}
-                  ready={ready}
-                  transactions={props.transactions[0]}
-                  transactions2={props.transactions[1]}
-                />
-                 */}
-              </div>
-            ) : (
-              <div>
-                {/* <div className='navbar-logged-in'>
-              
-                  <Navbar
-                    open={open}
-                    ready={ready}
-                    transactions={props.transactions[0]}
-                    transactions2={props.transactions[1]}
+    <div className="App">
+      {isLoggedIn ? (
+        <div>
+          {isAdmin ? (
+            <div></div>
+          ) : (
+            <div>
+              <div className="app-container">
+                <Routes>
+                  <Route
+                    exact
+                    path="/link"
+                    element={
+                      <LinkAccount
+                        open={open}
+                        ready={ready}
+                        transactions={props.transactions[0]}
+                        transactions2={props.transactions[1]}
+                      />
+                    }
                   />
-                </div> */}
-               
-
-                <div className="app-container">
-                  <Routes>
-                    <Route
-                      exact
-                      path="/link"
-                      element={
-                        <LinkAccount
-                          open={open}
-                          ready={ready}
-                          transactions={props.transactions[0]}
-                          transactions2={props.transactions[1]}
-                        />
-                      }
-                    />
-                    <Route
-                      exact
-                      path="/dashboard"
-                      element={
-                        <Dashboard transactions={props.transactions[0]} />
-                      }
-                    />
-                    <Route
-                      exact
-                      path="/"
-                      element={<Navigate replace to="/dashboard" />}
-                    />
-                    <Route
-                      exact
-                      path="/login"
-                      element={<Navigate replace to="/dashboard" />}
-                    />
-                    <Route
-                      exact
-                      path="/signup"
-                      element={<Navigate replace to="/dashboard" />}
-                    />
-                    <Route exact path="/budget" element={<BudgetApp />} />
-                    <Route exact path="/trends" element={<Trends />} />
-                    <Route
-                      exact
-                      path="/transactions"
-                      element={<AllTransactions />}
-                    />
-                    <Route exact path="/month" element={<Month />} />
-                    <Route exact path="/daily" element={<Daily />} />
-                    <Route exact path="/account" element={<AccountView />} />
-                    <Route exact path="/balances" element={<Balances />} />
-                    <Route exact path="/quiz" element={<QuizApp />} />
-                    <Route exact path="*" element={<NotFound />} />
-                  </Routes>
-                </div>
+                  <Route
+                    exact
+                    path="/dashboard"
+                    element={<Dashboard transactions={props.transactions[0]} />}
+                  />
+                  <Route
+                    exact
+                    path="/"
+                    element={<Navigate replace to="/dashboard" />}
+                  />
+                  <Route
+                    exact
+                    path="/login"
+                    element={<Navigate replace to="/dashboard" />}
+                  />
+                  <Route
+                    exact
+                    path="/signup"
+                    element={<Navigate replace to="/dashboard" />}
+                  />
+                  <Route exact path="/budget" element={<BudgetApp />} />
+                  <Route exact path="/trends" element={<Trends />} />
+                  <Route
+                    exact
+                    path="/transactions"
+                    element={<AllTransactions />}
+                  />
+                  <Route exact path="/account" element={<AccountView />} />
+                  <Route exact path="/balances" element={<Balances />} />
+                  <Route exact path="/quiz" element={<QuizApp />} />
+                  <Route exact path="*" element={<NotFound />} />
+                </Routes>
               </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            {/* for users who aren't logged in */}
-            <Navbar />
-            <Routes>
-              <Route exact path="/signup" element={<SignUp />} />
-              <Route exact path="/login" element={<LogIn />} />
-              <Route exact path="/" element={<LogIn />} />
-            </Routes>
-          </div>
-        )}
-      </div>
-  
+            </div>
+          )}
+        </div>
+      ) : (
+        <div>
+          {/* for users who aren't logged in */}
+          <Navbar />
+          <Routes>
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/login" element={<LogIn />} />
+            <Route exact path="/" element={<LogIn />} />
+          </Routes>
+        </div>
+      )}
+    </div>
   );
 }
 
