@@ -25,12 +25,21 @@ class LogIn extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    let { user } = this.props;
     const { toNext } = this.state;
     if (typeof user === "object" && user.length) {
       this.setState({
         toNext: true,
       });
+    }
+    if(user.code === "auth/wrong-password") {
+      user.code = "Incorrect Password. Please Try Again."
+    }
+    if(user.code === "auth/user-not-found") {
+      user.code = "Not A User. Please Sign Up."
+    }
+    if(user.code === "User Exists. Please Log In." || user.code === "Please Fill In All Your Information") {
+      user = {}
     }
 
     return (
@@ -65,13 +74,14 @@ class LogIn extends Component {
               <MDBBtn type="submit" color="success">
                 Submit
               </MDBBtn>
+              {toNext ? null : <span style={{ color: "#01a314" }}>{user.code}</span> }
             </div>
             <p
               className="forgot-password text-right mt-2"
               style={{ color: "#c9e4ca" }}
             >
               Forgot{" "}
-              <a href="#" style={{ color: "#01a314" }}>
+              <a href="/login" style={{ color: "#01a314" }}>
                 password?
               </a>
             </p>

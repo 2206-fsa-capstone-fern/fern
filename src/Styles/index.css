@@ -279,7 +279,7 @@ input:focus {
 
 
 /* NAVBAR */
-.plaidButton {
+/* .plaidButton {
   cursor: pointer;
   padding-top: 50px;
   text-align: right;
@@ -301,7 +301,7 @@ input:focus {
   align-items: center;
   width: 100vw;
   background-color: aliceblue;
-}
+} */
 
 .nav-link {
   margin-left: 10px;

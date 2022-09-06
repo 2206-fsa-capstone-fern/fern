@@ -36,29 +36,6 @@ function UpdateEmail(props) {
 
   return (
     <div>
-      {showConfirmNewEmail ? (
-        <form onSubmit={confirmNewEmail} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="input-field">
-            <MDBBtn color="success" id="confirm-delete">
-              Confirm Update Email
-            </MDBBtn>
-            {notice.email === "Incorrect Password" ? (
-              <span>{`${notice.email}`}</span>
-            ) : null}
-          </div>
-        </form>
-      ) : null}
       <form id="update-email" onSubmit={handleSubmitOnNewEmail}>
         <div className="input-field">
           <label htmlFor="email" style={{ color: "#c9e4ca" }}>
@@ -76,14 +53,37 @@ function UpdateEmail(props) {
             Update Email
           </MDBBtn>
           {showConfirmNewEmail ? (
-            <span style={{ color: "#c9e4ca" }}>Please confirm password.</span>
+            <div style={{ color: "#c9e4ca" }}>Input Password To Confirm Update</div>
           ) : null}
           {notice.email && notice.email !== "Incorrect Password" ? (
-            <span style={{ color: "#c9e4ca" }}>Email Updated Successfully</span>
+            <div style={{ color: "#c9e4ca" }}>Email Updated Successfully</div>
           ) : null}
         </div>
         <br />
       </form>
+      {showConfirmNewEmail ? (
+        <form onSubmit={confirmNewEmail} id="signup" className="white">
+          <div className="input-field">
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <MDBBtn color="success" id="confirm-delete">
+              Confirm Email Update
+            </MDBBtn>
+            {notice.email === "Incorrect Password" ? (
+              <div style={{ color: "#c9e4ca" }}>{`${notice.email}`}</div>
+            ) : null}
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 }
