@@ -69,7 +69,9 @@ const LastVsCurr = () => {
             setChart(json.transactions);
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error)
+        });
     };
     fetchCoins();
   }, [baseURL, proxyURL, apiKey, firstDateOfThisMonth, lastDateOfThisMonth]);
@@ -96,7 +98,9 @@ const LastVsCurr = () => {
             setChart2(json.transactions);
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error)
+        });
     };
     fetch2();
   }, [baseURL, proxyURL, apiKey, firstDateOfLastMonth, lastDateOfLastMonth]);

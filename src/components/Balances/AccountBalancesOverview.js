@@ -27,10 +27,11 @@ const BalancesOverview = () => {
         .then((response) => {
           response.json().then((data) => {
             setChart(data.accounts);
-            // setChart(data)
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error)
+        });
     };
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);

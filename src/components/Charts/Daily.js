@@ -44,7 +44,7 @@ const Daily = () => {
           });
         })
         .catch((error) => {
-          console.log("ERROR \n", error)
+          console.log("ERROR: \n", error)
         });
     };
     fetchCoins();
@@ -164,10 +164,6 @@ const Daily = () => {
           size: 18,
         },
         position: "top",
-      },
-      title: {
-        display: true,
-        text: "Daily Spending Throughout Week",
       },
     },
   };

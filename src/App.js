@@ -19,6 +19,8 @@ import AccountView from "./AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/Balances/AccountBalances";
 import QuizApp from "./QuizComponents/QuizApp";
+import DoughnutChart from "./components/Charts/DoughnutChart";
+
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -152,6 +154,7 @@ function App(props) {
                   <Route exact path="/account" element={<AccountView />} />
                   <Route exact path="/balances" element={<Balances />} />
                   <Route exact path="/quiz" element={<QuizApp />} />
+                  <Route exact path="/donut" element={<DoughnutChart />} />
                   <Route exact path="*" element={<NotFound />} />
                 </Routes>
               </div>

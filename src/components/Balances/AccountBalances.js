@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from "cdbreact";
 import SideNav from "../NavBars/SideNav";
 
 const Balances = () => {
@@ -29,12 +28,14 @@ const Balances = () => {
             setChart(data.accounts);
           });
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error);
+        });
     };
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
-  if (!chart) {
+  if (!chart.account_id) {
     return (
       <div className="budget d-flex">
         <div>
@@ -50,20 +51,21 @@ const Balances = () => {
           }}
         >
           <div style={{ height: "100%", background: "#364958" }}>
-            <div>
-              <CDBContainer>
-                <CDBTable responsive hover borderless>
-                  <CDBTableHeader>
-                    <tr>
-                      <th className="ab-header">Account Type</th>
-                      <th className="ab-header">Balances</th>
-                    </tr>
-                  </CDBTableHeader>
-                  <CDBTableBody>
-                    <tr className="ab-acc-amount">Loading...</tr>
-                  </CDBTableBody>
-                </CDBTable>
-              </CDBContainer>
+            <div className="m4">
+              <table className="table table-success">
+                <thead>
+                  <tr className="ab-headers">
+                    <th className="ab-header">Account Type</th>
+                    <th className="ab-header">Balances</th>
+                  </tr>
+                </thead>
+                <tbody className="ab-body">
+                  <tr className="ab-rows">
+                    <td className="ab-acc-amount">Loading...</td>
+                    <td className="ab-acc-name">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -85,37 +87,27 @@ const Balances = () => {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <div>
-            <CDBContainer>
-              <CDBTable responsive hover borderless>
-                <CDBTableHeader>
-                  <tr>
-                    <th className="ab-header">Account Type</th>
-                    <th className="ab-header">Balances</th>
+          <div className="m2">
+            <table className="table table-success">
+              <thead className="ab-headers">
+                <tr>
+                  <th className="ab-header">Account Type</th>
+                  <th className="ab-header">Balances</th>
+                </tr>
+              </thead>
+              <tbody className="ab-body">
+                {chart.map((account) => (
+                  <tr key={account.account_id} className="ab-rows">
+                    <td className="ab-acc-name">{account.name}</td>
+                    <td className="ab-acc-amount">
+                      {!account.balances.available
+                        ? account.balances.current.toFixed(2)
+                        : account.balances.available.toFixed(2)}
+                    </td>
                   </tr>
-                </CDBTableHeader>
-                <CDBTableBody>
-                  {chart.map((account) => (
-                    <tr key={account.account_id}>
-                      <td
-                        className="ab-acc-name"
-                        style={{ textAlign: "center", color: "white" }}
-                      >
-                        {account.name}
-                      </td>
-                      <td
-                        className="ab-acc-amount"
-                        style={{ textAlign: "center", color: "white" }}
-                      >
-                        {!account.balances.available
-                          ? account.balances.current.toFixed(2)
-                          : account.balances.available.toFixed(2)}
-                      </td>
-                    </tr>
-                  ))}
-                </CDBTableBody>
-              </CDBTable>
-            </CDBContainer>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
