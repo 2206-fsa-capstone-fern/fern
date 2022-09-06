@@ -1,6 +1,7 @@
 @import './AllTransactions.css';
 @import './AccountBalances.css';
 @import './Trends.css';
+@import './LinkAccount.css';
 
 body {
   margin: 0;
@@ -175,9 +176,11 @@ code {
 #login.Auth-form {
   background-color: #364958;
 }
+
 #signup.Auth-form {
   background-color: #364958;
 }
+
 .Auth-form {
   width: 420px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
@@ -283,7 +286,7 @@ input:focus {
 /* NAVBAR */
 .plaidButton {
   cursor: pointer;
-  padding-top: 50px;
+  /* padding-top: 50px; */
   text-align: right;
   text-decoration: none;
   width: 100%;
@@ -337,8 +340,8 @@ div.card-body {
 /* } */
 
 .text-blur-out {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 2;
   /* background-size: 100% 100%; */
   /* background-repeat: no-repeat; */

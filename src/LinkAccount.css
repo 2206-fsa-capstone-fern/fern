@@ -1,0 +1,37 @@
+.link-account-box {
+/* .link-account-container { */
+  /* display: grid; */
+  /* grid-template-columns: 1fr; */
+  /* grid-row-gap: 50px; */
+  display: flex;
+  /* background-color: #6cae43; */
+  /* background-color: #619c3c; */
+  background-color: #49762e;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.link-account-button {
+  background-color: black;
+  font-weight: bold;
+  margin: 0;
+  /* align-items: center; */
+}
+
+.link-account-button-div {
+  margin-top: 20px;
+  margin-left: 20%;
+  /* margin-right: 50%; */
+}
+
+.link-account-disclaimer {
+  padding-top: 20px;
+  font-size: 10px;
+}
+
+.link-account-disclaimer-text {
+  text-align: center;
+}
