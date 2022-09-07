@@ -18,8 +18,19 @@ export default function BudgetCard({
   }
 
   return (
-    <Card className={classNames.join(" ")} style={{ width: "28vw" }}>
-      <Card.Body style={{ background: "white" }}>
+    <Card
+      className={classNames.join(" ")}
+      style={{
+        width: "22vw",
+      }}
+    >
+      <Card.Body
+        style={{
+          background: "white",
+          border: "0.5px solid #d3d3d3",
+          borderRadius: "5px",
+        }}
+      >
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{name}</div>
           <div className="d-flex align-items-baseline">

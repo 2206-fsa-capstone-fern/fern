@@ -139,12 +139,13 @@ code {
 .paginationBtns a {
   height: 40px;
   list-style: none;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   margin: -25px 5px;
   border-radius: 5px;
   border: 1px solid black;
-  color: #2b2eff;
+  color: black;
   cursor: pointer;
 }
 
