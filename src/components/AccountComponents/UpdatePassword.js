@@ -39,29 +39,7 @@ function UpdatePassword(props) {
 
   return (
     <div>
-      {showConfirmNewPassword ? (
-        <form onSubmit={confirmNewPassword} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="input-field">
-            <Button color="success" id="confirm-delete">
-              Confirm Update Password
-            </Button>
-            {notice.pass === "Incorrect Password" ? (
-              <span>{`${notice.pass}`}</span>
-            ) : null}
-          </div>
-        </form>
-      ) : null}
-
-      <form id="update-password" onSubmit={handleSubmitOnNewPassword}>
+      <form id="update-password" >
         <div className="input-field">
           <label htmlFor="password">Update Password</label>
           <input
@@ -73,18 +51,39 @@ function UpdatePassword(props) {
           />
         </div>
         <div className="input-field">
-          <Button color="success" id="confirm-update-password">
+          <Button color="success" id="confirm-update-password" onClick={handleSubmitOnNewPassword}>
             Update Password
           </Button>
           {showConfirmNewPassword ? (
-            <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
+            <div style={{ color: "#364958" }}>Input Password To Confirm Password Update</div>
           ) : null}
           {notice.pass && notice.pass !== "Incorrect Password" ? (
-            <span>Password Updated Successfully</span>
+            <div style={{ color: "#364958" }}>Password Updated Successfully</div>
           ) : null}
         </div>
         <br />
       </form>
+      {showConfirmNewPassword ? (
+        <form id="signup" className="white">
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <Button color="success" id="confirm-delete" onClick={confirmNewPassword}>
+              Confirm Update Password
+            </Button>
+            {notice.pass === "Incorrect Password" ? (
+              <div style={{ color: "#364958" }}>{`${notice.pass}`}</div>
+            ) : null}
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 }
