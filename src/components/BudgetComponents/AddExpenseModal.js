@@ -29,9 +29,9 @@ export default function AddExpenseModal({
     <Modal
       show={show}
       onHide={handleClose}
-      style={{ color: "#01a314", margin: "10% 7.75%" }}
+      style={{ color: "#01a314", margin: "250px 132px" }}
     >
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ color: "#01a314" }}>
         <Modal.Header closeButton>
           <Modal.Title>New Expense</Modal.Title>
         </Modal.Header>
@@ -63,7 +63,7 @@ export default function AddExpenseModal({
           </Form.Group>
           <div
             className="d-flex justify-content-center"
-            style={{ marginLeft: "20%" }}
+            style={{ marginLeft: "75px" }}
           >
             <Button color="success" type="submit">
               Add

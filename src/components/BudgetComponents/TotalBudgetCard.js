@@ -1,3 +1,4 @@
+import { MDBContainer } from "mdb-react-ui-kit";
 import { useBudgets } from "../../contexts/BudgetsContext";
 import BudgetCard from "./BudgetCard";
 
@@ -15,7 +16,7 @@ export default function TotalBudgetCard() {
           <div
             className="fw-bold mb-3 mx-auto"
             style={{
-              width: "26vw",
+              width: "450px",
               fontSize: 20,
               color: "white",
               textAlign: "center",
@@ -37,11 +38,11 @@ export default function TotalBudgetCard() {
         </div>
       ) : (
         //renders if no budget is set yet
-        <div className="vstack gap-2 align-items-center">
+        <MDBContainer className="vstack gap-2 align-items-center">
           <div
             className="fw-bold mb-3 mx-auto"
             style={{
-              width: "26vw",
+              width: "450px",
               fontSize: 20,
               color: "white",
               textAlign: "center",
@@ -60,7 +61,7 @@ export default function TotalBudgetCard() {
             max={500}
             hideButtons
           />
-        </div>
+        </MDBContainer>
       )}
     </div>
   );
