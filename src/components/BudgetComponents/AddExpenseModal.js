@@ -3,7 +3,7 @@ import { useRef } from "react";
 import {
   useBudgets,
   UNCATEGORIZED_BUDGET_ID,
-} from "../contexts/BudgetsContext";
+} from "../../contexts/BudgetsContext";
 import { Button } from "react-bootstrap";
 export default function AddExpenseModal({
   show,

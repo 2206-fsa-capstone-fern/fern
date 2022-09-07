@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { deletingAccount } from "../store";
+import { deletingAccount } from "../../store";
 import { Button } from "react-bootstrap";
 function DeleteAccount(props) {
   const { notice, user } = props;
@@ -69,22 +69,6 @@ function DeleteAccount(props) {
           </div>
         </form>
       ) : null}
-
-      <form className="delete-form">
-        <div>
-          <Button
-            color="success"
-            id="delete-account"
-            onClick={handleSubmitOnDelete}
-          >
-            Delete Account
-          </Button>
-          {showConfirmDelete ? (
-            <span>^^^ Input Password To Confirm Delete Account ^^^</span>
-          ) : null}
-        </div>
-        <br />
-      </form>
     </div>
   );
 }

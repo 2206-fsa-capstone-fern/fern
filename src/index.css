@@ -1,7 +1,7 @@
 @import './AllTransactions.css';
-@import './AccountBalances.css';
-@import './Trends.css';
-@import './LinkAccount.css';
+@import './Styles/AccountBalances.css';
+@import './Styles/Trends.css';
+@import './Styles/LinkAccount.css';
 
 body {
   margin: 0;
@@ -18,7 +18,7 @@ code {
 }
 
 .landing{
-  background-image: 'public\img\fern-landing.jpg';
+  background-image: 'fernLanding.jpg';
 }
 
 /* Contact */
@@ -152,7 +152,7 @@ code {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-image: url('./img/fernLanding.png');
+  background-image: url('fernLanding.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -271,9 +271,9 @@ input:focus {
 
 
 /* NAVBAR */
-.plaidButton {
+/* .plaidButton {
   cursor: pointer;
-  /* padding-top: 50px; */
+  padding-top: 50px;
   text-align: right;
   text-decoration: none;
   width: 100%;
@@ -294,7 +294,7 @@ input:focus {
   align-items: center;
   width: 100vw;
   background-color: aliceblue;
-}
+} */
 
 .nav-link {
   margin-left: 10px;

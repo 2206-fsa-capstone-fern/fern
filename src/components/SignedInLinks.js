@@ -31,8 +31,8 @@ const SignedInLinks = (props) => {
       {isLoggedIn ? (
         <Button color="success" style={{ marginTop: "10px" }}>
           <NavLink to="/account" className="authLink">
-            {user.firstName[0]}
-            {user.lastName[0]}
+            {user.firstName[0].toUpperCase()}
+            {user.lastName[0].toUpperCase()}
           </NavLink>
         </Button>
       ) : (

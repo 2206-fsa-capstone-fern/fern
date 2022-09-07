@@ -1,4 +1,4 @@
-import { Stack } from "react-bootstrap";
+import { Stack, Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddBudgetModal from "./components/BudgetComponents/AddBudgetModal";
 import AddExpenseModal from "./components/BudgetComponents/AddExpenseModal";
@@ -8,7 +8,7 @@ import UncategorizedBudgetCard from "./components/BudgetComponents/Uncategorized
 import TotalBudgetCard from "./components/BudgetComponents/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
-import SideNav from "./components/SideNav/SideNav";
+import SideNav from "./components/NavBars/SideNav";
 import "./Styles/Budget.css";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);

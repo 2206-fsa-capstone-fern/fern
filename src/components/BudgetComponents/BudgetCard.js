@@ -1,6 +1,6 @@
 import { Card, ProgressBar, Stack } from "react-bootstrap";
-import SideNav from "../components/SideNav/SideNav";
-import { currencyFormatter } from "../utils";
+import SideNav from "../NavBars/SideNav";
+import { currencyFormatter } from "../../utils";
 import { Button } from "react-bootstrap";
 export default function BudgetCard({
   name,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { gettingUser, resetingNotice, updatingEmail } from "../store";
+import { gettingUser, resetingNotice, updatingEmail } from "../../store";
 import { Button } from "react-bootstrap";
 function UpdateEmail(props) {
   let { notice, user } = props;
