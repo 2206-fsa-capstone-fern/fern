@@ -41,29 +41,7 @@ function UpdatePhoneNumber(props) {
 
   return (
     <div>
-      {showConfirmNewPhoneNumber ? (
-        <form onSubmit={confirmNewPhoneNumber} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="input-field">
-            <Button color="success" id="confirm-delete">
-              Confirm Update Phone Number
-            </Button>
-            {notice.phone === "Incorrect Password" ? (
-              <span>{`${notice.phone}`}</span>
-            ) : null}
-          </div>
-        </form>
-      ) : null}
-
-      <form id="update-phoneNumber" onSubmit={handleSubmitOnNewPhoneNumber}>
+      <form id="update-phoneNumber">
         <div className="input-field">
           <label htmlFor="phoneNumber">
             Update Phone Number (123-456-7890)
@@ -77,20 +55,43 @@ function UpdatePhoneNumber(props) {
           />
         </div>
         <div className="input-field">
-          <Button color="success" id="confirm-update-phoneNumber">
+          <Button color="success" id="confirm-update-phoneNumber" onClick={handleSubmitOnNewPhoneNumber}>
             Update Phone Number
           </Button>
           {showConfirmNewPhoneNumber ? (
-            <span>
-              ^^^ Input Password Above To Confirm Phone Number Update ^^^
-            </span>
+            <div style={{ color: "#364958" }}>
+            Input Password To Confirm Update
+          </div>
           ) : null}
           {notice.phone && notice.phone !== "Incorrect Password" ? (
-            <span>Phone Number Updated Successfully</span>
+            <div style={{ color: "#364958" }}>
+            Phone Number Updated Successfully
+          </div>
           ) : null}
         </div>
         <br />
       </form>
+      {showConfirmNewPhoneNumber ? (
+        <form id="signup" className="white">
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <Button color="success" id="confirm-delete" onClick={confirmNewPhoneNumber}>
+              Confirm Update Phone Number
+            </Button>
+            {notice.phone === "Incorrect Password" ? (
+              <div style={{ color: "#364958" }}>{`${notice.phone}`}</div>
+            ) : null}
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 }

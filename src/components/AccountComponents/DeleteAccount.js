@@ -29,7 +29,7 @@ function DeleteAccount(props) {
 
   return (
     <div>
-      <form className="delete-form">
+      <form className="delete-form" >
         <div>
           <Button
             color="success"
@@ -39,7 +39,7 @@ function DeleteAccount(props) {
             Delete Account
           </Button>
           {showConfirmDelete ? (
-            <div style={{ color: "#c9e4ca" }}>
+            <div style={{ color: "#364958" }}>
               Input Password To Confirm Delete Account
             </div>
           ) : null}
@@ -47,9 +47,9 @@ function DeleteAccount(props) {
         <br />
       </form>
       {showConfirmDelete ? (
-        <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
+        <form id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+            <label htmlFor="password" style={{ color: "#364958" }}>
               Password
             </label>
             <input
@@ -60,11 +60,11 @@ function DeleteAccount(props) {
             />
           </div>
           <div className="input-field">
-            <Button color="success" id="confirm-delete">
-              CONFIRM DELETE
+            <Button color="success" id="confirm-delete" onClick={confirmSubmitOnDelete}>
+              Confirm Delete
             </Button>
             {notice.delete === "Incorrect Password" ? (
-              <span>{`${notice.delete}`}</span>
+              <div style={{ color: "#364958" }}>{`${notice.delete}`}</div>
             ) : null}
           </div>
         </form>

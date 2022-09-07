@@ -24,12 +24,21 @@ class LogIn extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    let { user } = this.props;
     const { toNext } = this.state;
     if (typeof user === "object" && user.length) {
       this.setState({
         toNext: true,
       });
+    }
+    if(user.code === "auth/wrong-password") {
+      user.code = "Incorrect Password. Please Try Again."
+    }
+    if(user.code === "auth/user-not-found") {
+      user.code = "Not A User. Please Sign Up."
+    }
+    if(user.code === "User Exists. Please Log In." || user.code === "Please Fill In All Your Information") {
+      user = {}
     }
 
     return (
@@ -64,6 +73,7 @@ class LogIn extends Component {
               <Button type="submit" color="success">
                 Submit
               </Button>
+              {toNext ? null : <div style={{ color: "#01a314" }}>{user.code}</div> }
             </div>
             <p
               className="forgot-password text-right mt-2"
