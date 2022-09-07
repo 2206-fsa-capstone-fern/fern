@@ -43,12 +43,11 @@ function AllTransactions() {
             setChart(data.transactions);
           });
         })
-        .catch((error) => {
-          console.log("ERROR: \n", error);
-        });
+
+        .catch((error) => {});
     };
     fetchTransactions();
-  }, [apiKey, baseURL, formattedCurrDate]);
+  }, []);
 
   const searchFn = (transactions) => {
     return transactions.filter(
