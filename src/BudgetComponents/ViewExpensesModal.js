@@ -2,9 +2,9 @@ import { Modal, Stack } from "react-bootstrap";
 import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
-} from "../../contexts/BudgetsContext";
-import { currencyFormatter } from "../../utils";
-import { MDBBtn } from "mdb-react-ui-kit";
+} from "../contexts/BudgetsContext";
+import { currencyFormatter } from "../utils";
+import { Button } from "react-bootstrap";
 export default function ViewExpensesModal({ budgetId, handleClose }) {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
     useBudgets();
@@ -22,7 +22,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
           <Stack direction="horizontal" gap="2">
             <div>Expenses - {budget?.name}</div>
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
-              <MDBBtn
+              <Button
                 onClick={() => {
                   deleteBudget(budget);
                   handleClose();
@@ -30,7 +30,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
                 color="outline-danger"
               >
                 Delete
-              </MDBBtn>
+              </Button>
             )}
           </Stack>
         </Modal.Title>
@@ -43,13 +43,13 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
               <div className="fs-5">
                 {currencyFormatter.format(expense.amount)}
               </div>
-              <MDBBtn
+              <Button
                 onClick={() => deleteExpense(expense)}
                 size="sm"
                 color="outline-danger"
               >
                 &times;
-              </MDBBtn>
+              </Button>
             </Stack>
           ))}
         </Stack>

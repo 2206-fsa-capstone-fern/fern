@@ -1,6 +1,7 @@
 import { Card, ProgressBar, Stack } from "react-bootstrap";
-import { currencyFormatter } from "../../utils";
-import { MDBBtn } from "mdb-react-ui-kit";
+import SideNav from "../components/SideNav/SideNav";
+import { currencyFormatter } from "../utils";
+import { Button } from "react-bootstrap";
 export default function BudgetCard({
   name,
   amount,
@@ -19,7 +20,7 @@ export default function BudgetCard({
 
   return (
     <div>
-      <Card className={classNames.join(" ")} style={{ width: "26rem" }}>
+      <Card className={classNames.join(" ")}>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
             <div className="me-2">{name}</div>
@@ -43,16 +44,16 @@ export default function BudgetCard({
           )}
           {!hideButtons && (
             <Stack direction="horizontal" gap="2" className="mt-4">
-              <MDBBtn
+              <Button
                 color="outline-success"
                 className="ms-auto"
                 onClick={onAddExpenseClick}
               >
                 Add Expense
-              </MDBBtn>
-              <MDBBtn onClick={onViewExpensesClick} color="outline-success">
+              </Button>
+              <Button onClick={onViewExpensesClick} color="outline-success">
                 View Expenses
-              </MDBBtn>
+              </Button>
             </Stack>
           )}
         </Card.Body>

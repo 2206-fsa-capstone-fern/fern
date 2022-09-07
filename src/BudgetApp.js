@@ -8,9 +8,8 @@ import UncategorizedBudgetCard from "./components/BudgetComponents/Uncategorized
 import TotalBudgetCard from "./components/BudgetComponents/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
-import SideNav from "./components/NavBars/SideNav";
+import SideNav from "./components/SideNav/SideNav";
 import "./Styles/Budget.css";
-import { MDBBtn } from "mdb-react-ui-kit";
 function BudgetApp() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
@@ -44,15 +43,15 @@ function BudgetApp() {
               className="mb-4"
               style={{ paddingRight: "5%", marginLeft: "5%", marginTop: "5%" }}
             >
-              <MDBBtn
+              <Button
                 color="success"
                 onClick={() => setShowAddBudgetModal(true)}
               >
                 Add Budget
-              </MDBBtn>
-              <MDBBtn color="success" onClick={openAddExpenseModal}>
+              </Button>
+              <Button color="green" onClick={openAddExpenseModal}>
                 Add Expense
-              </MDBBtn>
+              </Button>
             </Stack>
 
             <div

@@ -123,7 +123,7 @@ function AllTransactions() {
       >
         <div style={{ height: "100%", background: "#364958" }}>
           <MDBInput
-            style={{ width: "40.9%", marginLeft: "26.5%", marginTop: "2%" }}
+            style={{ width: "20%", marginLeft: "21%", marginTop: "2%" }}
             type="text"
             placeholder="Search"
             className="search"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { resetingNotice, updatingPassword } from "../../store";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { resetingNotice, updatingPassword } from "../store";
+import { Button } from "react-bootstrap";
 function UpdatePassword(props) {
   const { notice, user } = props;
   const { email } = user;
@@ -39,11 +39,31 @@ function UpdatePassword(props) {
 
   return (
     <div>
+      {showConfirmNewPassword ? (
+        <form onSubmit={confirmNewPassword} id="signup" className="white">
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-field">
+            <Button color="success" id="confirm-delete">
+              Confirm Update Password
+            </Button>
+            {notice.pass === "Incorrect Password" ? (
+              <span>{`${notice.pass}`}</span>
+            ) : null}
+          </div>
+        </form>
+      ) : null}
+
       <form id="update-password" onSubmit={handleSubmitOnNewPassword}>
         <div className="input-field">
-          <label htmlFor="password" style={{ color: "#c9e4ca" }}>
-            Update Password
-          </label>
+          <label htmlFor="password">Update Password</label>
           <input
             type="password"
             name="newPassword"
@@ -53,45 +73,18 @@ function UpdatePassword(props) {
           />
         </div>
         <div className="input-field">
-          <MDBBtn color="success" id="confirm-update-password">
+          <Button color="success" id="confirm-update-password">
             Update Password
-          </MDBBtn>
+          </Button>
           {showConfirmNewPassword ? (
-            <div style={{ color: "#c9e4ca" }}>
-              Input Password To Confirm Password Update
-            </div>
+            <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
           ) : null}
           {notice.pass && notice.pass !== "Incorrect Password" ? (
-            <div style={{ color: "#c9e4ca" }}>
-              Password Updated Successfully
-            </div>
+            <span>Password Updated Successfully</span>
           ) : null}
         </div>
         <br />
       </form>
-      {showConfirmNewPassword ? (
-        <form onSubmit={confirmNewPassword} id="signup" className="white">
-          <div className="input-field">
-            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="input-field">
-            <MDBBtn color="success" id="confirm-delete">
-              Confirm Password Update
-            </MDBBtn>
-            {notice.pass === "Incorrect Password" ? (
-              <div style={{ color: "#c9e4ca" }}>{`${notice.pass}`}</div>
-            ) : null}
-          </div>
-        </form>
-      ) : null}
     </div>
   );
 }

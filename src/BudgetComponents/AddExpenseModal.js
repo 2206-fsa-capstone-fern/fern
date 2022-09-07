@@ -3,8 +3,8 @@ import { useRef } from "react";
 import {
   useBudgets,
   UNCATEGORIZED_BUDGET_ID,
-} from "../../contexts/BudgetsContext";
-import { MDBBtn } from "mdb-react-ui-kit";
+} from "../contexts/BudgetsContext";
+import { Button } from "react-bootstrap";
 export default function AddExpenseModal({
   show,
   handleClose,
@@ -58,9 +58,9 @@ export default function AddExpenseModal({
             </Form.Select>
           </Form.Group>
           <div className="d-flex justify-content-end">
-            <MDBBtn color="success" type="submit">
+            <Button color="success" type="submit">
               Add
-            </MDBBtn>
+            </Button>
           </div>
         </Modal.Body>
       </Form>

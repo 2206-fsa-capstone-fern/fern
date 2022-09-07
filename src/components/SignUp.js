@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../store";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { Button } from "react-bootstrap";
 
 class SignUp extends Component {
   state = {
@@ -98,9 +98,9 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <MDBBtn type="submit" color="success">
+            <Button type="submit" color="success">
               Submit
-            </MDBBtn>
+            </Button>
           </div>
         </form>
       </div>

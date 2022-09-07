@@ -1,7 +1,7 @@
 import { Form, Modal } from "react-bootstrap";
 import { useRef } from "react";
-import { useBudgets } from "../../contexts/BudgetsContext";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { useBudgets } from "../contexts/BudgetsContext";
+import { Button } from "react-bootstrap";
 export default function AddBudgetModal({ show, handleClose }) {
   const nameRef = useRef();
   const maxRef = useRef();
@@ -18,7 +18,7 @@ export default function AddBudgetModal({ show, handleClose }) {
   return (
     <Modal show={show} onHide={handleClose} style={{ color: "#01a314" }}>
       <Form onSubmit={handleSubmit} style={{ color: "#01a314" }}>
-        <Modal.Header closeMDBBtn>
+        <Modal.Header closeButton>
           <Modal.Title style={{ color: "#364958" }}>New Budget</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ color: "#01a314" }}>
@@ -39,9 +39,9 @@ export default function AddBudgetModal({ show, handleClose }) {
             />
           </Form.Group>
           <div className="d-flex justify-content-end">
-            <MDBBtn color="success" type="submit">
+            <Button color="success" type="submit">
               Add
-            </MDBBtn>
+            </Button>
           </div>
         </Modal.Body>
       </Form>

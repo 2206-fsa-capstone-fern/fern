@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingIn } from "../store";
-import { MDBBtn } from "mdb-react-ui-kit";
-
+import { Button } from "react-bootstrap";
 class LogIn extends Component {
   state = {
     email: "",
@@ -62,9 +61,9 @@ class LogIn extends Component {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <MDBBtn type="submit" color="success">
+              <Button type="submit" color="success">
                 Submit
-              </MDBBtn>
+              </Button>
             </div>
             <p
               className="forgot-password text-right mt-2"
