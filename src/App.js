@@ -1,5 +1,5 @@
 //React
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Redirect } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 
 //Plaid
@@ -19,7 +19,6 @@ import AccountView from "./components/AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/Balances/AccountBalances";
 import QuizApp from "./QuizComponents/QuizApp";
-
 import NotFound from "./components/NotFound";
 
 //Redux
@@ -31,7 +30,7 @@ function App(props) {
   const { isLoggedIn, isAdmin } = props;
   useEffect(() => {
     props.getUser();
-    props.getTransactions();
+    // props.getTransactions();
   }, [isLoggedIn]);
 
   const [token, setToken] = useState(null);
@@ -70,9 +69,10 @@ function App(props) {
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
     const response = await fetch("/api/transactions/get");
-
-    transactions = await response.json();
-    props.addTransactions(props.transactions, transactions);
+    const transactions = await response.json();
+    // transactions = await response.json();
+    // props.addTransactions(props.transactions, transactions);
+    setTransactions(transactions);
 
     setLoading(false);
   }, [setTransactions, setLoading]);
@@ -116,18 +116,13 @@ function App(props) {
                     path="/link"
                     element={
                       <LinkAccount
+                        stored={transactions}
                         open={open}
                         ready={ready}
-                        transactions={props.transactions[0]}
-                        transactions2={props.transactions[1]}
                       />
                     }
                   />
-                  <Route
-                    exact
-                    path="/dashboard"
-                    element={<Dashboard transactions={props.transactions[0]} />}
-                  />
+                  <Route exact path="/dashboard" element={<Dashboard />} />
                   <Route
                     exact
                     path="/"
@@ -164,9 +159,15 @@ function App(props) {
           {/* for users who aren't logged in */}
           <Navbar />
           <Routes>
+            <Route
+              exact
+              path="/link"
+              element={<LinkAccount open={open} ready={ready} />}
+            />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/login" element={<LogIn />} />
             <Route exact path="/" element={<LogIn />} />
+            <Route exact path="*" element={<NotFound />} />
           </Routes>
         </div>
       )}
@@ -187,9 +188,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getUser: () => dispatch(gettingUser()),
-    addTransactions: (transactions, transaction) =>
-      dispatch(addingTransactions(transactions, transaction)),
-    getTransactions: () => dispatch(gettingTransactions()),
+    // addTransactions: (transactions, transaction) =>
+    //   dispatch(addingTransactions(transactions, transaction)),
+    // getTransactions: () => dispatch(gettingTransactions()),
   };
 };
 

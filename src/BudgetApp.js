@@ -49,7 +49,11 @@ function BudgetApp() {
               >
                 Add Budget
               </Button>
-              <Button color="green" onClick={openAddExpenseModal}>
+              <Button
+                color="green"
+                onClick={openAddExpenseModal}
+                style={{ margin: "0px 8px" }}
+              >
                 Add Expense
               </Button>
             </Stack>

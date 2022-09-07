@@ -17,8 +17,12 @@ const Month = () => {
   let proxyURL = "https://cors-anywhere.herokuapp.com/";
   // let proxyURL = "https://api.allorigins.win/raw?url=/"
   let apiKey = process.env.REACT_APP_PLAID_CLIENT_ID;
-  let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split("T")[0];
-  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31).toISOString().split("T")[0];
+  let firstDateOfThisYear = new Date(new Date().getFullYear(), 0, 1)
+    .toISOString()
+    .split("T")[0];
+  let lastDateOfThisYear = new Date(new Date().getFullYear(), 11, 31)
+    .toISOString()
+    .split("T")[0];
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -36,8 +40,8 @@ const Month = () => {
           start_date: firstDateOfThisYear,
           end_date: lastDateOfThisYear,
           options: {
-            count: 500
-          }
+            count: 500,
+          },
         }),
       })
         .then((response) => {
@@ -90,7 +94,7 @@ const Month = () => {
           "rgba(73, 118, 46, 1)",
           "rgba(62, 100, 39, 1)",
           "rgba(50, 81, 32, 1)",
-          "rgba(39, 63, 25, 1)"
+          "rgba(39, 63, 25, 1)",
         ],
         borderColor: [
           "rgba(176, 215, 152, 1)",
@@ -104,7 +108,7 @@ const Month = () => {
           "rgba(73, 118, 46, 1)",
           "rgba(62, 100, 39, 1)",
           "rgba(50, 81, 32, 1)",
-          "rgba(39, 63, 25, 1)"
+          "rgba(39, 63, 25, 1)",
         ],
         borderWidth: 1,
       },
@@ -121,23 +125,23 @@ const Month = () => {
       y: {
         title: {
           display: true,
-          text: 'Amount Spent',
+          text: "Amount Spent",
           font: {
             size: 16,
-          }
+          },
         },
         min: 0,
       },
       x: {
         title: {
           display: true,
-          text: 'Month',
+          text: "Month",
           font: {
             size: 16,
           },
         },
-        min: 'January',
-      }
+        min: "January",
+      },
     },
     plugins: {
       tooltip: {
@@ -148,15 +152,15 @@ const Month = () => {
         labels: {
           font: {
             size: 14,
-          }
-        }
+          },
+        },
       },
       title: {
         display: true,
         text: "Spending By Month",
         font: {
           size: 18,
-        }
+        },
       },
     },
   };

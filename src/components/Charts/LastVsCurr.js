@@ -180,16 +180,16 @@ const LastVsCurr = () => {
       {
         label: "Current Month",
         data: objvals2,
-        backgroundColor: ["rgba(50, 168, 82, 0.8)"],
-        borderColor: ["rgba(50, 168, 82, 0.8)"],
-        borderWidth: 2.5,
+        backgroundColor: ["rgba(0, 102, 34, 1)"],
+        borderColor: ["rgba(0, 102, 34, 1)"],
+        borderWidth: 2,
       },
       {
         label: "Previous Month",
         data: objvals,
-        backgroundColor: ["rgba(143, 207, 155, 0.8)"],
-        borderColor: ["rgba(143, 207, 155, 0.8)"],
-        borderWidth: 1,
+        backgroundColor: ["rgba(2, 135, 28, 0.6)"],
+        borderColor: ["rgba(2, 135, 28, 0.6)"],
+        borderWidth: 1.5,
       },
     ],
   };
@@ -201,7 +201,7 @@ const LastVsCurr = () => {
       y: {
         title: {
           display: true,
-          text: "Amount Spent (USD)",
+          text: "Amount Spent",
         },
       },
       x: {

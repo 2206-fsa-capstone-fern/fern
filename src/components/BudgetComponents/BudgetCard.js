@@ -19,46 +19,59 @@ export default function BudgetCard({
   }
 
   return (
-    <div>
-      <Card className={classNames.join(" ")}>
-        <Card.Body>
-          <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-            <div className="me-2">{name}</div>
-            <div className="d-flex align-items-baseline">
-              {currencyFormatter.format(amount)}
-              {max && (
-                <span className="text-muted fs-6 ms-1">
-                  / {currencyFormatter.format(max)}
-                </span>
-              )}
-            </div>
-          </Card.Title>
-          {max && (
-            <ProgressBar
-              className="rounded-pill"
-              variant={getProgressBarVariant(amount, max)}
-              min={0}
-              max={max}
-              now={amount}
-            />
-          )}
-          {!hideButtons && (
-            <Stack direction="horizontal" gap="2" className="mt-4">
-              <Button
-                color="outline-success"
-                className="ms-auto"
-                onClick={onAddExpenseClick}
-              >
-                Add Expense
-              </Button>
-              <Button onClick={onViewExpensesClick} color="outline-success">
-                View Expenses
-              </Button>
-            </Stack>
-          )}
-        </Card.Body>
-      </Card>
-    </div>
+    <Card
+      className={classNames.join(" ")}
+      style={{
+        width: "26vw",
+      }}
+    >
+      <Card.Body
+        style={{
+          background: "white",
+          border: "0.5px solid #d3d3d3",
+          borderRadius: "5px",
+        }}
+      >
+        <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
+          <div className="me-2">{name}</div>
+          <div className="d-flex align-items-baseline">
+            {currencyFormatter.format(amount)}
+            {max && (
+              <span className="text-muted fs-6 ms-1">
+                / {currencyFormatter.format(max)}
+              </span>
+            )}
+          </div>
+        </Card.Title>
+        {max && (
+          <ProgressBar
+            className="rounded-pill"
+            variant={getProgressBarVariant(amount, max)}
+            min={0}
+            max={max}
+            now={amount}
+          />
+        )}
+        {!hideButtons && (
+          <Stack
+            direction="horizontal"
+            className="mt-4"
+            style={{ margin: "0% -6%" }}
+          >
+            <Button
+              color="outline-success"
+              className="ms-auto"
+              onClick={onAddExpenseClick}
+            >
+              Add Expense
+            </Button>
+            <Button onClick={onViewExpensesClick} color="outline-success">
+              View Expenses
+            </Button>
+          </Stack>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 

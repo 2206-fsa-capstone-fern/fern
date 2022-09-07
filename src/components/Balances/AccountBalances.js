@@ -35,7 +35,7 @@ const Balances = () => {
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
 
-  if (!chart.account_id) {
+  if (!chart) {
     return (
       <div className="budget d-flex">
         <div>

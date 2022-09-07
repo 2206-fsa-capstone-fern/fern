@@ -29,7 +29,7 @@ const BalancesOverview = () => {
           });
         })
         .catch((error) => {
-          console.log("ERROR: \n", error)
+          console.log("ERROR: \n", error);
         });
     };
     fetchBalances();
@@ -37,7 +37,7 @@ const BalancesOverview = () => {
 
   if (!chart[0]) {
     return (
-      <div className="table-responsive mt-3" style={{ textAlign: "center" }}>
+      <div className="table-responsive" style={{ textAlign: "center" }}>
         <div
           className="mb-3 fw-bold"
           style={{
@@ -47,14 +47,14 @@ const BalancesOverview = () => {
             background: "#1CAC78",
             borderRadius: "7px",
             width: "26rem",
-            margin: "0px 30px",
+            margin: "55px 30px",
           }}
         >
           Accounts
         </div>
         <div
           className="card"
-          style={{ width: "26rem", height: "17.64rem", margin: "0px 30px" }}
+          style={{ width: "26rem", height: "13rem", margin: "0px 30px" }}
         >
           <table
             className="table"
@@ -94,7 +94,7 @@ const BalancesOverview = () => {
     );
   }
   return (
-    <div className="table-responsive mt-3" style={{ textAlign: "center" }}>
+    <div className="table-responsive" style={{ textAlign: "center" }}>
       <div
         className="mb-3 fw-bold"
         style={{
@@ -104,14 +104,14 @@ const BalancesOverview = () => {
           background: "#1CAC78",
           borderRadius: "7px",
           width: "26rem",
-          margin: "0px 30px",
+          margin: "55px 30px",
         }}
       >
         Accounts
       </div>
       <div
         className="card"
-        style={{ width: "26rem", height: "17.7rem", margin: "0px 30px" }}
+        style={{ width: "26rem", height: "13rem", margin: "0px 30px" }}
       >
         <table
           className="table"

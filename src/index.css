@@ -134,16 +134,26 @@ code {
   height: 100%;
 }
 
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
-
-.refunds {
-  color: #01796f;
+/* Transactions Table Pagination */
+.paginationBtns a {
+  height: 40px;
+  list-style: none;
+  text-decoration: none;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
 }
 
+.paginationBtns a:hover {
+  background-color: rgb(7, 176, 7)
+}
+
+.paginationActive a {
+  background-color: rgb(7, 176, 7)
+}
 
 /* LOGIN AND LOGOUT START */
 .Auth-form-container {

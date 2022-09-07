@@ -43,12 +43,11 @@ function AllTransactions() {
             setChart(data.transactions);
           });
         })
-        .catch((error) => {
-          console.log("ERROR: \n", error);
-        });
+
+        .catch((error) => {});
     };
     fetchTransactions();
-  }, [apiKey, baseURL, formattedCurrDate]);
+  }, []);
 
   const searchFn = (transactions) => {
     return transactions.filter(
@@ -123,10 +122,10 @@ function AllTransactions() {
       >
         <div style={{ height: "100%", background: "#364958" }}>
           <MDBInput
-            style={{ width: "20%", marginLeft: "21%", marginTop: "2%" }}
+            style={{ width: "41%", marginLeft: "30%", marginTop: "2%" }}
             type="text"
             placeholder="Search"
-            className="search"
+            className="search mb-4"
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 

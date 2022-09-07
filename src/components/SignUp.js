@@ -3,6 +3,7 @@ import { signup } from "../store";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import history from "../history";
 
 class SignUp extends Component {
   state = {
@@ -25,6 +26,8 @@ class SignUp extends Component {
     const { email, password, firstName, lastName, phoneNumber } = this.state;
     document.getElementById("signup").reset();
     this.props.signUp(email, password, firstName, lastName, phoneNumber);
+    console.log("history", history);
+    history.push("/link");
   };
 
   render() {

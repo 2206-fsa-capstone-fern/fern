@@ -16,7 +16,11 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
       : budgets.find((b) => b.id === budgetId);
 
   return (
-    <Modal show={budgetId != null} onHide={handleClose}>
+    <Modal
+      show={budgetId != null}
+      onHide={handleClose}
+      style={{ margin: "10% 7.75%" }}
+    >
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
@@ -35,7 +39,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
           </Stack>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ background: "white" }}>
         <Stack direction="vertical" gap="3">
           {expenses.map((expense) => (
             <Stack direction="horizontal" gap="2" key={expense.id}>

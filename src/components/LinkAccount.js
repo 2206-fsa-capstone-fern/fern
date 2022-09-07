@@ -1,12 +1,20 @@
-import React from "react";
-import SideNav from "./NavBars/SideNav";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function LinkAccount(props) {
+  const [component, setComponent] = useState(null);
+  function displayContinue() {
+    return <Link to="/dashboard">Continue</Link>;
+  }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      displayContinue();
+    }, 100);
+    return () => clearTimeout(timeout);
+  });
+
   return (
     <div className="budget d-flex">
-      <div>
-        <SideNav />
-      </div>
       <div
         style={{
           flex: "1 1 auto",
@@ -21,10 +29,28 @@ function LinkAccount(props) {
             <div className="link-account-box">
               <div className="link-account-content">
                 <h4>Before proceeding, please connect your bank account</h4>
+
                 <div className="link-account-button-div">
-                  <button className="link-account-button">
-                    Link Bank Account
+                  <button
+                    onClick={() => {
+                      props.open();
+                    }}
+                    disabled={!props.ready}
+                    className="link-account-button"
+                  >
+                    Link Account
                   </button>
+                </div>
+                <h4>Continue when you're ready</h4>
+                <div className="continue-button-box">
+                  <div className="continue-button" style={{ width: "90px" }}>
+                    <Link
+                      to="/dashboard"
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      Continue
+                    </Link>
+                  </div>
                 </div>
                 <div className="link-account-disclaimer">
                   <p className="link-account-disclaimer-text">
