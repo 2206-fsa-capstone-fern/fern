@@ -22,7 +22,7 @@ export default function BudgetCard({
     <Card
       className={classNames.join(" ")}
       style={{
-        width: "26vw",
+        width: "450px",
       }}
     >
       <Card.Body
@@ -56,7 +56,7 @@ export default function BudgetCard({
           <Stack
             direction="horizontal"
             className="mt-4"
-            style={{ margin: "0% -6%" }}
+            style={{ margin: "0px -40px" }}
           >
             <Button
               color="outline-success"

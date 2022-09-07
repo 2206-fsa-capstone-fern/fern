@@ -2,6 +2,7 @@ import { Form, Modal } from "react-bootstrap";
 import { useRef } from "react";
 import { useBudgets } from "../../contexts/BudgetsContext";
 import { Button } from "react-bootstrap";
+import { MDBContainer } from "mdbreact";
 export default function AddBudgetModal({ show, handleClose }) {
   const nameRef = useRef();
   const maxRef = useRef();
@@ -19,7 +20,7 @@ export default function AddBudgetModal({ show, handleClose }) {
     <Modal
       show={show}
       onHide={handleClose}
-      style={{ color: "#01a314", margin: "10% 7.75%" }}
+      style={{ color: "#01a314", margin: "250px 132px" }}
     >
       <Form onSubmit={handleSubmit} style={{ color: "#01a314" }}>
         <Modal.Header closeButton>
@@ -42,7 +43,7 @@ export default function AddBudgetModal({ show, handleClose }) {
           </Form.Group>
           <div
             className="d-flex justify-content-center"
-            style={{ marginLeft: "20%" }}
+            style={{ marginLeft: "75px" }}
           >
             <Button color="success" type="submit">
               Add
