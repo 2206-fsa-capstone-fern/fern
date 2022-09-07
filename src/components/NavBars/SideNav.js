@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import SignedInLinks from "../Auth/SignedInLinks";
-import SignedOutLinks from "../Auth/SignedOutLinks";
+import SignedInLinks from "../SignedInLinks";
+import SignedOutLinks from "../SignedOutLinks";
+
 import { SideNavData } from "./SideNavData";
 import {
   CDBSidebar,

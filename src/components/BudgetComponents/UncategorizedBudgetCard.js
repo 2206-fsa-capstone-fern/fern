@@ -1,7 +1,7 @@
 import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
-} from "../contexts/BudgetsContext";
+} from "../../contexts/BudgetsContext";
 import BudgetCard from "./BudgetCard";
 
 export default function UncategorizedBudgetCard(props) {

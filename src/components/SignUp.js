@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { signup } from "../../store";
+import { signup } from "../store";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { MDBBtn } from "mdb-react-ui-kit";
@@ -28,23 +28,14 @@ class SignUp extends Component {
   };
 
   render() {
-    let { user } = this.props;
+    const { user } = this.props;
     const { toNext } = this.state;
     if (typeof user === "object" && user.length) {
       this.setState({
         toNext: true,
       });
     }
-    if(user.code === "auth/internal-error") {
-      user.code = "Please Fill In All Your Information"
-    }
-    if(user.code === "auth/email-already-in-use") {
-      user.code = "User Exists. Please Log In."
-    }
-    if(user.code === "Not A User. Please Sign Up." || user.code === "Incorrect Password. Please Try Again.") {
-      user = {}
-    }
-    
+
     return (
       <div className="Auth-form-container">
         <form onSubmit={this.handleSubmit} id="signup" className="Auth-form">
@@ -110,7 +101,6 @@ class SignUp extends Component {
             <MDBBtn type="submit" color="success">
               Submit
             </MDBBtn>
-            {toNext ? null : <div style={{ color: "#01a314" }}>{user.code}</div> }
           </div>
         </form>
       </div>

@@ -17,7 +17,7 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
-import SideNav from "../components/NavBars/SideNav";
+import SideNav from "../NavBars/SideNav";
 
 function AccountView(props) {
   const { user } = props;

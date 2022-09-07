@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { gettingUser, resetingNotice, updatingPhoneNumber } from "../store";
+import { gettingUser, resetingNotice, updatingPhoneNumber } from "../../store";
 import { MDBBtn } from "mdb-react-ui-kit";
 function UpdatePhoneNumber(props) {
   const { notice, user } = props;

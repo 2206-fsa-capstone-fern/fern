@@ -5,10 +5,17 @@ import {
   PointElement,
   CategoryScale,
   LinearScale,
+  registerables,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
+ChartJS.register(
+  ...registerables,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement
+);
 
 const LastVsCurr = () => {
   const [chart, setChart] = useState([]);
@@ -66,11 +73,12 @@ const LastVsCurr = () => {
       })
         .then((response) => {
           response.json().then((json) => {
+            console.log("json285: \n", json);
             setChart(json.transactions);
           });
         })
         .catch((error) => {
-          console.log("ERROR: \n", error)
+          console.log("error: \n", error);
         });
     };
     fetchCoins();
@@ -95,11 +103,12 @@ const LastVsCurr = () => {
       })
         .then((response) => {
           response.json().then((json) => {
+            console.log("json315: \n", json);
             setChart2(json.transactions);
           });
         })
         .catch((error) => {
-          console.log("ERROR: \n", error)
+          console.log("error: \n", error);
         });
     };
     fetch2();
@@ -121,6 +130,7 @@ const LastVsCurr = () => {
       const date = new Date(dates);
       dates = date.toLocaleString("en-US", {
         day: "2-digit",
+        // day: 'numeric',
       });
 
       obj[dates] += amounts;
@@ -144,10 +154,8 @@ const LastVsCurr = () => {
       dates = date.toLocaleDateString("en-US", {
         day: "2-digit",
       });
-
       obj2[dates] += amounts;
     }
-
     return obj2;
   };
 
@@ -170,68 +178,36 @@ const LastVsCurr = () => {
     labels: dates2,
     datasets: [
       {
-        label: "Last Month",
-
-        data: objvals,
-        backgroundColor: [
-          // "rgba(255, 99, 132, 0.2)",
-          // "rgba(54, 162, 235, 0.2)",
-          // "rgba(255, 206, 86, 0.2)",
-          // "rgba(75, 192, 192, 0.2)",
-          // "rgba(153, 102, 255, 0.2)",
-          // "rgba(255, 159, 64, 0.2)",
-          "rgba(143, 207, 155, 0.7)",
-        ],
-        borderColor: [
-          // "rgba(255, 99, 132, 1)",
-          // "rgba(54, 162, 235, 1)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-          "rgba(143, 207, 155, 1)",
-        ],
-        borderWidth: 1,
+        label: "Current Month",
+        data: objvals2,
+        backgroundColor: ["rgba(50, 168, 82, 0.8)"],
+        borderColor: ["rgba(50, 168, 82, 0.8)"],
+        borderWidth: 2.5,
       },
       {
-        label: "This Month",
-        data: objvals2,
-        backgroundColor: [
-          // "rgba(255, 99, 132, 0.2)",
-          // "rgba(54, 162, 235, 0.2)",
-          // "rgba(255, 206, 86, 0.2)",
-          // "rgba(75, 192, 192, 0.2)",
-          // "rgba(153, 102, 255, 0.2)",
-          // "rgba(255, 159, 64, 0.2)",
-          "rgba(50, 168, 82, 0.7)",
-        ],
-        borderColor: [
-          // "rgba(255, 99, 132, 1)",
-          // "rgba(54, 162, 235, 1)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-          "rgba(50, 168, 82, 1)",
-        ],
-        borderWidth: 2.5,
+        label: "Previous Month",
+        data: objvals,
+        backgroundColor: ["rgba(143, 207, 155, 0.8)"],
+        borderColor: ["rgba(143, 207, 155, 0.8)"],
+        borderWidth: 1,
       },
     ],
   };
 
   let options = {
+    responsive: true,
     maintainAspectRatio: false,
     scales: {
       y: {
         title: {
           display: true,
-          text: "Amount Spent",
+          text: "Amount Spent (USD)",
         },
       },
       x: {
         title: {
           display: true,
-          text: "Date of Month",
+          text: "Day of the Month",
         },
       },
     },
@@ -240,13 +216,13 @@ const LastVsCurr = () => {
         display: true,
         align: "center",
         position: "top",
-        text: "Last Month Spending vs Current Month Spending",
+        text: "Month Overview",
         font: {
-          size: 30,
+          size: 20,
         },
         padding: {
-          top: 10,
-          bottom: 30,
+          top: 0,
+          bottom: 7,
         },
       },
       tooltip: {
@@ -257,7 +233,6 @@ const LastVsCurr = () => {
 
   return (
     <div>
-      {/* <Bar height={400} data={data} options={options} /> */}
       <Line height={400} data={data} options={options} />
     </div>
   );

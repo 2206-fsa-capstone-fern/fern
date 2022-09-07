@@ -47,7 +47,13 @@ function Table({ transactions }) {
                       <td>{transaction.date}</td>
                       <td>{transaction.description}</td>
                       <td>{transaction.category}</td>
-                      <td>{transaction.amount}</td>
+                      {transaction.amount > 0 ? (
+                        <td>-${transaction.amount.toFixed(2)}</td>
+                      ) : (
+                        <td style={{ color: "green" }}>
+                          ${`${-transaction.amount.toFixed(2)}`}
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>

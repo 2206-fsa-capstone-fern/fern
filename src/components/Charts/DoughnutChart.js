@@ -32,7 +32,15 @@ const DoughnutChart = () => {
           client_id: process.env.REACT_APP_PLAID_CLIENT_ID,
           secret: process.env.REACT_APP_PLAID_SECRET,
           access_token: process.env.REACT_APP_PLAID_ACCESS_TOKEN,
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/components/Charts/Yearly.js
+========
+
+>>>>>>>> main:src/components/Charts/DoughnutChart.js
+          start_date: firstDateThisOfYear,
+=======
           start_date: firstDateOfThisYear,
+>>>>>>> main
           end_date: lastDateOfThisYear,
         }),
       })
@@ -58,7 +66,10 @@ const DoughnutChart = () => {
 
       obj[chart[i].category[0]] += chart[i].amount;
       let categoryVal = Number(obj[chart[i].category[0]].toFixed(2));
+<<<<<<<< HEAD:src/components/Charts/Yearly.js
+========
 
+>>>>>>>> main:src/components/Charts/DoughnutChart.js
       obj[chart[i].category[0]] = categoryVal;
 
       if (obj[chart[i].category[0]] < 0) {
@@ -76,22 +87,22 @@ const DoughnutChart = () => {
       {
         data: Object.values(plans),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(50, 168, 82, 0.2)",
+          "rgba(98, 12, 204, 0.8)",
+          "rgba(12, 38, 204, 0.8)",
+          "rgba(12, 111, 204, 0.8)",
+          "rgba(9, 200, 204, 0.8)",
+          "rgba(12, 204, 143, 0.8)",
+          "rgba(114, 204, 12, 0.8)",
+          "rgba(204, 204, 12, 0.8)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(50, 168, 82, 1)",
+          "rgba(98, 12, 204, 1)",
+          "rgba(12, 38, 204, 1)",
+          "rgba(12, 111, 204, 1)",
+          "rgba(12, 191, 204, 1)",
+          "rgba(12, 204, 143, 1)",
+          "rgba(114, 204, 12, 1)",
+          "rgba(204, 204, 12, 1)",
         ],
         borderWidth: 1,
       },
@@ -99,10 +110,11 @@ const DoughnutChart = () => {
   };
 
   let options = {
+    responsive: true,
     maintainAspectRatio: false,
     legend: {
       labels: {
-        fontSize: 25,
+        fontSize: 20,
       },
     },
     plugins: {
@@ -111,7 +123,14 @@ const DoughnutChart = () => {
       },
       title: {
         display: true,
+<<<<<<<< HEAD:src/components/Charts/Yearly.js
+        text: "Year Overview",
+        font: {
+          size: 20,
+        },
+========
         text: "Yearly Overview",
+>>>>>>>> main:src/components/Charts/DoughnutChart.js
       },
     },
   };

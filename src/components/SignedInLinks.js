@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { loggingOut } from "../../store";
+import { loggingOut } from "../store";
 import { MDBBtn } from "mdb-react-ui-kit";
 
 const SignedInLinks = (props) => {
@@ -32,8 +32,8 @@ const SignedInLinks = (props) => {
       {isLoggedIn ? (
         <MDBBtn color="success">
           <NavLink to="/account" className="authLink">
-            {user.firstName[0].toUpperCase()}
-            {user.lastName[0].toUpperCase()}
+            {user.firstName[0]}
+            {user.lastName[0]}
           </NavLink>
         </MDBBtn>
       ) : (

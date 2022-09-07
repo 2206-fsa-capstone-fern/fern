@@ -1,31 +1,8 @@
 import React, { Component } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingIn } from "../store";
-import Navbar from "./Navbar";
-import {
-  MDBInput,
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardHeader,
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBListGroup,
-  MDBListGroupItem,
-  MDBIcon,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBIframe,
-  MDBView,
-  MDBCarousel,
-  MDBCarouselCaption,
-  MDBCarouselControl,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCardImage,
-} from "mdb-react-ui-kit";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 class LogIn extends Component {
   state = {
@@ -58,7 +35,6 @@ class LogIn extends Component {
 
     return (
       <div className="Auth-form-container">
-        {/* <img src="intro.png" alt="intro" className="text-blur-out" /> */}
         <form onSubmit={this.handleSubmit} id="login" className="Auth-form">
           {toNext ? <Navigate to="/login" /> : null}
           <div className="Auth-form-content">
@@ -105,37 +81,6 @@ class LogIn extends Component {
     );
   }
 }
-//           <h5 className="grey-text text-darken-3">Log In</h5>
-//           <div className="input-field">
-//             <label htmlFor="email">Email</label>
-//             <input
-//               type="email"
-//               name="email"
-//               onChange={this.handleChange}
-//               required
-//             />
-//           </div>
-//           <div className="input-field">
-//             <label htmlFor="password">Password</label>
-//             <input
-//               type="password"
-//               name="password"
-//               onChange={this.handleChange}
-//               required
-//             />
-//           </div>
-//           <div className="input-field">
-//             <button className="btn">Login</button>
-//             {toNext ? null : <span>{user.code}</span> }
-//           </div>
-//           <div>
-//             <Link to="/signup">New User? Click here to sign up!</Link>
-//           </div>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
 
 const mapState = (state) => {
   return {

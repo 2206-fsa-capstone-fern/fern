@@ -1,5 +1,5 @@
 import { Card, ProgressBar, Stack } from "react-bootstrap";
-import { currencyFormatter } from "../utils";
+import { currencyFormatter } from "../../utils";
 import { MDBBtn } from "mdb-react-ui-kit";
 export default function BudgetCard({
   name,
@@ -19,7 +19,7 @@ export default function BudgetCard({
 
   return (
     <div>
-      <Card className={classNames.join(" ")}>
+      <Card className={classNames.join(" ")} style={{ width: "26rem" }}>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
             <div className="me-2">{name}</div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const BalancesOverview = () => {
   const [chart, setChart] = useState([]);
@@ -38,77 +37,127 @@ const BalancesOverview = () => {
 
   if (!chart[0]) {
     return (
-      <div>
-        <Link to="balances" style={{ textAlign: "center" }} className="">
-          Accounts Overview
-        </Link>
-        <table>
-          <tr>
-            <th>Account Type</th>
-            <th>Balance</th>
-          </tr>
-          <tr>
-            <td>Depository</td>
-            <td>Loading...</td>
-          </tr>
-          <tr>
-            <td>Credit</td>
-            <td>Loading...</td>
-          </tr>
-          <tr>
-            <td>Investments</td>
-            <td>Loading...</td>
-          </tr>
-          <tr>
-            <td>Loans</td>
-            <td>Loading...</td>
-          </tr>
-        </table>
+      <div className="table-responsive mt-3" style={{ textAlign: "center" }}>
+        <div
+          className="mb-3 fw-bold"
+          style={{
+            fontSize: 21,
+            color: "white",
+            border: "1px solid #1CAC78",
+            background: "#1CAC78",
+            borderRadius: "7px",
+            width: "26rem",
+            margin: "0px 30px",
+          }}
+        >
+          Accounts
+        </div>
+        <div
+          className="card"
+          style={{ width: "26rem", height: "17.64rem", margin: "0px 30px" }}
+        >
+          <table
+            className="table"
+            style={{
+              width: "415px",
+              borderColor: "#d3d3d3",
+              borderRadius: "7px",
+            }}
+          >
+            <thead>
+              <tr>
+                <th className="fw-bold">Account Type</th>
+                <th className="fw-bold">Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Depository</td>
+                <td>Loading...</td>
+              </tr>
+              <tr>
+                <td>Credit</td>
+                <td>Loading...</td>
+              </tr>
+              <tr>
+                <td>Investments</td>
+                <td>Loading...</td>
+              </tr>
+              <tr>
+                <td>Loans</td>
+                <td>Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
   return (
-    <div>
-      <Link to="balances" style={{ textAlign: "center" }} className="">
-        Accounts Overview
-      </Link>
-      <table>
-        <tr>
-          <th>Account Type</th>
-          <th>Balance</th>
-        </tr>
-        <tr>
-          <td>Depository</td>
-          {/* <td>checking, savings, cd, money market</td> */}
-          <td>{`$${(
-            Number(chart[0].balances.current) +
-            Number(chart[1].balances.current) +
-            Number(chart[2].balances.current) +
-            Number(chart[4].balances.current)
-          ).toFixed(2)}`}</td>
-        </tr>
-        <tr>
-          <td>Credit</td>
-          {/* <td>credit card</td> */}
-          <td>{`$${chart[3].balances.current.toFixed(2)}`}</td>
-        </tr>
-        <tr>
-          <td>Investments</td>
-          {/* <td>ira, 401k</td> */}
-          <td>{`$${(
-            Number(chart[5].balances.current) +
-            Number(chart[6].balances.current)
-          ).toFixed(2)}`}</td>
-        </tr>
-        <tr>
-          <td>Loans</td>
-          {/* <td>student, mortgage</td> */}
-          <td>{`$${(
-            Number(chart[7].balances.current) +
-            Number(chart[8].balances.current)
-          ).toFixed(2)}`}</td>
-        </tr>
-      </table>
+    <div className="table-responsive mt-3" style={{ textAlign: "center" }}>
+      <div
+        className="mb-3 fw-bold"
+        style={{
+          fontSize: 21,
+          color: "white",
+          border: "1px solid #1CAC78",
+          background: "#1CAC78",
+          borderRadius: "7px",
+          width: "26rem",
+          margin: "0px 30px",
+        }}
+      >
+        Accounts
+      </div>
+      <div
+        className="card"
+        style={{ width: "26rem", height: "17.7rem", margin: "0px 30px" }}
+      >
+        <table
+          className="table"
+          style={{
+            width: "415px",
+            borderColor: "#d3d3d3",
+            borderRadius: "7px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th className="fw-bold">Account Type</th>
+              <th className="fw-bold">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Depository</td>
+              <td>{`$${(
+                Number(chart[0].balances.current) +
+                Number(chart[1].balances.current) +
+                Number(chart[2].balances.current) +
+                Number(chart[4].balances.current)
+              ).toFixed(2)}`}</td>
+            </tr>
+            <tr>
+              <td>Credit</td>
+              <td>{`$${chart[3].balances.current.toFixed(2)}`}</td>
+            </tr>
+            <tr>
+              <td>Investments</td>
+              <td>{`$${(
+                Number(chart[5].balances.current) +
+                Number(chart[6].balances.current)
+              ).toFixed(2)}`}</td>
+            </tr>
+            <tr>
+              <td>Loans</td>
+              <td>{`-$${(
+                Number(chart[7].balances.current) +
+                Number(chart[8].balances.current)
+              ).toFixed(2)}`}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

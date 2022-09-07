@@ -8,18 +8,17 @@ import "./Styles/Plaid.scss";
 import "./Styles/App.css";
 
 //Components
-import LogIn from "./components/Auth/LogIn";
-import SignUp from "./components/Auth/SignUp";
+import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
 import Navbar from "./components/NavBars/Navbar";
 import Dashboard from "./components/Dashboard";
 import LinkAccount from "./components/LinkAccount";
 import BudgetApp from "./BudgetApp";
-import Trends from "./components/Charts/Trends";
-import AccountView from "./AccountComponents/AccountView";
+import Trends from "./components/Trends";
+import AccountView from "./components/AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/Balances/AccountBalances";
 import QuizApp from "./QuizComponents/QuizApp";
-import DoughnutChart from "./components/Charts/DoughnutChart";
 
 import NotFound from "./components/NotFound";
 
@@ -154,7 +153,6 @@ function App(props) {
                   <Route exact path="/account" element={<AccountView />} />
                   <Route exact path="/balances" element={<Balances />} />
                   <Route exact path="/quiz" element={<QuizApp />} />
-                  <Route exact path="/donut" element={<DoughnutChart />} />
                   <Route exact path="*" element={<NotFound />} />
                 </Routes>
               </div>

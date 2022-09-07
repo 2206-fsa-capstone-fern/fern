@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { deletingAccount } from "../store";
+import { deletingAccount } from "../../store";
 import { MDBBtn } from "mdb-react-ui-kit";
 
 function DeleteAccount(props) {
@@ -40,7 +40,9 @@ function DeleteAccount(props) {
             Delete Account
           </MDBBtn>
           {showConfirmDelete ? (
-            <div style={{ color: "#c9e4ca" }}>Input Password To Confirm Delete Account</div>
+            <div style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Delete Account
+            </div>
           ) : null}
         </div>
         <br />
@@ -48,7 +50,9 @@ function DeleteAccount(props) {
       {showConfirmDelete ? (
         <form onSubmit={confirmSubmitOnDelete} id="signup" className="white">
           <div className="input-field">
-            <label htmlFor="password" style={{ color: "#c9e4ca" }}>Password</label>
+            <label htmlFor="password" style={{ color: "#c9e4ca" }}>
+              Password
+            </label>
             <input
               type="password"
               name="password"

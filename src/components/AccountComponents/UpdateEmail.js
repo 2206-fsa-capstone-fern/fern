@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { gettingUser, resetingNotice, updatingEmail } from "../store";
+import { gettingUser, resetingNotice, updatingEmail } from "../../store";
 import { MDBBtn } from "mdb-react-ui-kit";
 function UpdateEmail(props) {
   let { notice, user } = props;
@@ -53,7 +53,9 @@ function UpdateEmail(props) {
             Update Email
           </MDBBtn>
           {showConfirmNewEmail ? (
-            <div style={{ color: "#c9e4ca" }}>Input Password To Confirm Update</div>
+            <div style={{ color: "#c9e4ca" }}>
+              Input Password To Confirm Update
+            </div>
           ) : null}
           {notice.email && notice.email !== "Incorrect Password" ? (
             <div style={{ color: "#c9e4ca" }}>Email Updated Successfully</div>

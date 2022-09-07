@@ -1,7 +1,7 @@
 import React from "react";
-import Daily from "./Daily";
-import Month from "./Month";
-import SideNav from "../NavBars/SideNav";
+import Daily from "./Charts/Daily";
+import Month from "./Charts/Month";
+import SideNav from "./NavBars/SideNav";
 
 function Trends() {
   return (
@@ -21,9 +21,7 @@ function Trends() {
         <div style={{ height: "100%", background: "#364958" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="trends-graphs">
-              <div
-                className="daily-bar-graph"
-              >
+              <div className="daily-bar-graph">
                 <Daily className="dailybargraph" />
               </div>
               <div className="monthly-bar-graph">

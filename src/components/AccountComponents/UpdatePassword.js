@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { resetingNotice, updatingPassword } from "../store";
+import { resetingNotice, updatingPassword } from "../../store";
 import { MDBBtn } from "mdb-react-ui-kit";
 function UpdatePassword(props) {
   const { notice, user } = props;

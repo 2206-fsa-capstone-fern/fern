@@ -41,6 +41,11 @@ code {
   align-items: center;
   flex-wrap: wrap;
 }
+
+/* accounts overview component */
+.account-title-style {
+  background: "green"
+}
 /* 
 .container .card {
   width: 300px;
@@ -300,13 +305,14 @@ input:focus {
   padding-bottom: 20px;
   margin-left: 1000px;
 }
+
 .navbar-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   background-color: aliceblue;
-} */
+}
 
 .nav-link {
   margin-left: 10px;
@@ -364,5 +370,5 @@ div.card-body {
 }
 
 li.list-group-item {
-  background-color:  #c9e4ca;
+  background-color:  #c9e4ca; 
 }

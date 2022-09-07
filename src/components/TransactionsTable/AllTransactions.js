@@ -44,7 +44,7 @@ function AllTransactions() {
           });
         })
         .catch((error) => {
-          console.log("ERROR: \n", error)
+          console.log("ERROR: \n", error);
         });
     };
     fetchTransactions();

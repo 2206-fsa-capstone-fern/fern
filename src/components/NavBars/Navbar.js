@@ -1,8 +1,8 @@
 import React from "react";
 import { Header } from "./Navbar.style";
 import { connect } from "react-redux";
-import SignedInLinks from "../Auth/SignedInLinks";
-import SignedOutLinks from "../Auth/SignedOutLinks";
+import SignedInLinks from "../SignedInLinks";
+import SignedOutLinks from "../SignedOutLinks";
 import { MDBNavbar } from "mdb-react-ui-kit";
 
 const Navbar = (props) => {

@@ -30,6 +30,6 @@ export const SideNavData = [
   {
     title: "  Quiz",
     path: "/quiz",
-    icon: <MDBIcon icon="edit" />,
+    icon: <MDBIcon icon="question" />,
   },
 ];
