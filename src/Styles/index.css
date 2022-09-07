@@ -134,18 +134,14 @@ code {
   height: 100%;
 }
 
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
-/* .paginationBtns {
-  margin-right: 0px;
-
-}
-
+/* Transactions Table Pagination */
 .paginationBtns a {
-  margin: 5px;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: -25px 5px;
   border-radius: 5px;
   border: 1px solid black;
   color: #2b2eff;
@@ -153,17 +149,12 @@ code {
 }
 
 .paginationBtns a:hover {
-  background-color: #f6a192
+  background-color: rgb(7, 176, 7)
 }
 
 .paginationActive a {
-  background-color: #f6a192
-} */
-
-.refunds {
-  color: #01796f;
+  background-color: rgb(7, 176, 7)
 }
-
 
 /* LOGIN AND LOGOUT START */
 .Auth-form-container {

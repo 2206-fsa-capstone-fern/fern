@@ -18,46 +18,44 @@ export default function BudgetCard({
   }
 
   return (
-    <div>
-      <Card className={classNames.join(" ")} style={{ width: "26rem" }}>
-        <Card.Body>
-          <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-            <div className="me-2">{name}</div>
-            <div className="d-flex align-items-baseline">
-              {currencyFormatter.format(amount)}
-              {max && (
-                <span className="text-muted fs-6 ms-1">
-                  / {currencyFormatter.format(max)}
-                </span>
-              )}
-            </div>
-          </Card.Title>
-          {max && (
-            <ProgressBar
-              className="rounded-pill"
-              variant={getProgressBarVariant(amount, max)}
-              min={0}
-              max={max}
-              now={amount}
-            />
-          )}
-          {!hideButtons && (
-            <Stack direction="horizontal" gap="2" className="mt-4">
-              <MDBBtn
-                color="outline-success"
-                className="ms-auto"
-                onClick={onAddExpenseClick}
-              >
-                Add Expense
-              </MDBBtn>
-              <MDBBtn onClick={onViewExpensesClick} color="outline-success">
-                View Expenses
-              </MDBBtn>
-            </Stack>
-          )}
-        </Card.Body>
-      </Card>
-    </div>
+    <Card className={classNames.join(" ")} style={{ width: "28vw" }}>
+      <Card.Body style={{ background: "white" }}>
+        <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
+          <div className="me-2">{name}</div>
+          <div className="d-flex align-items-baseline">
+            {currencyFormatter.format(amount)}
+            {max && (
+              <span className="text-muted fs-6 ms-1">
+                / {currencyFormatter.format(max)}
+              </span>
+            )}
+          </div>
+        </Card.Title>
+        {max && (
+          <ProgressBar
+            className="rounded-pill"
+            variant={getProgressBarVariant(amount, max)}
+            min={0}
+            max={max}
+            now={amount}
+          />
+        )}
+        {!hideButtons && (
+          <Stack direction="horizontal" gap="2" className="mt-4">
+            <MDBBtn
+              color="outline-success"
+              className="ms-auto"
+              onClick={onAddExpenseClick}
+            >
+              Add Expense
+            </MDBBtn>
+            <MDBBtn onClick={onViewExpensesClick} color="outline-success">
+              View Expenses
+            </MDBBtn>
+          </Stack>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 
