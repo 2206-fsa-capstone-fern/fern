@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { resetingNotice, updatingPassword } from "../store";
-import {MDBBtn} from 'mdb-react-ui-kit';
+import { Button } from "react-bootstrap";
 function UpdatePassword(props) {
   const { notice, user } = props;
   const { email } = user;
@@ -52,9 +52,9 @@ function UpdatePassword(props) {
             />
           </div>
           <div className="input-field">
-            <MDBBtn color="success" id="confirm-delete">
+            <Button color="success" id="confirm-delete">
               Confirm Update Password
-            </MDBBtn>
+            </Button>
             {notice.pass === "Incorrect Password" ? (
               <span>{`${notice.pass}`}</span>
             ) : null}
@@ -74,9 +74,9 @@ function UpdatePassword(props) {
           />
         </div>
         <div className="input-field">
-          <MDBBtn color="success" id="confirm-update-password">
+          <Button color="success" id="confirm-update-password">
             Update Password
-          </MDBBtn>
+          </Button>
           {showConfirmNewPassword ? (
             <span>^^^ Input Password Above To Confirm Password Update ^^^</span>
           ) : null}

@@ -19,16 +19,16 @@ input.search {
   margin: 8px;
   border-radius: 5px;
   border: 1px solid white;
-  color: white;
+  color: #55828B;
   cursor: pointer;
 }
 
 .paginationBtns a:hover {
-  color: lime;
-  background-color: yellow;
+  background-color: #364958;
+  color: black;
 }
 
 .paginationActive a {
-  color: lime;
-  background-color: yellow;
+  background-color: #364958;
+  color: black;
 }

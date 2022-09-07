@@ -23,25 +23,32 @@ import {
 const Navbar = (props) => {
   return (
     <div>
-    <CDBNavbar style={{background: '#c9e4ca'}}>
-      <Header>
+      <CDBNavbar style={{ background: "#c9e4ca" }}>
+        <Header>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="navbar">
+                  <h3
+                    style={{
+                      textAlign: "center",
+                      paddingRight: "25px",
+                      paddingLeft: "15px",
+                    }}
+                  >
+                    FernFi
+                  </h3>
 
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="navbar">
-      <h3 style={{ textAlign: "center", paddingRight: '50px', paddingLeft: '15px' }}>FernFi</h3>
-             
-                <div className="navbar__links">
-                  {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+                  <div className="navbar__links">
+                    {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </Header>
-    </CDBNavbar>
-      </div>
+        </Header>
+      </CDBNavbar>
+    </div>
   );
 };
 

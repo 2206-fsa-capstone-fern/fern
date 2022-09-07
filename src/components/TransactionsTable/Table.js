@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import {MDBCard, MDBCardBody, MDBCardHeader, MDBCol, MDBContainer, MDBRow} from 'mdb-react-ui-kit';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+} from "mdb-react-ui-kit";
 function Table({ transactions }) {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -20,14 +27,17 @@ function Table({ transactions }) {
     <MDBContainer>
       <MDBRow>
         <MDBCol>
-          <MDBCard>
-            <MDBCardHeader>
+          <MDBCard style={{ background: "#55828B" }}>
+            <MDBCardHeader style={{ color: "#fff", background: "#55828B" }}>
               <h3>Transactions</h3>
             </MDBCardHeader>
             <MDBCardBody>
-              <table className="table table-striped">
+              <table
+                className="table"
+                style={{ textColor: "#fff", background: "#364958" }}
+              >
                 <thead>
-                  <tr>
+                  <tr style={{ color: "#fff" }}>
                     <th scope="col">Date</th>
                     <th scope="col">Description</th>
                     <th scope="col">Category</th>
@@ -35,8 +45,8 @@ function Table({ transactions }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {currPageTransactions.map((transaction) => (
-                    <tr key={transaction.id}>
+                  {currPageTransactions.map((transaction, index) => (
+                    <tr key={index} style={{ color: "#fff" }}>
                       <td>{transaction.date}</td>
                       <td>{transaction.description}</td>
                       <td>{transaction.category}</td>
@@ -46,17 +56,16 @@ function Table({ transactions }) {
                 </tbody>
               </table>
             </MDBCardBody>
-              <ReactPaginate>
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
+            <div className="pagination">
+              <ReactPaginate
+                previousLabel={"<"}
+                nextLabel={">"}
                 pageCount={pageNums}
                 onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
+                containerClassName={"paginationBtns"}
                 activeClassName={"paginationActive"}
-              </ReactPaginate>
+              />
+            </div>
           </MDBCard>
         </MDBCol>
       </MDBRow>
@@ -89,16 +98,7 @@ function Table({ transactions }) {
 //           </tbody>
 //         ))}
 //       </table>
-//       <div className="pagination">
-//         <ReactPaginate
-//           previousLabel={"<"}
-//           nextLabel={">"}
-//           pageCount={pageNums}
-//           onPageChange={changePage}
-//           containerClassName={"paginationBtns"}
-//           activeClassName={"paginationActive"}
-//         />
-//       </div>
+
 //     </div>
 //   );
 // }

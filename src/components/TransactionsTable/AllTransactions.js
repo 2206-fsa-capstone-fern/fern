@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
 import SideNav from "../SideNav/SideNav";
-import {MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardHeader, MDBBtn, MDBInput} from 'mdb-react-ui-kit';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardHeader,
+  Button,
+  MDBInput,
+} from "mdb-react-ui-kit";
 
 function AllTransactions() {
   //loading transaction data
@@ -91,19 +99,15 @@ function AllTransactions() {
             display: "flex",
             flexFlow: "column",
             height: "100vh",
-          
           }}
         >
- 
-  
-          <MDBInput type="text" placeholder="Search" className="search" />
+          <input type="text" placeholder="Search" className="search" />
           {/* <select id="month" onChange={handleCategoryChange}>
           <option value="select Month">Month</option>
           <option value="January">January</option>
           <option value="January"></option>
         </select> */}
           <div>
-
             <table>
               <thead>
                 <tr>
@@ -141,7 +145,8 @@ function AllTransactions() {
         }}
       >
         <div style={{ height: "100%", background: "#364958" }}>
-          <MDBInput style={{width: "40.9%", marginLeft: "26.5%", marginTop: "2%"}}
+          <MDBInput
+            style={{ width: "20%", marginLeft: "21%", marginTop: "2%" }}
             type="text"
             placeholder="Search"
             className="search"

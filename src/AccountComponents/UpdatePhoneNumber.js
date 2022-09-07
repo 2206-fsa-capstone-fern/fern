@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { gettingUser, resetingNotice, updatingPhoneNumber } from "../store";
-import {MDBBtn} from 'mdb-react-ui-kit'
+import { Button } from "react-bootstrap";
 function UpdatePhoneNumber(props) {
   const { notice, user } = props;
-  const { email } = user
+  const { email } = user;
   const [confirmPassword, setPassword] = useState("");
   const [newPhoneNumber, setNewPhoneNumber] = useState("");
   const [showConfirmNewPhoneNumber, setShowConfirmNewPhoneNumber] =
@@ -26,7 +26,7 @@ function UpdatePhoneNumber(props) {
       confirmPassword,
       newPhoneNumber
     );
-    if(newNotice.notice.phone !== "Incorrect Password") {
+    if (newNotice.notice.phone !== "Incorrect Password") {
       document.getElementById("update-phoneNumber").reset();
       await props.getUser();
       setShowConfirmNewPhoneNumber(false);
@@ -35,7 +35,7 @@ function UpdatePhoneNumber(props) {
 
   const handleSubmitOnNewPhoneNumber = (e) => {
     e.preventDefault();
-    props.resetNotice()
+    props.resetNotice();
     setShowConfirmNewPhoneNumber(true);
   };
 
@@ -53,29 +53,41 @@ function UpdatePhoneNumber(props) {
             />
           </div>
           <div className="input-field">
-            <MDBBtn color='success' id="confirm-delete">Confirm Update Phone Number</MDBBtn>
-            {notice.phone === "Incorrect Password" ? <span>{`${notice.phone}`}</span> : null}
+            <Button color="success" id="confirm-delete">
+              Confirm Update Phone Number
+            </Button>
+            {notice.phone === "Incorrect Password" ? (
+              <span>{`${notice.phone}`}</span>
+            ) : null}
           </div>
         </form>
       ) : null}
 
       <form id="update-phoneNumber" onSubmit={handleSubmitOnNewPhoneNumber}>
         <div className="input-field">
-          <label htmlFor="phoneNumber">Update Phone Number (123-456-7890)</label>
+          <label htmlFor="phoneNumber">
+            Update Phone Number (123-456-7890)
+          </label>
           <input
             type="tel"
             name="newPhoneNumber"
-            pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             onChange={handleChange}
             required
           />
         </div>
         <div className="input-field">
-          <MDBBtn color='success' id="confirm-update-phoneNumber">Update Phone Number</MDBBtn>
+          <Button color="success" id="confirm-update-phoneNumber">
+            Update Phone Number
+          </Button>
           {showConfirmNewPhoneNumber ? (
-            <span>^^^ Input Password Above To Confirm Phone Number Update ^^^</span>
+            <span>
+              ^^^ Input Password Above To Confirm Phone Number Update ^^^
+            </span>
           ) : null}
-          {notice.phone && notice.phone !== "Incorrect Password" ? <span>Phone Number Updated Successfully</span> : null}
+          {notice.phone && notice.phone !== "Incorrect Password" ? (
+            <span>Phone Number Updated Successfully</span>
+          ) : null}
         </div>
         <br />
       </form>
@@ -86,7 +98,7 @@ function UpdatePhoneNumber(props) {
 const mapState = (state) => {
   return {
     notice: state.accountNotice,
-    user: state.user
+    user: state.user,
   };
 };
 

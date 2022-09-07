@@ -1,8 +1,7 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { loggingOut } from '../store';
-import { MDBBtn } from 'mdb-react-ui-kit';
-
+import { NavLink, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { loggingOut } from "../store";
+import { Button } from "react-bootstrap";
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
   const navigate = useNavigate();
@@ -12,33 +11,38 @@ const SignedInLinks = (props) => {
     props.logout(navigate);
   };
   return (
-    <div className='navbar-container'>
-      <div className='plaidButton'>
+    <div className="navbar-container">
+      <div className="plaidButton">
         <button onClick={() => props.open()} disabled={!props.ready}>
           <strong>Link an account</strong>
           {/* {console.log(props.transactions)}
           {console.log("second", props.transactions2)} */}
         </button>
       </div>
-      <MDBBtn color='success'>
-      <NavLink to='/' onClick={handleLogout} className='authLink' style={{ color: "white" }}>
-        Log Out
+      <Button color="success" style={{ marginRight: "5px", marginTop: "10px" }}>
+        <NavLink
+          to="/"
+          onClick={handleLogout}
+          className="authLink"
+          style={{ color: "white" }}
+        >
+          Log Out
         </NavLink>
-      </MDBBtn>
+      </Button>
 
       {isLoggedIn ? (
-        <MDBBtn color='success'>
-        <NavLink to='/account' className='authLink'>
-          {user.firstName[0]}
-          {user.lastName[0]}
+        <Button color="success" style={{ marginTop: "10px" }}>
+          <NavLink to="/account" className="authLink">
+            {user.firstName[0]}
+            {user.lastName[0]}
           </NavLink>
-        </MDBBtn>
+        </Button>
       ) : (
-        <MDBBtn color='success'>
-        <NavLink to='/' className='authLink'>
-          UR
-            </NavLink>
-        </MDBBtn>
+        <Button color="success">
+          <NavLink to="/" className="authLink">
+            UR
+          </NavLink>
+        </Button>
       )}
     </div>
   );
