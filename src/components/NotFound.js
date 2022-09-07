@@ -8,7 +8,17 @@ const NotFound = () => {
         <p>
           It looks like you might be lost.
           <br />
-          Head back <Link to="/">home</Link>
+          Head back{" "}
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            home
+          </Link>
         </p>
       </div>
     </div>

@@ -1,29 +1,59 @@
 .link-account-box {
   display: flex;
-  background-color: #49762e;
+  background-color: #c9e4ca;
   justify-content: center;
   align-items: center;
-  width: 420px;
+  width: 500px;
   border-radius: 10px;
-  padding: 30px;
+  padding: 20px;
+}
+
+.link-account-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 13%;
+ }
+
+.link-account-content {
+ text-align: center; 
 }
 
 .link-account-button {
   background-color: black;
   font-weight: bold;
   margin: 0;
+  margin-bottom: 15px;
   /* align-items: center; */
+}
+
+.continue-button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  font-weight: bold;
+  /* align-items: center; */
+}
+
+.continue-button-box {
+  display: flex;
+  background-color: #c9e4ca;
+  justify-content: center;
+  margin: 0px 170px;
+  align-items: center;
+  width: 125px;
+  padding: 20px;
 }
 
 .link-account-button-div {
   margin-top: 20px;
-  margin-left: 20%;
+  margin-left: 0%;
   /* margin-right: 50%; */
 }
 
 .link-account-disclaimer {
-  padding-top: 20px;
-  font-size: 10px;
+  padding-top: 10px;
+  font-size: 14px;
 }
 
 .link-account-disclaimer-text {
