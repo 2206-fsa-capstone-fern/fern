@@ -11,3 +11,9 @@
 
 div.card-body {
    color: "#01a314" !important; }
+
+button.btn.btn-primary {
+    background-color: #01a36d;
+    color: white;
+    border-color: #01a36d;
+}

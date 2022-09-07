@@ -201,7 +201,7 @@ const LastVsCurr = () => {
       y: {
         title: {
           display: true,
-          text: "Amount Spent (USD)",
+          text: "Amount Spent",
         },
       },
       x: {

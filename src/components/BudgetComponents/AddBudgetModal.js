@@ -1,7 +1,7 @@
 import { Form, Modal } from "react-bootstrap";
 import { useRef } from "react";
 import { useBudgets } from "../../contexts/BudgetsContext";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { Button } from "react-bootstrap";
 export default function AddBudgetModal({ show, handleClose }) {
   const nameRef = useRef();
   const maxRef = useRef();
@@ -16,20 +16,22 @@ export default function AddBudgetModal({ show, handleClose }) {
   }
 
   return (
-    <Modal show={show} onHide={handleClose} style={{ color: "#01a314" }}>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      style={{ color: "#01a314", margin: "10% 7.75%" }}
+    >
       <Form onSubmit={handleSubmit} style={{ color: "#01a314" }}>
-        <Modal.Header closeMDBBtn>
+        <Modal.Header closeButton>
           <Modal.Title style={{ color: "#364958" }}>New Budget</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ color: "#01a314" }}>
+        <Modal.Body style={{ color: "#01a314", background: "white" }}>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label style={{ color: "#01a314" }}>Name</Form.Label>
+            <Form.Label style={{ color: "black" }}>Name</Form.Label>
             <Form.Control ref={nameRef} type="text" required />
           </Form.Group>
           <Form.Group className="mb-3" controlId="max">
-            <Form.Label style={{ color: "#01a314" }}>
-              Maximum Spending
-            </Form.Label>
+            <Form.Label style={{ color: "black" }}>Maximum Spending</Form.Label>
             <Form.Control
               ref={maxRef}
               type="number"
@@ -38,10 +40,13 @@ export default function AddBudgetModal({ show, handleClose }) {
               step={0.01}
             />
           </Form.Group>
-          <div className="d-flex justify-content-end">
-            <MDBBtn color="success" type="submit">
+          <div
+            className="d-flex justify-content-center"
+            style={{ marginLeft: "20%" }}
+          >
+            <Button color="success" type="submit">
               Add
-            </MDBBtn>
+            </Button>
           </div>
         </Modal.Body>
       </Form>

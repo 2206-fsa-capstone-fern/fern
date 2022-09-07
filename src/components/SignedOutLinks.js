@@ -1,19 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { MDBBtn } from "mdb-react-ui-kit";
-
+import { Button } from "react-bootstrap";
 const SignedOutLinks = () => {
   return (
     <div>
-      <MDBBtn color="success" style={{ margin: 5 }}>
+      <Button color="success" style={{ marginRight: "5px" }}>
         <NavLink to="/login" className="nav-link">
           Log In
         </NavLink>
-      </MDBBtn>
-      <MDBBtn color="success" className="btn btn-primary" style={{ margin: 5 }}>
+      </Button>
+      <Button color="success" className="btn btn-primary">
         <NavLink to="/signup" className="nav-link">
           Sign Up
         </NavLink>
-      </MDBBtn>
+      </Button>
     </div>
   );
 };

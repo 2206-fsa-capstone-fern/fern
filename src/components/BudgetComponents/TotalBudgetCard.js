@@ -10,12 +10,12 @@ export default function TotalBudgetCard() {
   return (
     //renders if budget has been set
     <div>
-      {amount && max > 0 ? (
+      {amount && max ? (
         <div className="vstack gap-2 align-items-center">
           <div
             className="fw-bold mb-3 mx-auto"
             style={{
-              width: "26rem",
+              width: "26vw",
               fontSize: 20,
               color: "white",
               textAlign: "center",
@@ -41,7 +41,7 @@ export default function TotalBudgetCard() {
           <div
             className="fw-bold mb-3 mx-auto"
             style={{
-              width: "26rem",
+              width: "26vw",
               fontSize: 20,
               color: "white",
               textAlign: "center",

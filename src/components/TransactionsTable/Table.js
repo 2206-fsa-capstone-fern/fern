@@ -59,7 +59,7 @@ function Table({ transactions }) {
             </tbody>
           </table>
         </MDBCardBody>
-        <MDBFooter style={{ margin: "0 50%" }}>
+        <MDBFooter style={{ margin: "0 45%" }}>
           <ReactPaginate
             previousLabel={"<"}
             nextLabel={">"}

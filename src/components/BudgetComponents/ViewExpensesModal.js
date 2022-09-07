@@ -4,7 +4,7 @@ import {
   useBudgets,
 } from "../../contexts/BudgetsContext";
 import { currencyFormatter } from "../../utils";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { Button } from "react-bootstrap";
 export default function ViewExpensesModal({ budgetId, handleClose }) {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
     useBudgets();
@@ -16,13 +16,17 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
       : budgets.find((b) => b.id === budgetId);
 
   return (
-    <Modal show={budgetId != null} onHide={handleClose}>
+    <Modal
+      show={budgetId != null}
+      onHide={handleClose}
+      style={{ margin: "10% 7.75%" }}
+    >
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
             <div>Expenses - {budget?.name}</div>
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
-              <MDBBtn
+              <Button
                 onClick={() => {
                   deleteBudget(budget);
                   handleClose();
@@ -30,12 +34,12 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
                 color="outline-danger"
               >
                 Delete
-              </MDBBtn>
+              </Button>
             )}
           </Stack>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ background: "white" }}>
         <Stack direction="vertical" gap="3">
           {expenses.map((expense) => (
             <Stack direction="horizontal" gap="2" key={expense.id}>
@@ -43,13 +47,13 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
               <div className="fs-5">
                 {currencyFormatter.format(expense.amount)}
               </div>
-              <MDBBtn
+              <Button
                 onClick={() => deleteExpense(expense)}
                 size="sm"
                 color="outline-danger"
               >
                 &times;
-              </MDBBtn>
+              </Button>
             </Stack>
           ))}
         </Stack>

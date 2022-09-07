@@ -4,7 +4,7 @@ import {
   useBudgets,
   UNCATEGORIZED_BUDGET_ID,
 } from "../../contexts/BudgetsContext";
-import { MDBBtn } from "mdb-react-ui-kit";
+import { Button } from "react-bootstrap";
 export default function AddExpenseModal({
   show,
   handleClose,
@@ -26,12 +26,16 @@ export default function AddExpenseModal({
   }
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      style={{ color: "#01a314", margin: "10% 7.75%" }}
+    >
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>New Expense</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ color: "#01a314", background: "white" }}>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control ref={descriptionRef} type="text" required />
@@ -57,10 +61,13 @@ export default function AddExpenseModal({
               ))}
             </Form.Select>
           </Form.Group>
-          <div className="d-flex justify-content-end">
-            <MDBBtn color="success" type="submit">
+          <div
+            className="d-flex justify-content-center"
+            style={{ marginLeft: "20%" }}
+          >
+            <Button color="success" type="submit">
               Add
-            </MDBBtn>
+            </Button>
           </div>
         </Modal.Body>
       </Form>

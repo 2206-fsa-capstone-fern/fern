@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { deletingAccount } from "../../store";
-import { MDBBtn } from "mdb-react-ui-kit";
-
+import { Button } from "react-bootstrap";
 function DeleteAccount(props) {
   const { notice, user } = props;
   const { email } = user;
@@ -32,13 +31,13 @@ function DeleteAccount(props) {
     <div>
       <form className="delete-form">
         <div>
-          <MDBBtn
+          <Button
             color="success"
             id="delete-account"
             onClick={handleSubmitOnDelete}
           >
             Delete Account
-          </MDBBtn>
+          </Button>
           {showConfirmDelete ? (
             <div style={{ color: "#c9e4ca" }}>
               Input Password To Confirm Delete Account
@@ -61,11 +60,11 @@ function DeleteAccount(props) {
             />
           </div>
           <div className="input-field">
-            <MDBBtn color="success" id="confirm-delete">
-              Confirm Delete
-            </MDBBtn>
+            <Button color="success" id="confirm-delete">
+              CONFIRM DELETE
+            </Button>
             {notice.delete === "Incorrect Password" ? (
-              <div style={{ color: "#c9e4ca" }}>{`${notice.delete}`}</div>
+              <span>{`${notice.delete}`}</span>
             ) : null}
           </div>
         </form>

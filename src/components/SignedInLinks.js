@@ -1,8 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingOut } from "../store";
-import { MDBBtn } from "mdb-react-ui-kit";
-
+import { Button } from "react-bootstrap";
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const SignedInLinks = (props) => {
           <strong>Link an account</strong>
         </button>
       </div>
-      <MDBBtn color="success">
+      <Button color="success" style={{ marginRight: "5px", marginTop: "10px" }}>
         <NavLink
           to="/"
           onClick={handleLogout}
@@ -27,21 +26,21 @@ const SignedInLinks = (props) => {
         >
           Log Out
         </NavLink>
-      </MDBBtn>
+      </Button>
 
       {isLoggedIn ? (
-        <MDBBtn color="success">
+        <Button color="success" style={{ marginTop: "10px" }}>
           <NavLink to="/account" className="authLink">
-            {user.firstName[0]}
-            {user.lastName[0]}
+            {user.firstName[0].toUpperCase()}
+            {user.lastName[0].toUpperCase()}
           </NavLink>
-        </MDBBtn>
+        </Button>
       ) : (
-        <MDBBtn color="success">
+        <Button color="success">
           <NavLink to="/" className="authLink">
             UR
           </NavLink>
-        </MDBBtn>
+        </Button>
       )}
     </div>
   );

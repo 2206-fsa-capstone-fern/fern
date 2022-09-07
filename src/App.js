@@ -159,6 +159,11 @@ function App(props) {
           {/* for users who aren't logged in */}
           <Navbar />
           <Routes>
+            <Route
+              exact
+              path="/link"
+              element={<LinkAccount open={open} ready={ready} />}
+            />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/login" element={<LogIn />} />
             <Route exact path="/" element={<LogIn />} />

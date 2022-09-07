@@ -47,18 +47,26 @@ function AccountView(props) {
                     src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
                     waves
                   />
-                  <MDBCardBody style={{ color: "#01a314" }}>
+                  <MDBCardBody
+                    style={{ color: "#01a314", background: "#c9e4ca" }}
+                  >
                     <MDBCardText>
                       <MDBListGroup>
-                        <MDBListGroupItem style={{ color: "#364958" }}>
+                        <MDBListGroupItem
+                          style={{ color: "#364958", background: "white" }}
+                        >
                           <MDBIcon icon="user" className="mr-2" />
                           {firstName} {lastName}
                         </MDBListGroupItem>
-                        <MDBListGroupItem style={{ color: "#364958" }}>
+                        <MDBListGroupItem
+                          style={{ color: "#364958", background: "white" }}
+                        >
                           <MDBIcon icon="envelope" className="mr-2" />
                           {email}
                         </MDBListGroupItem>
-                        <MDBListGroupItem style={{ color: "#364958" }}>
+                        <MDBListGroupItem
+                          style={{ color: "#364958", background: "white" }}
+                        >
                           <MDBIcon icon="phone" className="mr-2" />
                           {phoneNumber}
                         </MDBListGroupItem>
@@ -69,7 +77,7 @@ function AccountView(props) {
               </MDBCol>
               <MDBCol md="8">
                 <MDBCard>
-                  <MDBCardBody>
+                  <MDBCardBody style={{ background: "#c9e4ca" }}>
                     <MDBCardText>
                       <MDBRow>
                         <MDBCol md="6">

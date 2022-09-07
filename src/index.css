@@ -1,7 +1,7 @@
 @import './AllTransactions.css';
-@import './AccountBalances.css';
-@import './Trends.css';
-@import './LinkAccount.css';
+@import './Styles/AccountBalances.css';
+@import './Styles/Trends.css';
+@import './Styles/LinkAccount.css';
 
 body {
   margin: 0;
@@ -18,7 +18,7 @@ code {
 }
 
 .landing{
-  background-image: 'public\img\fern-landing.jpg';
+  background-image: 'fernLanding.jpg';
 }
 
 /* Contact */
@@ -140,9 +140,7 @@ code {
   height: 40px;
   list-style: none;
   text-decoration: none;
-  display: flex;
-  justify-content: center;
-  margin: -25px 5px;
+  margin: 5px;
   border-radius: 5px;
   border: 1px solid black;
   color: black;
@@ -164,7 +162,9 @@ code {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-image: url('./fern-landing.jpg');
+  background-image: url('fernLanding.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
@@ -281,9 +281,9 @@ input:focus {
 
 
 /* NAVBAR */
-.plaidButton {
+/* .plaidButton {
   cursor: pointer;
-  /* padding-top: 50px; */
+  padding-top: 50px;
   text-align: right;
   text-decoration: none;
   width: 100%;
@@ -304,7 +304,7 @@ input:focus {
   align-items: center;
   width: 100vw;
   background-color: aliceblue;
-}
+} */
 
 .nav-link {
   margin-left: 10px;
@@ -314,7 +314,7 @@ input:focus {
 
 
 button.ripple.ripple-surface.btn.btn-success {
-  margin-right: 5px;
+  margin-right: 0px;
   margin-top: 20px;
  
   align-items: flex-end;
@@ -363,4 +363,10 @@ div.card-body {
 
 li.list-group-item {
   background-color:  #c9e4ca; 
+}
+
+.search {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 200px;
 }
