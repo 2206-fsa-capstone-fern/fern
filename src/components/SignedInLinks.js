@@ -15,8 +15,6 @@ const SignedInLinks = (props) => {
       <div className="plaidButton">
         <button onClick={() => props.open()} disabled={!props.ready}>
           <strong>Link an account</strong>
-          {/* {console.log(props.transactions)}
-          {console.log("second", props.transactions2)} */}
         </button>
       </div>
       <Button color="success" style={{ marginRight: "5px", marginTop: "10px" }}>

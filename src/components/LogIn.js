@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingIn } from "../store";
 import { Button } from "react-bootstrap";
@@ -80,37 +80,6 @@ class LogIn extends Component {
     );
   }
 }
-//           <h5 className="grey-text text-darken-3">Log In</h5>
-//           <div className="input-field">
-//             <label htmlFor="email">Email</label>
-//             <input
-//               type="email"
-//               name="email"
-//               onChange={this.handleChange}
-//               required
-//             />
-//           </div>
-//           <div className="input-field">
-//             <label htmlFor="password">Password</label>
-//             <input
-//               type="password"
-//               name="password"
-//               onChange={this.handleChange}
-//               required
-//             />
-//           </div>
-//           <div className="input-field">
-//             <button className="btn">Login</button>
-//             {toNext ? null : <span>{user.code}</span> }
-//           </div>
-//           <div>
-//             <Link to="/signup">New User? Click here to sign up!</Link>
-//           </div>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
 
 const mapState = (state) => {
   return {

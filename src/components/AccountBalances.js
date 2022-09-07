@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from "cdbreact";
-import SideNav from "./SideNav/SideNav";
+import SideNav from "./NavBars/SideNav";
 
 const Balances = () => {
   const [chart, setChart] = useState([]);
@@ -25,18 +25,11 @@ const Balances = () => {
         }),
       })
         .then((response) => {
-          // console.log('chart in .then: \n', chart)
-          console.log("response: \n", response);
           response.json().then((data) => {
-            console.log("data: \n", data);
-            // console.log("data.transactions: \n", data.transactions);
             setChart(data.accounts);
-            // setChart(data)
           });
         })
-        .catch((error) => {
-          console.log("ERROR: \n", error);
-        });
+        .catch((error) => {});
     };
     fetchBalances();
   }, [baseURL, proxyURL, apiKey]);
@@ -104,8 +97,16 @@ const Balances = () => {
                 <CDBTableBody>
                   {chart.map((account) => (
                     <tr key={account.account_id}>
-                      <td className="ab-acc-name" style={{ textAlign: "center", color: "white" }}>{account.name}</td>
-                      <td className="ab-acc-amount" style={{ textAlign: "center", color: "white" }}>
+                      <td
+                        className="ab-acc-name"
+                        style={{ textAlign: "center", color: "white" }}
+                      >
+                        {account.name}
+                      </td>
+                      <td
+                        className="ab-acc-amount"
+                        style={{ textAlign: "center", color: "white" }}
+                      >
                         {!account.balances.available
                           ? account.balances.current.toFixed(2)
                           : account.balances.available.toFixed(2)}

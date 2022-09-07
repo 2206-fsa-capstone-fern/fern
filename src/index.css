@@ -1,5 +1,7 @@
 @import './AllTransactions.css';
 @import './AccountBalances.css';
+@import './Trends.css';
+@import './LinkAccount.css';
 
 body {
   margin: 0;
@@ -38,6 +40,11 @@ code {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* accounts overview component */
+.account-title-style {
+  background: "green"
 }
 /* 
 .container .card {
@@ -156,9 +163,11 @@ code {
 #login.Auth-form {
   background-color: #364958;
 }
+
 #signup.Auth-form {
   background-color: #364958;
 }
+
 .Auth-form {
   width: 420px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
@@ -166,6 +175,7 @@ code {
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
+  z-index: 1;
 }
 
 .Auth-form-content {
@@ -263,7 +273,7 @@ input:focus {
 /* NAVBAR */
 .plaidButton {
   cursor: pointer;
-  padding-top: 50px;
+  /* padding-top: 50px; */
   text-align: right;
   text-decoration: none;
   width: 100%;
@@ -275,8 +285,10 @@ input:focus {
   width: 100%;
   padding: 10px;
   padding-bottom: 20px;
+  margin-left: 1000px;
 }
-/* .navbar-container {
+
+.navbar-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -285,13 +297,18 @@ input:focus {
 }
 
 .nav-link {
-  margin-left: 100px;
-  margin-right: 100px;
-} */
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+} 
+
 
 button.ripple.ripple-surface.btn.btn-success {
   margin-right: 0px;
   margin-top: 20px;
+ 
+  align-items: flex-end;
+
 }
 
 .modal-body {
@@ -307,7 +324,35 @@ button.ripple.ripple-surface.btn.btn-success {
   margin-left: 7%;
 }
 div.card-body {
-  background-color: "#01a314" ; 
+  background-color: #364958 ; 
+}
+
+/* .intro-pic-div { */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* z-index: 1; */
+/* } */
+
+.text-blur-out {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  /* background-size: 100% 100%; */
+  /* background-repeat: no-repeat; */
+	animation: text-blur-out 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@keyframes text-blur-out {
+  0% {
+    filter: blur(0.01);
+  }
+  100% {
+    filter: blur(12px) opacity(0%);
+  }
+}
+
+li.list-group-item {
+  background-color:  #c9e4ca; 
 }
 
 .search {
