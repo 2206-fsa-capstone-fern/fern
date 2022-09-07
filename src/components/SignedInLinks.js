@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loggingOut } from "../store";
 import { Button } from "react-bootstrap";
+import { MDBIcon } from "mdb-react-ui-kit";
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
   const navigate = useNavigate();
@@ -11,25 +12,24 @@ const SignedInLinks = (props) => {
     props.logout(navigate);
   };
   return (
-    <div className="navbar-container">
-      <div className="plaidButton">
+    <div className="navbar-container vstack">
+      {/* <div className="plaidButton">
         <button onClick={() => props.open()} disabled={!props.ready}>
           <strong>Link an account</strong>
         </button>
-      </div>
-      <Button color="success" style={{ marginRight: "5px", marginTop: "10px" }}>
-        <NavLink
-          to="/"
-          onClick={handleLogout}
-          className="authLink"
-          style={{ color: "white" }}
-        >
-          Log Out
-        </NavLink>
-      </Button>
-
+      </div> */}
       {isLoggedIn ? (
-        <Button color="success" style={{ marginTop: "10px" }}>
+        <Button
+          color="success"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "400px",
+            width: "90px",
+          }}
+        >
+          <MDBIcon fas icon="user" />
           <NavLink to="/account" className="authLink">
             {user.firstName[0].toUpperCase()}
             {user.lastName[0].toUpperCase()}
@@ -42,6 +42,20 @@ const SignedInLinks = (props) => {
           </NavLink>
         </Button>
       )}
+
+      <Button
+        color="success"
+        style={{ marginRight: "5px", marginTop: "350px", width: "90px" }}
+      >
+        <NavLink
+          to="/"
+          onClick={handleLogout}
+          className="authLink"
+          style={{ color: "white" }}
+        >
+          Log Out
+        </NavLink>
+      </Button>
     </div>
   );
 };
