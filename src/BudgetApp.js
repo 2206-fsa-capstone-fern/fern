@@ -42,7 +42,7 @@ function BudgetApp() {
               direction="horizontal"
               className="mb-4"
               style={{
-                margin: "350px 250px",
+                margin: "10px 250px",
               }}
             >
               <Button

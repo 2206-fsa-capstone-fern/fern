@@ -6,12 +6,11 @@ export default function TotalBudgetCard() {
   const { expenses, budgets } = useBudgets();
   const amount = expenses.reduce((total, expense) => total + expense.amount, 0);
   const max = budgets.reduce((total, budget) => total + budget.max, 0);
-  if (max === 0) return null;
 
   return (
     //renders if budget has been set
     <div>
-      {amount && max ? (
+      {!!max ? (
         <div className="vstack gap-2 align-items-center">
           <div
             className="fw-bold mb-3 mx-auto"
@@ -26,7 +25,7 @@ export default function TotalBudgetCard() {
               marginTop: "100px",
             }}
           >
-            Budget
+            Monthly Budget
           </div>
           <BudgetCard
             amount={amount}
@@ -52,10 +51,10 @@ export default function TotalBudgetCard() {
               marginTop: "100px",
             }}
           >
-            Budget
+            Monthly Budget
           </div>
           <BudgetCard
-            amount={0}
+            amount={amount}
             name="Total Spent"
             white
             max={500}
