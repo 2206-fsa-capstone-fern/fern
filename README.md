@@ -8,9 +8,7 @@ https://fern-finances.vercel.app/
 
 1. Go to the link above
 2. Sign up for a Fern account
-3. When prompted to connect to a bank account, follow the provided instructions.
-
-   Banks are linked using the Plaid API's sandbox environment, so no personal information is used or collected. Select any bank account and use the following login information to proceed:
+3. You will see a prompt to link a bank account. Banks are linked using the Plaid API's sandbox environment, so no personal information is used or collected. Select any bank account and use the following login information to proceed:
 
    Username: user_good
    Password: pass_good
