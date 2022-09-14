@@ -18,8 +18,9 @@ import Trends from "./components/Trends";
 import AccountView from "./components/AccountComponents/AccountView";
 import AllTransactions from "./components/TransactionsTable/AllTransactions";
 import Balances from "./components/Balances/AccountBalances";
-import QuizApp from "./QuizComponents/QuizApp";
+import QuizApp from "./components/QuizComponents/QuizApp";
 import NotFound from "./components/NotFound";
+import history from "./history";
 
 //Redux
 import { connect } from "react-redux";
@@ -75,6 +76,8 @@ function App(props) {
     setTransactions(transactions);
 
     setLoading(false);
+    history.push("/dashboard");
+    window.location.reload();
   }, [setTransactions, setLoading]);
 
   let isOauth = false;
@@ -111,17 +114,6 @@ function App(props) {
             <div>
               <div className="app-container">
                 <Routes>
-                  <Route
-                    exact
-                    path="/link"
-                    element={
-                      <LinkAccount
-                        stored={transactions}
-                        open={open}
-                        ready={ready}
-                      />
-                    }
-                  />
                   <Route exact path="/dashboard" element={<Dashboard />} />
                   <Route
                     exact
@@ -157,7 +149,6 @@ function App(props) {
       ) : (
         <div>
           {/* for users who aren't logged in */}
-          <Navbar />
           <Routes>
             <Route
               exact
@@ -168,6 +159,13 @@ function App(props) {
             <Route exact path="/login" element={<LogIn />} />
             <Route exact path="/" element={<LogIn />} />
             <Route exact path="*" element={<NotFound />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/budget" element={<BudgetApp />} />
+            <Route exact path="/trends" element={<Trends />} />
+            <Route exact path="/transactions" element={<AllTransactions />} />
+            <Route exact path="/account" element={<AccountView />} />
+            <Route exact path="/balances" element={<Balances />} />
+            <Route exact path="/quiz" element={<QuizApp />} />
           </Routes>
         </div>
       )}

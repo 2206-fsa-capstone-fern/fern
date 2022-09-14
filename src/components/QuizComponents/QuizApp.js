@@ -3,7 +3,7 @@ import EndScreen from "./EndScreen";
 import MainMenu from "./MainMenu";
 import Quiz from "./Quiz";
 import { QuizContext } from "./Contexts";
-import SideNav from "../components/NavBars/SideNav";
+import SideNav from "../NavBars/SideNav";
 
 const App = () => {
   const [gameState, setGameState] = useState("menu");

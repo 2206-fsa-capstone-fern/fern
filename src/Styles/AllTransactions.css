@@ -1,4 +1,4 @@
-table.transaction-table {
+/* table.transaction-table {
   margin-right: 0%;
   margin-left: 50%;
 }
@@ -12,7 +12,6 @@ table.transaction-table {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-/* style={{ color: "white" }}  */
 
 td.transaction-row-data {
   color: white;
@@ -60,4 +59,4 @@ input.search {
 
 .paginationActive a {
   background-color: lightseagreen;
-}
+} */

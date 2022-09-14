@@ -41,7 +41,9 @@ function BudgetApp() {
             <Stack
               direction="horizontal"
               className="mb-4"
-              style={{ paddingRight: "5%", marginLeft: "5%", marginTop: "5%" }}
+              style={{
+                margin: "350px 250px",
+              }}
             >
               <Button
                 color="success"
