@@ -38,11 +38,12 @@ const SignedInLinks = (props) => {
           </NavLink>
         </Button>
       ) : (
-        <Button color="success" style={{ marginTop: "10px" }}>
-          <NavLink to="/" className="authLink">
-            Account
-          </NavLink>
-        </Button>
+        <></>
+        // <Button color="success" style={{ marginTop: "10px" }}>
+        //   <NavLink to="/account" className="authLink">
+        //     Account
+        //   </NavLink>
+        // </Button>
       )}
     </div>
   );
