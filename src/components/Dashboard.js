@@ -93,10 +93,10 @@ const Dashboard = ({ open, ready }) => {
                 onDragStart={onDragStart}
               >
                 <MDBContainer
-                  flex={true}
-                  wrap={true}
+                  flex="true"
+                  wrap="true"
                   direction="row"
-                  alignItems="center"
+                  alignitems="center"
                   style={{ maxWidth: "1100px" }}
                 >
                   <SortableContext

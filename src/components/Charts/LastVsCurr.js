@@ -73,12 +73,11 @@ const LastVsCurr = () => {
       })
         .then((response) => {
           response.json().then((json) => {
-            console.log("json285: \n", json);
             setChart(json.transactions);
           });
         })
         .catch((error) => {
-          console.log("error: \n", error);
+          console.log("ERROR: \n", error);
         });
     };
     fetchCoins();
@@ -103,12 +102,11 @@ const LastVsCurr = () => {
       })
         .then((response) => {
           response.json().then((json) => {
-            console.log("json315: \n", json);
             setChart2(json.transactions);
           });
         })
         .catch((error) => {
-          console.log("error: \n", error);
+          console.log("ERROR: \n", error);
         });
     };
     fetch2();
@@ -130,7 +128,6 @@ const LastVsCurr = () => {
       const date = new Date(dates);
       dates = date.toLocaleString("en-US", {
         day: "2-digit",
-        // day: 'numeric',
       });
 
       obj[dates] += amounts;
@@ -171,24 +168,24 @@ const LastVsCurr = () => {
     return front.concat(end);
   };
   dates2 = rotateArr(dates2, 9);
-  objvals = rotateArr(objvals, 11);
-  objvals2 = rotateArr(objvals2, 9);
+  objvals = rotateArr(objvals, 10);
+  objvals2 = rotateArr(objvals2, 10);
 
   let data = {
     labels: dates2,
     datasets: [
       {
-        label: "Current Month",
+        label: "Previous Month",
         data: objvals2,
-        backgroundColor: ["rgba(0, 102, 34, 1)"],
-        borderColor: ["rgba(0, 102, 34, 1)"],
+        backgroundColor: ["rgba(2, 135, 28, 0.6)"],
+        borderColor: ["rgba(2, 135, 28, 0.6)"],
         borderWidth: 2,
       },
       {
-        label: "Previous Month",
+        label: "Current Month",
         data: objvals,
-        backgroundColor: ["rgba(2, 135, 28, 0.6)"],
-        borderColor: ["rgba(2, 135, 28, 0.6)"],
+        backgroundColor: ["rgba(0, 102, 34, 1)"],
+        borderColor: ["rgba(0, 102, 34, 1)"],
         borderWidth: 1.5,
       },
     ],
