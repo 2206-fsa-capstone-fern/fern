@@ -45,7 +45,7 @@ function SideNav(props) {
               );
             })}
             <CDBSidebarMenuItem className="sidebar-item">
-              {props.isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+              <SignedInLinks />
             </CDBSidebarMenuItem>
           </CDBSidebarMenu>
         </CDBSidebarContent>

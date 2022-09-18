@@ -4,21 +4,7 @@ import { connect } from "react-redux";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import { NavLink } from "react-router-dom";
-import {
-  CDBNavbar,
-  CDBNavBrand,
-  CDBNavItem,
-  CDBNavLink,
-  CDBDropDown,
-  CDBDropDownMenu,
-  CDBDropDownToggle,
-  CDBBtn,
-  CDBNavToggle,
-  CDBIcon,
-  CDBCollapse,
-  CDBNavbarNav,
-  CDBContainer,
-} from "cdbreact";
+import { CDBNavbar } from "cdbreact";
 
 const Navbar = (props) => {
   return (

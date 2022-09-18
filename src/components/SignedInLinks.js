@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { loggingOut } from "../store";
 import { Button } from "react-bootstrap";
 import { MDBIcon } from "mdb-react-ui-kit";
+
 const SignedInLinks = (props) => {
   const { isLoggedIn, user } = props;
   const navigate = useNavigate();
@@ -13,11 +14,6 @@ const SignedInLinks = (props) => {
   };
   return (
     <div className="navbar-container">
-      {/* <div className="plaidButton">
-        <button onClick={() => props.open()} disabled={!props.ready}>
-          <strong>Link an account</strong>
-        </button>
-      </div> */}
       <Button
         color="success"
         style={{ marginRight: "20px", marginTop: "10px" }}
@@ -42,11 +38,12 @@ const SignedInLinks = (props) => {
           </NavLink>
         </Button>
       ) : (
-        <Button color="success">
-          <NavLink to="/" className="authLink">
-            UR
-          </NavLink>
-        </Button>
+        <></>
+        // <Button color="success" style={{ marginTop: "10px" }}>
+        //   <NavLink to="/account" className="authLink">
+        //     Account
+        //   </NavLink>
+        // </Button>
       )}
     </div>
   );

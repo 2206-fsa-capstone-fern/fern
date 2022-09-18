@@ -41,17 +41,6 @@ function LinkAccount(props) {
                     Link Account
                   </button>
                 </div>
-                <h4>Continue when you're ready</h4>
-                <div className="continue-button-box">
-                  <div className="continue-button" style={{ width: "90px" }}>
-                    <Link
-                      to="/dashboard"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      Continue
-                    </Link>
-                  </div>
-                </div>
                 <div className="link-account-disclaimer">
                   <p className="link-account-disclaimer-text">
                     DISCLAIMER:
