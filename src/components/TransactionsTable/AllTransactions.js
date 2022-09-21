@@ -44,10 +44,12 @@ function AllTransactions() {
           });
         })
 
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("ERROR: \n", error);
+        });
     };
     fetchTransactions();
-  }, []);
+  }, [apiKey, baseURL, formattedCurrDate]);
 
   const searchFn = (transactions) => {
     return transactions.filter(

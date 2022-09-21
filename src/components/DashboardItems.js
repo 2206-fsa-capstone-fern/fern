@@ -42,7 +42,7 @@ const SortableItem = (props) => {
         }}
       >
         <i
-          class="bi bi-grip-vertical"
+          className="bi bi-grip-vertical"
           {...listeners}
           {...attributes}
           style={{
