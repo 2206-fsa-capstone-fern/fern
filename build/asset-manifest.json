@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5cf5a631.chunk.css",
+    "main.js": "/static/js/main.087463f3.chunk.js",
+    "main.js.map": "/static/js/main.087463f3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2087c0c0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2087c0c0.js.map",
+    "static/css/2.90ca3307.chunk.css": "/static/css/2.90ca3307.chunk.css",
+    "static/js/2.e1b4acfb.chunk.js": "/static/js/2.e1b4acfb.chunk.js",
+    "static/js/2.e1b4acfb.chunk.js.map": "/static/js/2.e1b4acfb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.90ca3307.chunk.css.map": "/static/css/2.90ca3307.chunk.css.map",
+    "static/css/main.5cf5a631.chunk.css.map": "/static/css/main.5cf5a631.chunk.css.map",
+    "static/js/2.e1b4acfb.chunk.js.LICENSE.txt": "/static/js/2.e1b4acfb.chunk.js.LICENSE.txt",
+    "static/media/all.min.css": "/static/media/fa-solid-900.eeccf4f6.woff",
+    "static/media/index.css": "/static/media/fernLanding.46421756.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2087c0c0.js",
+    "static/css/2.90ca3307.chunk.css",
+    "static/js/2.e1b4acfb.chunk.js",
+    "static/css/main.5cf5a631.chunk.css",
+    "static/js/main.087463f3.chunk.js"
+  ]
+}

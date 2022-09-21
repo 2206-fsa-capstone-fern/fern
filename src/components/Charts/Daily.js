@@ -50,6 +50,8 @@ const Daily = () => {
     fetchCoins();
   }, [baseURL, proxyURL, apiKey, todaysDate, lastWeeksDate]);
 
+  // console.log('lastWeeksDate', lastWeeksDate)
+  // console.log('todaysDate', todaysDate)
   const daysArr = [
     "Sunday",
     "Monday",
@@ -68,6 +70,10 @@ const Daily = () => {
 
       const date = new Date(dates);
       let dayName = daysArr[date.getDay()];
+      console.log('dates', dates)
+      console.log('amounts', amounts)
+      console.log('date', date)
+      console.log('dayName', dayName)
 
       if (!obj.hasOwnProperty(dates)) {
         obj[dayName] = amounts;
@@ -76,8 +82,9 @@ const Daily = () => {
     return obj;
   };
   let datesAndAmount = daysAndAmt();
-  console.log('Object.keys(datesAndAmount).reverse()', Object.keys(datesAndAmount).reverse())
-  console.log('Object.values(datesAndAmount).reverse()', Object.values(datesAndAmount).reverse())
+  console.log('DATESANDAMOUNT', datesAndAmount)
+  // console.log('Object.keys(datesAndAmount).reverse()', Object.keys(datesAndAmount).reverse())
+  // console.log('Object.values(datesAndAmount).reverse()', Object.values(datesAndAmount).reverse())
 
   let data = {
     labels: daysArr,
