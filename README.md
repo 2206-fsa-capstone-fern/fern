@@ -1,6 +1,6 @@
 # Fern
 
-Welcome to Fern, your next personal finance app. The app was created using Firebase, Express, React, Node.js, and Bootstrap. With the help of the Plaid API, we allow users to link a test bank account and dynamically display bank data with Chart.js.
+Welcome to Fern, your next personal finance app. The app was created using Firebase, Express, React, Node.js, and Bootstrap. With the help of the Plaid API, we allow users to link a test bank account and dynamically display bank data with Chart.js. Check out a video demo of our app here: https://www.youtube.com/watch?v=io7GtiQ0wnA.
 
 # To Get Started
 
